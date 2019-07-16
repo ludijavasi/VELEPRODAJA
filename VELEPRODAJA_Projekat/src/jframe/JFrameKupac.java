@@ -70,6 +70,7 @@ public class JFrameKupac extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameKupac() {
+		setTitle("KUPAC");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 589, 472);
 		contentPane = new JPanel();

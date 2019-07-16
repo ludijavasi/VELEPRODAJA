@@ -16,9 +16,9 @@ public class JPanelObrisiKupca extends JPanel {
 		setBorder(new TitledBorder(null, "Obrisi Kupca", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(null);
 
-		JLabel lblUnesiIdKupca = new JLabel("Unesi ID Kupca");
-		lblUnesiIdKupca.setBounds(106, 50, 102, 26);
-		add(lblUnesiIdKupca);
+		JLabel lblUnesiIdBrisiKupca = new JLabel("Unesi ID Kupca");
+		lblUnesiIdBrisiKupca.setBounds(106, 50, 102, 26);
+		add(lblUnesiIdBrisiKupca);
 
 		textIDBrisiKupca = new JTextField();
 		textIDBrisiKupca.setBounds(87, 87, 121, 20);
