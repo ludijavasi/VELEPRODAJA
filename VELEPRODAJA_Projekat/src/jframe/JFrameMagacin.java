@@ -100,13 +100,13 @@ public class JFrameMagacin extends JFrame {
 		panelMagacin.add(textFieldEmailMagacina);
 		textFieldEmailMagacina.setColumns(10);
 
-		JLabel lblIdMagacina = new JLabel("ID :");
+		JLabel lblIdMagacina = new JLabel("ID MAGACINA :");
 		lblIdMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIdMagacina.setBounds(10, 264, 46, 25);
+		lblIdMagacina.setBounds(109, 264, 131, 25);
 		panelMagacin.add(lblIdMagacina);
 
 		textFieldIdMagacina = new JTextField();
-		textFieldIdMagacina.setBounds(188, 268, 86, 20);
+		textFieldIdMagacina.setBounds(250, 268, 131, 20);
 		panelMagacin.add(textFieldIdMagacina);
 		textFieldIdMagacina.setColumns(10);
 

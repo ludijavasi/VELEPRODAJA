@@ -100,7 +100,7 @@ public class JFrameKupac extends JFrame {
 		lblPostanskiBroj.setBounds(10, 123, 82, 14);
 		panelPodacioKupcu.add(lblPostanskiBroj);
 
-		JLabel lblTelefonFirme = new JLabel("Telefon firme :");
+		JLabel lblTelefonFirme = new JLabel("Telefon :");
 		lblTelefonFirme.setBounds(10, 148, 82, 14);
 		panelPodacioKupcu.add(lblTelefonFirme);
 
