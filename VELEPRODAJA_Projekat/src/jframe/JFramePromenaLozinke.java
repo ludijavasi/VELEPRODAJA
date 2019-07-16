@@ -1,4 +1,4 @@
-package Frame;
+package jframe;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
