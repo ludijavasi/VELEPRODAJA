@@ -1,4 +1,4 @@
-package Frame;
+package jframe;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -46,6 +46,8 @@ public class JFrameZaposleni extends JFrame {
 	private JLabel lblPassword;
 	private JTextField textPassword;
 	private JButton btnPonistiAkciju;
+	private JLabel lblIdZaposlenog;
+	private JTextField textIDZaposlenog;
 
 	/**
 	 * Launch the application.
@@ -69,7 +71,7 @@ public class JFrameZaposleni extends JFrame {
 	public JFrameZaposleni() {
 		setTitle("ZAPOSLENI");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 682, 480);
+		setBounds(100, 100, 682, 532);
 		contentPaneDodajZaposlenog = new JPanel();
 		contentPaneDodajZaposlenog.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneDodajZaposlenog);
@@ -78,7 +80,7 @@ public class JFrameZaposleni extends JFrame {
 		JPanel panelLicnipodaci = new JPanel();
 		panelLicnipodaci
 				.setBorder(new TitledBorder(null, "Licni podaci", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelLicnipodaci.setBounds(10, 11, 265, 300);
+		panelLicnipodaci.setBounds(10, 11, 265, 318);
 		contentPaneDodajZaposlenog.add(panelLicnipodaci);
 		panelLicnipodaci.setLayout(null);
 
@@ -147,7 +149,7 @@ public class JFrameZaposleni extends JFrame {
 		panelPodacioZaposlenju = new JPanel();
 		panelPodacioZaposlenju.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 				"Podaci o zaposlenju", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPodacioZaposlenju.setBounds(295, 22, 331, 289);
+		panelPodacioZaposlenju.setBounds(295, 22, 331, 307);
 		contentPaneDodajZaposlenog.add(panelPodacioZaposlenju);
 		panelPodacioZaposlenju.setLayout(null);
 
@@ -204,10 +206,19 @@ public class JFrameZaposleni extends JFrame {
 		dateChooserPrestankaZaposlenja.setBounds(190, 103, 131, 20);
 		panelPodacioZaposlenju.add(dateChooserPrestankaZaposlenja);
 
+		lblIdZaposlenog = new JLabel("ID Zaposlenog :");
+		lblIdZaposlenog.setBounds(77, 282, 90, 14);
+		panelPodacioZaposlenju.add(lblIdZaposlenog);
+
+		textIDZaposlenog = new JTextField();
+		textIDZaposlenog.setBounds(190, 279, 86, 20);
+		panelPodacioZaposlenju.add(textIDZaposlenog);
+		textIDZaposlenog.setColumns(10);
+
 		panel = new JPanel();
 		panel.setBorder(
 				new TitledBorder(null, "Korisnicki podaci", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 322, 265, 97);
+		panel.setBounds(10, 344, 265, 97);
 		contentPaneDodajZaposlenog.add(panel);
 		panel.setLayout(null);
 
@@ -230,19 +241,19 @@ public class JFrameZaposleni extends JFrame {
 		textPassword.setColumns(10);
 
 		JButton btnDodajZaposlenog = new JButton("Dodaj Zaposlenog");
-		btnDodajZaposlenog.setBounds(295, 318, 155, 23);
+		btnDodajZaposlenog.setBounds(295, 340, 155, 23);
 		contentPaneDodajZaposlenog.add(btnDodajZaposlenog);
 
 		JButton btnObrisiZaposlenog = new JButton("Obrisi Zaposlenog");
-		btnObrisiZaposlenog.setBounds(295, 352, 155, 23);
+		btnObrisiZaposlenog.setBounds(295, 374, 155, 23);
 		contentPaneDodajZaposlenog.add(btnObrisiZaposlenog);
 
 		JButton btnAzurirajZaposlenog = new JButton("Azuriraj Zaposlenog");
-		btnAzurirajZaposlenog.setBounds(295, 384, 155, 23);
+		btnAzurirajZaposlenog.setBounds(295, 408, 155, 23);
 		contentPaneDodajZaposlenog.add(btnAzurirajZaposlenog);
 
 		btnPonistiAkciju = new JButton("Ponisti akciju");
-		btnPonistiAkciju.setBounds(480, 352, 146, 23);
+		btnPonistiAkciju.setBounds(295, 445, 155, 23);
 		contentPaneDodajZaposlenog.add(btnPonistiAkciju);
 	}
 }

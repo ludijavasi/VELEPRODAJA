@@ -7,7 +7,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-import JPanel.JPanelObrisiZaposlenog;
+import jpanel.JPanelObrisiZaposlenog;
 
 import javax.swing.JLabel;
 import java.awt.Font;

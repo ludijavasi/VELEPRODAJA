@@ -1,4 +1,4 @@
-package JPanel;
+package jpanel;
 
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -15,31 +15,25 @@ public class JPanelObrisiZaposlenog extends JPanel {
 	 * Create the panel.
 	 */
 	public JPanelObrisiZaposlenog() {
+		setBorder(new TitledBorder(null, "Obrisi Zaposlenog", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(null);
 
-		JPanel panel = new JPanel();
-		panel.setBorder(
-				new TitledBorder(null, "Obrisi zaposlenog", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(0, 0, 276, 233);
-		add(panel);
-		panel.setLayout(null);
-
 		JLabel lblUnesiIdZaposlenog = new JLabel("Unesi ID Zaposlenog :");
-		lblUnesiIdZaposlenog.setBounds(62, 36, 138, 28);
-		panel.add(lblUnesiIdZaposlenog);
+		lblUnesiIdZaposlenog.setBounds(69, 36, 138, 28);
+		add(lblUnesiIdZaposlenog);
 
 		textIDZaposlenog = new JTextField();
-		textIDZaposlenog.setBounds(72, 85, 103, 28);
-		panel.add(textIDZaposlenog);
+		textIDZaposlenog.setBounds(69, 75, 103, 28);
+		add(textIDZaposlenog);
 		textIDZaposlenog.setColumns(10);
 
 		JButton btnOtvoriZaposlenog = new JButton("Otvori Zaposlenog");
+		btnOtvoriZaposlenog.setBounds(56, 129, 141, 28);
+		add(btnOtvoriZaposlenog);
 		btnOtvoriZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnOtvoriZaposlenog.setBounds(59, 143, 141, 28);
-		panel.add(btnOtvoriZaposlenog);
 
 	}
 
