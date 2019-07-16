@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import JPanel.JPanelObrisiZaposlenog;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.InputEvent;
@@ -55,7 +58,7 @@ public class GlavniProzorVeleprodaja {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 687, 474);
+		frame.setBounds(100, 100, 603, 475);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 
@@ -235,6 +238,11 @@ public class GlavniProzorVeleprodaja {
 		mnZaposleniMatPodaciAdmin.add(mntmDodajZaposlenogAdmin);
 
 		JMenuItem mntmObrisiZaposlenogAdmin = new JMenuItem("Obrisi zaposlenog");
+		mntmObrisiZaposlenogAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 		mnZaposleniMatPodaciAdmin.add(mntmObrisiZaposlenogAdmin);
 
 		JMenuItem mntmAzurirajZaposlenogAdmin = new JMenuItem("Azuriraj");
