@@ -145,8 +145,8 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmPovracajKupcaAdmin = new JMenuItem("Povra\u0107aj kupca");
 		mnProdajaAdmin.add(mntmPovracajKupcaAdmin);
 
-		JMenuItem mntmKontrolaFaktureAdmin = new JMenuItem("Kontrola fakture");
-		mnProdajaAdmin.add(mntmKontrolaFaktureAdmin);
+		JMenuItem mntmPregledRacunaAdmin = new JMenuItem("Pregled racuna");
+		mnProdajaAdmin.add(mntmPregledRacunaAdmin);
 
 		JMenu mnAnalizaProdajeAdmin = new JMenu("Analiza prodaje");
 		mnProdajaAdmin.add(mnAnalizaProdajeAdmin);
@@ -185,9 +185,6 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmIstorijaArtikalaAdmin = new JMenuItem("Istorija artikala");
 		mnSkladisteAdmin.add(mntmIstorijaArtikalaAdmin);
 
-		JMenuItem mntmStatistikaPotrosnjeAdmin = new JMenuItem("Statistika potro\u0161nje");
-		mnSkladisteAdmin.add(mntmStatistikaPotrosnjeAdmin);
-
 		JMenu mnZaposleniAdmin = new JMenu("    Zaposleni");
 		mnZaposleniAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBarAdmin.add(mnZaposleniAdmin);
@@ -216,8 +213,8 @@ public class GlavniProzorVeleprodaja {
 		JMenu mnFilijalaAdmin = new JMenu("Filijala");
 		mnMaticniPodaciAdmin.add(mnFilijalaAdmin);
 
-		JMenuItem mntmAktivneFilijaleAdmin = new JMenuItem("Aktivne filijale");
-		mnFilijalaAdmin.add(mntmAktivneFilijaleAdmin);
+		JMenuItem mntmPregledFilijalaAdmin = new JMenuItem("Pregled filijala");
+		mnFilijalaAdmin.add(mntmPregledFilijalaAdmin);
 
 		JMenuItem mntmDodavanjeFilijaleAdmin = new JMenuItem("Dodavanje filijale");
 		mnFilijalaAdmin.add(mntmDodavanjeFilijaleAdmin);
@@ -247,21 +244,6 @@ public class GlavniProzorVeleprodaja {
 
 		JMenuItem mntmAzurirajZaposlenogAdmin = new JMenuItem("Azuriraj");
 		mnZaposleniMatPodaciAdmin.add(mntmAzurirajZaposlenogAdmin);
-
-		JMenu mnGrupePoslovaAdmin = new JMenu("Grupe poslova");
-		mnMaticniPodaciAdmin.add(mnGrupePoslovaAdmin);
-
-		JMenuItem mntmPregledGrupePoslovaAdmin = new JMenuItem("Pregled grupe poslova");
-		mnGrupePoslovaAdmin.add(mntmPregledGrupePoslovaAdmin);
-
-		JMenuItem mntmDodajGrupuPoslovaAdmin = new JMenuItem("Dodaj grupu poslova");
-		mnGrupePoslovaAdmin.add(mntmDodajGrupuPoslovaAdmin);
-
-		JMenuItem mntmObrisiGrupuPoslovaAdmin = new JMenuItem("Obrisi grupu poslova");
-		mnGrupePoslovaAdmin.add(mntmObrisiGrupuPoslovaAdmin);
-
-		JMenuItem mntmAzurirajGrupePoslovaAdmin = new JMenuItem("Azuriraj");
-		mnGrupePoslovaAdmin.add(mntmAzurirajGrupePoslovaAdmin);
 
 		JMenu mnSkladistaAdmin = new JMenu("Skladista");
 		mnMaticniPodaciAdmin.add(mnSkladistaAdmin);
@@ -335,15 +317,6 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmAzurirajGrupuArtikalaAdmin = new JMenuItem("Azuriraj");
 		mnGrupeArtikalaAdmin.add(mntmAzurirajGrupuArtikalaAdmin);
 
-		JMenu mnPoreziAdmin = new JMenu("Porezi");
-		mnMaticniPodaciAdmin.add(mnPoreziAdmin);
-
-		JMenuItem mntmPorez10Admin = new JMenuItem("Porez 10%");
-		mnPoreziAdmin.add(mntmPorez10Admin);
-
-		JMenuItem mntmPorez20Admin = new JMenuItem("Porez 20%");
-		mnPoreziAdmin.add(mntmPorez20Admin);
-
 		JMenuItem mntmAzurirajGrupuSkladistaAdmin = new JMenuItem("Azuriraj");
 		mnGrupeSkladistaAdmin.add(mntmAzurirajGrupuSkladistaAdmin);
 
@@ -363,9 +336,6 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmProdajaPoKupcimaIzvAdmin = new JMenuItem("Prodaja po kupcima");
 		mnAnalizaProdajeIzvestajAdmin.add(mntmProdajaPoKupcimaIzvAdmin);
 
-		JMenuItem mntmRazlikeUCeniIzvAdmin = new JMenuItem("Razlike u ceni");
-		mnAnalizaProdajeIzvestajAdmin.add(mntmRazlikeUCeniIzvAdmin);
-
 		JMenuItem mntmSumarniPregledDokumenataIzvAdmin = new JMenuItem("Sumarni pregled dokumenata");
 		mnAnalizaProdajeIzvestajAdmin.add(mntmSumarniPregledDokumenataIzvAdmin);
 
@@ -380,9 +350,6 @@ public class GlavniProzorVeleprodaja {
 
 		JMenuItem mntmStatistikaPotrosnjeIzvAdmin = new JMenuItem("Statistika potrosnje");
 		mnAnalizaSkladistaIzvestajAdmin.add(mntmStatistikaPotrosnjeIzvAdmin);
-
-		JMenuItem mntmIstorijaArtiklaIzvAdmin = new JMenuItem("Istorija artikala");
-		mnAnalizaSkladistaIzvestajAdmin.add(mntmIstorijaArtiklaIzvAdmin);
 
 		JMenu mnRezultatiAdmin = new JMenu("Rezultati");
 		mnIzvestajAdmin.add(mnRezultatiAdmin);
@@ -401,9 +368,6 @@ public class GlavniProzorVeleprodaja {
 
 		JMenuItem mntmProdajaPoArtikluIzvAdmin = new JMenuItem("Prodaja po artiklu");
 		mnRezultatiAdmin.add(mntmProdajaPoArtikluIzvAdmin);
-
-		JMenuItem mntmZaradaPoArtikluIzvAdmin = new JMenuItem("Zarada po artiklu");
-		mnRezultatiAdmin.add(mntmZaradaPoArtikluIzvAdmin);
 
 		JMenu mnSistemAdmin = new JMenu("    Sistem");
 		mnSistemAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
