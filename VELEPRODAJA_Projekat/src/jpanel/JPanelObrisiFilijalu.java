@@ -9,7 +9,7 @@ import java.awt.Font;
 
 public class JPanelObrisiFilijalu extends JPanel {
 	private JTextField textUnesiIdBrisiFilijale;
-	private JTextField textFieldNazivFilijale;
+	private JTextField textFieldNazivFilijaleObrisi;
 
 	/**
 	 * Create the panel.
@@ -33,17 +33,17 @@ public class JPanelObrisiFilijalu extends JPanel {
 		btnOtvoriBrisiFilijalu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnOtvoriBrisiFilijalu.setBounds(55, 172, 124, 23);
 		add(btnOtvoriBrisiFilijalu);
-		
+
 		JButton btnURedu = new JButton("U redu");
 		btnURedu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnURedu.setBounds(137, 78, 89, 23);
 		add(btnURedu);
-		
-		textFieldNazivFilijale = new JTextField();
-		textFieldNazivFilijale.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldNazivFilijale.setBounds(55, 121, 171, 20);
-		add(textFieldNazivFilijale);
-		textFieldNazivFilijale.setColumns(10);
+
+		textFieldNazivFilijaleObrisi = new JTextField();
+		textFieldNazivFilijaleObrisi.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldNazivFilijaleObrisi.setBounds(55, 121, 171, 20);
+		add(textFieldNazivFilijaleObrisi);
+		textFieldNazivFilijaleObrisi.setColumns(10);
 
 	}
 }

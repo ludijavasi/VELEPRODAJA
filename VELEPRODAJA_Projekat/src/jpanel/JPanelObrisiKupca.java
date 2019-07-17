@@ -9,7 +9,7 @@ import java.awt.Font;
 
 public class JPanelObrisiKupca extends JPanel {
 	private JTextField textIDBrisiKupca;
-	private JTextField textFieldNazivKupca;
+	private JTextField textFieldNazivKupcaBrisi;
 
 	/**
 	 * Create the panel.
@@ -33,17 +33,17 @@ public class JPanelObrisiKupca extends JPanel {
 		btnOtvoriBrisiKupca.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnOtvoriBrisiKupca.setBounds(87, 186, 124, 23);
 		add(btnOtvoriBrisiKupca);
-		
+
 		JButton btnURedu = new JButton("U redu");
 		btnURedu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnURedu.setBounds(180, 87, 73, 23);
 		add(btnURedu);
-		
-		textFieldNazivKupca = new JTextField();
-		textFieldNazivKupca.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldNazivKupca.setBounds(87, 138, 166, 20);
-		add(textFieldNazivKupca);
-		textFieldNazivKupca.setColumns(10);
+
+		textFieldNazivKupcaBrisi = new JTextField();
+		textFieldNazivKupcaBrisi.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldNazivKupcaBrisi.setBounds(87, 138, 166, 20);
+		add(textFieldNazivKupcaBrisi);
+		textFieldNazivKupcaBrisi.setColumns(10);
 
 	}
 }

@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 public class JPanelObrisiMagacin extends JPanel {
 	private JTextField textFieldIdMagacina;
-	private JTextField textFieldNazivMagacina;
+	private JTextField textFieldNazivMagacinaBrisi;
 
 	/**
 	 * Create the panel.
@@ -39,17 +39,17 @@ public class JPanelObrisiMagacin extends JPanel {
 		btnOtvoriMagacin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnOtvoriMagacin.setBounds(72, 196, 143, 23);
 		panelObrisiMagacin.add(btnOtvoriMagacin);
-		
+
 		JButton btnURedu = new JButton("U redu");
 		btnURedu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnURedu.setBounds(178, 107, 73, 23);
 		panelObrisiMagacin.add(btnURedu);
-		
-		textFieldNazivMagacina = new JTextField();
-		textFieldNazivMagacina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldNazivMagacina.setBounds(72, 155, 179, 20);
-		panelObrisiMagacin.add(textFieldNazivMagacina);
-		textFieldNazivMagacina.setColumns(10);
+
+		textFieldNazivMagacinaBrisi = new JTextField();
+		textFieldNazivMagacinaBrisi.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldNazivMagacinaBrisi.setBounds(72, 155, 179, 20);
+		panelObrisiMagacin.add(textFieldNazivMagacinaBrisi);
+		textFieldNazivMagacinaBrisi.setColumns(10);
 
 	}
 

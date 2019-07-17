@@ -12,14 +12,15 @@ import javax.swing.UIManager;
 import java.awt.Color;
 
 public class JPanelObrisiZaposlenog extends JPanel {
-	private JTextField textFieldImeZaposlenog;
+	private JTextField textFieldImeZaposlenogBrisi;
 	private JTextField textFieldIdZaposlenog;
 
 	/**
 	 * Create the panel.
 	 */
 	public JPanelObrisiZaposlenog() {
-		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrisi zaposlenog", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrisi zaposlenog",
+				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(null);
 
 		JLabel lblUnesiIdZaposlenog = new JLabel("Unesite ID zaposlenog :");
@@ -31,18 +32,18 @@ public class JPanelObrisiZaposlenog extends JPanel {
 		btnOtvoriZaposlenog.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnOtvoriZaposlenog.setBounds(51, 188, 161, 28);
 		add(btnOtvoriZaposlenog);
-		
+
 		JButton btnURedu = new JButton("U redu");
 		btnURedu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnURedu.setBounds(176, 94, 73, 23);
 		add(btnURedu);
-		
-		textFieldImeZaposlenog = new JTextField();
-		textFieldImeZaposlenog.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldImeZaposlenog.setBounds(55, 144, 194, 20);
-		add(textFieldImeZaposlenog);
-		textFieldImeZaposlenog.setColumns(10);
-		
+
+		textFieldImeZaposlenogBrisi = new JTextField();
+		textFieldImeZaposlenogBrisi.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldImeZaposlenogBrisi.setBounds(55, 144, 194, 20);
+		add(textFieldImeZaposlenogBrisi);
+		textFieldImeZaposlenogBrisi.setColumns(10);
+
 		textFieldIdZaposlenog = new JTextField();
 		textFieldIdZaposlenog.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldIdZaposlenog.setBounds(55, 94, 58, 20);
