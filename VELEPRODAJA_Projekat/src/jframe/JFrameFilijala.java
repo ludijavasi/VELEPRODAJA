@@ -127,7 +127,7 @@ public class JFrameFilijala extends JFrame {
 		panelPoslovniPodaciFilijale.setLayout(null);
 		panelPoslovniPodaciFilijale.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 				"Poslovni podaci filijale", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPoslovniPodaciFilijale.setBounds(272, 21, 301, 232);
+		panelPoslovniPodaciFilijale.setBounds(272, 11, 301, 242);
 		contentPaneFilijala.add(panelPoslovniPodaciFilijale);
 
 		lblPibFilijale = new JLabel("PIB :");
@@ -158,19 +158,19 @@ public class JFrameFilijala extends JFrame {
 		panelPoslovniPodaciFilijale.add(textTekuciRacunFilijale);
 
 		lblIDFilijale = new JLabel("ID Filijale:");
-		lblIDFilijale.setBounds(63, 140, 78, 14);
+		lblIDFilijale.setBounds(10, 140, 78, 14);
 		panelPoslovniPodaciFilijale.add(lblIDFilijale);
 
 		textIDFilijale = new JTextField();
 		textIDFilijale.setColumns(10);
-		textIDFilijale.setBounds(167, 137, 65, 20);
+		textIDFilijale.setBounds(127, 137, 65, 20);
 		panelPoslovniPodaciFilijale.add(textIDFilijale);
 
-		JButton btnDodajFilijalu = new JButton("Dodaj Filijalu");
+		JButton btnDodajFilijalu = new JButton("Dodaj filijalu");
 		btnDodajFilijalu.setBounds(97, 283, 118, 23);
 		contentPaneFilijala.add(btnDodajFilijalu);
 
-		JButton btnObrisiFilijalu = new JButton("Obrisi Filijalu");
+		JButton btnObrisiFilijalu = new JButton("Obrisi filijalu");
 		btnObrisiFilijalu.setBounds(97, 317, 118, 23);
 		contentPaneFilijala.add(btnObrisiFilijalu);
 
