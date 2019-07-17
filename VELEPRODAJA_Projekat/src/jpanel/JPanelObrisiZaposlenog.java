@@ -7,29 +7,47 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class JPanelObrisiZaposlenog extends JPanel {
-	private JTextField textIDZaposlenog;
+	private JTextField textFieldImeZaposlenog;
+	private JTextField textFieldIdZaposlenog;
 
 	/**
 	 * Create the panel.
 	 */
 	public JPanelObrisiZaposlenog() {
-		setBorder(new TitledBorder(null, "Obrisi Zaposlenog", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrisi zaposlenog", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(null);
 
-		JLabel lblUnesiIdZaposlenog = new JLabel("Unesi ID Zaposlenog :");
-		lblUnesiIdZaposlenog.setBounds(69, 36, 138, 28);
+		JLabel lblUnesiIdZaposlenog = new JLabel("Unesite ID zaposlenog :");
+		lblUnesiIdZaposlenog.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUnesiIdZaposlenog.setBounds(55, 55, 171, 28);
 		add(lblUnesiIdZaposlenog);
 
-		textIDZaposlenog = new JTextField();
-		textIDZaposlenog.setBounds(69, 75, 103, 28);
-		add(textIDZaposlenog);
-		textIDZaposlenog.setColumns(10);
-
-		JButton btnOtvoriZaposlenog = new JButton("Otvori Zaposlenog");
-		btnOtvoriZaposlenog.setBounds(56, 129, 141, 28);
+		JButton btnOtvoriZaposlenog = new JButton("Otvori zaposlenog");
+		btnOtvoriZaposlenog.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnOtvoriZaposlenog.setBounds(51, 188, 161, 28);
 		add(btnOtvoriZaposlenog);
+		
+		JButton btnURedu = new JButton("U redu");
+		btnURedu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnURedu.setBounds(176, 94, 73, 23);
+		add(btnURedu);
+		
+		textFieldImeZaposlenog = new JTextField();
+		textFieldImeZaposlenog.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldImeZaposlenog.setBounds(55, 144, 194, 20);
+		add(textFieldImeZaposlenog);
+		textFieldImeZaposlenog.setColumns(10);
+		
+		textFieldIdZaposlenog = new JTextField();
+		textFieldIdZaposlenog.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldIdZaposlenog.setBounds(55, 94, 58, 20);
+		add(textFieldIdZaposlenog);
+		textFieldIdZaposlenog.setColumns(10);
 		btnOtvoriZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}

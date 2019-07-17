@@ -9,6 +9,7 @@ import javax.swing.JButton;
 
 public class JPanelObrisiMagacin extends JPanel {
 	private JTextField textFieldIdMagacina;
+	private JTextField textFieldNazivMagacina;
 
 	/**
 	 * Create the panel.
@@ -19,24 +20,36 @@ public class JPanelObrisiMagacin extends JPanel {
 		JPanel panelObrisiMagacin = new JPanel();
 		panelObrisiMagacin.setBorder(
 				new TitledBorder(null, "Obrisi magacin", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelObrisiMagacin.setBounds(36, 36, 371, 234);
+		panelObrisiMagacin.setBounds(10, 11, 430, 278);
 		add(panelObrisiMagacin);
 		panelObrisiMagacin.setLayout(null);
 
-		JLabel lblUnesiIdMagacina = new JLabel("Unesi ID magacina :");
-		lblUnesiIdMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiIdMagacina.setBounds(108, 56, 161, 28);
+		JLabel lblUnesiIdMagacina = new JLabel("Unesite ID magacina :");
+		lblUnesiIdMagacina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUnesiIdMagacina.setBounds(72, 56, 161, 28);
 		panelObrisiMagacin.add(lblUnesiIdMagacina);
 
 		textFieldIdMagacina = new JTextField();
-		textFieldIdMagacina.setBounds(133, 112, 86, 20);
+		textFieldIdMagacina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldIdMagacina.setBounds(72, 106, 55, 20);
 		panelObrisiMagacin.add(textFieldIdMagacina);
 		textFieldIdMagacina.setColumns(10);
 
 		JButton btnOtvoriMagacin = new JButton("Otvori magacin");
-		btnOtvoriMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriMagacin.setBounds(108, 170, 143, 23);
+		btnOtvoriMagacin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnOtvoriMagacin.setBounds(72, 196, 143, 23);
 		panelObrisiMagacin.add(btnOtvoriMagacin);
+		
+		JButton btnURedu = new JButton("U redu");
+		btnURedu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnURedu.setBounds(178, 107, 73, 23);
+		panelObrisiMagacin.add(btnURedu);
+		
+		textFieldNazivMagacina = new JTextField();
+		textFieldNazivMagacina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldNazivMagacina.setBounds(72, 155, 179, 20);
+		panelObrisiMagacin.add(textFieldNazivMagacina);
+		textFieldNazivMagacina.setColumns(10);
 
 	}
 
