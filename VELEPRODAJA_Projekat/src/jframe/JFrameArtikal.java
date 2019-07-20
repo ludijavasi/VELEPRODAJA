@@ -8,11 +8,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import com.toedter.calendar.JDateChooser;
+
+import kontroler.Kontroler;
+import model.Artikli;
+import model.GlavnaGrupa;
+import model.Grupa_Artikla;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JFrameArtikal extends JFrame {
 
@@ -21,6 +30,7 @@ public class JFrameArtikal extends JFrame {
 	private JTextField textFieldNetoCenaArtikla;
 	private JTextField textFieldMarza;
 	private JTextField textFieldIDArtikla;
+	private int generatedID;
 
 	/**
 	 * Launch the application.
@@ -135,6 +145,28 @@ public class JFrameArtikal extends JFrame {
 		textFieldMarza.setColumns(10);
 
 		JButton btnDodajArtikal = new JButton("Dodaj artikal");
+		btnDodajArtikal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+
+					String naziv = textFieldNazivArtikla.getText().trim();
+					String jm = (String) comboBoxJedinicaMere.getSelectedItem();
+					GlavnaGrupa gg = (GlavnaGrupa) comboBoxGlavnaGrupaArtikla.getSelectedItem();
+					Grupa_Artikla ga = (Grupa_Artikla) comboBoxGrupaArtikla.getSelectedItem();
+					double netocena = Double.parseDouble(textFieldNetoCenaArtikla.getText().trim());
+					int stopaPdv = Integer.parseInt((String) comboBoxStopaPDV.getSelectedItem());
+					double marza = Double.parseDouble(textFieldMarza.getText().trim());
+
+					Artikli a = new Artikli(naziv, jm, netocena, stopaPdv, marza);
+
+					Kontroler.getInstance().insertArikli(a);
+					JOptionPane.showMessageDialog(null, "Uspesno ste uneli nabavku");
+
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		});
 		btnDodajArtikal.setBounds(478, 35, 146, 23);
 		contentPane.add(btnDodajArtikal);
 
