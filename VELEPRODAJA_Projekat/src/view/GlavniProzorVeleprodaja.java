@@ -58,7 +58,7 @@ public class GlavniProzorVeleprodaja {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 603, 475);
+		frame.setBounds(100, 100, 646, 475);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 
