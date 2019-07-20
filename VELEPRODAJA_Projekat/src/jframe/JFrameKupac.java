@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JTextPane;
 
 public class JFrameKupac extends JFrame {
 
@@ -19,30 +20,17 @@ public class JFrameKupac extends JFrame {
 	private JTextField textNazivFirme;
 	private JTextField textAdresaFirme;
 	private JTextField textGradOpstinaFirme;
-	private JTextField textPostansiBrojFirme;
-	private JTextField textE_MailFirme;
 	private JTextField textTelefonFirme;
 	private JPanel panelPoslovniPodaciKupca;
 	private JLabel lblPib;
 	private JTextField textPibKupca;
-	private JLabel lblMaticniBroj;
 	private JLabel lblTekucracunKupca;
 	private JLabel lblValutaPlacanja;
 	private JLabel lblStatusKupca;
 	private JCheckBox chckbxAktivan;
 	private JCheckBox chckbxInaktivan;
-	private JTextField textMaticniBrojKupca;
 	private JTextField textTekuciRacunKupca;
 	private JComboBox comboBoxValutaPlacanja;
-	private JPanel panelKontaktOsobaKupac;
-	private JLabel lblImeKontakOsobeKupca;
-	private JTextField textKontakOsobeKupca;
-	private JLabel lblPrezimeKontaktOsobeKupca;
-	private JTextField textPrezimeKontaktOsobeKupca;
-	private JLabel lblTelefonKontaktOsobeKupca;
-	private JTextField textTelefonKontaktOsobeKupca;
-	private JLabel lblEmailKontaktOsobeKupca;
-	private JTextField textEmailKontaktOsobeKupca;
 	private JLabel lblIdKupca;
 	private JTextField textField;
 	private JButton btnDodajKupca;
@@ -97,17 +85,13 @@ public class JFrameKupac extends JFrame {
 		lblGradOpstina.setBounds(10, 95, 82, 14);
 		panelPodacioKupcu.add(lblGradOpstina);
 
-		JLabel lblPostanskiBroj = new JLabel("Postanski broj :");
-		lblPostanskiBroj.setBounds(10, 123, 82, 14);
-		panelPodacioKupcu.add(lblPostanskiBroj);
-
 		JLabel lblTelefonFirme = new JLabel("Telefon :");
 		lblTelefonFirme.setBounds(10, 148, 82, 14);
 		panelPodacioKupcu.add(lblTelefonFirme);
 
-		JLabel lblEmailFirme = new JLabel("E-mail :");
-		lblEmailFirme.setBounds(10, 173, 82, 14);
-		panelPodacioKupcu.add(lblEmailFirme);
+		JLabel lblKontakOsobaFirme = new JLabel("Kontakt osoba :");
+		lblKontakOsobaFirme.setBounds(10, 173, 82, 14);
+		panelPodacioKupcu.add(lblKontakOsobaFirme);
 
 		textNazivFirme = new JTextField();
 		textNazivFirme.setBounds(102, 42, 121, 20);
@@ -124,20 +108,14 @@ public class JFrameKupac extends JFrame {
 		panelPodacioKupcu.add(textGradOpstinaFirme);
 		textGradOpstinaFirme.setColumns(10);
 
-		textPostansiBrojFirme = new JTextField();
-		textPostansiBrojFirme.setBounds(102, 120, 124, 20);
-		panelPodacioKupcu.add(textPostansiBrojFirme);
-		textPostansiBrojFirme.setColumns(10);
-
-		textE_MailFirme = new JTextField();
-		textE_MailFirme.setBounds(99, 170, 124, 20);
-		panelPodacioKupcu.add(textE_MailFirme);
-		textE_MailFirme.setColumns(10);
-
 		textTelefonFirme = new JTextField();
 		textTelefonFirme.setBounds(102, 145, 121, 20);
 		panelPodacioKupcu.add(textTelefonFirme);
 		textTelefonFirme.setColumns(10);
+
+		JTextPane textPaneKontakOsobaFirme = new JTextPane();
+		textPaneKontakOsobaFirme.setBounds(102, 173, 121, 20);
+		panelPodacioKupcu.add(textPaneKontakOsobaFirme);
 
 		panelPoslovniPodaciKupca = new JPanel();
 		panelPoslovniPodaciKupca.setBorder(
@@ -154,10 +132,6 @@ public class JFrameKupac extends JFrame {
 		textPibKupca.setBounds(127, 31, 130, 20);
 		panelPoslovniPodaciKupca.add(textPibKupca);
 		textPibKupca.setColumns(10);
-
-		lblMaticniBroj = new JLabel("Maticni broj :");
-		lblMaticniBroj.setBounds(10, 72, 107, 14);
-		panelPoslovniPodaciKupca.add(lblMaticniBroj);
 
 		lblTekucracunKupca = new JLabel("Tekuci Racun :");
 		lblTekucracunKupca.setBounds(10, 109, 107, 14);
@@ -179,11 +153,6 @@ public class JFrameKupac extends JFrame {
 		chckbxInaktivan.setBounds(179, 175, 78, 23);
 		panelPoslovniPodaciKupca.add(chckbxInaktivan);
 
-		textMaticniBrojKupca = new JTextField();
-		textMaticniBrojKupca.setBounds(127, 69, 130, 20);
-		panelPoslovniPodaciKupca.add(textMaticniBrojKupca);
-		textMaticniBrojKupca.setColumns(10);
-
 		textTekuciRacunKupca = new JTextField();
 		textTekuciRacunKupca.setBounds(127, 106, 130, 20);
 		panelPoslovniPodaciKupca.add(textTekuciRacunKupca);
@@ -202,64 +171,20 @@ public class JFrameKupac extends JFrame {
 		panelPoslovniPodaciKupca.add(textField);
 		textField.setColumns(10);
 
-		panelKontaktOsobaKupac = new JPanel();
-		panelKontaktOsobaKupac
-				.setBorder(new TitledBorder(null, "Kontak osoba", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelKontaktOsobaKupac.setBounds(10, 257, 242, 144);
-		contentPane.add(panelKontaktOsobaKupac);
-		panelKontaktOsobaKupac.setLayout(null);
-
-		lblImeKontakOsobeKupca = new JLabel("Ime :");
-		lblImeKontakOsobeKupca.setBounds(10, 32, 60, 14);
-		panelKontaktOsobaKupac.add(lblImeKontakOsobeKupca);
-
-		textKontakOsobeKupca = new JTextField();
-		textKontakOsobeKupca.setBounds(107, 29, 113, 20);
-		panelKontaktOsobaKupac.add(textKontakOsobeKupca);
-		textKontakOsobeKupca.setColumns(10);
-
-		lblPrezimeKontaktOsobeKupca = new JLabel("Prezime :");
-		lblPrezimeKontaktOsobeKupca.setBounds(10, 57, 60, 14);
-		panelKontaktOsobaKupac.add(lblPrezimeKontaktOsobeKupca);
-
-		textPrezimeKontaktOsobeKupca = new JTextField();
-		textPrezimeKontaktOsobeKupca.setBounds(107, 54, 113, 20);
-		panelKontaktOsobaKupac.add(textPrezimeKontaktOsobeKupca);
-		textPrezimeKontaktOsobeKupca.setColumns(10);
-
-		lblTelefonKontaktOsobeKupca = new JLabel("Telefon :");
-		lblTelefonKontaktOsobeKupca.setBounds(10, 82, 60, 14);
-		panelKontaktOsobaKupac.add(lblTelefonKontaktOsobeKupca);
-
-		textTelefonKontaktOsobeKupca = new JTextField();
-		textTelefonKontaktOsobeKupca.setBounds(107, 85, 113, 20);
-		panelKontaktOsobaKupac.add(textTelefonKontaktOsobeKupca);
-		textTelefonKontaktOsobeKupca.setColumns(10);
-
-		lblEmailKontaktOsobeKupca = new JLabel("E-mail :");
-		lblEmailKontaktOsobeKupca.setBounds(10, 114, 60, 14);
-		panelKontaktOsobaKupac.add(lblEmailKontaktOsobeKupca);
-
-		textEmailKontaktOsobeKupca = new JTextField();
-		textEmailKontaktOsobeKupca.setBounds(107, 111, 113, 20);
-		panelKontaktOsobaKupac.add(textEmailKontaktOsobeKupca);
-		textEmailKontaktOsobeKupca.setColumns(10);
-
 		btnDodajKupca = new JButton("Dodaj Kupca");
-		btnDodajKupca.setBounds(262, 276, 118, 23);
+		btnDodajKupca.setBounds(67, 282, 118, 23);
 		contentPane.add(btnDodajKupca);
 
 		btnObrisiKupca = new JButton("Obrisi Kupca");
-		btnObrisiKupca.setBounds(262, 310, 118, 23);
+		btnObrisiKupca.setBounds(215, 282, 118, 23);
 		contentPane.add(btnObrisiKupca);
 
 		btnAzurirajKupca = new JButton("Azuriraj");
-		btnAzurirajKupca.setBounds(262, 344, 118, 23);
+		btnAzurirajKupca.setBounds(358, 282, 118, 23);
 		contentPane.add(btnAzurirajKupca);
 
 		btnPonistiAkcijuKupac = new JButton("Ponisti akciju");
-		btnPonistiAkcijuKupac.setBounds(262, 378, 118, 23);
+		btnPonistiAkcijuKupac.setBounds(225, 326, 118, 23);
 		contentPane.add(btnPonistiAkcijuKupac);
 	}
-
 }

@@ -14,6 +14,8 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class JFrameFilijala extends JFrame {
 
@@ -33,6 +35,7 @@ public class JFrameFilijala extends JFrame {
 	private JTextField textTekuciRacunFilijale;
 	private JLabel lblIDFilijale;
 	private JTextField textIDFilijale;
+	private final ButtonGroup buttonGroupFilijala = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -165,6 +168,16 @@ public class JFrameFilijala extends JFrame {
 		textIDFilijale.setColumns(10);
 		textIDFilijale.setBounds(127, 137, 65, 20);
 		panelPoslovniPodaciFilijale.add(textIDFilijale);
+
+		JRadioButton rdbtnAktivna = new JRadioButton("Aktivna");
+		buttonGroupFilijala.add(rdbtnAktivna);
+		rdbtnAktivna.setBounds(10, 190, 109, 23);
+		panelPoslovniPodaciFilijale.add(rdbtnAktivna);
+
+		JRadioButton rdbtnNeaktivna = new JRadioButton("Neaktivna");
+		buttonGroupFilijala.add(rdbtnNeaktivna);
+		rdbtnNeaktivna.setBounds(127, 190, 109, 23);
+		panelPoslovniPodaciFilijale.add(rdbtnNeaktivna);
 
 		JButton btnDodajFilijalu = new JButton("Dodaj filijalu");
 		btnDodajFilijalu.setBounds(97, 283, 118, 23);

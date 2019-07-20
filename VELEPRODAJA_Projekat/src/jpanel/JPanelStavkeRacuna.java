@@ -15,6 +15,7 @@ public class JPanelStavkeRacuna extends JPanel {
 	private JTextField textFieldJedinicaStavkeRacuna;
 	private JTextField textFieldDostupnaKolicinaStavkeRacuna;
 	private JTextField textFieldKolicinaStavkeRacuna;
+	private JTextField textFieldRabtStavkeRacuna;
 
 	/**
 	 * Create the panel.
@@ -24,23 +25,23 @@ public class JPanelStavkeRacuna extends JPanel {
 		setLayout(null);
 
 		JLabel lblGrupaArtiklaStavkeRacuna = new JLabel("Grupa Artikla :");
-		lblGrupaArtiklaStavkeRacuna.setBounds(10, 57, 81, 19);
+		lblGrupaArtiklaStavkeRacuna.setBounds(10, 45, 81, 19);
 		add(lblGrupaArtiklaStavkeRacuna);
 
 		JLabel lblArtikalStavkeRacuna = new JLabel("Artikal :");
-		lblArtikalStavkeRacuna.setBounds(10, 98, 46, 14);
+		lblArtikalStavkeRacuna.setBounds(10, 75, 46, 14);
 		add(lblArtikalStavkeRacuna);
 
 		JLabel lblJedinicaStavkeArtikla = new JLabel("Jedinica : ");
-		lblJedinicaStavkeArtikla.setBounds(10, 131, 81, 19);
+		lblJedinicaStavkeArtikla.setBounds(10, 100, 81, 19);
 		add(lblJedinicaStavkeArtikla);
 
 		JLabel lblDostupnaKolicinaStavkeArtikla = new JLabel("Dostupna Kolicina :");
-		lblDostupnaKolicinaStavkeArtikla.setBounds(10, 161, 118, 14);
+		lblDostupnaKolicinaStavkeArtikla.setBounds(10, 133, 118, 14);
 		add(lblDostupnaKolicinaStavkeArtikla);
 
 		JLabel lblKolicinaStavkeArtikla = new JLabel("Kolicina :");
-		lblKolicinaStavkeArtikla.setBounds(10, 199, 46, 14);
+		lblKolicinaStavkeArtikla.setBounds(10, 161, 46, 14);
 		add(lblKolicinaStavkeArtikla);
 
 		JScrollPane scrollPaneStavkeRacuna = new JScrollPane();
@@ -59,30 +60,38 @@ public class JPanelStavkeRacuna extends JPanel {
 		add(btnPrekidStavkeRAcuna);
 
 		textGrupaArtiklaStavkeRacuna = new JTextField();
-		textGrupaArtiklaStavkeRacuna.setBounds(116, 56, 86, 20);
+		textGrupaArtiklaStavkeRacuna.setBounds(116, 34, 86, 20);
 		add(textGrupaArtiklaStavkeRacuna);
 		textGrupaArtiklaStavkeRacuna.setColumns(10);
 
 		textFieldArtikalStavkeRacuna = new JTextField();
-		textFieldArtikalStavkeRacuna.setBounds(116, 95, 86, 20);
+		textFieldArtikalStavkeRacuna.setBounds(116, 65, 86, 20);
 		add(textFieldArtikalStavkeRacuna);
 		textFieldArtikalStavkeRacuna.setColumns(10);
 
 		textFieldJedinicaStavkeRacuna = new JTextField();
-		textFieldJedinicaStavkeRacuna.setBounds(116, 130, 86, 20);
+		textFieldJedinicaStavkeRacuna.setBounds(116, 96, 86, 20);
 		add(textFieldJedinicaStavkeRacuna);
 		textFieldJedinicaStavkeRacuna.setColumns(10);
 
 		textFieldDostupnaKolicinaStavkeRacuna = new JTextField();
-		textFieldDostupnaKolicinaStavkeRacuna.setBounds(116, 158, 86, 20);
+		textFieldDostupnaKolicinaStavkeRacuna.setBounds(116, 127, 86, 20);
 		add(textFieldDostupnaKolicinaStavkeRacuna);
 		textFieldDostupnaKolicinaStavkeRacuna.setColumns(10);
 
 		textFieldKolicinaStavkeRacuna = new JTextField();
-		textFieldKolicinaStavkeRacuna.setBounds(116, 196, 86, 20);
+		textFieldKolicinaStavkeRacuna.setBounds(116, 158, 86, 20);
 		add(textFieldKolicinaStavkeRacuna);
 		textFieldKolicinaStavkeRacuna.setColumns(10);
 
-	}
+		JLabel lblRabatStavkeArtikla = new JLabel("Rabat :");
+		lblRabatStavkeArtikla.setBounds(10, 186, 46, 14);
+		add(lblRabatStavkeArtikla);
 
+		textFieldRabtStavkeRacuna = new JTextField();
+		textFieldRabtStavkeRacuna.setBounds(116, 189, 86, 20);
+		add(textFieldRabtStavkeRacuna);
+		textFieldRabtStavkeRacuna.setColumns(10);
+
+	}
 }

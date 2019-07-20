@@ -37,7 +37,7 @@ public class JPanelPregledArtikla extends JPanel {
 		panelSortiranjePregledArtikla.add(rdbtnArtikalPregledArtikla);
 
 		JScrollPane scrollPanePregledArtikla = new JScrollPane();
-		scrollPanePregledArtikla.setBounds(20, 89, 477, 216);
+		scrollPanePregledArtikla.setBounds(27, 89, 477, 216);
 		add(scrollPanePregledArtikla);
 
 		tablePregledArtikla = new JTable();
