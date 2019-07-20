@@ -23,15 +23,12 @@ public class JFrameFilijala extends JFrame {
 	private JTextField textNazivFilijale;
 	private JTextField textAdresaFilijale;
 	private JTextField textGradOpstinaFilijale;
-	private JTextField textPostanskiBrojFilijale;
 	private JTextField textE_MailFilijale;
 	private JTextField textTelefonFilijale;
 	private JPanel panelPoslovniPodaciFilijale;
 	private JLabel lblPibFilijale;
 	private JTextField textPibFilijale;
-	private JLabel lblMaticniBrojFilijale;
 	private JLabel lblTekuciRacunFilijale;
-	private JTextField textMaticniBrojFilijale;
 	private JTextField textTekuciRacunFilijale;
 	private JLabel lblIDFilijale;
 	private JTextField textIDFilijale;
@@ -84,10 +81,6 @@ public class JFrameFilijala extends JFrame {
 		lblGradOpstinaFilijale.setBounds(10, 95, 82, 14);
 		panelPodaciOFilijali.add(lblGradOpstinaFilijale);
 
-		JLabel lblPostanskiBrojFilijale = new JLabel("Postanski broj :");
-		lblPostanskiBrojFilijale.setBounds(10, 123, 82, 14);
-		panelPodaciOFilijali.add(lblPostanskiBrojFilijale);
-
 		JLabel lblTelefonFilijale = new JLabel("Telefon :");
 		lblTelefonFilijale.setBounds(10, 148, 82, 14);
 		panelPodaciOFilijali.add(lblTelefonFilijale);
@@ -110,11 +103,6 @@ public class JFrameFilijala extends JFrame {
 		textGradOpstinaFilijale.setColumns(10);
 		textGradOpstinaFilijale.setBounds(102, 92, 124, 20);
 		panelPodaciOFilijali.add(textGradOpstinaFilijale);
-
-		textPostanskiBrojFilijale = new JTextField();
-		textPostanskiBrojFilijale.setColumns(10);
-		textPostanskiBrojFilijale.setBounds(102, 120, 124, 20);
-		panelPodaciOFilijali.add(textPostanskiBrojFilijale);
 
 		textE_MailFilijale = new JTextField();
 		textE_MailFilijale.setColumns(10);
@@ -142,22 +130,13 @@ public class JFrameFilijala extends JFrame {
 		textPibFilijale.setBounds(127, 31, 130, 20);
 		panelPoslovniPodaciFilijale.add(textPibFilijale);
 
-		lblMaticniBrojFilijale = new JLabel("Maticni broj :");
-		lblMaticniBrojFilijale.setBounds(10, 72, 107, 14);
-		panelPoslovniPodaciFilijale.add(lblMaticniBrojFilijale);
-
 		lblTekuciRacunFilijale = new JLabel("Tekuci Racun :");
-		lblTekuciRacunFilijale.setBounds(10, 109, 107, 14);
+		lblTekuciRacunFilijale.setBounds(10, 78, 107, 14);
 		panelPoslovniPodaciFilijale.add(lblTekuciRacunFilijale);
-
-		textMaticniBrojFilijale = new JTextField();
-		textMaticniBrojFilijale.setColumns(10);
-		textMaticniBrojFilijale.setBounds(127, 69, 130, 20);
-		panelPoslovniPodaciFilijale.add(textMaticniBrojFilijale);
 
 		textTekuciRacunFilijale = new JTextField();
 		textTekuciRacunFilijale.setColumns(10);
-		textTekuciRacunFilijale.setBounds(127, 106, 130, 20);
+		textTekuciRacunFilijale.setBounds(127, 75, 130, 20);
 		panelPoslovniPodaciFilijale.add(textTekuciRacunFilijale);
 
 		lblIDFilijale = new JLabel("ID Filijale:");
@@ -166,17 +145,17 @@ public class JFrameFilijala extends JFrame {
 
 		textIDFilijale = new JTextField();
 		textIDFilijale.setColumns(10);
-		textIDFilijale.setBounds(127, 137, 65, 20);
+		textIDFilijale.setBounds(192, 137, 65, 20);
 		panelPoslovniPodaciFilijale.add(textIDFilijale);
 
 		JRadioButton rdbtnAktivna = new JRadioButton("Aktivna");
 		buttonGroupFilijala.add(rdbtnAktivna);
-		rdbtnAktivna.setBounds(10, 190, 109, 23);
+		rdbtnAktivna.setBounds(24, 190, 109, 23);
 		panelPoslovniPodaciFilijale.add(rdbtnAktivna);
 
 		JRadioButton rdbtnNeaktivna = new JRadioButton("Neaktivna");
 		buttonGroupFilijala.add(rdbtnNeaktivna);
-		rdbtnNeaktivna.setBounds(127, 190, 109, 23);
+		rdbtnNeaktivna.setBounds(148, 190, 109, 23);
 		panelPoslovniPodaciFilijale.add(rdbtnNeaktivna);
 
 		JButton btnDodajFilijalu = new JButton("Dodaj filijalu");
