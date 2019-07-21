@@ -5,14 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import model.Magacin;
 
 public class DAOMagacin {
-	
+
 	private Connection konekcija = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet rs = null;
@@ -32,36 +30,46 @@ public class DAOMagacin {
 		rs = preparedStatement.getResultSet();
 
 		while (rs.next()) {
-			int idMagacina = rs.getInt("id_magacina");			
+			int idMagacina = rs.getInt("id_magacina");
 			String adresaMagacina = rs.getString("adresa_magacina");
-			String gradOpstinaMagacina = rs.getString("grad_opstina_magacina");			
+			String gradOpstinaMagacina = rs.getString("grad_opstina_magacina");
 			String telefonMagacina = rs.getString("telefon_magacina");
 			String emailMagacina = rs.getString("e_mail_magacina");
-			
-			Magacin m = new Magacin(idMagacina, adresaMagacina, gradOpstinaMagacina, telefonMagacina, emailMagacina);			
+
+			Magacin m = new Magacin(idMagacina, adresaMagacina, gradOpstinaMagacina, telefonMagacina, emailMagacina);
 
 			lista.add(m);
-		}		
-		
-		konekcija.close();		
-		
+		}
+
+		konekcija.close();
+
 		return lista;
 	}
 
 	public void insertMagacin(Magacin m) throws SQLException, ClassNotFoundException {
-		connect();		
+		connect();
 
-		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO magacin (adresa_magacina, grad_opstina_magacina, telefon_magacina,e_mail_magacina) VALUES (?, ?, ?, ?)");
+		preparedStatement = konekcija.prepareStatement(
+				"INSERT INTO magacin (adresa_magacina, grad_opstina_magacina, telefon_magacina,e_mail_magacina) VALUES (?, ?, ?, ?)");
 
 		preparedStatement.setString(1, m.getAdresaMagacina());
 		preparedStatement.setString(2, m.getGradOpstinaMagacina());
 		preparedStatement.setString(3, m.getTelefonMagacina());
-		preparedStatement.setString(4, m.getEmailMagacina());		
+		preparedStatement.setString(4, m.getEmailMagacina());
 
 		preparedStatement.execute();
-		
-		
-	}	
+
+	}
+
+	public void obrisiMagacin(int idm) throws ClassNotFoundException, SQLException {
+		connect();
+		preparedStatement = konekcija.prepareStatement("delete from magacin where id = ?");
+
+		preparedStatement.setInt(1, idm);
+
+		preparedStatement.execute();
+
+		konekcija.close();
+	}
 
 }

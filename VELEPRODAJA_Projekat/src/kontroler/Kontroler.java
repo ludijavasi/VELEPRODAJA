@@ -8,12 +8,10 @@ import dao.DAOFilijala;
 import dao.DAOKupac;
 import dao.DAOMagacin;
 import dao.DAOZaposleni;
-import dao.DAOZaposleni;
 import model.Artikli;
 import model.Filijala;
 import model.Kupac;
 import model.Magacin;
-import model.Zaposleni;
 import model.Zaposleni;
 
 
@@ -79,6 +77,9 @@ public class Kontroler {
 		dm.insertMagacin(m);
 	}
 
-
+	public void obrisiMagacin(int idm) throws ClassNotFoundException, SQLException{
+		DAOMagacin dm = new DAOMagacin();
+		dm.obrisiMagacin(idm);
+	}
 
 }
