@@ -52,8 +52,7 @@ public class DAOMagacin {
 		connect();		
 
 		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO 'magacin' ('adresa_magacina', 'grad_opstina_magacina', 'telefon_magacina', "
-		                           +" 'e_mail_magacina') VALUES (?, ?, ?, ?)");
+				.prepareStatement("INSERT INTO magacin (adresa_magacina, grad_opstina_magacina, telefon_magacina,e_mail_magacina) VALUES (?, ?, ?, ?)");
 
 		preparedStatement.setString(1, m.getAdresaMagacina());
 		preparedStatement.setString(2, m.getGradOpstinaMagacina());
