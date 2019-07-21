@@ -27,7 +27,7 @@ public class DAOKupac {
 		ArrayList<Kupac> lista = new ArrayList<Kupac>();
 
 		connect();
-		preparedStatement = konekcija.prepareStatement("select * from veleprodaja");
+		preparedStatement = konekcija.prepareStatement("select * from kupac");
 
 		preparedStatement.execute();
 		rs = preparedStatement.getResultSet();

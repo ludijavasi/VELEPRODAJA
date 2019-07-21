@@ -26,7 +26,7 @@ public class DAOZaposleni {
 		ArrayList<Zaposleni> lista = new ArrayList<Zaposleni>();
 
 		connect();
-		preparedStatement = konekcija.prepareStatement("select * from veleprodaja");
+		preparedStatement = konekcija.prepareStatement("select * from zaposleni");
 
 		preparedStatement.execute();
 		rs = preparedStatement.getResultSet();

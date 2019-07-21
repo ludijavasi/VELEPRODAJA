@@ -25,7 +25,7 @@ public class DAOFilijala {
 		ArrayList<Filijala> lista = new ArrayList<Filijala>();
 
 		connect();
-		preparedStatement = konekcija.prepareStatement("select * from veleprodaja");
+		preparedStatement = konekcija.prepareStatement("select * from filijala");
 
 		preparedStatement.execute();
 		rs = preparedStatement.getResultSet();
