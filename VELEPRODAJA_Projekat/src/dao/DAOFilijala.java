@@ -53,8 +53,8 @@ public class DAOFilijala {
 		connect();
 		
 		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO 'filijala' ('adresa_filijale', 'grad_opstina_filijale', 'telefon_filijale', "
-		                           +" 'e_mail_filijale', 'pib_filijale', 'tekuci_racun_filijale', 'status')"
+				.prepareStatement("INSERT INTO filijala (adresa_filijale, grad_opstina_filijale, telefon_filijale, "
+		                           +" e_mail_filijale, pib_filijale, tekuci_racun_filijale, status)"
 						           +" VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 		preparedStatement.setString(1, f.getAdresaFilijale());

@@ -54,8 +54,8 @@ public class DAOArtikli {
 		connect();
 
 		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO `artikal` (`naziv_arikla`, `jedinica_mere`, `neto_cena_artikla`,"
-						+ " `stopa_pdv_a`, `marza_artikla`) VALUES (?, ?, ?, ?, ?)");
+				.prepareStatement("INSERT INTO artikal (naziv_arikla, jedinica_mere, neto_cena_artikla,"
+						+ " stopa_pdv_a, marza_artikla) VALUES (?, ?, ?, ?, ?)");
 
 		preparedStatement.setString(1, a.getNaziv_artikla());
 		preparedStatement.setString(2, a.getJedinica_mere());
