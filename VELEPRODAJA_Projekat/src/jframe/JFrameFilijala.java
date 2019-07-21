@@ -7,7 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import kontroler.Kontroler;
+import model.Filijala;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import java.awt.Color;
@@ -16,6 +21,9 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 public class JFrameFilijala extends JFrame {
 
@@ -157,8 +165,53 @@ public class JFrameFilijala extends JFrame {
 		buttonGroupFilijala.add(rdbtnNeaktivna);
 		rdbtnNeaktivna.setBounds(148, 190, 109, 23);
 		panelPoslovniPodaciFilijale.add(rdbtnNeaktivna);
+		
+		ButtonGroup status = new ButtonGroup();
+		status.add(rdbtnAktivna);
+		status.add(rdbtnNeaktivna);
 
 		JButton btnDodajFilijalu = new JButton("Dodaj filijalu");
+		btnDodajFilijalu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					String naziv = textNazivFilijale.getText();
+					String adresa = textAdresaFilijale.getText();
+					String grad = textGradOpstinaFilijale.getText();
+					String tel = textTelefonFilijale.getText();
+					String email = textE_MailFilijale.getText();
+					int pib = Integer.parseInt(textPibFilijale.getText());
+					String tek_racun = textTekuciRacunFilijale.getText();
+					String status = "";
+					if (rdbtnAktivna.isSelected()) {
+						status = "Aktivna";
+					}else if (rdbtnNeaktivna.isSelected()) {
+						status = "Neaktivna";
+					}
+					
+					Filijala f = new Filijala(adresa, grad, tel, email, pib, tek_racun, status);
+					
+					Kontroler.getInstance().insertFilijala(f);
+					
+					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novu filijalu!");
+					
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+				
+			}
+		});
 		btnDodajFilijalu.setBounds(97, 283, 118, 23);
 		contentPaneFilijala.add(btnDodajFilijalu);
 

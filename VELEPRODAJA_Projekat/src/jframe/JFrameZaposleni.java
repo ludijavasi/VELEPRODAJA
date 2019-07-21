@@ -2,11 +2,13 @@ package jframe;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.color.CMMException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -15,6 +17,15 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
+
+import kontroler.Kontroler;
+import model.Zaposleni;
+
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Date;
+import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class JFrameZaposleni extends JFrame {
 
@@ -39,7 +50,7 @@ public class JFrameZaposleni extends JFrame {
 	private JLabel lblPlata;
 	private JTextField textPlata;
 	private JLabel lblTipZaposlenja;
-	private JComboBox comboBox;
+	private JComboBox comboBoxTipZaposlenja;
 	private JPanel panel;
 	private JLabel lblUsername;
 	private JTextField textUsername;
@@ -125,6 +136,7 @@ public class JFrameZaposleni extends JFrame {
 		panelLicnipodaci.add(lblPol);
 
 		JComboBox comboBoxPol = new JComboBox();
+		comboBoxPol.setModel(new DefaultComboBoxModel(new String[] {"Muski", "Zenski"}));
 		comboBoxPol.setBounds(102, 178, 134, 20);
 		panelLicnipodaci.add(comboBoxPol);
 
@@ -158,6 +170,7 @@ public class JFrameZaposleni extends JFrame {
 		panelPodacioZaposlenju.add(lblStrucnaSprema);
 
 		comboBoxStrucnaSprema = new JComboBox();
+		comboBoxStrucnaSprema.setModel(new DefaultComboBoxModel(new String[] {"IV stepen", "V stepen", "VI stepen", "VII stepen"}));
 		comboBoxStrucnaSprema.setBounds(190, 22, 131, 20);
 		panelPodacioZaposlenju.add(comboBoxStrucnaSprema);
 
@@ -174,6 +187,7 @@ public class JFrameZaposleni extends JFrame {
 		panelPodacioZaposlenju.add(lblFilijalaPosla);
 
 		comboBoxFilijalaPosla = new JComboBox();
+		comboBoxFilijalaPosla.setModel(new DefaultComboBoxModel(new String[] {"Kraljevo", "Cacak", "Berlin"}));
 		comboBoxFilijalaPosla.setBounds(190, 182, 131, 20);
 		panelPodacioZaposlenju.add(comboBoxFilijalaPosla);
 
@@ -194,9 +208,10 @@ public class JFrameZaposleni extends JFrame {
 		lblTipZaposlenja.setBounds(10, 246, 103, 14);
 		panelPodacioZaposlenju.add(lblTipZaposlenja);
 
-		comboBox = new JComboBox();
-		comboBox.setBounds(190, 243, 131, 20);
-		panelPodacioZaposlenju.add(comboBox);
+		comboBoxTipZaposlenja = new JComboBox();
+		comboBoxTipZaposlenja.setModel(new DefaultComboBoxModel(new String[] {"Menadzer", "Komercijalista", "Magacioner"}));
+		comboBoxTipZaposlenja.setBounds(190, 243, 131, 20);
+		panelPodacioZaposlenju.add(comboBoxTipZaposlenja);
 
 		JDateChooser dateChooserDatumZaposlenja = new JDateChooser();
 		dateChooserDatumZaposlenja.setBounds(190, 63, 131, 20);
@@ -241,6 +256,61 @@ public class JFrameZaposleni extends JFrame {
 		textPassword.setColumns(10);
 
 		JButton btnDodajZaposlenog = new JButton("Dodaj Zaposlenog");
+		btnDodajZaposlenog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					
+				String ime = textIme.getText();
+				String prezime = textPrezime.getText();
+				String adresa = textAdresa.getText();
+				String grad = textGrad_Ostina.getText();
+				String pol = (String)comboBoxPol.getSelectedItem();
+				String tel = textTelefon.getText();
+				String email = textEmail.getText();
+				
+				String username = textUsername.getText();
+				String password = textPassword.getText();
+				
+				String struc_sprema = (String)comboBoxStrucnaSprema.getSelectedItem();
+				
+				Date datum_poc = dateChooserDatumZaposlenja.getDate();
+				Date datum_zav = dateChooserPrestankaZaposlenja.getDate();
+				
+				//boolean datum_prest = chckbxDatumPrestankaPoslaNeodredjeno.isSelected();
+				
+				//String filijala = (String)comboBoxFilijalaPosla.getSelectedItem();
+				Double plata = Double.parseDouble(textPlata.getText());
+				String tip_zaposlenja = (String)comboBoxTipZaposlenja.getSelectedItem();
+				
+				Zaposleni z = new Zaposleni(ime, prezime, adresa, grad, pol, tel, email, struc_sprema, datum_poc, datum_zav, plata, tip_zaposlenja, username, password);
+				
+				
+					Kontroler.getInstance().insertZaposleni(z);
+					
+					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novog zaposlenog!");
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		btnDodajZaposlenog.setBounds(295, 340, 155, 23);
 		contentPaneDodajZaposlenog.add(btnDodajZaposlenog);
 

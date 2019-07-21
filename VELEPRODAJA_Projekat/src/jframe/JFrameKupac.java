@@ -7,12 +7,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import kontroler.Kontroler;
+import model.Kupac;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
 
 public class JFrameKupac extends JFrame {
 
@@ -27,8 +39,6 @@ public class JFrameKupac extends JFrame {
 	private JLabel lblTekucracunKupca;
 	private JLabel lblValutaPlacanja;
 	private JLabel lblStatusKupca;
-	private JCheckBox chckbxAktivan;
-	private JCheckBox chckbxInaktivan;
 	private JTextField textTekuciRacunKupca;
 	private JComboBox comboBoxValutaPlacanja;
 	private JLabel lblIdKupca;
@@ -37,6 +47,8 @@ public class JFrameKupac extends JFrame {
 	private JButton btnObrisiKupca;
 	private JButton btnAzurirajKupca;
 	private JButton btnPonistiAkcijuKupac;
+	private JTextField textEMailKipca;
+	private JLabel lblDana;
 
 	/**
 	 * Launch the application.
@@ -90,7 +102,7 @@ public class JFrameKupac extends JFrame {
 		panelPodacioKupcu.add(lblTelefonFirme);
 
 		JLabel lblKontakOsobaFirme = new JLabel("Kontakt osoba :");
-		lblKontakOsobaFirme.setBounds(10, 173, 82, 14);
+		lblKontakOsobaFirme.setBounds(10, 217, 82, 14);
 		panelPodacioKupcu.add(lblKontakOsobaFirme);
 
 		textNazivFirme = new JTextField();
@@ -114,8 +126,17 @@ public class JFrameKupac extends JFrame {
 		textTelefonFirme.setColumns(10);
 
 		JTextPane textPaneKontakOsobaFirme = new JTextPane();
-		textPaneKontakOsobaFirme.setBounds(102, 173, 121, 20);
+		textPaneKontakOsobaFirme.setBounds(102, 211, 121, 20);
 		panelPodacioKupcu.add(textPaneKontakOsobaFirme);
+		
+		JLabel lblEMail = new JLabel("E - mail :");
+		lblEMail.setBounds(10, 179, 58, 14);
+		panelPodacioKupcu.add(lblEMail);
+		
+		textEMailKipca = new JTextField();
+		textEMailKipca.setBounds(102, 176, 121, 20);
+		panelPodacioKupcu.add(textEMailKipca);
+		textEMailKipca.setColumns(10);
 
 		panelPoslovniPodaciKupca = new JPanel();
 		panelPoslovniPodaciKupca.setBorder(
@@ -145,21 +166,14 @@ public class JFrameKupac extends JFrame {
 		lblStatusKupca.setBounds(10, 179, 46, 14);
 		panelPoslovniPodaciKupca.add(lblStatusKupca);
 
-		chckbxAktivan = new JCheckBox("Aktivan");
-		chckbxAktivan.setBounds(94, 175, 78, 23);
-		panelPoslovniPodaciKupca.add(chckbxAktivan);
-
-		chckbxInaktivan = new JCheckBox("Inaktivan");
-		chckbxInaktivan.setBounds(179, 175, 78, 23);
-		panelPoslovniPodaciKupca.add(chckbxInaktivan);
-
 		textTekuciRacunKupca = new JTextField();
 		textTekuciRacunKupca.setBounds(127, 106, 130, 20);
 		panelPoslovniPodaciKupca.add(textTekuciRacunKupca);
 		textTekuciRacunKupca.setColumns(10);
 
 		comboBoxValutaPlacanja = new JComboBox();
-		comboBoxValutaPlacanja.setBounds(127, 137, 130, 20);
+		comboBoxValutaPlacanja.setModel(new DefaultComboBoxModel(new String[] {"30", "60", "90", "120"}));
+		comboBoxValutaPlacanja.setBounds(127, 137, 65, 20);
 		panelPoslovniPodaciKupca.add(comboBoxValutaPlacanja);
 
 		lblIdKupca = new JLabel("ID Kupca :");
@@ -170,8 +184,64 @@ public class JFrameKupac extends JFrame {
 		textField.setBounds(169, 205, 65, 20);
 		panelPoslovniPodaciKupca.add(textField);
 		textField.setColumns(10);
+		
+		JRadioButton rdbtnAktivan = new JRadioButton("Aktivan");
+		rdbtnAktivan.setBounds(119, 175, 78, 23);
+		panelPoslovniPodaciKupca.add(rdbtnAktivan);
+		
+		JRadioButton rdbtnNeaktivan = new JRadioButton("Neaktivan");
+		rdbtnNeaktivan.setBounds(212, 175, 83, 23);
+		panelPoslovniPodaciKupca.add(rdbtnNeaktivan);
+		
+		ButtonGroup status = new ButtonGroup();
+		status.add(rdbtnAktivan);
+		status.add(rdbtnNeaktivan);
+		
+		lblDana = new JLabel("dana");
+		lblDana.setBounds(211, 143, 46, 14);
+		panelPoslovniPodaciKupca.add(lblDana);
 
 		btnDodajKupca = new JButton("Dodaj Kupca");
+		btnDodajKupca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					String naziv = textNazivFirme.getText();
+					String adresa = textAdresaFirme.getText();
+					String grad = textGradOpstinaFirme.getText();
+					String tel = textTelefonFirme.getText();
+					String email = textEMailKipca.getText();
+					String kont_osoba = textPaneKontakOsobaFirme.getText();
+					int pib = Integer.parseInt(textPibKupca.getText());
+					String tek_racun = textTekuciRacunKupca.getText();
+					int valuta = (Integer)comboBoxValutaPlacanja.getSelectedItem();
+					String status = "";
+					if (rdbtnAktivan.isSelected()) {
+						status = "Aktivan";
+					}else if (rdbtnNeaktivan.isSelected()) {
+						status = "Neaktivan";
+					}
+					
+					Kupac k = new Kupac(naziv, adresa, grad, tel, email, kont_osoba, pib, tek_racun, valuta, status);
+					
+					Kontroler.getInstance().insertKupac(k);
+					
+					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novog kupca!");
+					
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}			
+				
+				
+			}
+		});
 		btnDodajKupca.setBounds(67, 282, 118, 23);
 		contentPane.add(btnDodajKupca);
 
