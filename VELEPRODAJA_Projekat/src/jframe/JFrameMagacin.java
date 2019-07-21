@@ -7,10 +7,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import kontroler.Kontroler;
+import model.Magacin;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 public class JFrameMagacin extends JFrame {
 
@@ -111,6 +120,34 @@ public class JFrameMagacin extends JFrame {
 		textFieldIdMagacina.setColumns(10);
 
 		JButton btnDodajMagacin = new JButton("Dodaj magacin");
+		btnDodajMagacin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					String adresa = textFieldAdresaMagacina.getText();
+					String grad = textFieldGradMagacina.getText();
+					String tel = textFieldTelefonMagacina.getText();
+					String email = textFieldEmailMagacina.getText();
+					
+					Magacin m = new Magacin(adresa, grad, tel, email);
+					
+					Kontroler.getInstance().insertMagacin(m);
+					
+					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novi magacin!");
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+			}
+		});
 		btnDodajMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnDodajMagacin.setBounds(567, 249, 172, 23);
 		contentPane.add(btnDodajMagacin);
