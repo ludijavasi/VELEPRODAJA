@@ -1,6 +1,5 @@
 package jframe;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -122,19 +121,19 @@ public class JFrameMagacin extends JFrame {
 		JButton btnDodajMagacin = new JButton("Dodaj magacin");
 		btnDodajMagacin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				try {
 					String adresa = textFieldAdresaMagacina.getText();
 					String grad = textFieldGradMagacina.getText();
 					String tel = textFieldTelefonMagacina.getText();
 					String email = textFieldEmailMagacina.getText();
-					
+
 					Magacin m = new Magacin(adresa, grad, tel, email);
-					
+
 					Kontroler.getInstance().insertMagacin(m);
-					
+
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novi magacin!");
-					
+
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -142,10 +141,7 @@ public class JFrameMagacin extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
-				
-				
+
 			}
 		});
 		btnDodajMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -153,6 +149,11 @@ public class JFrameMagacin extends JFrame {
 		contentPane.add(btnDodajMagacin);
 
 		JButton btnObrisiMagacin = new JButton("Obrisi magacin");
+		btnObrisiMagacin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
 		btnObrisiMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnObrisiMagacin.setBounds(567, 313, 172, 23);
 		contentPane.add(btnObrisiMagacin);

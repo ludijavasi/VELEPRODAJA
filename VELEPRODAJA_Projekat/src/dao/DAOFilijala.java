@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import model.Filijala;
@@ -31,6 +30,7 @@ public class DAOFilijala {
 		rs = preparedStatement.getResultSet();
 
 		while (rs.next()) {
+			
 			int idFilijale = rs.getInt("id_filijale");			
 			String adresaFilijale = rs.getString("adresa_filijale");
 			String gradOpstinaFilijale = rs.getString("grad_opstina_filijale");
@@ -41,7 +41,7 @@ public class DAOFilijala {
 			String status = rs.getString("status");	
 						
 
-			Filijala f = new Filijala(adresaFilijale, gradOpstinaFilijale, telefonFilijale, emailFilijale, pibFilijale, tekuciRacunFilijale, status);
+			Filijala f = new Filijala(idFilijale,adresaFilijale, gradOpstinaFilijale, telefonFilijale, emailFilijale, pibFilijale, tekuciRacunFilijale, status);
 
 			lista.add(f);
 		}
