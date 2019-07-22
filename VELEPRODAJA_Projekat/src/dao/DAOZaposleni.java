@@ -33,7 +33,7 @@ public class DAOZaposleni {
 
 		while (rs.next()) {
 			int idZaposlenog = rs.getInt("id_zaposlenog");
-			int idFilijale = rs.getInt("id_filijale");
+			//int idFilijale = rs.getInt("id_filijale");
 			String imeZaposlenog = rs.getString("ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("prezime_zaposlenog");
 			String adresaZaposlenog = rs.getString("adresa_zaposlenog");
@@ -50,7 +50,7 @@ public class DAOZaposleni {
 			String passwordZaposlenog = rs.getString("password_zaposlenog");
 						
 
-			Zaposleni z = new Zaposleni(idZaposlenog, idFilijale, imeZaposlenog, prezimeZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, polZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
+			Zaposleni z = new Zaposleni(idZaposlenog, imeZaposlenog, prezimeZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, polZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
 
 			lista.add(z);
 		}
@@ -67,10 +67,10 @@ public class DAOZaposleni {
 		String datum_zav = sdf.format(z.getDatumZavrsetkaZaposlenja());
 
 		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO 'zaposleni' ('ime_zaposlenog', 'prezime_zaposlenog', 'adresa_zaposlenog', "
-		                           +" 'grad_opstina_zaposlenog', 'pol', 'telefon_zaposlenog', 'e_mail_zaposlenog', "
-						           +" 'strucna_sprema_zaposlenog', 'datum_pocetka_zaposlenja', 'datum_zavrsetka_zaposlenja', "
-		                           +" 'plata_zaposlenog', 'tip_zaposlenja', 'username_zaposlenog', 'password_zaposlenog')"
+				.prepareStatement("INSERT INTO zaposleni (ime_zaposlenog, prezime_zaposlenog, adresa_zaposlenog, "
+		                           +" grad_opstina_zaposlenog, pol, telefon_zaposlenog, e_mail_zaposlenog, "
+						           +" strucna_sprema_zaposlenog, datum_pocetka_zaposlenja, datum_zavrsetka_zaposlenja, "
+		                           +" plata_zaposlenog, tip_zaposlenja, username_zaposlenog, password_zaposlenog)"
 						           +" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		preparedStatement.setString(1, z.getImeZaposlenog());

@@ -68,6 +68,30 @@ public class Zaposleni {
 		this.usernameZaposlenog = usernameZaposlenog;
 		this.passwordZaposlenog = passwordZaposlenog;
 	}
+	
+
+
+	public Zaposleni(int idZaposlenog, String imeZaposlenog, String prezimeZaposlenog, String adresaZaposlenog,
+			String gradOpstinaZaposlenog, String polZaposlenog, String telefonZaposlenog, String emailZaposlenog,
+			String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja,
+			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog, String passwordZaposlenog) {
+		super();
+		this.idZaposlenog = idZaposlenog;
+		this.imeZaposlenog = imeZaposlenog;
+		this.prezimeZaposlenog = prezimeZaposlenog;
+		this.adresaZaposlenog = adresaZaposlenog;
+		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
+		this.polZaposlenog = polZaposlenog;
+		this.telefonZaposlenog = telefonZaposlenog;
+		this.emailZaposlenog = emailZaposlenog;
+		this.strucnaSpremaZaposlenog = strucnaSpremaZaposlenog;
+		this.datumPocetkaZaposlenja = datumPocetkaZaposlenja;
+		this.datumZavrsetkaZaposlenja = datumZavrsetkaZaposlenja;
+		this.plataZaposlenog = plataZaposlenog;
+		this.tipZaposlenja = tipZaposlenja;
+		this.usernameZaposlenog = usernameZaposlenog;
+		this.passwordZaposlenog = passwordZaposlenog;
+	}
 
 
 	public Zaposleni() {
