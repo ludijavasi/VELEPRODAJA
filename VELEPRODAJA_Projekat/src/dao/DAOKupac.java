@@ -58,10 +58,10 @@ public class DAOKupac {
 		connect();		
 
 		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO 'kupac' ('naziv_firme_kupca', 'adresa_kupca', 'grad_opstina_kupca', "
-		                           +" 'telefon_kupca', 'e_mail_kupca', "
-						           +" 'kontakt_osoba_kupca', 'pib_kupca', 'tekuci_racun_kupca', "
-		                           +" 'valuta_placanja_kupca', 'status_kupca')"
+				.prepareStatement("INSERT INTO kupac (naziv_firme_kupca, adresa_kupca, grad_opstina_kupca, "
+		                           +" telefon_kupca, e_mail_kupca, "
+						           +" kontakt_osoba_kupca, pib_kupca, tekuci_racun_kupca, "
+		                           +" valuta_placanja_kupca, status_kupca)"
 						           +" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		preparedStatement.setString(1, k.getNazivFirmeKupca());
