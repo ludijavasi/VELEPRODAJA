@@ -7,6 +7,12 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import jframeObrisi.JFrameObrisiArtikal;
+import jframeObrisi.JFrameObrisiFilijalu;
+import jframeObrisi.JFrameObrisiKupca;
+import jframeObrisi.JFrameObrisiMagacin;
+import jframeObrisi.JFrameObrisiZaposlenog;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.InputEvent;
@@ -18,6 +24,8 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -218,6 +226,15 @@ public class GlavniProzorVeleprodaja {
 		mnFilijalaAdmin.add(mntmDodavanjeFilijaleAdmin);
 
 		JMenuItem mntmBrisanjeFilijaleAdmin = new JMenuItem("Brisanje filijale");
+		mntmBrisanjeFilijaleAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrameObrisiFilijalu of = new JFrameObrisiFilijalu();
+				panelAdmin.setVisible(false);				
+				of.setVisible(true);
+		
+				
+			}
+		});
 		mnFilijalaAdmin.add(mntmBrisanjeFilijaleAdmin);
 
 		JMenuItem mntmAzuriranjeFilijaleAdmin = new JMenuItem("Azuriranje");
@@ -235,6 +252,9 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmObrisiZaposlenogAdmin = new JMenuItem("Obrisi zaposlenog");
 		mntmObrisiZaposlenogAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFrameObrisiZaposlenog oz = new JFrameObrisiZaposlenog();
+				panelAdmin.setVisible(false);
+				oz.setVisible(true);
 
 			}
 		});
@@ -253,6 +273,13 @@ public class GlavniProzorVeleprodaja {
 		mnSkladistaAdmin.add(mntmDodajSkladisteAdmin);
 
 		JMenuItem mntmObrisiSkladisteAdmin = new JMenuItem("Obrisi skladiste");
+		mntmObrisiSkladisteAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrameObrisiMagacin om = new JFrameObrisiMagacin();
+				panelAdmin.setVisible(false);
+				om.setVisible(true);
+			}
+		});
 		mnSkladistaAdmin.add(mntmObrisiSkladisteAdmin);
 
 		JMenuItem mntmAzurirajSkladistaAdmin = new JMenuItem("Azuriraj");
@@ -280,6 +307,13 @@ public class GlavniProzorVeleprodaja {
 		mnKupciAdmin.add(mntmDodajKupcaAdmin);
 
 		JMenuItem mntmObrisiKupcaAdmin = new JMenuItem("Obrisi kupca");
+		mntmObrisiKupcaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameObrisiKupca ok = new JFrameObrisiKupca();
+				panelAdmin.setVisible(false);
+				ok.setVisible(true);
+			}
+		});
 		mnKupciAdmin.add(mntmObrisiKupcaAdmin);
 
 		JMenuItem mntmAzurirajKupcaAdmin = new JMenuItem("Azuriraj");
@@ -295,6 +329,13 @@ public class GlavniProzorVeleprodaja {
 		mnArtikliAdmin.add(mntmDodajArtikalAdmin);
 
 		JMenuItem mntmObrisiArtikalAdmin = new JMenuItem("Obrisi artikal");
+		mntmObrisiArtikalAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameObrisiArtikal oa = new JFrameObrisiArtikal();
+				panelAdmin.setVisible(false);
+				oa.setVisible(true);
+			}
+		});
 		mnArtikliAdmin.add(mntmObrisiArtikalAdmin);
 
 		JMenuItem mntmAzurirajArtikleAdmin = new JMenuItem("Azuriraj");
