@@ -12,6 +12,11 @@ import jframeObrisi.JFrameObrisiFilijalu;
 import jframeObrisi.JFrameObrisiKupca;
 import jframeObrisi.JFrameObrisiMagacin;
 import jframeObrisi.JFrameObrisiZaposlenog;
+import jframePregled.JFrameKontrolaZalihaPregled;
+import jframePregled.JFramePregledArtikala;
+import jframePregled.JFramePregledTrenutnoPrijavljeniNaMrezi;
+import jframePregled.JFramePregledTrenutnoZaposlenih;
+import jframePregled.JFrameStavkeRacunaPregled;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -122,12 +127,25 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnPrijavaAdmin);
 
 		JMenuItem mntmOdjavaAdmin = new JMenuItem("Odjava");
+		mntmOdjavaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelAdmin.setVisible(false);
+				panelLogin.setVisible(true);
+			}
+		});
 		mnPrijavaAdmin.add(mntmOdjavaAdmin);
 
 		JMenu mnZaposleniPrijavaAdmin = new JMenu("Zaposleni");
 		mnPrijavaAdmin.add(mnZaposleniPrijavaAdmin);
 
 		JMenuItem mntmTrenutnoPrijavljeni = new JMenuItem("Trenutno prijavljeni");
+		mntmTrenutnoPrijavljeni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFramePregledTrenutnoPrijavljeniNaMrezi prijavljeni = new JFramePregledTrenutnoPrijavljeniNaMrezi();
+				panelAdmin.setVisible(false);
+				prijavljeni.setVisible(true);
+			}
+		});
 		mnZaposleniPrijavaAdmin.add(mntmTrenutnoPrijavljeni);
 
 		JMenuItem mntmOsveziupdateAdmin = new JMenuItem("Osvezi (update)");
@@ -143,6 +161,13 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnProdajaAdmin);
 
 		JMenuItem mntmKreirajRacunOtpremnicuAdmin = new JMenuItem("Kreiraj ra\u010Dun/otpremnicu");
+		mntmKreirajRacunOtpremnicuAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrameStavkeRacunaPregled racun = new JFrameStavkeRacunaPregled();
+				panelAdmin.setVisible(false);
+				racun.setVisible(true);
+			}
+		});
 		mnProdajaAdmin.add(mntmKreirajRacunOtpremnicuAdmin);
 
 		JMenuItem mntmCeneArtiklaAdmin = new JMenuItem("Cene artikla");
@@ -180,6 +205,11 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnSkladisteAdmin);
 
 		JMenuItem mntmKontrolaZalihaAdmin = new JMenuItem("Kontrola zaliha");
+		mntmKontrolaZalihaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//JFrameKontrolaZalihaPregled
+			}
+		});
 		mnSkladisteAdmin.add(mntmKontrolaZalihaAdmin);
 
 		JMenu mnAnalizaSkladistaAdmin = new JMenu("Analiza skladista");
@@ -196,6 +226,13 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnZaposleniAdmin);
 
 		JMenuItem mntmTrenutnoZaposleniAdmin = new JMenuItem("Trenutno zaposleni");
+		mntmTrenutnoZaposleniAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFramePregledTrenutnoZaposlenih trenzaposleni = new JFramePregledTrenutnoZaposlenih();
+				panelAdmin.setVisible(false);
+				trenzaposleni.setVisible(true);
+			}
+		});
 		mnZaposleniAdmin.add(mntmTrenutnoZaposleniAdmin);
 
 		JMenuItem mntmZasnivanjeRadnogOdnosaAdmin = new JMenuItem("Zasnivanje radnog odnosa");
@@ -323,6 +360,13 @@ public class GlavniProzorVeleprodaja {
 		mnMaticniPodaciAdmin.add(mnArtikliAdmin);
 
 		JMenuItem mntmPregledArtikalaAdmin = new JMenuItem("Pregled artikala");
+		mntmPregledArtikalaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFramePregledArtikala artikal = new JFramePregledArtikala();
+				panelAdmin.setVisible(false);
+				artikal.setVisible(true);
+			}
+		});
 		mnArtikliAdmin.add(mntmPregledArtikalaAdmin);
 
 		JMenuItem mntmDodajArtikalAdmin = new JMenuItem("Dodaj artikal");
