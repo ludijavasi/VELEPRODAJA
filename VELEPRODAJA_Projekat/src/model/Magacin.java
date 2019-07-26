@@ -3,16 +3,18 @@ package model;
 public class Magacin {
 	
 	private int idMagacina;
+	private String nazivMagacina;
 	private String adresaMagacina;
 	private String gradOpstinaMagacina;
 	private String telefonMagacina;
 	private String emailMagacina;
 	
 	
-	public Magacin(int idMagacina, String adresaMagacina, String gradOpstinaMagacina, String telefonMagacina,
-			String emailMagacina) {
+	public Magacin(int idMagacina, String nazivMagacina, String adresaMagacina, String gradOpstinaMagacina,
+			String telefonMagacina, String emailMagacina) {
 		super();
 		this.idMagacina = idMagacina;
+		this.nazivMagacina = nazivMagacina;
 		this.adresaMagacina = adresaMagacina;
 		this.gradOpstinaMagacina = gradOpstinaMagacina;
 		this.telefonMagacina = telefonMagacina;
@@ -20,8 +22,10 @@ public class Magacin {
 	}
 
 
-	public Magacin(String adresaMagacina, String gradOpstinaMagacina, String telefonMagacina, String emailMagacina) {
+	public Magacin(String nazivMagacina, String adresaMagacina, String gradOpstinaMagacina, String telefonMagacina,
+			String emailMagacina) {
 		super();
+		this.nazivMagacina = nazivMagacina;
 		this.adresaMagacina = adresaMagacina;
 		this.gradOpstinaMagacina = gradOpstinaMagacina;
 		this.telefonMagacina = telefonMagacina;
@@ -31,7 +35,7 @@ public class Magacin {
 
 	public Magacin() {
 		super();
-		
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -42,6 +46,16 @@ public class Magacin {
 
 	public void setIdMagacina(int idMagacina) {
 		this.idMagacina = idMagacina;
+	}
+
+
+	public String getNazivMagacina() {
+		return nazivMagacina;
+	}
+
+
+	public void setNazivMagacina(String nazivMagacina) {
+		this.nazivMagacina = nazivMagacina;
 	}
 
 
@@ -87,9 +101,9 @@ public class Magacin {
 
 	@Override
 	public String toString() {
-		return "Magacin [idMagacina=" + idMagacina + ", adresaMagacina=" + adresaMagacina + ", gradOpstinaMagacina="
-				+ gradOpstinaMagacina + ", telefonMagacina=" + telefonMagacina + ", emailMagacina=" + emailMagacina
-				+ "]";
+		return "Magacin [idMagacina=" + idMagacina + ", nazivMagacina=" + nazivMagacina + ", adresaMagacina="
+				+ adresaMagacina + ", gradOpstinaMagacina=" + gradOpstinaMagacina + ", telefonMagacina="
+				+ telefonMagacina + ", emailMagacina=" + emailMagacina + "]";
 	}	
 
 }

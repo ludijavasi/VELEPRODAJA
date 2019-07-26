@@ -31,12 +31,13 @@ public class DAOMagacin {
 
 		while (rs.next()) {
 			int idMagacina = rs.getInt("id_magacina");
+			String nazivMagacina = rs.getString("naziv_magacina");
 			String adresaMagacina = rs.getString("adresa_magacina");
 			String gradOpstinaMagacina = rs.getString("grad_opstina_magacina");
 			String telefonMagacina = rs.getString("telefon_magacina");
 			String emailMagacina = rs.getString("e_mail_magacina");
 
-			Magacin m = new Magacin(idMagacina, adresaMagacina, gradOpstinaMagacina, telefonMagacina, emailMagacina);
+			Magacin m = new Magacin(idMagacina, nazivMagacina, adresaMagacina, gradOpstinaMagacina, telefonMagacina, emailMagacina);
 
 			lista.add(m);
 		}
@@ -50,12 +51,13 @@ public class DAOMagacin {
 		connect();
 
 		preparedStatement = konekcija.prepareStatement(
-				"INSERT INTO magacin (adresa_magacina, grad_opstina_magacina, telefon_magacina,e_mail_magacina) VALUES (?, ?, ?, ?)");
+				"INSERT INTO magacin (naziv_magacina, adresa_magacina, grad_opstina_magacina, telefon_magacina,e_mail_magacina) VALUES (?, ?, ?, ?, ?)");
 
-		preparedStatement.setString(1, m.getAdresaMagacina());
-		preparedStatement.setString(2, m.getGradOpstinaMagacina());
-		preparedStatement.setString(3, m.getTelefonMagacina());
-		preparedStatement.setString(4, m.getEmailMagacina());
+		preparedStatement.setString(1, m.getNazivMagacina());
+		preparedStatement.setString(2, m.getAdresaMagacina());
+		preparedStatement.setString(3, m.getGradOpstinaMagacina());
+		preparedStatement.setString(4, m.getTelefonMagacina());
+		preparedStatement.setString(5, m.getEmailMagacina());
 
 		preparedStatement.execute();
 
