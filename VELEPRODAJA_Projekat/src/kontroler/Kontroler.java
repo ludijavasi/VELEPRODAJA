@@ -3,6 +3,8 @@ package kontroler;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.ComboBoxModel;
+
 import dao.DAOArtikli;
 import dao.DAOFilijala;
 import dao.DAOKupac;
@@ -77,9 +79,13 @@ public class Kontroler {
 		dm.insertMagacin(m);
 	}
 
-	public void obrisiMagacin(int idm) throws ClassNotFoundException, SQLException{
+	public void obrisiMagacin(int rbn) throws ClassNotFoundException, SQLException{
 		DAOMagacin dm = new DAOMagacin();
-		dm.obrisiMagacin(idm);
+		dm.obrisiMagacin(rbn);
+	}
+	public ComboBoxModel<Magacin> getDetaljiMagacina(Magacin m) throws ClassNotFoundException, SQLException {
+		DAOMagacin mg = new DAOMagacin();
+		return mg.getDetaljiMagacina(m);
 	}
 
 }

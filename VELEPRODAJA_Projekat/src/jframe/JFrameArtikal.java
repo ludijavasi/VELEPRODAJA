@@ -30,7 +30,6 @@ public class JFrameArtikal extends JFrame {
 	private JTextField textFieldNetoCenaArtikla;
 	private JTextField textFieldMarza;
 	private JTextField textFieldIDArtikla;
-	private int generatedID;
 
 	/**
 	 * Launch the application.
@@ -63,7 +62,7 @@ public class JFrameArtikal extends JFrame {
 		JPanel panelArtikal = new JPanel();
 		panelArtikal.setBorder(
 				new TitledBorder(null, "Podaci o artiklu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelArtikal.setBounds(30, 35, 420, 166);
+		panelArtikal.setBounds(30, 11, 420, 166);
 		contentPane.add(panelArtikal);
 		panelArtikal.setLayout(null);
 
@@ -75,12 +74,8 @@ public class JFrameArtikal extends JFrame {
 		lblJedinicaMere.setBounds(27, 55, 107, 14);
 		panelArtikal.add(lblJedinicaMere);
 
-		JLabel lblGlavnaGrupaArtikla = new JLabel("Glavna grupa :");
-		lblGlavnaGrupaArtikla.setBounds(27, 80, 128, 14);
-		panelArtikal.add(lblGlavnaGrupaArtikla);
-
 		JLabel lblGrupaArtikla = new JLabel("Grupa Artikla :");
-		lblGrupaArtikla.setBounds(27, 105, 128, 14);
+		lblGrupaArtikla.setBounds(27, 80, 128, 14);
 		panelArtikal.add(lblGrupaArtikla);
 
 		textFieldNazivArtikla = new JTextField();
@@ -94,27 +89,23 @@ public class JFrameArtikal extends JFrame {
 		comboBoxJedinicaMere.setBounds(200, 52, 91, 20);
 		panelArtikal.add(comboBoxJedinicaMere);
 
-		JComboBox comboBoxGlavnaGrupaArtikla = new JComboBox();
-		comboBoxGlavnaGrupaArtikla.setBounds(200, 77, 91, 20);
-		panelArtikal.add(comboBoxGlavnaGrupaArtikla);
-
 		JLabel lblIdArtikla = new JLabel("ID artikla :");
-		lblIdArtikla.setBounds(110, 138, 80, 14);
+		lblIdArtikla.setBounds(100, 110, 80, 14);
 		panelArtikal.add(lblIdArtikla);
 
 		textFieldIDArtikla = new JTextField();
-		textFieldIDArtikla.setBounds(200, 135, 64, 20);
+		textFieldIDArtikla.setBounds(183, 107, 64, 20);
 		panelArtikal.add(textFieldIDArtikla);
 		textFieldIDArtikla.setColumns(10);
 
 		JComboBox comboBoxGrupaArtikla = new JComboBox();
-		comboBoxGrupaArtikla.setBounds(200, 102, 91, 20);
+		comboBoxGrupaArtikla.setBounds(200, 77, 91, 20);
 		panelArtikal.add(comboBoxGrupaArtikla);
 
 		JPanel panelEkonomskiPodaciOArtiklu = new JPanel();
 		panelEkonomskiPodaciOArtiklu.setBorder(new TitledBorder(null, "Ekonomski podaci o artiklu",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelEkonomskiPodaciOArtiklu.setBounds(30, 224, 420, 102);
+		panelEkonomskiPodaciOArtiklu.setBounds(30, 188, 420, 102);
 		contentPane.add(panelEkonomskiPodaciOArtiklu);
 		panelEkonomskiPodaciOArtiklu.setLayout(null);
 
@@ -131,12 +122,12 @@ public class JFrameArtikal extends JFrame {
 		panelEkonomskiPodaciOArtiklu.add(lblNetoCenaArtikla);
 
 		textFieldNetoCenaArtikla = new JTextField();
-		textFieldNetoCenaArtikla.setBounds(200, 19, 197, 20);
+		textFieldNetoCenaArtikla.setBounds(200, 19, 198, 20);
 		panelEkonomskiPodaciOArtiklu.add(textFieldNetoCenaArtikla);
 		textFieldNetoCenaArtikla.setColumns(10);
 
 		JComboBox comboBoxStopaPDV = new JComboBox();
-		comboBoxStopaPDV.setBounds(200, 44, 91, 20);
+		comboBoxStopaPDV.setBounds(200, 44, 86, 20);
 		panelEkonomskiPodaciOArtiklu.add(comboBoxStopaPDV);
 
 		textFieldMarza = new JTextField();
@@ -151,7 +142,6 @@ public class JFrameArtikal extends JFrame {
 
 					String naziv = textFieldNazivArtikla.getText().trim();
 					String jm = (String) comboBoxJedinicaMere.getSelectedItem();
-					GlavnaGrupa gg = (GlavnaGrupa) comboBoxGlavnaGrupaArtikla.getSelectedItem();
 					Grupa_Artikla ga = (Grupa_Artikla) comboBoxGrupaArtikla.getSelectedItem();
 					double netocena = Double.parseDouble(textFieldNetoCenaArtikla.getText().trim());
 					int stopaPdv = Integer.parseInt((String) comboBoxStopaPDV.getSelectedItem());

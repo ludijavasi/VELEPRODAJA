@@ -7,6 +7,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import jframe.JFrameMagacin;
 import jframeObrisi.JFrameObrisiArtikal;
 import jframeObrisi.JFrameObrisiFilijalu;
 import jframeObrisi.JFrameObrisiKupca;
@@ -207,7 +208,7 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmKontrolaZalihaAdmin = new JMenuItem("Kontrola zaliha");
 		mntmKontrolaZalihaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//JFrameKontrolaZalihaPregled
+				// JFrameKontrolaZalihaPregled
 			}
 		});
 		mnSkladisteAdmin.add(mntmKontrolaZalihaAdmin);
@@ -266,10 +267,9 @@ public class GlavniProzorVeleprodaja {
 		mntmBrisanjeFilijaleAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameObrisiFilijalu of = new JFrameObrisiFilijalu();
-				panelAdmin.setVisible(false);				
+				panelAdmin.setVisible(false);
 				of.setVisible(true);
-		
-				
+
 			}
 		});
 		mnFilijalaAdmin.add(mntmBrisanjeFilijaleAdmin);
@@ -307,6 +307,21 @@ public class GlavniProzorVeleprodaja {
 		mnSkladistaAdmin.add(mntmAktivnaSkladistaAdmin);
 
 		JMenuItem mntmDodajSkladisteAdmin = new JMenuItem("Dodaj skladiste");
+		mntmDodajSkladisteAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrameMagacin jfm = new JFrameMagacin();
+				jfm.getBtnObrisiMagacin().setVisible(false);
+				jfm.getLblIdMagacina().setVisible(false);
+				jfm.getBtnPrekiniackcijuMagacin().addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						jfm.setVisible(false);
+					}
+				});
+				jfm.getTextFieldIdMagacina().setVisible(false);
+				jfm.setVisible(true);
+
+			}
+		});
 		mnSkladistaAdmin.add(mntmDodajSkladisteAdmin);
 
 		JMenuItem mntmObrisiSkladisteAdmin = new JMenuItem("Obrisi skladiste");

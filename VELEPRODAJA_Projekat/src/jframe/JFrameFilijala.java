@@ -64,7 +64,7 @@ public class JFrameFilijala extends JFrame {
 	public JFrameFilijala() {
 		setTitle("FILIJALA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 626, 447);
+		setBounds(100, 100, 602, 343);
 		contentPaneFilijala = new JPanel();
 		contentPaneFilijala.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneFilijala);
@@ -74,7 +74,7 @@ public class JFrameFilijala extends JFrame {
 		panelPodaciOFilijali.setLayout(null);
 		panelPodaciOFilijali.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Podaci o filijali",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPodaciOFilijali.setBounds(10, 11, 242, 242);
+		panelPodaciOFilijali.setBounds(10, 11, 242, 182);
 		contentPaneFilijala.add(panelPodaciOFilijali);
 
 		JLabel labelNayivfilijale = new JLabel("Naziv filijale :");
@@ -90,11 +90,11 @@ public class JFrameFilijala extends JFrame {
 		panelPodaciOFilijali.add(lblGradOpstinaFilijale);
 
 		JLabel lblTelefonFilijale = new JLabel("Telefon :");
-		lblTelefonFilijale.setBounds(10, 148, 82, 14);
+		lblTelefonFilijale.setBounds(10, 120, 82, 14);
 		panelPodaciOFilijali.add(lblTelefonFilijale);
 
 		JLabel lblE_MailFilijale = new JLabel("E-mail :");
-		lblE_MailFilijale.setBounds(10, 173, 82, 14);
+		lblE_MailFilijale.setBounds(10, 151, 82, 14);
 		panelPodaciOFilijali.add(lblE_MailFilijale);
 
 		textNazivFilijale = new JTextField();
@@ -114,19 +114,19 @@ public class JFrameFilijala extends JFrame {
 
 		textE_MailFilijale = new JTextField();
 		textE_MailFilijale.setColumns(10);
-		textE_MailFilijale.setBounds(99, 170, 124, 20);
+		textE_MailFilijale.setBounds(99, 148, 124, 20);
 		panelPodaciOFilijali.add(textE_MailFilijale);
 
 		textTelefonFilijale = new JTextField();
 		textTelefonFilijale.setColumns(10);
-		textTelefonFilijale.setBounds(102, 145, 121, 20);
+		textTelefonFilijale.setBounds(102, 117, 121, 20);
 		panelPodaciOFilijali.add(textTelefonFilijale);
 
 		panelPoslovniPodaciFilijale = new JPanel();
 		panelPoslovniPodaciFilijale.setLayout(null);
 		panelPoslovniPodaciFilijale.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 				"Poslovni podaci filijale", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPoslovniPodaciFilijale.setBounds(272, 11, 301, 242);
+		panelPoslovniPodaciFilijale.setBounds(272, 11, 301, 182);
 		contentPaneFilijala.add(panelPoslovniPodaciFilijale);
 
 		lblPibFilijale = new JLabel("PIB :");
@@ -139,33 +139,33 @@ public class JFrameFilijala extends JFrame {
 		panelPoslovniPodaciFilijale.add(textPibFilijale);
 
 		lblTekuciRacunFilijale = new JLabel("Tekuci Racun :");
-		lblTekuciRacunFilijale.setBounds(10, 78, 107, 14);
+		lblTekuciRacunFilijale.setBounds(10, 65, 107, 14);
 		panelPoslovniPodaciFilijale.add(lblTekuciRacunFilijale);
 
 		textTekuciRacunFilijale = new JTextField();
 		textTekuciRacunFilijale.setColumns(10);
-		textTekuciRacunFilijale.setBounds(127, 75, 130, 20);
+		textTekuciRacunFilijale.setBounds(127, 62, 130, 20);
 		panelPoslovniPodaciFilijale.add(textTekuciRacunFilijale);
 
 		lblIDFilijale = new JLabel("ID Filijale:");
-		lblIDFilijale.setBounds(10, 140, 78, 14);
+		lblIDFilijale.setBounds(39, 100, 78, 14);
 		panelPoslovniPodaciFilijale.add(lblIDFilijale);
 
 		textIDFilijale = new JTextField();
 		textIDFilijale.setColumns(10);
-		textIDFilijale.setBounds(192, 137, 65, 20);
+		textIDFilijale.setBounds(148, 97, 65, 20);
 		panelPoslovniPodaciFilijale.add(textIDFilijale);
 
 		JRadioButton rdbtnAktivna = new JRadioButton("Aktivna");
 		buttonGroupFilijala.add(rdbtnAktivna);
-		rdbtnAktivna.setBounds(24, 190, 109, 23);
+		rdbtnAktivna.setBounds(39, 145, 109, 23);
 		panelPoslovniPodaciFilijale.add(rdbtnAktivna);
 
 		JRadioButton rdbtnNeaktivna = new JRadioButton("Neaktivna");
 		buttonGroupFilijala.add(rdbtnNeaktivna);
-		rdbtnNeaktivna.setBounds(148, 190, 109, 23);
+		rdbtnNeaktivna.setBounds(148, 145, 109, 23);
 		panelPoslovniPodaciFilijale.add(rdbtnNeaktivna);
-		
+
 		ButtonGroup status = new ButtonGroup();
 		status.add(rdbtnAktivna);
 		status.add(rdbtnNeaktivna);
@@ -173,7 +173,7 @@ public class JFrameFilijala extends JFrame {
 		JButton btnDodajFilijalu = new JButton("Dodaj filijalu");
 		btnDodajFilijalu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				try {
 					String naziv = textNazivFilijale.getText();
 					String adresa = textAdresaFilijale.getText();
@@ -185,16 +185,16 @@ public class JFrameFilijala extends JFrame {
 					String status = "";
 					if (rdbtnAktivna.isSelected()) {
 						status = "Aktivna";
-					}else if (rdbtnNeaktivna.isSelected()) {
+					} else if (rdbtnNeaktivna.isSelected()) {
 						status = "Neaktivna";
 					}
-					
+
 					Filijala f = new Filijala(adresa, grad, tel, email, pib, tek_racun, status);
-					
+
 					Kontroler.getInstance().insertFilijala(f);
-					
+
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novu filijalu!");
-					
+
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -205,26 +205,22 @@ public class JFrameFilijala extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
-				
-				
-				
+
 			}
 		});
-		btnDodajFilijalu.setBounds(97, 283, 118, 23);
+		btnDodajFilijalu.setBounds(311, 204, 118, 23);
 		contentPaneFilijala.add(btnDodajFilijalu);
 
 		JButton btnObrisiFilijalu = new JButton("Obrisi filijalu");
-		btnObrisiFilijalu.setBounds(97, 317, 118, 23);
+		btnObrisiFilijalu.setBounds(97, 238, 118, 23);
 		contentPaneFilijala.add(btnObrisiFilijalu);
 
 		JButton btnAzurirajFilijalu = new JButton("Azuriraj");
-		btnAzurirajFilijalu.setBounds(260, 283, 118, 23);
+		btnAzurirajFilijalu.setBounds(311, 238, 118, 23);
 		contentPaneFilijala.add(btnAzurirajFilijalu);
 
 		JButton btnPonistiAkcijuFilijala = new JButton("Ponisti akciju");
-		btnPonistiAkcijuFilijala.setBounds(260, 317, 118, 23);
+		btnPonistiAkcijuFilijala.setBounds(97, 204, 118, 23);
 		contentPaneFilijala.add(btnPonistiAkcijuFilijala);
 	}
 }

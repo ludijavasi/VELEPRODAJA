@@ -19,7 +19,6 @@ public class JFrameKontrolaZaliha extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldSkladisteKontrolaZaliha;
-	private JLabel lblGlavnaGrupaKontrolaZaliha;
 	private JTextField textFieldArtikalKontrolaZaliha;
 	private final ButtonGroup RadioButtonGropSortiranjeKontrolaZaliha = new ButtonGroup();
 
@@ -45,50 +44,16 @@ public class JFrameKontrolaZaliha extends JFrame {
 	public JFrameKontrolaZaliha() {
 		setTitle("Kontrola Zaliha");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 446, 472);
+		setBounds(100, 100, 336, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblSkladisteKontrolaZaliha = new JLabel("Skladiste :");
-		lblSkladisteKontrolaZaliha.setBounds(93, 31, 86, 14);
-		contentPane.add(lblSkladisteKontrolaZaliha);
-
-		textFieldSkladisteKontrolaZaliha = new JTextField();
-		textFieldSkladisteKontrolaZaliha.setBounds(204, 28, 132, 20);
-		contentPane.add(textFieldSkladisteKontrolaZaliha);
-		textFieldSkladisteKontrolaZaliha.setColumns(10);
-
-		lblGlavnaGrupaKontrolaZaliha = new JLabel("Glavna grupa :");
-		lblGlavnaGrupaKontrolaZaliha.setBounds(93, 76, 86, 14);
-		contentPane.add(lblGlavnaGrupaKontrolaZaliha);
-
-		JComboBox comboBoxGlavnaGrupaKontrolaZaliha = new JComboBox();
-		comboBoxGlavnaGrupaKontrolaZaliha.setBounds(204, 73, 132, 20);
-		contentPane.add(comboBoxGlavnaGrupaKontrolaZaliha);
-
-		JLabel lblGrupaArtikalaKontrolaZaliha = new JLabel("Grupa artikala :");
-		lblGrupaArtikalaKontrolaZaliha.setBounds(93, 119, 86, 20);
-		contentPane.add(lblGrupaArtikalaKontrolaZaliha);
-
-		JComboBox comboBoxGrupaArtikalaKontrolaZaliha = new JComboBox();
-		comboBoxGrupaArtikalaKontrolaZaliha.setBounds(204, 119, 132, 20);
-		contentPane.add(comboBoxGrupaArtikalaKontrolaZaliha);
-
-		JLabel lblArtikalKontrolaZaliha = new JLabel("Artikal :");
-		lblArtikalKontrolaZaliha.setBounds(93, 162, 46, 14);
-		contentPane.add(lblArtikalKontrolaZaliha);
-
-		textFieldArtikalKontrolaZaliha = new JTextField();
-		textFieldArtikalKontrolaZaliha.setBounds(204, 159, 132, 20);
-		contentPane.add(textFieldArtikalKontrolaZaliha);
-		textFieldArtikalKontrolaZaliha.setColumns(10);
-
 		JPanel panelFilterKontrolaZaliha = new JPanel();
 		panelFilterKontrolaZaliha
 				.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelFilterKontrolaZaliha.setBounds(85, 201, 155, 130);
+		panelFilterKontrolaZaliha.setBounds(25, 163, 118, 109);
 		contentPane.add(panelFilterKontrolaZaliha);
 		panelFilterKontrolaZaliha.setLayout(null);
 
@@ -107,7 +72,7 @@ public class JFrameKontrolaZaliha extends JFrame {
 		JPanel panelSortiranjeKontrolaZaliha = new JPanel();
 		panelSortiranjeKontrolaZaliha
 				.setBorder(new TitledBorder(null, "Sortiranje", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelSortiranjeKontrolaZaliha.setBounds(260, 201, 132, 130);
+		panelSortiranjeKontrolaZaliha.setBounds(172, 163, 118, 103);
 		contentPane.add(panelSortiranjeKontrolaZaliha);
 		panelSortiranjeKontrolaZaliha.setLayout(null);
 
@@ -122,11 +87,44 @@ public class JFrameKontrolaZaliha extends JFrame {
 		panelSortiranjeKontrolaZaliha.add(rdbtnGrupaArikala);
 
 		JButton btnOkKontrolaZaliha = new JButton("OK");
-		btnOkKontrolaZaliha.setBounds(85, 369, 155, 23);
+		btnOkKontrolaZaliha.setBounds(172, 283, 118, 23);
 		contentPane.add(btnOkKontrolaZaliha);
 
 		JButton btnPrekidKontrolaZaliha = new JButton("Prekid");
-		btnPrekidKontrolaZaliha.setBounds(260, 369, 132, 23);
+		btnPrekidKontrolaZaliha.setBounds(25, 283, 118, 23);
 		contentPane.add(btnPrekidKontrolaZaliha);
+
+		JPanel panelPretragaKontrolaZaliha = new JPanel();
+		panelPretragaKontrolaZaliha
+				.setBorder(new TitledBorder(null, "Pretraga", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelPretragaKontrolaZaliha.setBounds(25, 22, 265, 130);
+		contentPane.add(panelPretragaKontrolaZaliha);
+		panelPretragaKontrolaZaliha.setLayout(null);
+
+		textFieldSkladisteKontrolaZaliha = new JTextField();
+		textFieldSkladisteKontrolaZaliha.setBounds(123, 27, 132, 20);
+		panelPretragaKontrolaZaliha.add(textFieldSkladisteKontrolaZaliha);
+		textFieldSkladisteKontrolaZaliha.setColumns(10);
+
+		JLabel lblSkladisteKontrolaZaliha = new JLabel("Skladiste :");
+		lblSkladisteKontrolaZaliha.setBounds(10, 30, 86, 14);
+		panelPretragaKontrolaZaliha.add(lblSkladisteKontrolaZaliha);
+
+		JComboBox comboBoxGrupaArtikalaKontrolaZaliha = new JComboBox();
+		comboBoxGrupaArtikalaKontrolaZaliha.setBounds(123, 58, 132, 20);
+		panelPretragaKontrolaZaliha.add(comboBoxGrupaArtikalaKontrolaZaliha);
+
+		JLabel lblGrupaArtikalaKontrolaZaliha = new JLabel("Grupa artikala :");
+		lblGrupaArtikalaKontrolaZaliha.setBounds(10, 55, 86, 20);
+		panelPretragaKontrolaZaliha.add(lblGrupaArtikalaKontrolaZaliha);
+
+		textFieldArtikalKontrolaZaliha = new JTextField();
+		textFieldArtikalKontrolaZaliha.setBounds(123, 89, 132, 20);
+		panelPretragaKontrolaZaliha.add(textFieldArtikalKontrolaZaliha);
+		textFieldArtikalKontrolaZaliha.setColumns(10);
+
+		JLabel lblArtikalKontrolaZaliha = new JLabel("Artikal :");
+		lblArtikalKontrolaZaliha.setBounds(10, 92, 46, 14);
+		panelPretragaKontrolaZaliha.add(lblArtikalKontrolaZaliha);
 	}
 }

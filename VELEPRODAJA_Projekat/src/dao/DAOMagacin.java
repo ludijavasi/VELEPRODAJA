@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.ComboBoxModel;
+
 import model.Magacin;
 
 public class DAOMagacin {
@@ -65,13 +67,38 @@ public class DAOMagacin {
 
 	public void obrisiMagacin(int idm) throws ClassNotFoundException, SQLException {
 		connect();
-		preparedStatement = konekcija.prepareStatement("delete from magacin where id = ?");
+		preparedStatement = konekcija.prepareStatement("delete from magacin where id_magacina = ?");
 
 		preparedStatement.setInt(1, idm);
 
 		preparedStatement.execute();
 
 		konekcija.close();
+	}
+	public ComboBoxModel<Magacin> getDetaljiMagacina(Magacin m) throws ClassNotFoundException, SQLException {
+		ComboBoxModel<Magacin> lista = (ComboBoxModel<Magacin>) new ArrayList<Magacin>();
+		int mid = m.getIdMagacina();
+		connect();
+		preparedStatement = konekcija.prepareStatement("select * from magacin where id_magacina =?");
+		preparedStatement.setInt(1, mid);
+		
+		preparedStatement.execute();
+		rs = preparedStatement.getResultSet();
+		while (rs.next()) {
+			int idMagacina = rs.getInt("id_magacina");
+			String nazivMagacina = rs.getString("naziv_magacina");
+			String adresaMagacina = rs.getString("adresa_magacina");
+			String gradOpstinaMagacina = rs.getString("grad_opstina_magacina");
+			String telefonMagacina = rs.getString("telefon_magacina");
+			String emailMagacina = rs.getString("e_mail_magacina");
+			Magacin mag = new Magacin(idMagacina, nazivMagacina, adresaMagacina, gradOpstinaMagacina, telefonMagacina, emailMagacina);
+			((ArrayList<Magacin>) lista).add(mag);
+			
+		}
+
+		konekcija.close();
+		return lista;
+
 	}
 
 }

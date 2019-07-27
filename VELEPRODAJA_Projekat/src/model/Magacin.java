@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Component;
+
 public class Magacin {
 	
 	private int idMagacina;
@@ -37,12 +39,10 @@ public class Magacin {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
+	
 	public int getIdMagacina() {
 		return idMagacina;
 	}
-
 
 	public void setIdMagacina(int idMagacina) {
 		this.idMagacina = idMagacina;
@@ -101,9 +101,7 @@ public class Magacin {
 
 	@Override
 	public String toString() {
-		return "Magacin [idMagacina=" + idMagacina + ", nazivMagacina=" + nazivMagacina + ", adresaMagacina="
-				+ adresaMagacina + ", gradOpstinaMagacina=" + gradOpstinaMagacina + ", telefonMagacina="
-				+ telefonMagacina + ", emailMagacina=" + emailMagacina + "]";
+		return " "+nazivMagacina + " ID : " + idMagacina + " GRAD/OPSTINA : " + gradOpstinaMagacina;
 	}	
-
+	
 }

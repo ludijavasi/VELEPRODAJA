@@ -72,7 +72,7 @@ public class JFrameKupac extends JFrame {
 	public JFrameKupac() {
 		setTitle("KUPAC");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 589, 472);
+		setBounds(100, 100, 589, 349);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -81,67 +81,67 @@ public class JFrameKupac extends JFrame {
 		JPanel panelPodacioKupcu = new JPanel();
 		panelPodacioKupcu.setBorder(
 				new TitledBorder(null, "Podaci o kupcu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPodacioKupcu.setBounds(10, 11, 242, 242);
+		panelPodacioKupcu.setBounds(10, 11, 242, 202);
 		contentPane.add(panelPodacioKupcu);
 		panelPodacioKupcu.setLayout(null);
 
 		JLabel lblNazivFirme = new JLabel("Naziv firme :");
-		lblNazivFirme.setBounds(10, 45, 82, 14);
+		lblNazivFirme.setBounds(10, 14, 82, 14);
 		panelPodacioKupcu.add(lblNazivFirme);
 
 		JLabel lblAdresaFirme = new JLabel("Adresa firme :");
-		lblAdresaFirme.setBounds(10, 70, 82, 14);
+		lblAdresaFirme.setBounds(10, 45, 82, 14);
 		panelPodacioKupcu.add(lblAdresaFirme);
 
 		JLabel lblGradOpstina = new JLabel("Grad/Opstina");
-		lblGradOpstina.setBounds(10, 95, 82, 14);
+		lblGradOpstina.setBounds(10, 76, 82, 14);
 		panelPodacioKupcu.add(lblGradOpstina);
 
 		JLabel lblTelefonFirme = new JLabel("Telefon :");
-		lblTelefonFirme.setBounds(10, 148, 82, 14);
+		lblTelefonFirme.setBounds(10, 107, 82, 14);
 		panelPodacioKupcu.add(lblTelefonFirme);
 
 		JLabel lblKontakOsobaFirme = new JLabel("Kontakt osoba :");
-		lblKontakOsobaFirme.setBounds(10, 217, 82, 14);
+		lblKontakOsobaFirme.setBounds(10, 172, 82, 14);
 		panelPodacioKupcu.add(lblKontakOsobaFirme);
 
 		textNazivFirme = new JTextField();
-		textNazivFirme.setBounds(102, 42, 121, 20);
+		textNazivFirme.setBounds(102, 11, 121, 20);
 		panelPodacioKupcu.add(textNazivFirme);
 		textNazivFirme.setColumns(10);
 
 		textAdresaFirme = new JTextField();
-		textAdresaFirme.setBounds(102, 67, 121, 20);
+		textAdresaFirme.setBounds(102, 42, 121, 20);
 		panelPodacioKupcu.add(textAdresaFirme);
 		textAdresaFirme.setColumns(10);
 
 		textGradOpstinaFirme = new JTextField();
-		textGradOpstinaFirme.setBounds(102, 92, 124, 20);
+		textGradOpstinaFirme.setBounds(99, 73, 124, 20);
 		panelPodacioKupcu.add(textGradOpstinaFirme);
 		textGradOpstinaFirme.setColumns(10);
 
 		textTelefonFirme = new JTextField();
-		textTelefonFirme.setBounds(102, 145, 121, 20);
+		textTelefonFirme.setBounds(102, 104, 121, 20);
 		panelPodacioKupcu.add(textTelefonFirme);
 		textTelefonFirme.setColumns(10);
 
 		JTextPane textPaneKontakOsobaFirme = new JTextPane();
-		textPaneKontakOsobaFirme.setBounds(102, 211, 121, 20);
+		textPaneKontakOsobaFirme.setBounds(102, 166, 121, 20);
 		panelPodacioKupcu.add(textPaneKontakOsobaFirme);
-		
+
 		JLabel lblEMail = new JLabel("E - mail :");
-		lblEMail.setBounds(10, 179, 58, 14);
+		lblEMail.setBounds(10, 138, 58, 14);
 		panelPodacioKupcu.add(lblEMail);
-		
+
 		textEMailKipca = new JTextField();
-		textEMailKipca.setBounds(102, 176, 121, 20);
+		textEMailKipca.setBounds(102, 135, 121, 20);
 		panelPodacioKupcu.add(textEMailKipca);
 		textEMailKipca.setColumns(10);
 
 		panelPoslovniPodaciKupca = new JPanel();
 		panelPoslovniPodaciKupca.setBorder(
 				new TitledBorder(null, "Poslovni podaci kupca", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPoslovniPodaciKupca.setBounds(262, 11, 301, 242);
+		panelPoslovniPodaciKupca.setBounds(262, 11, 301, 202);
 		contentPane.add(panelPoslovniPodaciKupca);
 		panelPoslovniPodaciKupca.setLayout(null);
 
@@ -155,56 +155,56 @@ public class JFrameKupac extends JFrame {
 		textPibKupca.setColumns(10);
 
 		lblTekucracunKupca = new JLabel("Tekuci Racun :");
-		lblTekucracunKupca.setBounds(10, 109, 107, 14);
+		lblTekucracunKupca.setBounds(10, 65, 107, 14);
 		panelPoslovniPodaciKupca.add(lblTekucracunKupca);
 
 		lblValutaPlacanja = new JLabel("Valuta placanja :");
-		lblValutaPlacanja.setBounds(10, 140, 107, 14);
+		lblValutaPlacanja.setBounds(10, 90, 107, 14);
 		panelPoslovniPodaciKupca.add(lblValutaPlacanja);
 
 		lblStatusKupca = new JLabel("Status :");
-		lblStatusKupca.setBounds(10, 179, 46, 14);
+		lblStatusKupca.setBounds(10, 125, 46, 14);
 		panelPoslovniPodaciKupca.add(lblStatusKupca);
 
 		textTekuciRacunKupca = new JTextField();
-		textTekuciRacunKupca.setBounds(127, 106, 130, 20);
+		textTekuciRacunKupca.setBounds(127, 62, 130, 20);
 		panelPoslovniPodaciKupca.add(textTekuciRacunKupca);
 		textTekuciRacunKupca.setColumns(10);
 
 		comboBoxValutaPlacanja = new JComboBox();
-		comboBoxValutaPlacanja.setModel(new DefaultComboBoxModel(new String[] {"30", "60", "90", "120"}));
-		comboBoxValutaPlacanja.setBounds(127, 137, 65, 20);
+		comboBoxValutaPlacanja.setModel(new DefaultComboBoxModel(new String[] { "30", "60", "90", "120" }));
+		comboBoxValutaPlacanja.setBounds(127, 87, 65, 20);
 		panelPoslovniPodaciKupca.add(comboBoxValutaPlacanja);
 
 		lblIdKupca = new JLabel("ID Kupca :");
-		lblIdKupca.setBounds(63, 208, 78, 14);
+		lblIdKupca.setBounds(82, 154, 78, 14);
 		panelPoslovniPodaciKupca.add(lblIdKupca);
 
 		textField = new JTextField();
-		textField.setBounds(169, 205, 65, 20);
+		textField.setBounds(192, 151, 65, 20);
 		panelPoslovniPodaciKupca.add(textField);
 		textField.setColumns(10);
-		
+
 		JRadioButton rdbtnAktivan = new JRadioButton("Aktivan");
-		rdbtnAktivan.setBounds(119, 175, 78, 23);
+		rdbtnAktivan.setBounds(126, 121, 78, 23);
 		panelPoslovniPodaciKupca.add(rdbtnAktivan);
-		
+
 		JRadioButton rdbtnNeaktivan = new JRadioButton("Neaktivan");
-		rdbtnNeaktivan.setBounds(212, 175, 83, 23);
+		rdbtnNeaktivan.setBounds(206, 121, 83, 23);
 		panelPoslovniPodaciKupca.add(rdbtnNeaktivan);
-		
+
 		ButtonGroup status = new ButtonGroup();
 		status.add(rdbtnAktivan);
 		status.add(rdbtnNeaktivan);
-		
+
 		lblDana = new JLabel("dana");
-		lblDana.setBounds(211, 143, 46, 14);
+		lblDana.setBounds(202, 90, 46, 14);
 		panelPoslovniPodaciKupca.add(lblDana);
 
 		btnDodajKupca = new JButton("Dodaj Kupca");
 		btnDodajKupca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				try {
 					String naziv = textNazivFirme.getText();
 					String adresa = textAdresaFirme.getText();
@@ -214,20 +214,20 @@ public class JFrameKupac extends JFrame {
 					String kont_osoba = textPaneKontakOsobaFirme.getText();
 					int pib = Integer.parseInt(textPibKupca.getText());
 					String tek_racun = textTekuciRacunKupca.getText();
-					int valuta = (Integer)comboBoxValutaPlacanja.getSelectedItem();
+					int valuta = (Integer) comboBoxValutaPlacanja.getSelectedItem();
 					String status = "";
 					if (rdbtnAktivan.isSelected()) {
 						status = "Aktivan";
-					}else if (rdbtnNeaktivan.isSelected()) {
+					} else if (rdbtnNeaktivan.isSelected()) {
 						status = "Neaktivan";
 					}
-					
+
 					Kupac k = new Kupac(naziv, adresa, grad, tel, email, kont_osoba, pib, tek_racun, valuta, status);
-					
+
 					Kontroler.getInstance().insertKupac(k);
-					
+
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novog kupca!");
-					
+
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -237,24 +237,23 @@ public class JFrameKupac extends JFrame {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}			
-				
-				
+				}
+
 			}
 		});
-		btnDodajKupca.setBounds(67, 282, 118, 23);
+		btnDodajKupca.setBounds(272, 224, 118, 23);
 		contentPane.add(btnDodajKupca);
 
 		btnObrisiKupca = new JButton("Obrisi Kupca");
-		btnObrisiKupca.setBounds(215, 282, 118, 23);
+		btnObrisiKupca.setBounds(134, 259, 118, 23);
 		contentPane.add(btnObrisiKupca);
 
 		btnAzurirajKupca = new JButton("Azuriraj");
-		btnAzurirajKupca.setBounds(358, 282, 118, 23);
+		btnAzurirajKupca.setBounds(282, 258, 118, 23);
 		contentPane.add(btnAzurirajKupca);
 
 		btnPonistiAkcijuKupac = new JButton("Ponisti akciju");
-		btnPonistiAkcijuKupac.setBounds(225, 326, 118, 23);
+		btnPonistiAkcijuKupac.setBounds(134, 224, 118, 23);
 		contentPane.add(btnPonistiAkcijuKupac);
 	}
 }
