@@ -337,18 +337,6 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmAzurirajSkladistaAdmin = new JMenuItem("Azuriraj");
 		mnSkladistaAdmin.add(mntmAzurirajSkladistaAdmin);
 
-		JMenu mnGrupeSkladistaAdmin = new JMenu("Grupe skladista");
-		mnMaticniPodaciAdmin.add(mnGrupeSkladistaAdmin);
-
-		JMenuItem mntmPregledGrupeSkladistaAdminn = new JMenuItem("Pregled grupe skladista");
-		mnGrupeSkladistaAdmin.add(mntmPregledGrupeSkladistaAdminn);
-
-		JMenuItem mntmDodajGrupuSkladistaAdmin = new JMenuItem("Dodaj grupu skladista");
-		mnGrupeSkladistaAdmin.add(mntmDodajGrupuSkladistaAdmin);
-
-		JMenuItem mntmObrisiGrupuSkladistaAdmin = new JMenuItem("Obrisi grupu skladiste");
-		mnGrupeSkladistaAdmin.add(mntmObrisiGrupuSkladistaAdmin);
-
 		JMenu mnKupciAdmin = new JMenu("Kupci");
 		mnMaticniPodaciAdmin.add(mnKupciAdmin);
 
@@ -414,9 +402,6 @@ public class GlavniProzorVeleprodaja {
 
 		JMenuItem mntmAzurirajGrupuArtikalaAdmin = new JMenuItem("Azuriraj");
 		mnGrupeArtikalaAdmin.add(mntmAzurirajGrupuArtikalaAdmin);
-
-		JMenuItem mntmAzurirajGrupuSkladistaAdmin = new JMenuItem("Azuriraj");
-		mnGrupeSkladistaAdmin.add(mntmAzurirajGrupuSkladistaAdmin);
 
 		JMenu mnIzvestajAdmin = new JMenu("    Izve\u0161taj");
 		mnIzvestajAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));

@@ -83,9 +83,9 @@ public class Kontroler {
 		DAOMagacin dm = new DAOMagacin();
 		dm.obrisiMagacin(rbn);
 	}
-	public ComboBoxModel<Magacin> getDetaljiMagacina(Magacin m) throws ClassNotFoundException, SQLException {
+	public  Magacin getDetaljiMagacina(int idm) throws ClassNotFoundException, SQLException {
 		DAOMagacin mg = new DAOMagacin();
-		return mg.getDetaljiMagacina(m);
+		return mg.getDetaljiMagacina(idm);
 	}
 
 }

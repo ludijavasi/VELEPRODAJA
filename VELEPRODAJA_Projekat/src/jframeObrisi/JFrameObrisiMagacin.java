@@ -23,11 +23,13 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class JFrameObrisiMagacin extends JFrame {
 
 	private JPanel contentPane;
 	private JComboBox<Magacin> comboBoxMagacinaObrisi;
+	private JTextField textFieldIdMagacinaObrisiMagacin;
 
 	/**
 	 * Launch the application.
@@ -67,21 +69,31 @@ public class JFrameObrisiMagacin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFrameMagacin jfmo = new JFrameMagacin();
 				jfmo.getBtnDodajMagacin().setVisible(false);
-				comboBoxMagacinaObrisi.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						// RESINEVALJA
-						Magacin m = (Magacin) comboBoxMagacinaObrisi.getSelectedItem();
-						System.out.println(m.getAdresaMagacina());
+				int idm = Integer.parseInt(textFieldIdMagacinaObrisiMagacin.getText().trim());
+				try {
+					Magacin m = Kontroler.getInstance().getDetaljiMagacina(idm);
 
-						// jfmo.getTextFieldIdMagacina().setText(m.getIdMagacina());
-						jfmo.getTextFieldNazivMagacina().setText(m.getNazivMagacina());
-						jfmo.getTextFieldAdresaMagacina().setText(m.getAdresaMagacina());
-						jfmo.getTextFieldGradMagacina().setText(m.getGradOpstinaMagacina());
-						jfmo.getTextFieldTelefonMagacina().setText(m.getTelefonMagacina());
-						jfmo.getTextFieldEmailMagacina().setText(m.getEmailMagacina());
+					jfmo.getTextFieldIdMagacina().setText(Integer.toString(m.getIdMagacina()));
+					jfmo.getTextFieldNazivMagacina().setText(m.getNazivMagacina());
+					jfmo.getTextFieldAdresaMagacina().setText(m.getAdresaMagacina());
+					jfmo.getTextFieldGradMagacina().setText(m.getGradOpstinaMagacina());
+					jfmo.getTextFieldTelefonMagacina().setText(m.getTelefonMagacina());
+					jfmo.getTextFieldEmailMagacina().setText(m.getEmailMagacina());
+					jfmo.getTextFieldIdMagacina().setEditable(false);
+					jfmo.getTextFieldNazivMagacina().setEditable(false);
+					jfmo.getTextFieldAdresaMagacina().setEditable(false);
+					jfmo.getTextFieldGradMagacina().setEditable(false);
+					jfmo.getTextFieldTelefonMagacina().setEditable(false);
+					jfmo.getTextFieldEmailMagacina().setEditable(false);
+					jfmo.setVisible(true);
+				} catch (ClassNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 
-					}
-				});
 				jfmo.getBtnObrisiMagacin().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						int rbn = Integer.parseInt(jfmo.getTextFieldIdMagacina().getText().trim());
@@ -114,13 +126,34 @@ public class JFrameObrisiMagacin extends JFrame {
 
 		});
 		btnOtvoriMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriMagacin.setBounds(137, 130, 165, 23);
+		btnOtvoriMagacin.setBounds(133, 165, 165, 23);
 		contentPane.add(btnOtvoriMagacin);
 
-		comboBoxMagacinaObrisi = new JComboBox();
+		comboBoxMagacinaObrisi = new JComboBox<Magacin>();
 		comboBoxMagacinaObrisi.setBounds(58, 88, 331, 20);
 		contentPane.add(comboBoxMagacinaObrisi);
 		popuniComboBoxMagacin(comboBoxMagacinaObrisi);
+		comboBoxMagacinaObrisi.setSelectedItem(null);
+		comboBoxMagacinaObrisi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Magacin m = (Magacin) comboBoxMagacinaObrisi.getSelectedItem();
+				textFieldIdMagacinaObrisiMagacin.setText(Integer.toString(m.getIdMagacina()));
+			}
+		});
+
+		JLabel lblIdMagacinaObrisiMagacin = new JLabel("ID Magacina :");
+		lblIdMagacinaObrisiMagacin.setBounds(122, 128, 77, 14);
+		contentPane.add(lblIdMagacinaObrisiMagacin);
+
+		textFieldIdMagacinaObrisiMagacin = new JTextField();
+		textFieldIdMagacinaObrisiMagacin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
+		textFieldIdMagacinaObrisiMagacin.setBounds(239, 125, 86, 20);
+		contentPane.add(textFieldIdMagacinaObrisiMagacin);
+		textFieldIdMagacinaObrisiMagacin.setColumns(10);
 	}
 
 	private void popuniComboBoxMagacin(JComboBox<Magacin> comboBox) {
