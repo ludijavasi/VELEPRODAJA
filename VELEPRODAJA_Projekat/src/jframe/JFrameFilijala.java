@@ -40,7 +40,153 @@ public class JFrameFilijala extends JFrame {
 	private JTextField textTekuciRacunFilijale;
 	private JLabel lblIDFilijale;
 	private JTextField textIDFilijale;
+	private JButton btnDodajFilijalu;
+	private JButton btnPonistiAkcijuFilijala;
+	private JButton btnObrisiFilijalu;
+	private JButton btnAzurirajFilijalu;	
 	private final ButtonGroup buttonGroupFilijala = new ButtonGroup();
+	
+	
+
+	public JPanel getContentPaneFilijala() {
+		return contentPaneFilijala;
+	}
+
+	public void setContentPaneFilijala(JPanel contentPaneFilijala) {
+		this.contentPaneFilijala = contentPaneFilijala;
+	}
+
+	public JTextField getTextNazivFilijale() {
+		return textNazivFilijale;
+	}
+
+	public void setTextNazivFilijale(JTextField textNazivFilijale) {
+		this.textNazivFilijale = textNazivFilijale;
+	}
+
+	public JTextField getTextAdresaFilijale() {
+		return textAdresaFilijale;
+	}
+
+	public void setTextAdresaFilijale(JTextField textAdresaFilijale) {
+		this.textAdresaFilijale = textAdresaFilijale;
+	}
+
+	public JTextField getTextGradOpstinaFilijale() {
+		return textGradOpstinaFilijale;
+	}
+
+	public void setTextGradOpstinaFilijale(JTextField textGradOpstinaFilijale) {
+		this.textGradOpstinaFilijale = textGradOpstinaFilijale;
+	}
+
+	public JTextField getTextE_MailFilijale() {
+		return textE_MailFilijale;
+	}
+
+	public void setTextE_MailFilijale(JTextField textE_MailFilijale) {
+		this.textE_MailFilijale = textE_MailFilijale;
+	}
+
+	public JTextField getTextTelefonFilijale() {
+		return textTelefonFilijale;
+	}
+
+	public void setTextTelefonFilijale(JTextField textTelefonFilijale) {
+		this.textTelefonFilijale = textTelefonFilijale;
+	}
+
+	public JPanel getPanelPoslovniPodaciFilijale() {
+		return panelPoslovniPodaciFilijale;
+	}
+
+	public void setPanelPoslovniPodaciFilijale(JPanel panelPoslovniPodaciFilijale) {
+		this.panelPoslovniPodaciFilijale = panelPoslovniPodaciFilijale;
+	}
+
+	public JLabel getLblPibFilijale() {
+		return lblPibFilijale;
+	}
+
+	public void setLblPibFilijale(JLabel lblPibFilijale) {
+		this.lblPibFilijale = lblPibFilijale;
+	}
+
+	public JTextField getTextPibFilijale() {
+		return textPibFilijale;
+	}
+
+	public void setTextPibFilijale(JTextField textPibFilijale) {
+		this.textPibFilijale = textPibFilijale;
+	}
+
+	public JLabel getLblTekuciRacunFilijale() {
+		return lblTekuciRacunFilijale;
+	}
+
+	public void setLblTekuciRacunFilijale(JLabel lblTekuciRacunFilijale) {
+		this.lblTekuciRacunFilijale = lblTekuciRacunFilijale;
+	}
+
+	public JTextField getTextTekuciRacunFilijale() {
+		return textTekuciRacunFilijale;
+	}
+
+	public void setTextTekuciRacunFilijale(JTextField textTekuciRacunFilijale) {
+		this.textTekuciRacunFilijale = textTekuciRacunFilijale;
+	}
+
+	public JLabel getLblIDFilijale() {
+		return lblIDFilijale;
+	}
+
+	public void setLblIDFilijale(JLabel lblIDFilijale) {
+		this.lblIDFilijale = lblIDFilijale;
+	}
+
+	public JTextField getTextIDFilijale() {
+		return textIDFilijale;
+	}
+
+	public void setTextIDFilijale(JTextField textIDFilijale) {
+		this.textIDFilijale = textIDFilijale;
+	}
+
+	public ButtonGroup getButtonGroupFilijala() {
+		return buttonGroupFilijala;
+	}	
+
+	public JButton getBtnDodajFilijalu() {
+		return btnDodajFilijalu;
+	}
+
+	public void setBtnDodajFilijalu(JButton btnDodajFilijalu) {
+		this.btnDodajFilijalu = btnDodajFilijalu;
+	}	
+
+	public JButton getBtnPonistiAkcijuFilijala() {
+		return btnPonistiAkcijuFilijala;
+	}
+
+	public void setBtnPonistiAkcijuFilijala(JButton btnPonistiAkcijuFilijala) {
+		this.btnPonistiAkcijuFilijala = btnPonistiAkcijuFilijala;
+	}
+
+	public JButton getBtnObrisiFilijalu() {
+		return btnObrisiFilijalu;
+	}
+
+	public void setBtnObrisiFilijalu(JButton btnObrisiFilijalu) {
+		this.btnObrisiFilijalu = btnObrisiFilijalu;
+	}
+
+	public JButton getBtnAzurirajFilijalu() {
+		return btnAzurirajFilijalu;
+	}
+
+	public void setBtnAzurirajFilijalu(JButton btnAzurirajFilijalu) {
+		this.btnAzurirajFilijalu = btnAzurirajFilijalu;
+	}
 
 	/**
 	 * Launch the application.
@@ -189,7 +335,7 @@ public class JFrameFilijala extends JFrame {
 						status = "Neaktivna";
 					}
 
-					Filijala f = new Filijala(adresa, grad, tel, email, pib, tek_racun, status);
+					Filijala f = new Filijala(naziv, adresa, grad, tel, email, pib, tek_racun, status);
 
 					Kontroler.getInstance().insertFilijala(f);
 

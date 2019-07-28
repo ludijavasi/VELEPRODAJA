@@ -7,11 +7,13 @@ import javax.swing.ComboBoxModel;
 
 import dao.DAOArtikli;
 import dao.DAOFilijala;
+import dao.DAOGlavnaGrupaArtikala;
 import dao.DAOKupac;
 import dao.DAOMagacin;
 import dao.DAOZaposleni;
 import model.Artikli;
 import model.Filijala;
+import model.GlavnaGrupa;
 import model.Kupac;
 import model.Magacin;
 import model.Zaposleni;
@@ -28,6 +30,12 @@ public class Kontroler {
 		if (kontroler == null)
 			kontroler = new Kontroler();
 		return kontroler;
+	}
+	
+	public ArrayList<Artikli> getArtikli() throws ClassNotFoundException, SQLException {
+		DAOArtikli da = new DAOArtikli();
+		ArrayList<Artikli> lista = da.getArtikli();
+		return lista;
 	}
 	
 	public  int insertArikli(Artikli a) throws ClassNotFoundException, SQLException {
@@ -86,6 +94,22 @@ public class Kontroler {
 	public  Magacin getDetaljiMagacina(int idm) throws ClassNotFoundException, SQLException {
 		DAOMagacin mg = new DAOMagacin();
 		return mg.getDetaljiMagacina(idm);
+	}
+	
+	public void obrisiFilijalu(int rbf) throws ClassNotFoundException, SQLException{
+		DAOFilijala df = new DAOFilijala();
+		df.obrisiFilijalu(rbf);
+	}	
+	
+	public ArrayList<GlavnaGrupa> getGlavnaGrupaArtikala() throws ClassNotFoundException, SQLException {
+		DAOGlavnaGrupaArtikala gg = new DAOGlavnaGrupaArtikala();
+		ArrayList<GlavnaGrupa> lista = gg.getGlavnaGrupaArtikala();
+		return lista;
+	}
+	
+	public void insertGlavnaGrupaArtikala(GlavnaGrupa gg) throws SQLException, ClassNotFoundException {
+		DAOGlavnaGrupaArtikala gga = new DAOGlavnaGrupaArtikala();
+		gga.insertGlavnaGrupaArtikala(gg);
 	}
 
 }
