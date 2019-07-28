@@ -26,13 +26,16 @@ public class GlavnaGrupa {
 		super();
 		this.idGlavneGrupe = idGlavneGrupe;
 		this.naziv_glavne_grupe = naziv_glavne_grupe;
+	}	
+	
+	public GlavnaGrupa(String naziv_glavne_grupe) {
+		super();
+		this.naziv_glavne_grupe = naziv_glavne_grupe;
 	}
+	
 	@Override
 	public String toString() {
-		return "GlavnaGrupa [idGlavneGrupe=" + idGlavneGrupe + ", naziv_glavne_grupe=" + naziv_glavne_grupe + "]";
-	}
-	
-	
-	
+		return  naziv_glavne_grupe + ",  " + "ID: " + idGlavneGrupe;
+	}	
 
 }

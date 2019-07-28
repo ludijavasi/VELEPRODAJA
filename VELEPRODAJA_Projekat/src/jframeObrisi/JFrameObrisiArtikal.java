@@ -6,16 +6,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import kontroler.Kontroler;
+import model.Artikli;
+import model.GlavnaGrupa;
+import model.Magacin;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class JFrameObrisiArtikal extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldIdArtikla;
-	private JTextField textFieldArtikal;
+	private JComboBox comboBoxGlavnaGrupaObrisi;
+	private JComboBox comboBoxArtikalObrisi;
 
 	/**
 	 * Launch the application.
@@ -45,32 +55,46 @@ public class JFrameObrisiArtikal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblUnesiteIdArtikla = new JLabel("Unesite ID artikla :");
-		lblUnesiteIdArtikla.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteIdArtikla.setBounds(61, 49, 144, 17);
-		contentPane.add(lblUnesiteIdArtikla);
-		
-		textFieldIdArtikla = new JTextField();
-		textFieldIdArtikla.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textFieldIdArtikla.setBounds(61, 77, 49, 20);
-		contentPane.add(textFieldIdArtikla);
-		textFieldIdArtikla.setColumns(10);
-		
-		JButton btnURedu = new JButton("U redu");
-		btnURedu.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnURedu.setBounds(128, 77, 89, 23);
-		contentPane.add(btnURedu);
-		
-		textFieldArtikal = new JTextField();
-		textFieldArtikal.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textFieldArtikal.setBounds(61, 117, 156, 20);
-		contentPane.add(textFieldArtikal);
-		textFieldArtikal.setColumns(10);
-		
 		JButton btnOtvoriArtikal = new JButton("Otvori artikal");
 		btnOtvoriArtikal.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriArtikal.setBounds(61, 156, 156, 23);
+		btnOtvoriArtikal.setBounds(61, 203, 156, 23);
 		contentPane.add(btnOtvoriArtikal);
+		
+		JLabel lblUnesiteGlavnuGrupu = new JLabel("Unesite glavnu grupu artikala :");
+		lblUnesiteGlavnuGrupu.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUnesiteGlavnuGrupu.setBounds(61, 35, 234, 17);
+		contentPane.add(lblUnesiteGlavnuGrupu);
+		
+		JComboBox comboBoxGlavnaGrupaObrisi = new JComboBox();
+		comboBoxGlavnaGrupaObrisi.setBounds(61, 76, 234, 20);
+		contentPane.add(comboBoxGlavnaGrupaObrisi);
+		popuniComboBoxGlavnaGrupa(comboBoxGlavnaGrupaObrisi);
+		
+		JLabel lblUnesiteArtikal = new JLabel("Unesite artikal :");
+		lblUnesiteArtikal.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUnesiteArtikal.setBounds(61, 118, 234, 17);
+		contentPane.add(lblUnesiteArtikal);
+		
+		JComboBox comboBoxArtikalObrisi = new JComboBox();
+		comboBoxArtikalObrisi.setBounds(61, 156, 234, 20);
+		contentPane.add(comboBoxArtikalObrisi);
 	}
+	
+	private void popuniComboBoxGlavnaGrupa(JComboBox<GlavnaGrupa> comboBox) {
+		try {
+			ArrayList<GlavnaGrupa> lista = Kontroler.getInstance().getGlavnaGrupaArtikala();
 
+			for (GlavnaGrupa gg : lista) {
+				comboBox.addItem(gg);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}	
+	
 }
+	
+	    
+

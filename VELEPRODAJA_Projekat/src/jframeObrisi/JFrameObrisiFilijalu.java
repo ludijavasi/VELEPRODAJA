@@ -6,16 +6,30 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import jframe.JFrameFilijala;
+import jframe.JFrameMagacin;
+import kontroler.Kontroler;
+import model.Filijala;
+import model.Magacin;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JFrameObrisiFilijalu extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldIdFilijale;
-	private JTextField textFieldFilijale;
+	private JComboBox comboBoxFilijalaObrisi;
 
 	/**
 	 * Launch the application.
@@ -39,37 +53,39 @@ public class JFrameObrisiFilijalu extends JFrame {
 	public JFrameObrisiFilijalu() {
 		setTitle("OBRISI FILIJALU");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 536, 337);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblUnesiteIdFilijale = new JLabel("Unesite ID filijale :");
-		lblUnesiteIdFilijale.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteIdFilijale.setBounds(73, 53, 139, 17);
-		contentPane.add(lblUnesiteIdFilijale);
+		JLabel lblIzaberiFilijalu = new JLabel("Izaberite filijalu :");
+		lblIzaberiFilijalu.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblIzaberiFilijalu.setBounds(91, 52, 278, 17);
+		contentPane.add(lblIzaberiFilijalu);
 		
-		textFieldIdFilijale = new JTextField();
-		textFieldIdFilijale.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textFieldIdFilijale.setBounds(73, 81, 50, 20);
-		contentPane.add(textFieldIdFilijale);
-		textFieldIdFilijale.setColumns(10);
-		
-		JButton btnURedu = new JButton("U redu");
-		btnURedu.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnURedu.setBounds(138, 81, 85, 23);
-		contentPane.add(btnURedu);
-		
-		textFieldFilijale = new JTextField();
-		textFieldFilijale.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textFieldFilijale.setBounds(73, 123, 150, 20);
-		contentPane.add(textFieldFilijale);
-		textFieldFilijale.setColumns(10);
+		JComboBox comboBoxFilijalaObrisi = new JComboBox();
+		comboBoxFilijalaObrisi.setBounds(91, 95, 355, 20);
+		contentPane.add(comboBoxFilijalaObrisi);
+		popuniComboBoxFilijala(comboBoxFilijalaObrisi);
 		
 		JButton btnOtvoriFilijalu = new JButton("Otvori filijalu");
 		btnOtvoriFilijalu.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriFilijalu.setBounds(73, 166, 150, 23);
+		btnOtvoriFilijalu.setBounds(189, 154, 160, 23);
 		contentPane.add(btnOtvoriFilijalu);
+	}
+	
+	private void popuniComboBoxFilijala(JComboBox<Filijala> comboBox) {
+		try {
+			ArrayList<Filijala> lista = Kontroler.getInstance().getFilijala();
+
+			for (Filijala f : lista) {
+				comboBox.addItem(f);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
