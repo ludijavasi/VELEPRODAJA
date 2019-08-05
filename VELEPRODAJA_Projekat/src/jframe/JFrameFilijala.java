@@ -336,7 +336,7 @@ public class JFrameFilijala extends JFrame {
 		status.add(rdbtnAktivna);
 		status.add(rdbtnNeaktivna);
 
-		JButton btnDodajFilijalu = new JButton("Dodaj filijalu");
+		btnDodajFilijalu = new JButton("Dodaj filijalu");
 		btnDodajFilijalu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -377,15 +377,15 @@ public class JFrameFilijala extends JFrame {
 		btnDodajFilijalu.setBounds(311, 204, 118, 23);
 		contentPaneFilijala.add(btnDodajFilijalu);
 
-		JButton btnObrisiFilijalu = new JButton("Obrisi filijalu");
+		btnObrisiFilijalu = new JButton("Obrisi filijalu");
 		btnObrisiFilijalu.setBounds(97, 238, 118, 23);
 		contentPaneFilijala.add(btnObrisiFilijalu);
 
-		JButton btnAzurirajFilijalu = new JButton("Azuriraj");
+		btnAzurirajFilijalu = new JButton("Azuriraj");
 		btnAzurirajFilijalu.setBounds(311, 238, 118, 23);
 		contentPaneFilijala.add(btnAzurirajFilijalu);
 
-		JButton btnPonistiAkcijuFilijala = new JButton("Ponisti akciju");
+		btnPonistiAkcijuFilijala = new JButton("Ponisti akciju");
 		btnPonistiAkcijuFilijala.setBounds(97, 204, 118, 23);
 		contentPaneFilijala.add(btnPonistiAkcijuFilijala);
 	}

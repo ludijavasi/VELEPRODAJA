@@ -9,11 +9,23 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JFramePregledTrenutnoZaposlenih extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tablePregledTrenutnoZaposlenih;
+	private JButton btnIzlazTrenutnoZaposleni;
+	
+
+	public JButton getBtnIzlazTrenutnoZaposleni() {
+		return btnIzlazTrenutnoZaposleni;
+	}
+
+	public void setBtnIzlazTrenutnoZaposleni(JButton btnIzlazTrenutnoZaposleni) {
+		this.btnIzlazTrenutnoZaposleni = btnIzlazTrenutnoZaposleni;
+	}
 
 	/**
 	 * Launch the application.
@@ -50,7 +62,7 @@ public class JFramePregledTrenutnoZaposlenih extends JFrame {
 		tablePregledTrenutnoZaposlenih = new JTable();
 		scrollPanePregledTrenutnoZaposlenih.setViewportView(tablePregledTrenutnoZaposlenih);
 		
-		JButton btnIzlazTrenutnoZaposleni = new JButton("Izlaz");
+		btnIzlazTrenutnoZaposleni = new JButton("Izlaz");
 		btnIzlazTrenutnoZaposleni.setBounds(446, 244, 133, 23);
 		contentPane.add(btnIzlazTrenutnoZaposleni);
 	}

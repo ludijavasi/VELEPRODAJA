@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
@@ -21,7 +22,7 @@ public class JFramePregledTrenutnoPrijavljeniNaMrezi extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
+				try {				
 					JFramePregledTrenutnoPrijavljeniNaMrezi frame = new JFramePregledTrenutnoPrijavljeniNaMrezi();
 					frame.setVisible(true);
 				} catch (Exception e) {
