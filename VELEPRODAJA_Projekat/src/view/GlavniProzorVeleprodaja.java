@@ -196,20 +196,19 @@ public class GlavniProzorVeleprodaja {
 				panelLogin.setVisible(true);				
 			}
 		});
+		
 		mnPrijavaAdmin.add(mntmOdjavaAdmin);
-
-		JMenu mnZaposleniPrijavaAdmin = new JMenu("Zaposleni");
-		mnPrijavaAdmin.add(mnZaposleniPrijavaAdmin);
-
-		JMenuItem mntmTrenutnoPrijavljeni = new JMenuItem("Trenutno prijavljeni");
-		mntmTrenutnoPrijavljeni.addActionListener(new ActionListener() {
+		
+		JMenuItem mnTrenutnoPrijavljeniAdmin = new JMenuItem("Trenutno prijavljeni");
+		mnPrijavaAdmin.add(mnTrenutnoPrijavljeniAdmin);
+		mnTrenutnoPrijavljeniAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFramePregledTrenutnoPrijavljeniNaMrezi prijavljeni = new JFramePregledTrenutnoPrijavljeniNaMrezi();
 				panelAdmin.setVisible(false);
 				prijavljeni.setVisible(true);
 			}
 		});
-		mnZaposleniPrijavaAdmin.add(mntmTrenutnoPrijavljeni);
+
 
 		JMenuItem mntmOsveziupdateAdmin = new JMenuItem("Osvezi (update)");
 		mnPrijavaAdmin.add(mntmOsveziupdateAdmin);
