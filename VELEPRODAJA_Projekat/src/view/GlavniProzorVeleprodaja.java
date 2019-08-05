@@ -215,6 +215,16 @@ public class GlavniProzorVeleprodaja {
 		mnPrijavaAdmin.add(mntmOsveziupdateAdmin);
 
 		JMenuItem mntmIzlazAdmin = new JMenuItem("Izlaz");
+		mntmIzlazAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int r = JOptionPane.showConfirmDialog(null, 
+						   "Da li zelite da ugasite program ?",null, JOptionPane.YES_NO_OPTION);
+						if(r == JOptionPane.YES_OPTION) {
+						    System.exit(0);
+						}
+			}
+		});
 		mnPrijavaAdmin.add(mntmIzlazAdmin);
 
 		mntmIzlazAdmin.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
