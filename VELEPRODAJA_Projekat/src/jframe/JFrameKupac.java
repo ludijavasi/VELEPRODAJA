@@ -214,7 +214,7 @@ public class JFrameKupac extends JFrame {
 					String kont_osoba = textPaneKontakOsobaFirme.getText();
 					int pib = Integer.parseInt(textPibKupca.getText());
 					String tek_racun = textTekuciRacunKupca.getText();
-					int valuta = (Integer) comboBoxValutaPlacanja.getSelectedItem();
+					int valuta = Integer.parseInt(comboBoxValutaPlacanja.getSelectedItem().toString());
 					String status = "";
 					if (rdbtnAktivan.isSelected()) {
 						status = "Aktivan";

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import model.Magacin;
 import model.Zaposleni;;
 
 public class DAOZaposleni {
@@ -33,15 +34,14 @@ public class DAOZaposleni {
 
 		while (rs.next()) {
 			int idZaposlenog = rs.getInt("id_zaposlenog");
-			//int idFilijale = rs.getInt("id_filijale");
+			int idFilijale = rs.getInt("id_filijale");
 			String imeZaposlenog = rs.getString("ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("prezime_zaposlenog");
 			String adresaZaposlenog = rs.getString("adresa_zaposlenog");
-			String gradOpstinaZaposlenog = rs.getString("grad_opstina_zaposlenog");
-			String polZaposlenog = rs.getString("pol");
+			String gradOpstinaZaposlenog = rs.getString("grad_opstina_zaposlenog");			
 			String telefonZaposlenog = rs.getString("telefon_zaposlenog");
 			String emailZaposlenog = rs.getString("e_mail_zaposlenog");
-			String strucnaSpremaZaposlenog = rs.getString("strucna_sprema_zaposlenog");
+			String strucnaSpremaZaposlenog = rs.getString("strucna_sprema_zaposlenog");			
 			Date datumPocetkaZaposlenja = rs.getDate("datum_pocetka_zaposlenja");
 			Date datumZavrsetkaZaposlenja = rs.getDate("datum_zavrsetka_zaposlenja");
 			double plataZaposlenog = rs.getDouble("plata_zaposlenog");
@@ -50,7 +50,7 @@ public class DAOZaposleni {
 			String passwordZaposlenog = rs.getString("password_zaposlenog");
 						
 
-			Zaposleni z = new Zaposleni(idZaposlenog, imeZaposlenog, prezimeZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, polZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
+			Zaposleni z = new Zaposleni(idZaposlenog, idFilijale, imeZaposlenog, prezimeZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
 
 			lista.add(z);
 		}
@@ -67,19 +67,19 @@ public class DAOZaposleni {
 		String datum_zav = sdf.format(z.getDatumZavrsetkaZaposlenja());
 
 		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO zaposleni (ime_zaposlenog, prezime_zaposlenog, adresa_zaposlenog, "
-		                           +" grad_opstina_zaposlenog, pol, telefon_zaposlenog, e_mail_zaposlenog, "
+				.prepareStatement("INSERT INTO zaposleni (id_filijale, ime_zaposlenog, prezime_zaposlenog, adresa_zaposlenog, "
+		                           +" grad_opstina_zaposlenog, telefon_zaposlenog, e_mail_zaposlenog,"
 						           +" strucna_sprema_zaposlenog, datum_pocetka_zaposlenja, datum_zavrsetka_zaposlenja, "
 		                           +" plata_zaposlenog, tip_zaposlenja, username_zaposlenog, password_zaposlenog)"
 						           +" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		preparedStatement.setString(1, z.getImeZaposlenog());
-		preparedStatement.setString(2, z.getPrezimeZaposlenog());
-		preparedStatement.setString(3, z.getAdresaZaposlenog());
-		preparedStatement.setString(4, z.getGradOpstinaZaposlenog());
-		preparedStatement.setString(5, z.getPolZaposlenog());
+		
+        preparedStatement.setInt(1, z.getIdFilijale());
+		preparedStatement.setString(2, z.getImeZaposlenog());
+		preparedStatement.setString(3, z.getPrezimeZaposlenog());
+		preparedStatement.setString(4, z.getAdresaZaposlenog());
+		preparedStatement.setString(5, z.getGradOpstinaZaposlenog());		
 		preparedStatement.setString(6, z.getTelefonZaposlenog());
-		preparedStatement.setString(7, z.getEmailZaposlenog());
+		preparedStatement.setString(7, z.getEmailZaposlenog());		
 		preparedStatement.setString(8, z.getStrucnaSpremaZaposlenog());
 		preparedStatement.setString(9, datum_poc);
 		preparedStatement.setString(10, datum_zav);
@@ -93,12 +93,45 @@ public class DAOZaposleni {
 		konekcija.close();
 		
 	}
-
-	/*public void deleteProdavnica(int id) throws SQLException, ClassNotFoundException {
+	
+	public Zaposleni getDetaljiZaposleni(int idz) throws ClassNotFoundException, SQLException {
+		Zaposleni z = new Zaposleni();
 		connect();
-		preparedStatement = konekcija.prepareStatement("delete from prodavnice where id = ?");
+		
+		preparedStatement = konekcija.prepareStatement("SELECT * FROM zaposleni where id_zaposlenog =?  ");
+		
+		preparedStatement.setInt(1, idz);
+		preparedStatement.execute();
+		rs = preparedStatement.getResultSet();
+		while (rs.next()) {
+			int idZaposlenog = rs.getInt("id_zaposlenog");
+			int idFilijale = rs.getInt("id_filijale");
+			String imeZaposlenog = rs.getString("ime_zaposlenog");
+			String prezimeZaposlenog = rs.getString("prezime_zaposlenog");
+			String adresaZaposlenog = rs.getString("adresa_zaposlenog");
+			String gradOpstinaZaposlenog = rs.getString("grad_opstina_zaposlenog");			
+			String telefonZaposlenog = rs.getString("telefon_zaposlenog");
+			String emailZaposlenog = rs.getString("e_mail_zaposlenog");
+			String strucnaSpremaZaposlenog = rs.getString("strucna_sprema_zaposlenog");			
+			Date datumPocetkaZaposlenja = rs.getDate("datum_pocetka_zaposlenja");
+			Date datumZavrsetkaZaposlenja = rs.getDate("datum_zavrsetka_zaposlenja");
+			double plataZaposlenog = rs.getDouble("plata_zaposlenog");
+			String tipZaposlenja = rs.getString("tip_zaposlenja");
+			String usernameZaposlenog = rs.getString("username_zaposlenog");
+			String passwordZaposlenog = rs.getString("password_zaposlenog");
+			Zaposleni z1 = new Zaposleni(idZaposlenog, idFilijale, imeZaposlenog, prezimeZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
+			z = z1;
+		}
+		konekcija.close();
+		return z;
+	}
 
-		preparedStatement.setInt(1, id);
+
+	public void deleteZaposleni(int idz) throws SQLException, ClassNotFoundException {
+		connect();
+		preparedStatement = konekcija.prepareStatement("delete from zaposleni where id_zaposlenog = ?");
+
+		preparedStatement.setInt(1, idz);
 		
 		preparedStatement.execute();
 		
@@ -106,7 +139,7 @@ public class DAOZaposleni {
 		
 	}
 
-	public void updateProdavnica(Prodavnica p) throws SQLException, ClassNotFoundException {
+        /*public void updateProdavnica(Prodavnica p) throws SQLException, ClassNotFoundException {
 		connect();
 		preparedStatement = konekcija.prepareStatement("UPDATE `prodavnice` SET `username` = ?, `password` = ?, `user_tip` = ? WHERE `prodavnice`.`id` = ?");
 

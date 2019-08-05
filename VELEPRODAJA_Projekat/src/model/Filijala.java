@@ -41,7 +41,6 @@ public class Filijala {
 		this.status = status;
 	}
 
-
 	public Filijala() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -140,7 +139,7 @@ public class Filijala {
 
 	@Override
 	public String toString() {
-		return nazivFilijale + "ID : " +idFilijale + "GRAD/OPSTINA :" +gradOpstinaFilijale;
+		return nazivFilijale/* + "  ID : " +idFilijale + "  GRAD/OPSTINA : " +gradOpstinaFilijale*/;
 				
 	}	
 	

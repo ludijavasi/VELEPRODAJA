@@ -81,6 +81,8 @@ public class Artikli {
 		this.neto_cena_artikla = neto_cena_artikla;
 		this.stopa_PDV = stopa_PDV;
 		this.marza_artikla = marza_artikla;
+		
+		
 	}
 	@Override
 	public String toString() {

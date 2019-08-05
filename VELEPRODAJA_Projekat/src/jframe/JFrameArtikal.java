@@ -21,6 +21,8 @@ import model.GlavnaGrupa;
 import model.Grupa_Artikla;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class JFrameArtikal extends JFrame {
@@ -67,40 +69,43 @@ public class JFrameArtikal extends JFrame {
 		panelArtikal.setLayout(null);
 
 		JLabel lblNazivArtikla = new JLabel("Naziv artikla :");
-		lblNazivArtikla.setBounds(27, 30, 80, 14);
+		lblNazivArtikla.setBounds(31, 49, 80, 14);
 		panelArtikal.add(lblNazivArtikla);
 
 		JLabel lblJedinicaMere = new JLabel("Jedinica mere :");
-		lblJedinicaMere.setBounds(27, 55, 107, 14);
+		lblJedinicaMere.setBounds(31, 79, 107, 14);
 		panelArtikal.add(lblJedinicaMere);
 
 		JLabel lblGrupaArtikla = new JLabel("Grupa Artikla :");
-		lblGrupaArtikla.setBounds(27, 80, 128, 14);
+		lblGrupaArtikla.setBounds(31, 24, 128, 14);
 		panelArtikal.add(lblGrupaArtikla);
 
 		textFieldNazivArtikla = new JTextField();
-		textFieldNazivArtikla.setBounds(200, 27, 199, 20);
+		textFieldNazivArtikla.setBounds(200, 49, 199, 20);
 		panelArtikal.add(textFieldNazivArtikla);
 		textFieldNazivArtikla.setColumns(10);
 
 		JComboBox comboBoxJedinicaMere = new JComboBox();
 		comboBoxJedinicaMere
-				.setModel(new DefaultComboBoxModel(new String[] { "---------", "Kilogram", "Gram", "Litar", "Komad" }));
-		comboBoxJedinicaMere.setBounds(200, 52, 91, 20);
+				.setModel(new DefaultComboBoxModel(new String[] {"Kilogram", "Gram", "Litar", "Komad"}));
+		comboBoxJedinicaMere.setBounds(200, 76, 199, 20);
 		panelArtikal.add(comboBoxJedinicaMere);
+		comboBoxJedinicaMere.setSelectedItem(null);
 
 		JLabel lblIdArtikla = new JLabel("ID artikla :");
-		lblIdArtikla.setBounds(100, 110, 80, 14);
+		lblIdArtikla.setBounds(31, 124, 80, 14);
 		panelArtikal.add(lblIdArtikla);
 
 		textFieldIDArtikla = new JTextField();
-		textFieldIDArtikla.setBounds(183, 107, 64, 20);
+		textFieldIDArtikla.setBounds(200, 121, 64, 20);
 		panelArtikal.add(textFieldIDArtikla);
 		textFieldIDArtikla.setColumns(10);
 
 		JComboBox comboBoxGrupaArtikla = new JComboBox();
-		comboBoxGrupaArtikla.setBounds(200, 77, 91, 20);
+		comboBoxGrupaArtikla.setBounds(200, 21, 199, 20);
 		panelArtikal.add(comboBoxGrupaArtikla);
+		popuniComboBoxGlavnaGrupaArtikala(comboBoxGrupaArtikla);
+		comboBoxGrupaArtikla.setSelectedItem(null);
 
 		JPanel panelEkonomskiPodaciOArtiklu = new JPanel();
 		panelEkonomskiPodaciOArtiklu.setBorder(new TitledBorder(null, "Ekonomski podaci o artiklu",
@@ -127,8 +132,10 @@ public class JFrameArtikal extends JFrame {
 		textFieldNetoCenaArtikla.setColumns(10);
 
 		JComboBox comboBoxStopaPDV = new JComboBox();
+		comboBoxStopaPDV.setModel(new DefaultComboBoxModel(new String[] {"10", "20"}));
 		comboBoxStopaPDV.setBounds(200, 44, 86, 20);
 		panelEkonomskiPodaciOArtiklu.add(comboBoxStopaPDV);
+		comboBoxStopaPDV.setSelectedItem(null);
 
 		textFieldMarza = new JTextField();
 		textFieldMarza.setBounds(200, 69, 86, 20);
@@ -150,7 +157,7 @@ public class JFrameArtikal extends JFrame {
 					Artikli a = new Artikli(naziv, jm, netocena, stopaPdv, marza);
 
 					Kontroler.getInstance().insertArikli(a);
-					JOptionPane.showMessageDialog(null, "Uspesno ste uneli nabavku");
+					JOptionPane.showMessageDialog(null, "Uspesno ste uneli artikal");
 
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -171,5 +178,19 @@ public class JFrameArtikal extends JFrame {
 		JButton btnPonistiAkciju = new JButton("Ponisti akciju");
 		btnPonistiAkciju.setBounds(478, 165, 146, 23);
 		contentPane.add(btnPonistiAkciju);
+	}
+	
+	private void popuniComboBoxGlavnaGrupaArtikala(JComboBox<GlavnaGrupa> comboBox) {
+		try {
+			ArrayList<GlavnaGrupa> lista = Kontroler.getInstance().getGlavnaGrupaArtikala();
+
+			for (GlavnaGrupa gg : lista) {
+				comboBox.addItem(gg);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

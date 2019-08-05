@@ -43,7 +43,9 @@ public class JFrameFilijala extends JFrame {
 	private JButton btnDodajFilijalu;
 	private JButton btnPonistiAkcijuFilijala;
 	private JButton btnObrisiFilijalu;
-	private JButton btnAzurirajFilijalu;	
+	private JButton btnAzurirajFilijalu;
+	private JRadioButton rdbtnAktivna;
+	private JRadioButton rdbtnNeaktivna;
 	private final ButtonGroup buttonGroupFilijala = new ButtonGroup();
 	
 	
@@ -186,7 +188,25 @@ public class JFrameFilijala extends JFrame {
 
 	public void setBtnAzurirajFilijalu(JButton btnAzurirajFilijalu) {
 		this.btnAzurirajFilijalu = btnAzurirajFilijalu;
+	}	
+
+	public JRadioButton getRdbtnAktivna() {
+		return rdbtnAktivna;
 	}
+
+	public void setRdbtnAktivna(JRadioButton rdbtnAktivna) {
+		this.rdbtnAktivna = rdbtnAktivna;
+	}
+
+	public JRadioButton getRdbtnNeaktivna() {
+		return rdbtnNeaktivna;
+	}
+
+	public void setRdbtnNeaktivna(JRadioButton rdbtnNeaktivna) {
+		this.rdbtnNeaktivna = rdbtnNeaktivna;
+	}
+	
+	
 
 	/**
 	 * Launch the application.

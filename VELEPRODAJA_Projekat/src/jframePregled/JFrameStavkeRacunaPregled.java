@@ -2,10 +2,14 @@ package jframePregled;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import table.JTableModelRacunOtpremnica;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -110,8 +114,9 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		contentPane.add(scrollPaneRacunOtpremnica);
 		
 		tableRacunOtpremnica = new JTable();
-		scrollPaneRacunOtpremnica.setViewportView(tableRacunOtpremnica);
+		scrollPaneRacunOtpremnica.setViewportView(tableRacunOtpremnica);	
 		
+				
 		JButton btnSacuvajStavkeRacuna = new JButton("Sacuvaj");
 		btnSacuvajStavkeRacuna.setBounds(10, 376, 89, 23);
 		contentPane.add(btnSacuvajStavkeRacuna);
@@ -120,4 +125,9 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		btnPrekidStavkeRacuna.setBounds(158, 376, 89, 23);
 		contentPane.add(btnPrekidStavkeRacuna);
 	}
+	
+	private void postaviModel(ArrayList lista, JTable t){
+		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
+		t.setModel(model);
+	}		
 }

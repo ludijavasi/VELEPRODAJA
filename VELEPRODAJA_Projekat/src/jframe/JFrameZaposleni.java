@@ -19,10 +19,13 @@ import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
 import kontroler.Kontroler;
+import model.Filijala;
+import model.Magacin;
 import model.Zaposleni;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -57,6 +60,162 @@ public class JFrameZaposleni extends JFrame {
 	private JLabel lblIdZaposlenog;
 	private JTextField textIDZaposlenog;
 	private JPanel panelPodaciOPosluZaposleni;
+	private JTextField textTelefon;
+	private JTextField textEMail;
+	
+	private JDateChooser dateChooserDatumZaposlenja;
+	private JDateChooser dateChooserPrestankaZaposlenja;
+	
+	private JButton btnDodajZaposlenog;
+	private JButton btnObrisiZaposlenog;
+	
+	
+
+	public JButton getBtnDodajZaposlenog() {
+		return btnDodajZaposlenog;
+	}
+
+	public void setBtnDodajZaposlenog(JButton btnDodajZaposlenog) {
+		this.btnDodajZaposlenog = btnDodajZaposlenog;
+	}	
+	
+
+	public JTextField getTextIme() {
+		return textIme;
+	}
+
+	public void setTextIme(JTextField textIme) {
+		this.textIme = textIme;
+	}
+
+	public JTextField getTextPrezime() {
+		return textPrezime;
+	}
+
+	public void setTextPrezime(JTextField textPrezime) {
+		this.textPrezime = textPrezime;
+	}
+
+	public JTextField getTextAdresa() {
+		return textAdresa;
+	}
+
+	public void setTextAdresa(JTextField textAdresa) {
+		this.textAdresa = textAdresa;
+	}
+
+	public JTextField getTextGrad_Ostina() {
+		return textGrad_Ostina;
+	}
+
+	public void setTextGrad_Ostina(JTextField textGrad_Ostina) {
+		this.textGrad_Ostina = textGrad_Ostina;
+	}
+
+	public JComboBox getComboBoxStrucnaSprema() {
+		return comboBoxStrucnaSprema;
+	}
+
+	public void setComboBoxStrucnaSprema(JComboBox comboBoxStrucnaSprema) {
+		this.comboBoxStrucnaSprema = comboBoxStrucnaSprema;
+	}
+
+	public JComboBox getComboBoxFilijalaPosla() {
+		return comboBoxFilijalaPosla;
+	}
+
+	public void setComboBoxFilijalaPosla(JComboBox comboBoxFilijalaPosla) {
+		this.comboBoxFilijalaPosla = comboBoxFilijalaPosla;
+	}
+
+	public JTextField getTextPlata() {
+		return textPlata;
+	}
+
+	public void setTextPlata(JTextField textPlata) {
+		this.textPlata = textPlata;
+	}
+
+	public JComboBox getComboBoxTipZaposlenja() {
+		return comboBoxTipZaposlenja;
+	}
+
+	public void setComboBoxTipZaposlenja(JComboBox comboBoxTipZaposlenja) {
+		this.comboBoxTipZaposlenja = comboBoxTipZaposlenja;
+	}
+
+	public JTextField getTextUsername() {
+		return textUsername;
+	}
+
+	public void setTextUsername(JTextField textUsername) {
+		this.textUsername = textUsername;
+	}
+
+	public JTextField getTextPassword() {
+		return textPassword;
+	}
+
+	public void setTextPassword(JTextField textPassword) {
+		this.textPassword = textPassword;
+	}
+
+	public JTextField getTextIDZaposlenog() {
+		return textIDZaposlenog;
+	}
+
+	public void setTextIDZaposlenog(JTextField textIDZaposlenog) {
+		this.textIDZaposlenog = textIDZaposlenog;
+	}
+
+	public JTextField getTextTelefon() {
+		return textTelefon;
+	}
+
+	public void setTextTelefon(JTextField textTelefon) {
+		this.textTelefon = textTelefon;
+	}
+
+	public JTextField getTextEMail() {
+		return textEMail;
+	}
+
+	public void setTextEMail(JTextField textEMail) {
+		this.textEMail = textEMail;
+	}	
+	
+
+	public JDateChooser getDateChooserDatumZaposlenja() {
+		return dateChooserDatumZaposlenja;
+	}
+
+	public void setDateChooserDatumZaposlenja(JDateChooser dateChooserDatumZaposlenja) {
+		this.dateChooserDatumZaposlenja = dateChooserDatumZaposlenja;
+	}
+
+	public JDateChooser getDateChooserPrestankaZaposlenja() {
+		return dateChooserPrestankaZaposlenja;
+	}
+
+	public void setDateChooserPrestankaZaposlenja(JDateChooser dateChooserPrestankaZaposlenja) {
+		this.dateChooserPrestankaZaposlenja = dateChooserPrestankaZaposlenja;
+	}	
+
+	public JButton getBtnPonistiAkciju() {
+		return btnPonistiAkciju;
+	}
+
+	public void setBtnPonistiAkciju(JButton btnPonistiAkciju) {
+		this.btnPonistiAkciju = btnPonistiAkciju;
+	}	
+
+	public JButton getBtnObrisiZaposlenog() {
+		return btnObrisiZaposlenog;
+	}
+
+	public void setBtnObrisiZaposlenog(JButton btnObrisiZaposlenog) {
+		this.btnObrisiZaposlenog = btnObrisiZaposlenog;
+	}
 
 	/**
 	 * Launch the application.
@@ -80,7 +239,7 @@ public class JFrameZaposleni extends JFrame {
 	public JFrameZaposleni() {
 		setTitle("ZAPOSLENI");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 685, 449);
+		setBounds(100, 100, 685, 503);
 		contentPaneDodajZaposlenog = new JPanel();
 		contentPaneDodajZaposlenog.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneDodajZaposlenog);
@@ -89,7 +248,7 @@ public class JFrameZaposleni extends JFrame {
 		JPanel panelLicnipodaci = new JPanel();
 		panelLicnipodaci
 				.setBorder(new TitledBorder(null, "Licni podaci", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelLicnipodaci.setBounds(10, 11, 265, 172);
+		panelLicnipodaci.setBounds(10, 11, 265, 226);
 		contentPaneDodajZaposlenog.add(panelLicnipodaci);
 		panelLicnipodaci.setLayout(null);
 
@@ -128,11 +287,29 @@ public class JFrameZaposleni extends JFrame {
 		textGrad_Ostina.setBounds(102, 133, 134, 20);
 		panelLicnipodaci.add(textGrad_Ostina);
 		textGrad_Ostina.setColumns(10);
+		
+		JLabel lblTelefon = new JLabel("Telefon :");
+		lblTelefon.setBounds(10, 173, 82, 14);
+		panelLicnipodaci.add(lblTelefon);
+		
+		JLabel lblEMail = new JLabel("E mail :");
+		lblEMail.setBounds(10, 198, 61, 14);
+		panelLicnipodaci.add(lblEMail);
+		
+		textTelefon = new JTextField();
+		textTelefon.setBounds(102, 164, 134, 20);
+		panelLicnipodaci.add(textTelefon);
+		textTelefon.setColumns(10);
+		
+		textEMail = new JTextField();
+		textEMail.setBounds(102, 195, 134, 20);
+		panelLicnipodaci.add(textEMail);
+		textEMail.setColumns(10);
 
 		panelPodacioZaposlenju = new JPanel();
 		panelPodacioZaposlenju.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 				"Podaci o zaposlenju", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPodacioZaposlenju.setBounds(295, 22, 331, 172);
+		panelPodacioZaposlenju.setBounds(295, 22, 331, 200);
 		contentPaneDodajZaposlenog.add(panelPodacioZaposlenju);
 		panelPodacioZaposlenju.setLayout(null);
 
@@ -154,22 +331,22 @@ public class JFrameZaposleni extends JFrame {
 		lblDatumPrestankaZaposlenja.setBounds(10, 109, 175, 14);
 		panelPodacioZaposlenju.add(lblDatumPrestankaZaposlenja);
 
-		JCheckBox chckbxDatumPrestankaPoslaNeodredjeno = new JCheckBox("Datum prestanka posla neodredjeno");
+		/*JCheckBox chckbxDatumPrestankaPoslaNeodredjeno = new JCheckBox("Datum prestanka posla neodredjeno");
 		chckbxDatumPrestankaPoslaNeodredjeno.setBounds(10, 141, 258, 23);
-		panelPodacioZaposlenju.add(chckbxDatumPrestankaPoslaNeodredjeno);
+		panelPodacioZaposlenju.add(chckbxDatumPrestankaPoslaNeodredjeno);*/
 
-		JDateChooser dateChooserDatumZaposlenja = new JDateChooser();
+		dateChooserDatumZaposlenja = new JDateChooser();
 		dateChooserDatumZaposlenja.setBounds(190, 63, 131, 20);
 		panelPodacioZaposlenju.add(dateChooserDatumZaposlenja);
 
-		JDateChooser dateChooserPrestankaZaposlenja = new JDateChooser();
+		dateChooserPrestankaZaposlenja = new JDateChooser();
 		dateChooserPrestankaZaposlenja.setBounds(190, 103, 131, 20);
-		panelPodacioZaposlenju.add(dateChooserPrestankaZaposlenja);
+		panelPodacioZaposlenju.add(dateChooserPrestankaZaposlenja);		
 
 		panel = new JPanel();
 		panel.setBorder(
 				new TitledBorder(null, "Korisnicki podaci", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(295, 206, 265, 125);
+		panel.setBounds(295, 254, 265, 131);
 		contentPaneDodajZaposlenog.add(panel);
 		panel.setLayout(null);
 
@@ -205,11 +382,15 @@ public class JFrameZaposleni extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				try {
+					
+					
 
 					String ime = textIme.getText();
 					String prezime = textPrezime.getText();
 					String adresa = textAdresa.getText();
 					String grad = textGrad_Ostina.getText();
+					String tel = textTelefon.getText();
+					String email = textEMail.getText();
 
 					String username = textUsername.getText();
 					String password = textPassword.getText();
@@ -221,12 +402,11 @@ public class JFrameZaposleni extends JFrame {
 
 					// boolean datum_prest = chckbxDatumPrestankaPoslaNeodredjeno.isSelected();
 
-					// String filijala = (String)comboBoxFilijalaPosla.getSelectedItem();
-					Double plata = Double.parseDouble(textPlata.getText());
+				    int idfilijale = ((Filijala)comboBoxFilijalaPosla.getSelectedItem()).getIdFilijale();
+					Double plata = Double.parseDouble(textPlata.getText().trim());
 					String tip_zaposlenja = (String) comboBoxTipZaposlenja.getSelectedItem();
 
-					Zaposleni z = new Zaposleni(ime, prezime, adresa, grad, struc_sprema, datum_poc, datum_zav, plata,
-							tip_zaposlenja, username, password);
+					Zaposleni z = new Zaposleni(idfilijale, ime, prezime, adresa, grad, tel, email, struc_sprema, datum_poc, datum_zav, plata, tip_zaposlenja, username, password);
 
 					Kontroler.getInstance().insertZaposleni(z);
 
@@ -242,36 +422,36 @@ public class JFrameZaposleni extends JFrame {
 
 			}
 		});
-		btnDodajZaposlenog.setBounds(295, 342, 155, 23);
+		btnDodajZaposlenog.setBounds(295, 396, 155, 23);
 		contentPaneDodajZaposlenog.add(btnDodajZaposlenog);
 
-		JButton btnObrisiZaposlenog = new JButton("Obrisi Zaposlenog");
-		btnObrisiZaposlenog.setBounds(109, 368, 155, 23);
+		btnObrisiZaposlenog = new JButton("Obrisi Zaposlenog");
+		btnObrisiZaposlenog.setBounds(109, 430, 155, 23);
 		contentPaneDodajZaposlenog.add(btnObrisiZaposlenog);
 
 		JButton btnAzurirajZaposlenog = new JButton("Azuriraj Zaposlenog");
-		btnAzurirajZaposlenog.setBounds(295, 368, 155, 23);
+		btnAzurirajZaposlenog.setBounds(295, 430, 155, 23);
 		contentPaneDodajZaposlenog.add(btnAzurirajZaposlenog);
 
 		btnPonistiAkciju = new JButton("Ponisti akciju");
-		btnPonistiAkciju.setBounds(109, 336, 155, 23);
+		btnPonistiAkciju.setBounds(109, 396, 155, 23);
 		contentPaneDodajZaposlenog.add(btnPonistiAkciju);
 
 		panelPodaciOPosluZaposleni = new JPanel();
 		panelPodaciOPosluZaposleni.setBorder(
 				new TitledBorder(null, "Podaci o poslu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPodaciOPosluZaposleni.setBounds(10, 194, 270, 137);
+		panelPodaciOPosluZaposleni.setBounds(10, 248, 270, 137);
 		contentPaneDodajZaposlenog.add(panelPodaciOPosluZaposleni);
 		panelPodaciOPosluZaposleni.setLayout(null);
 
 		lblFilijalaPosla = new JLabel("Filijala posla :");
 		lblFilijalaPosla.setBounds(10, 29, 78, 14);
 		panelPodaciOPosluZaposleni.add(lblFilijalaPosla);
-
+        
 		comboBoxFilijalaPosla = new JComboBox();
 		comboBoxFilijalaPosla.setBounds(114, 26, 131, 20);
 		panelPodaciOPosluZaposleni.add(comboBoxFilijalaPosla);
-		comboBoxFilijalaPosla.setModel(new DefaultComboBoxModel(new String[] { "Kraljevo", "Cacak", "Berlin" }));
+		popuniComboBoxFilijala(comboBoxFilijalaPosla);
 
 		lblPlata = new JLabel("Plata :");
 		lblPlata.setBounds(10, 66, 46, 14);
@@ -291,5 +471,23 @@ public class JFrameZaposleni extends JFrame {
 		lblTipZaposlenja = new JLabel("Tip zaposlenja :");
 		lblTipZaposlenja.setBounds(10, 91, 103, 14);
 		panelPodaciOPosluZaposleni.add(lblTipZaposlenja);
+	}
+	
+	private void popuniComboBoxFilijala(JComboBox<Filijala> comboBox) {
+		try {
+			ArrayList<Filijala> lista = Kontroler.getInstance().getFilijala();
+            
+			for (Filijala f : lista) {
+				
+				comboBox.addItem(f);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

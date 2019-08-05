@@ -294,6 +294,7 @@ public class JFrameMagacin extends JFrame {
 		contentPaneMagacin.add(btnObrisiMagacin);
 
 		btnPrekiniackcijuMagacin = new JButton("Prekini akciju");
+		btnPrekiniackcijuMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnPrekiniackcijuMagacin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -303,6 +304,7 @@ public class JFrameMagacin extends JFrame {
 		contentPaneMagacin.add(btnPrekiniackcijuMagacin);
 
 		btnAzurirajMagacin = new JButton("Azuriraj");
+		btnAzurirajMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnAzurirajMagacin.setBounds(35, 378, 89, 23);
 		contentPaneMagacin.add(btnAzurirajMagacin);
 	}

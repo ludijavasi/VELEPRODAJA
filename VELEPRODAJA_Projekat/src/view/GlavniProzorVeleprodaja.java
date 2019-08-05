@@ -18,11 +18,18 @@ import jframePregled.JFramePregledArtikala;
 import jframePregled.JFramePregledTrenutnoPrijavljeniNaMrezi;
 import jframePregled.JFramePregledTrenutnoZaposlenih;
 import jframePregled.JFrameStavkeRacunaPregled;
+import kontroler.Kontroler;
+import model.RacunOtpremnica;
+import model.Zaposleni;
+import table.JTableModelRacunOtpremnica;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -34,13 +41,18 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+import javax.swing.JTable;
 
 public class GlavniProzorVeleprodaja {
 
 	private JFrame frame;
 	private JTextField textFieldUsername;
-	private JTextField textFieldPassword;
 	private JPanel panelAdmin;
+	private JPanel panelUserKomercijalista;
+	private JPanel panelUserMagacioner;
+	public Zaposleni logedIn = null;
+	private JPasswordField passwordFieldPassword;	
 
 	/**
 	 * Launch the application.
@@ -99,21 +111,71 @@ public class GlavniProzorVeleprodaja {
 		panelLogovanja.add(textFieldUsername);
 		textFieldUsername.setColumns(10);
 
-		textFieldPassword = new JTextField();
-		textFieldPassword.setBounds(177, 86, 191, 20);
-		panelLogovanja.add(textFieldPassword);
-		textFieldPassword.setColumns(10);
-
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panelLogin.setVisible(false);
-				panelAdmin.setVisible(true);
+				
+				String username = textFieldUsername.getText();
+				char[] pass = passwordFieldPassword.getPassword();
+				String password = new String(pass);
+				
+				try {
+					ArrayList<Zaposleni> zaposleni = Kontroler.getInstance().getZaposleni();
+					for (Zaposleni z : zaposleni) {
+						if (z.getUsernameZaposlenog().equals(username) && z.getPasswordZaposlenog().equals(password)) {
+							if (z.getTipZaposlenja().equals("Menadzer")) {
+								System.out.println("Menadzer");
+								logedIn = z;
+
+								panelAdmin.setVisible(true);
+								panelLogin.setVisible(false);									
+
+							} else if (z.getTipZaposlenja().equals("Komercijalista")) {
+								System.out.println("Komercijalista");
+								logedIn = z;
+
+								panelUserKomercijalista.setVisible(true);
+								panelLogin.setVisible(false);								
+								
+							} else if (z.getTipZaposlenja().equals("Magacioner")) {
+								System.out.println("Magacioner");
+								logedIn = z;
+
+								panelUserMagacioner.setVisible(true);
+								panelLogin.setVisible(false);								
+								
+							} else {
+								JOptionPane.showMessageDialog(panelLogin, "Pogresan tip usera");
+							}
+							break;
+						}
+					}
+					if (logedIn == null) {
+						JOptionPane.showMessageDialog(panelLogin, "Pogresan username / password");
+					}
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+				
+				textFieldUsername.setText("");
+				passwordFieldPassword.setText("");				
+			
 			}
-		});
+			});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLogin.setBounds(141, 132, 89, 23);
 		panelLogovanja.add(btnLogin);
+		
+		passwordFieldPassword = new JPasswordField();
+		passwordFieldPassword.setBounds(177, 86, 191, 20);
+		panelLogovanja.add(passwordFieldPassword);
 
 		panelAdmin = new JPanel();
 		frame.getContentPane().add(panelAdmin, "name_268160544207166");
@@ -131,7 +193,7 @@ public class GlavniProzorVeleprodaja {
 		mntmOdjavaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelAdmin.setVisible(false);
-				panelLogin.setVisible(true);
+				panelLogin.setVisible(true);				
 			}
 		});
 		mnPrijavaAdmin.add(mntmOdjavaAdmin);
@@ -166,7 +228,8 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameStavkeRacunaPregled racun = new JFrameStavkeRacunaPregled();
 				panelAdmin.setVisible(false);
-				racun.setVisible(true);
+				racun.setVisible(true);				
+				
 			}
 		});
 		mnProdajaAdmin.add(mntmKreirajRacunOtpremnicuAdmin);
@@ -461,6 +524,77 @@ public class GlavniProzorVeleprodaja {
 
 		JMenuItem mntmAzurirajSistemAdmin = new JMenuItem("Azuriraj");
 		mnSistemAdmin.add(mntmAzurirajSistemAdmin);
+		
+		panelUserKomercijalista = new JPanel();
+		frame.getContentPane().add(panelUserKomercijalista, "name_773056089739863");
+		panelUserKomercijalista.setLayout(null);
+		
+		JMenuBar menuBarUserKom = new JMenuBar();
+		menuBarUserKom.setBounds(0, 0, 630, 21);
+		panelUserKomercijalista.add(menuBarUserKom);
+		
+		JMenu mnPrijavaUserKom = new JMenu("Prijava");
+		mnPrijavaUserKom.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		menuBarUserKom.add(mnPrijavaUserKom);
+		
+		JMenuItem mntmOdjavaUserKom = new JMenuItem("Odjava");
+		mntmOdjavaUserKom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelUserKomercijalista.setVisible(false);
+				panelLogin.setVisible(true);
+			}
+		});
+		mnPrijavaUserKom.add(mntmOdjavaUserKom);
+		
+		JMenu mnZaposleniUserKom = new JMenu("Zaposleni");
+		mnPrijavaUserKom.add(mnZaposleniUserKom);
+		
+		JMenuItem mntmTrenutnoPrijavljeniUserKom = new JMenuItem("Trenutno prijavljeni");
+		mnZaposleniUserKom.add(mntmTrenutnoPrijavljeniUserKom);
+		
+		JMenuItem mntmOsveziUserKom = new JMenuItem("Osvezi (Update)");
+		mnPrijavaUserKom.add(mntmOsveziUserKom);
+		
+		JMenuItem mntmIzlazUserKom = new JMenuItem("Izlaz");
+		mnPrijavaUserKom.add(mntmIzlazUserKom);
+		
+		panelUserMagacioner = new JPanel();
+		frame.getContentPane().add(panelUserMagacioner, "name_847361888603433");
+		panelUserMagacioner.setLayout(null);
+		
+		JMenuBar menuBarUserMag = new JMenuBar();
+		menuBarUserMag.setBounds(0, 0, 630, 21);
+		panelUserMagacioner.add(menuBarUserMag);
+		
+		JMenu mnPrijavaUserMag = new JMenu("Prijava");
+		menuBarUserMag.add(mnPrijavaUserMag);
+		mnPrijavaUserMag.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		
+		JMenuItem mntmOdjavaUserMag = new JMenuItem("Odjava");
+		mntmOdjavaUserMag.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelUserMagacioner.setVisible(false);
+				panelLogin.setVisible(true);
+			}
+		});
+		mnPrijavaUserMag.add(mntmOdjavaUserMag);
+		
+		JMenu mnZaposleniUserMag = new JMenu("Zaposleni");
+		mnPrijavaUserMag.add(mnZaposleniUserMag);
+		
+		JMenuItem mntmTrenutnoPrijavljeniUserMag = new JMenuItem("Trenutno prijavljeni");
+		mnZaposleniUserMag.add(mntmTrenutnoPrijavljeniUserMag);
+		
+		JMenuItem mntmOsveziUserMag = new JMenuItem("Osvezi (Update)");
+		mnPrijavaUserMag.add(mntmOsveziUserMag);
+		
+		JMenuItem mntmIzlazUserMag = new JMenuItem("Izlaz");
+		mnPrijavaUserMag.add(mntmIzlazUserMag);
 
 	}
+	
+	private void postaviModel(ArrayList lista, JTable t){
+		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
+		t.setModel(model);
+	}	
 }

@@ -42,7 +42,7 @@ public class DAOFilijala {
 			String emailFilijale = rs.getString("e_mail_filijale");
 			int pibFilijale = rs.getInt("pib_filijale");
 			String tekuciRacunFilijale = rs.getString("tekuci_racun_filijale");
-			String status = rs.getString("status");	
+			String status = rs.getString("status_filijale");	
 						
 
 			Filijala f = new Filijala(idFilijale, nazivFilijale, adresaFilijale, gradOpstinaFilijale, telefonFilijale, emailFilijale, pibFilijale, tekuciRacunFilijale, status);
@@ -58,7 +58,7 @@ public class DAOFilijala {
 		
 		preparedStatement = konekcija
 				.prepareStatement("INSERT INTO filijala (naziv_filijale, adresa_filijale, grad_opstina_filijale, telefon_filijale, "
-		                           +" e_mail_filijale, pib_filijale, tekuci_racun_filijale, status)"
+		                           +" e_mail_filijale, pib_filijale, tekuci_racun_filijale, status_filijale)"
 						           +" VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 		
 		preparedStatement.setString(1, f.getNazivFilijale());
@@ -86,18 +86,17 @@ public class DAOFilijala {
 		konekcija.close();
 	}
 	
-	/*public ComboBoxModel<Filijala> getDetaljiFilijale(Filijala f) throws ClassNotFoundException, SQLException {
-		ComboBoxModel<Filijala> lista = (ComboBoxModel<Filijala>) new ArrayList<Filijala>();
-		int fid = f.getIdFilijale();
+	public Filijala getDetaljiFilijale(int idf) throws ClassNotFoundException, SQLException {
+		
+		Filijala f = new Filijala();
 		connect();
-		preparedStatement = konekcija.prepareStatement("select * from filijala where id_filijale =?");
-		preparedStatement.setInt(1, fid);
-
+		
+		preparedStatement = konekcija.prepareStatement("SELECT * FROM filijala where id_filijale =?  ");
+		
+		preparedStatement.setInt(1, idf);
 		preparedStatement.execute();
 		rs = preparedStatement.getResultSet();
-
 		while (rs.next()) {
-			
 			int idFilijale = rs.getInt("id_filijale");
 			String nazivFilijale = rs.getString("naziv_filijale");
 			String adresaFilijale = rs.getString("adresa_filijale");
@@ -106,15 +105,13 @@ public class DAOFilijala {
 			String emailFilijale = rs.getString("e_mail_filijale");
 			int pibFilijale = rs.getInt("pib_filijale");
 			String tekuciRacunFilijale = rs.getString("tekuci_racun_filijale");
-			String status = rs.getString("status");	
-						
-
-			Filijala fil = new Filijala(idFilijale, nazivFilijale, adresaFilijale, gradOpstinaFilijale, telefonFilijale, emailFilijale, pibFilijale, tekuciRacunFilijale, status);
-			((ArrayList<Filijala>) lista).add(fil);
-	
+			String statusFilijale = rs.getString("status_filijale");
+			Filijala f1 = new Filijala(idFilijale, nazivFilijale, adresaFilijale, gradOpstinaFilijale, telefonFilijale, emailFilijale, pibFilijale, tekuciRacunFilijale, statusFilijale);
+			f = f1;
 		}
 		konekcija.close();
-		return lista;
-	}*/
+		return f;
+	}
+
 
 }

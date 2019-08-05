@@ -10,23 +10,22 @@ public class Zaposleni {
 	private String imeZaposlenog;
 	private String prezimeZaposlenog;
 	private String adresaZaposlenog;
-	private String gradOpstinaZaposlenog;
-	private String polZaposlenog;
+	private String gradOpstinaZaposlenog;	
 	private String telefonZaposlenog;
 	private String emailZaposlenog;
 	private String strucnaSpremaZaposlenog;
 	private Date datumPocetkaZaposlenja;
 	private Date datumZavrsetkaZaposlenja;
-	private double plataZaposlenog;
+	private double plataZaposlenog;	
 	private String tipZaposlenja;
 	private String usernameZaposlenog;
 	private String passwordZaposlenog;
 	
 	
 	public Zaposleni(int idZaposlenog, int idFilijale, String imeZaposlenog, String prezimeZaposlenog,
-			String adresaZaposlenog, String gradOpstinaZaposlenog, String polZaposlenog, String telefonZaposlenog,
-			String emailZaposlenog, String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja,
-			Date datumZavrsetkaZaposlenja, double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog,
+			String adresaZaposlenog, String gradOpstinaZaposlenog, String telefonZaposlenog, String emailZaposlenog,
+			String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja,
+			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog,
 			String passwordZaposlenog) {
 		super();
 		this.idZaposlenog = idZaposlenog;
@@ -35,13 +34,12 @@ public class Zaposleni {
 		this.prezimeZaposlenog = prezimeZaposlenog;
 		this.adresaZaposlenog = adresaZaposlenog;
 		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
-		this.polZaposlenog = polZaposlenog;
 		this.telefonZaposlenog = telefonZaposlenog;
 		this.emailZaposlenog = emailZaposlenog;
 		this.strucnaSpremaZaposlenog = strucnaSpremaZaposlenog;
 		this.datumPocetkaZaposlenja = datumPocetkaZaposlenja;
 		this.datumZavrsetkaZaposlenja = datumZavrsetkaZaposlenja;
-		this.plataZaposlenog = plataZaposlenog;
+		this.plataZaposlenog = plataZaposlenog;		
 		this.tipZaposlenja = tipZaposlenja;
 		this.usernameZaposlenog = usernameZaposlenog;
 		this.passwordZaposlenog = passwordZaposlenog;
@@ -49,94 +47,52 @@ public class Zaposleni {
 
 
 	public Zaposleni(String imeZaposlenog, String prezimeZaposlenog, String adresaZaposlenog,
-			String gradOpstinaZaposlenog, String polZaposlenog, String telefonZaposlenog, String emailZaposlenog,
+			String gradOpstinaZaposlenog, String telefonZaposlenog, String emailZaposlenog,
 			String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja,
-			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog, String passwordZaposlenog) {
+			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog,
+			String passwordZaposlenog) {
 		super();
 		this.imeZaposlenog = imeZaposlenog;
 		this.prezimeZaposlenog = prezimeZaposlenog;
 		this.adresaZaposlenog = adresaZaposlenog;
 		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
-		this.polZaposlenog = polZaposlenog;
 		this.telefonZaposlenog = telefonZaposlenog;
 		this.emailZaposlenog = emailZaposlenog;
 		this.strucnaSpremaZaposlenog = strucnaSpremaZaposlenog;
 		this.datumPocetkaZaposlenja = datumPocetkaZaposlenja;
 		this.datumZavrsetkaZaposlenja = datumZavrsetkaZaposlenja;
-		this.plataZaposlenog = plataZaposlenog;
-		this.tipZaposlenja = tipZaposlenja;
-		this.usernameZaposlenog = usernameZaposlenog;
-		this.passwordZaposlenog = passwordZaposlenog;
-	}
-	
-
-
-	public Zaposleni(int idZaposlenog, String imeZaposlenog, String prezimeZaposlenog, String adresaZaposlenog,
-			String gradOpstinaZaposlenog, String polZaposlenog, String telefonZaposlenog, String emailZaposlenog,
-			String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja,
-			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog, String passwordZaposlenog) {
-		super();
-		this.idZaposlenog = idZaposlenog;
-		this.imeZaposlenog = imeZaposlenog;
-		this.prezimeZaposlenog = prezimeZaposlenog;
-		this.adresaZaposlenog = adresaZaposlenog;
-		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
-		this.polZaposlenog = polZaposlenog;
-		this.telefonZaposlenog = telefonZaposlenog;
-		this.emailZaposlenog = emailZaposlenog;
-		this.strucnaSpremaZaposlenog = strucnaSpremaZaposlenog;
-		this.datumPocetkaZaposlenja = datumPocetkaZaposlenja;
-		this.datumZavrsetkaZaposlenja = datumZavrsetkaZaposlenja;
-		this.plataZaposlenog = plataZaposlenog;
+		this.plataZaposlenog = plataZaposlenog;		
 		this.tipZaposlenja = tipZaposlenja;
 		this.usernameZaposlenog = usernameZaposlenog;
 		this.passwordZaposlenog = passwordZaposlenog;
 	}
 
 
-	public Zaposleni() {
+	public Zaposleni(int idFilijale, String imeZaposlenog, String prezimeZaposlenog, String adresaZaposlenog,
+			String gradOpstinaZaposlenog, String telefonZaposlenog, String emailZaposlenog,
+			String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja,
+			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog,
+			String passwordZaposlenog) {
 		super();
-		
-	}
-
-
-	public Zaposleni(int idZaposlenog, int idFilijale, String imeZaposlenog, String prezimeZaposlenog,
-			String adresaZaposlenog, String gradOpstinaZaposlenog, String strucnaSpremaZaposlenog,
-			Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja, double plataZaposlenog, String tipZaposlenja,
-			String usernameZaposlenog, String passwordZaposlenog) {
-		super();
-		this.idZaposlenog = idZaposlenog;
 		this.idFilijale = idFilijale;
 		this.imeZaposlenog = imeZaposlenog;
 		this.prezimeZaposlenog = prezimeZaposlenog;
 		this.adresaZaposlenog = adresaZaposlenog;
 		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
+		this.telefonZaposlenog = telefonZaposlenog;
+		this.emailZaposlenog = emailZaposlenog;
 		this.strucnaSpremaZaposlenog = strucnaSpremaZaposlenog;
 		this.datumPocetkaZaposlenja = datumPocetkaZaposlenja;
 		this.datumZavrsetkaZaposlenja = datumZavrsetkaZaposlenja;
-		this.plataZaposlenog = plataZaposlenog;
+		this.plataZaposlenog = plataZaposlenog;		
 		this.tipZaposlenja = tipZaposlenja;
 		this.usernameZaposlenog = usernameZaposlenog;
 		this.passwordZaposlenog = passwordZaposlenog;
-	}
+	}	
 
-
-	public Zaposleni(String imeZaposlenog, String prezimeZaposlenog,
-			String adresaZaposlenog, String gradOpstinaZaposlenog, String strucnaSpremaZaposlenog,
-			Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja, double plataZaposlenog, String tipZaposlenja,
-			String usernameZaposlenog, String passwordZaposlenog) {
+	public Zaposleni() {
 		super();
-		this.imeZaposlenog = imeZaposlenog;
-		this.prezimeZaposlenog = prezimeZaposlenog;
-		this.adresaZaposlenog = adresaZaposlenog;
-		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
-		this.strucnaSpremaZaposlenog = strucnaSpremaZaposlenog;
-		this.datumPocetkaZaposlenja = datumPocetkaZaposlenja;
-		this.datumZavrsetkaZaposlenja = datumZavrsetkaZaposlenja;
-		this.plataZaposlenog = plataZaposlenog;
-		this.tipZaposlenja = tipZaposlenja;
-		this.usernameZaposlenog = usernameZaposlenog;
-		this.passwordZaposlenog = passwordZaposlenog;
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -200,16 +156,6 @@ public class Zaposleni {
 	}
 
 
-	public String getPolZaposlenog() {
-		return polZaposlenog;
-	}
-
-
-	public void setPolZaposlenog(String polZaposlenog) {
-		this.polZaposlenog = polZaposlenog;
-	}
-
-
 	public String getTelefonZaposlenog() {
 		return telefonZaposlenog;
 	}
@@ -268,7 +214,7 @@ public class Zaposleni {
 	public void setPlataZaposlenog(double plataZaposlenog) {
 		this.plataZaposlenog = plataZaposlenog;
 	}
-
+	
 
 	public String getTipZaposlenja() {
 		return tipZaposlenja;
@@ -302,15 +248,7 @@ public class Zaposleni {
 
 	@Override
 	public String toString() {
-		return "Zaposleni [idZaposlenog=" + idZaposlenog + ", idFilijale=" + idFilijale + ", imeZaposlenog="
-				+ imeZaposlenog + ", prezimeZaposlenog=" + prezimeZaposlenog + ", adresaZaposlenog=" + adresaZaposlenog
-				+ ", gradOpstinaZaposlenog=" + gradOpstinaZaposlenog + ", polZaposlenog=" + polZaposlenog
-				+ ", telefonZaposlenog=" + telefonZaposlenog + ", emailZaposlenog=" + emailZaposlenog
-				+ ", strucnaSpremaZaposlenog=" + strucnaSpremaZaposlenog + ", datumPocetkaZaposlenja="
-				+ datumPocetkaZaposlenja + ", datumZavrsetkaZaposlenja=" + datumZavrsetkaZaposlenja
-				+ ", plataZaposlenog=" + plataZaposlenog + ", tipZaposlenja=" + tipZaposlenja + ", usernameZaposlenog="
-				+ usernameZaposlenog + ", passwordZaposlenog=" + passwordZaposlenog + "]";
-	}
-	
+		return imeZaposlenog + " " + prezimeZaposlenog + " " + "ID: " + idZaposlenog;
+	}	
 		
 }

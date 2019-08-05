@@ -10,10 +10,15 @@ import javax.swing.border.EmptyBorder;
 import kontroler.Kontroler;
 import model.Artikli;
 import model.GlavnaGrupa;
+import model.Grupa_Artikla;
 import model.Magacin;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -69,15 +74,36 @@ public class JFrameObrisiArtikal extends JFrame {
 		comboBoxGlavnaGrupaObrisi.setBounds(61, 76, 234, 20);
 		contentPane.add(comboBoxGlavnaGrupaObrisi);
 		popuniComboBoxGlavnaGrupa(comboBoxGlavnaGrupaObrisi);
+		comboBoxGlavnaGrupaObrisi.setSelectedItem(null);
+		comboBoxGlavnaGrupaObrisi.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//JOptionPane.showMessageDialog(null, "COMBOBOX ACTION");
+				if (comboBoxGlavnaGrupaObrisi.getSelectedItem() != null) {
+					popuniComboBoxGrupaArtikala(comboBoxArtikalObrisi,
+							((GlavnaGrupa) comboBoxGlavnaGrupaObrisi.getSelectedItem()).getIdGlavneGrupe());
+					comboBoxArtikalObrisi.setSelectedItem(null);
+				}
+				else
+				{
+					comboBoxArtikalObrisi.removeAllItems();
+					comboBoxArtikalObrisi.setSelectedItem(null);
+				}
+			}
+		});
 		
 		JLabel lblUnesiteArtikal = new JLabel("Unesite artikal :");
 		lblUnesiteArtikal.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblUnesiteArtikal.setBounds(61, 118, 234, 17);
 		contentPane.add(lblUnesiteArtikal);
 		
-		JComboBox comboBoxArtikalObrisi = new JComboBox();
+		comboBoxArtikalObrisi = new JComboBox();
 		comboBoxArtikalObrisi.setBounds(61, 156, 234, 20);
 		contentPane.add(comboBoxArtikalObrisi);
+		//popuniComboBoxGrupaArtikala(comboBoxArtikalObrisi);
+		comboBoxArtikalObrisi.setSelectedItem(null);
+		
+
 	}
 	
 	private void popuniComboBoxGlavnaGrupa(JComboBox<GlavnaGrupa> comboBox) {
@@ -87,6 +113,28 @@ public class JFrameObrisiArtikal extends JFrame {
 			for (GlavnaGrupa gg : lista) {
 				comboBox.addItem(gg);
 			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void popuniComboBoxGrupaArtikala(JComboBox<Grupa_Artikla> comboBox, Integer id_glavne_grupe) {
+		try {
+			comboBox.removeAllItems();
+			
+			//ArrayList<GlavnaGrupa> lista = Kontroler.getInstance().getGlavnaGrupaArtikala();
+			ArrayList<Grupa_Artikla> lista1 = Kontroler.getInstance().getGrupaArtikala(id_glavne_grupe);
+
+			//for (GlavnaGrupa gg : lista) {
+				for (Grupa_Artikla ga : lista1) {
+					comboBox.addItem(ga);
+					
+				}
+				
+				
+			//}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
