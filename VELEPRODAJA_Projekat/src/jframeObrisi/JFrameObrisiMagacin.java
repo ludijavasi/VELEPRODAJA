@@ -30,6 +30,11 @@ public class JFrameObrisiMagacin extends JFrame {
 	private JPanel contentPane;
 	private JComboBox<Magacin> comboBoxMagacinaObrisi;
 	private JTextField textFieldIdMagacinaObrisiMagacin;
+	private JButton btnNazadObrisiMagacin;
+
+	public JButton getBtnNazadObrisiMagacin() {
+		return btnNazadObrisiMagacin;
+	}
 
 	/**
 	 * Launch the application.
@@ -126,7 +131,7 @@ public class JFrameObrisiMagacin extends JFrame {
 
 		});
 		btnOtvoriMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriMagacin.setBounds(133, 165, 165, 23);
+		btnOtvoriMagacin.setBounds(224, 166, 165, 23);
 		contentPane.add(btnOtvoriMagacin);
 
 		comboBoxMagacinaObrisi = new JComboBox<Magacin>();
@@ -154,6 +159,10 @@ public class JFrameObrisiMagacin extends JFrame {
 		textFieldIdMagacinaObrisiMagacin.setBounds(239, 125, 86, 20);
 		contentPane.add(textFieldIdMagacinaObrisiMagacin);
 		textFieldIdMagacinaObrisiMagacin.setColumns(10);
+		
+		btnNazadObrisiMagacin = new JButton("Nazad");
+		btnNazadObrisiMagacin.setBounds(58, 168, 89, 23);
+		contentPane.add(btnNazadObrisiMagacin);
 	}
 
 	private void popuniComboBoxMagacin(JComboBox<Magacin> comboBox) {
@@ -169,4 +178,6 @@ public class JFrameObrisiMagacin extends JFrame {
 			e.printStackTrace();
 		}
 	}
+
+
 }

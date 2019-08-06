@@ -18,6 +18,7 @@ import jframeObrisi.JFrameObrisiZaposlenog;
 import jframePregled.JFrameKontrolaZalihaPregled;
 import jframePregled.JFramePregledArtikala;
 import jframePregled.JFramePregledFilijale;
+import jframePregled.JFramePregledKupca;
 import jframePregled.JFramePregledMagacina;
 import jframePregled.JFramePregledTrenutnoPrijavljeniNaMrezi;
 import jframePregled.JFramePregledZaposlenih;
@@ -28,6 +29,7 @@ import model.Zaposleni;
 import table.JTableModelRacunOtpremnica;
 import table.JTabelModelZaposleni;
 import table.JTableModelFilijala;
+import table.JTableModelKupac;
 import table.JTableModelMagacin;
 
 import javax.swing.JLabel;
@@ -290,11 +292,7 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnSkladisteAdmin);
 
 		JMenuItem mntmKontrolaZalihaAdmin = new JMenuItem("Kontrola zaliha");
-		mntmKontrolaZalihaAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// JFrameKontrolaZalihaPregled
-			}
-		});
+	
 		mnSkladisteAdmin.add(mntmKontrolaZalihaAdmin);
 
 		JMenu mnAnalizaSkladistaAdmin = new JMenu("Analiza skladista");
@@ -311,15 +309,7 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnZaposleniAdmin);
 
 		JMenuItem mntmTrenutnoZaposleniAdmin = new JMenuItem("Trenutno zaposleni");
-		mntmTrenutnoZaposleniAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFramePregledZaposlenih trenzaposleni = new JFramePregledZaposlenih();
-				panelAdmin.setVisible(false);
-				trenzaposleni.setVisible(true);
-			}
-		});
-		mnZaposleniAdmin.add(mntmTrenutnoZaposleniAdmin);
-
+		
 		JMenuItem mntmZasnivanjeRadnogOdnosaAdmin = new JMenuItem("Zasnivanje radnog odnosa");
 		mntmZasnivanjeRadnogOdnosaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -500,7 +490,7 @@ public class GlavniProzorVeleprodaja {
 		mnMaticniPodaciAdmin.add(mnSkladistaAdmin);
 
 		JMenuItem mntmAktivnaSkladistaAdmin = new JMenuItem("Pregled magacina");
-		mnSkladistaAdmin.add(mntmAktivnaSkladistaAdmin).addActionListener(new ActionListener() {
+		mntmAktivnaSkladistaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFramePregledMagacina pm = new JFramePregledMagacina();
 				panelAdmin.setVisible(false);
@@ -526,8 +516,10 @@ public class GlavniProzorVeleprodaja {
 					
 				});
 				panelAdmin.setVisible(true);
+				
 			}
 		});
+		mnSkladistaAdmin.add(mntmAktivnaSkladistaAdmin);
 
 		JMenuItem mntmDodajSkladisteAdmin = new JMenuItem("Dodaj magacin");
 		mntmDodajSkladisteAdmin.addActionListener(new ActionListener() {
@@ -553,6 +545,17 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiMagacin om = new JFrameObrisiMagacin();
 				panelAdmin.setVisible(false);
 				om.setVisible(true);
+				om.getBtnNazadObrisiMagacin().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						om.setVisible(false);				
+						
+					}
+					
+				});
+				panelAdmin.setVisible(true);
+				
 			}
 		});
 		mnSkladistaAdmin.add(mntmObrisiSkladisteAdmin);
@@ -563,7 +566,36 @@ public class GlavniProzorVeleprodaja {
 		JMenu mnKupciAdmin = new JMenu("Kupci");
 		mnMaticniPodaciAdmin.add(mnKupciAdmin);
 
-		JMenuItem mntmAktivniKupciAdmin = new JMenuItem("Aktivni kupci");
+		JMenuItem mntmAktivniKupciAdmin = new JMenuItem("Pregled kupaca");
+		mntmAktivniKupciAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFramePregledKupca pk = new JFramePregledKupca();
+				panelAdmin.setVisible(false);
+				pk.setVisible(true);
+				postaviModelKupac(new ArrayList<>(), pk.getTablePregleKupaca());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getKupac();
+					postaviModelKupac(lista, pk.getTablePregleKupaca());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				pk.getBtnIzlazPregledKupaca().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						pk.setVisible(false);				
+						
+					}
+					
+				});
+				panelAdmin.setVisible(true);
+				
+			}
+		});
 		mnKupciAdmin.add(mntmAktivniKupciAdmin);
 
 		JMenuItem mntmDodajKupcaAdmin = new JMenuItem("Dodaj kupca");
@@ -763,6 +795,11 @@ public class GlavniProzorVeleprodaja {
 	}	
 	private void postaviModelMagacina(ArrayList lista, JTable t){
 		JTableModelMagacin model = new JTableModelMagacin(lista);
+		t.setModel(model);
+	}
+	
+	private void postaviModelKupac(ArrayList lista, JTable t){
+		JTableModelKupac model = new JTableModelKupac(lista);
 		t.setModel(model);
 	}	
 	
