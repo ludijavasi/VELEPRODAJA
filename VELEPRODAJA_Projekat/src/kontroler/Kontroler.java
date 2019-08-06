@@ -100,6 +100,17 @@ public class Kontroler {
 		dk.insertKupac(k);
 	}
 	
+	public void obrisiKupca(int idk) throws ClassNotFoundException, SQLException {
+		DAOKupac dk = new DAOKupac();
+		dk.obrisiKupca(idk);
+	}
+	
+	public Kupac getDetaljiKupca(int idk) throws ClassNotFoundException, SQLException {
+		DAOKupac dk = new DAOKupac();
+		return dk.getDetaljiKupca(idk);
+		
+	}
+	
 	public ArrayList<Magacin> getMagacin() throws ClassNotFoundException, SQLException {
 		DAOMagacin dm = new DAOMagacin();
 		ArrayList<Magacin> lista = dm.getMagacin();

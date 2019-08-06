@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import jframe.JFrameFilijala;
+import jframe.JFrameKupac;
 import jframe.JFrameMagacin;
 import jframe.JFrameZaposleni;
 import jframeObrisi.JFrameObrisiArtikal;
@@ -599,6 +600,20 @@ public class GlavniProzorVeleprodaja {
 		mnKupciAdmin.add(mntmAktivniKupciAdmin);
 
 		JMenuItem mntmDodajKupcaAdmin = new JMenuItem("Dodaj kupca");
+		mntmDodajKupcaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameKupac jfk = new JFrameKupac();
+				jfk.getBtnPonistiAkcijuKupac().addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						jfk.setVisible(false);
+					}
+				});
+				jfk.getTextFieldIdKupca().setVisible(false);
+				jfk.setVisible(true);
+
+			}
+		});
+				
 		mnKupciAdmin.add(mntmDodajKupcaAdmin);
 
 		JMenuItem mntmObrisiKupcaAdmin = new JMenuItem("Obrisi kupca");

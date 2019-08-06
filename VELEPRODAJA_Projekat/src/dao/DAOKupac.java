@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Filijala;
 import model.Kupac;
 
 public class DAOKupac {
@@ -77,6 +78,47 @@ public class DAOKupac {
 
 		konekcija.close();
 		
+	}
+	public void obrisiKupca(int idk) throws ClassNotFoundException, SQLException {
+		connect();
+		preparedStatement = konekcija.prepareStatement("delete from kupac where id_kupca = ?");
+
+		preparedStatement.setInt(1, idk);
+
+		preparedStatement.execute();
+
+		konekcija.close();
+	}
+	
+	public Kupac getDetaljiKupca(int idk) throws ClassNotFoundException, SQLException {
+		
+		Kupac k = new Kupac();
+		connect();
+		
+		preparedStatement = konekcija.prepareStatement("SELECT * FROM kupac where id_kupca =?  ");
+		
+		preparedStatement.setInt(1, idk);
+		preparedStatement.execute();
+		rs = preparedStatement.getResultSet();
+		while (rs.next()) {
+			int idKupca = rs.getInt("id_kupca");
+			String nazivFirmeKupca = rs.getString("naziv_firme_kupca");
+			String adresaKupca = rs.getString("adresa_kupca");
+			String gradOpstinaKupca = rs.getString("grad_opstina_kupca");
+			String telefonKupca = rs.getString("telefon_kupca");
+			String emailKupca = rs.getString("e_mail_kupca");
+			String kontaktOsobaKupca = rs.getString("kontakt_osoba_kupca");
+			int pibKupca = rs.getInt("pib_kupca");
+			String tekuciRacunKupca = rs.getString("tekuci_racun_kupca");
+			int valutaPlacanjaKupca = rs.getInt("valuta_placanja_kupca");
+			String statusKupca =rs.getString("status_kupca");
+			
+			Kupac k1 = new Kupac(idKupca, nazivFirmeKupca, adresaKupca, gradOpstinaKupca, telefonKupca, emailKupca, 
+					kontaktOsobaKupca, pibKupca, tekuciRacunKupca, valutaPlacanjaKupca, statusKupca);
+			k = k1;
+		}
+		konekcija.close();
+		return k;
 	}
 
 }
