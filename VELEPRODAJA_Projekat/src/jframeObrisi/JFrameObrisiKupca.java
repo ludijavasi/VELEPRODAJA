@@ -149,6 +149,12 @@ public class JFrameObrisiKupca extends JFrame {
 
 					}
 				});
+					jfk.getBtnPonistiAkcijuKupac().addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							jfk.setVisible(false);
+
+						}
+					});
 				
 			}
 		});

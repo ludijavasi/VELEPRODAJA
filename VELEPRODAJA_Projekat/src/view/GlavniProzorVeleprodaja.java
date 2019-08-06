@@ -622,6 +622,17 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiKupca ok = new JFrameObrisiKupca();
 				panelAdmin.setVisible(false);
 				ok.setVisible(true);
+				ok.getBtnNazadObrisiKupca().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ok.setVisible(false);				
+						
+					}
+					
+				});
+				panelAdmin.setVisible(true);
+				
 			}
 		});
 		mnKupciAdmin.add(mntmObrisiKupcaAdmin);
