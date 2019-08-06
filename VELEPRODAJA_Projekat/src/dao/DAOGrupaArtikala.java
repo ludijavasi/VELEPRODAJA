@@ -19,7 +19,8 @@ public class DAOGrupaArtikala {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		konekcija = DriverManager.getConnection("jdbc:mysql://localhost/veleprodaja", "root", "");
 	}
-
+    
+	
 	public ArrayList<GrupaArtikala> getGrupaArtikala() throws ClassNotFoundException, SQLException
 	{
 		return getGrupaArtikala(0);

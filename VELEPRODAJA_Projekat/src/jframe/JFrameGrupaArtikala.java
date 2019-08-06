@@ -68,6 +68,7 @@ public class JFrameGrupaArtikala extends JFrame {
 		btnDodajGrupuArtikala.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
 				try {
 				String naziv = textFieldGrupaArtikala.getText();
 				

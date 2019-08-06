@@ -33,8 +33,7 @@ public class JFrameArtikal extends JFrame {
 	private JTextField textFieldIDArtikla;
 	private JComboBox comboBoxJedinicaMere;
 	private JComboBox comboBoxGrupaArtikla;
-	private JComboBox comboBoxStopaPDV;
-	
+	private JComboBox comboBoxStopaPDV;	
 	
 
 	public JTextField getTextFieldNazivArtikla() {

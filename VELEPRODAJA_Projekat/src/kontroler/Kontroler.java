@@ -150,16 +150,12 @@ public class Kontroler {
 	public void insertGrupaArtikala(GrupaArtikala ga) throws SQLException, ClassNotFoundException {
 		DAOGrupaArtikala dga = new DAOGrupaArtikala();
 		dga.insertGrupaArtikala(ga);
-	}
-	
-	
+	}	
 	
 	public ArrayList<RacunOtpremnica> getRacun() throws ClassNotFoundException, SQLException {
 		DAORacunOtpremnica dro = new DAORacunOtpremnica();
 		ArrayList<RacunOtpremnica> lista = dro.getRacun();
 		return lista;
-	}
-	
-	
+	}	
 
 }

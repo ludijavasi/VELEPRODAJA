@@ -69,8 +69,7 @@ public class Artikli {
 		this.neto_cena_artikla = neto_cena_artikla;
 		this.stopa_PDV = stopa_PDV;
 		this.marza_artikla = marza_artikla;
-	}
-	
+	}	
 	
 	
 	public Artikli(String naziv_artikla, String jedinica_mere, double neto_cena_artikla, int stopa_PDV,

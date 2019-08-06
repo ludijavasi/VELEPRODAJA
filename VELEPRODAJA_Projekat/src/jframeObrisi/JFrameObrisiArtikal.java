@@ -132,8 +132,7 @@ public class JFrameObrisiArtikal extends JFrame {
 		comboBoxArtikalObrisi.setBounds(61, 111, 234, 20);
 		contentPane.add(comboBoxArtikalObrisi);
 		//popuniComboBoxGrupaArtikala(comboBoxArtikalObrisi);
-		comboBoxArtikalObrisi.setSelectedItem(null);
-		
+		comboBoxArtikalObrisi.setSelectedItem(null);		
 
 	}
 	

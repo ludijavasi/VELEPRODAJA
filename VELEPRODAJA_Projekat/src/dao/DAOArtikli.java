@@ -107,34 +107,6 @@ public class DAOArtikli {
 		}
 		konekcija.close();
 		return a;
-	}
-
-
-	/*
-	 * public int insertArtikal1 (Artikli a) throws ClassNotFoundException,
-	 * SQLException { connect();
-	 * 
-	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-	 * 
-	 * String datum = sdf.format(n.getDatum_nabavke());
-	 * 
-	 * preparedStatement = konekcija.prepareStatement(
-	 * "insert into nabavke(datum, vrednost, status, id_prodavnice) values (?,0,'KREIRANA',?)"
-	 * , Statement.RETURN_GENERATED_KEYS);
-	 * 
-	 * preparedStatement.setString(1, datum); //preparedStatement.setFloat(2,
-	 * n.getVrednost()); preparedStatement.setInt(2, n.getPrid());
-	 * 
-	 * preparedStatement.execute();
-	 * 
-	 * int generisanId = -1;
-	 * 
-	 * ResultSet rs = preparedStatement.getGeneratedKeys(); if (rs.next()) {
-	 * generisanId = rs.getInt(1); }
-	 * 
-	 * konekcija.close();
-	 * 
-	 * return generisanId; }
-	 */
+	}	
 
 }
