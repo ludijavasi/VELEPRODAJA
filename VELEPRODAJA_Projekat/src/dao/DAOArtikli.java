@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import model.Artikli;
+import model.Zaposleni;
 
 public class DAOArtikli {
 
@@ -20,11 +22,19 @@ public class DAOArtikli {
 		konekcija = DriverManager.getConnection("jdbc:mysql://localhost/veleprodaja", "root", "");
 	}
 
-	public ArrayList<Artikli> getArtikli() throws ClassNotFoundException, SQLException {
+	public ArrayList<Artikli> getArtikli(Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
 		ArrayList<Artikli> lista = new ArrayList<Artikli>();
 
 		connect();
-		preparedStatement = konekcija.prepareStatement("select * from artikli");
+		
+		String select = "select * from artikal";
+		
+		if (id_grupe_artikala != null) 
+		{
+			select += " where id_grupe_artikala=" + id_grupe_artikala.toString();
+		}
+		//preparedStatement = konekcija.prepareStatement("select * from artikli");
+		preparedStatement = konekcija.prepareStatement(select);
 
 		preparedStatement.execute();
 		rs = preparedStatement.getResultSet();
@@ -46,32 +56,59 @@ public class DAOArtikli {
 		return lista;
 	}
 
-	public int insertArtikli(Artikli a) throws SQLException, ClassNotFoundException {
+	public void insertArtikli(Artikli a) throws SQLException, ClassNotFoundException {
 		connect();
 
 		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO artikal (naziv_arikla, jedinica_mere, neto_cena_artikla,"
-						+ " stopa_pdv_a, marza_artikla) VALUES (?, ?, ?, ?, ?)");
-
-		preparedStatement.setString(1, a.getNaziv_artikla());
-		preparedStatement.setString(2, a.getJedinica_mere());
-		preparedStatement.setDouble(3, a.getNeto_cena_artikla());
-		preparedStatement.setInt(4, a.getStopa_PDV());
-		preparedStatement.setDouble(5, a.getMarza_artikla());
+				.prepareStatement("INSERT INTO artikal (id_grupe_artikala, naziv_artikla, jedinica_mere, neto_cena_artikla,"
+						+ " stopa_pdv_a, marza_artikla) VALUES (?, ?, ?, ?, ?, ?)");
+		
+		preparedStatement.setInt(1, a.getIdgrupaArtikla());
+		preparedStatement.setString(2, a.getNaziv_artikla());
+		preparedStatement.setString(3, a.getJedinica_mere());
+		preparedStatement.setDouble(4, a.getNeto_cena_artikla());
+		preparedStatement.setInt(5, a.getStopa_PDV());
+		preparedStatement.setDouble(6, a.getMarza_artikla());
 
 		preparedStatement.execute();
 
-		int generisanId = -1;
+		//int generisanId = -1;
 
-		ResultSet rs = preparedStatement.getGeneratedKeys();
-		if (rs.next()) {
-			generisanId = rs.getInt(1);
-		}
+		//ResultSet rs = preparedStatement.getGeneratedKeys();
+		//if (rs.next()) {
+			//generisanId = rs.getInt(1);
+		//}
 
 		konekcija.close();
 
-		return generisanId;
+		//return generisanId;
 	}
+	
+	public Artikli getDetaljiArtikli(int ida) throws ClassNotFoundException, SQLException {
+		Artikli a = new Artikli();
+		connect();
+		
+		preparedStatement = konekcija.prepareStatement("SELECT * FROM artikal where id_artikla =?  ");
+		
+		preparedStatement.setInt(1, ida);
+		preparedStatement.execute();
+		rs = preparedStatement.getResultSet();
+		while (rs.next()) {
+			int idArtikla = rs.getInt("id_artikla");
+			int idGrupeArtikala = rs.getInt("id_grupe_artikala");
+			String nazivArtikla = rs.getString("naziv_artikla");
+			String jedinicaMere = rs.getString("jedinica_mere");
+			double netoCenaArtikla = rs.getDouble("neto_cena_artikla");
+			int stopaPdva = rs.getInt("stopa_pdv_a");			
+			double marzaArtikla = rs.getDouble("marza_artikla");
+			
+			Artikli a1 = new Artikli(idArtikla, idGrupeArtikala, nazivArtikla, jedinicaMere, netoCenaArtikla, stopaPdva, marzaArtikla);
+			a=a1;
+		}
+		konekcija.close();
+		return a;
+	}
+
 
 	/*
 	 * public int insertArtikal1 (Artikli a) throws ClassNotFoundException,

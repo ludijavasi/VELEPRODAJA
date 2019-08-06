@@ -7,10 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import jframe.JFrameArtikal;
 import kontroler.Kontroler;
 import model.Artikli;
-import model.GlavnaGrupa;
-import model.Grupa_Artikla;
+import model.GrupaArtikala;
 import model.Magacin;
 
 import javax.swing.JLabel;
@@ -60,28 +60,59 @@ public class JFrameObrisiArtikal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnOtvoriArtikal = new JButton("Otvori artikal");
-		btnOtvoriArtikal.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriArtikal.setBounds(61, 203, 156, 23);
-		contentPane.add(btnOtvoriArtikal);
+		JButton btnOtvoriArtikalObrisi = new JButton("Otvori artikal");
+		btnOtvoriArtikalObrisi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int ida = ((Artikli)comboBoxArtikalObrisi.getSelectedItem()).getIdArtikla();
+				JFrameArtikal jfa = new JFrameArtikal(ida);
+				jfa.setVisible(true);
+				
+				
+				/*try {
+					Artikli a = Kontroler.getInstance().getDetaljiArtikli(ida);
+					
+					jfa.getComboBoxGrupaArtikla().setSelectedItem(a.getIdgrupaArtikla());
+					jfa.getTextFieldNazivArtikla().setText(a.getNaziv_artikla());
+					jfa.getComboBoxJedinicaMere().setSelectedItem(a.getJedinica_mere());
+					jfa.getTextFieldIDArtikla().setText(Integer.toString(a.getIdArtikla()));
+					jfa.getTextFieldNetoCenaArtikla().setText(Double.toString(a.getNeto_cena_artikla()));
+					jfa.getComboBoxStopaPDV().setSelectedItem(a.getStopa_PDV());
+					jfa.getTextFieldMarza().setText(Double.toString(a.getMarza_artikla()));
+					
+					jfa.setVisible(true);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/
+				
+				
+			}
+		});
+		btnOtvoriArtikalObrisi.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnOtvoriArtikalObrisi.setBounds(61, 203, 156, 23);
+		contentPane.add(btnOtvoriArtikalObrisi);
 		
-		JLabel lblUnesiteGlavnuGrupu = new JLabel("Unesite glavnu grupu artikala :");
-		lblUnesiteGlavnuGrupu.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteGlavnuGrupu.setBounds(61, 35, 234, 17);
-		contentPane.add(lblUnesiteGlavnuGrupu);
+		JLabel lblUnesiteGrupuArtikala = new JLabel("Unesite grupu artikala :");
+		lblUnesiteGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUnesiteGrupuArtikala.setBounds(61, 11, 234, 17);
+		contentPane.add(lblUnesiteGrupuArtikala);
 		
-		JComboBox comboBoxGlavnaGrupaObrisi = new JComboBox();
-		comboBoxGlavnaGrupaObrisi.setBounds(61, 76, 234, 20);
-		contentPane.add(comboBoxGlavnaGrupaObrisi);
-		popuniComboBoxGlavnaGrupa(comboBoxGlavnaGrupaObrisi);
-		comboBoxGlavnaGrupaObrisi.setSelectedItem(null);
-		comboBoxGlavnaGrupaObrisi.addActionListener(new ActionListener() {
+		JComboBox comboBoxGrupaArtikalaObrisi = new JComboBox();
+		comboBoxGrupaArtikalaObrisi.setBounds(61, 39, 234, 20);
+		contentPane.add(comboBoxGrupaArtikalaObrisi);
+		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaObrisi);
+		comboBoxGrupaArtikalaObrisi.setSelectedItem(null);
+		comboBoxGrupaArtikalaObrisi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(null, "COMBOBOX ACTION");
-				if (comboBoxGlavnaGrupaObrisi.getSelectedItem() != null) {
-					popuniComboBoxGrupaArtikala(comboBoxArtikalObrisi,
-							((GlavnaGrupa) comboBoxGlavnaGrupaObrisi.getSelectedItem()).getIdGlavneGrupe());
+				if (comboBoxGrupaArtikalaObrisi.getSelectedItem() != null) {
+					popuniComboBoxArtikli(comboBoxArtikalObrisi,
+							((GrupaArtikala) comboBoxGrupaArtikalaObrisi.getSelectedItem()).getIdGrupeArtikala());
 					comboBoxArtikalObrisi.setSelectedItem(null);
 				}
 				else
@@ -92,13 +123,13 @@ public class JFrameObrisiArtikal extends JFrame {
 			}
 		});
 		
-		JLabel lblUnesiteArtikal = new JLabel("Unesite artikal :");
-		lblUnesiteArtikal.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteArtikal.setBounds(61, 118, 234, 17);
-		contentPane.add(lblUnesiteArtikal);
+		JLabel lblUnesiteArtikalObrisi = new JLabel("Unesite artikal :");
+		lblUnesiteArtikalObrisi.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUnesiteArtikalObrisi.setBounds(61, 83, 234, 17);
+		contentPane.add(lblUnesiteArtikalObrisi);
 		
 		comboBoxArtikalObrisi = new JComboBox();
-		comboBoxArtikalObrisi.setBounds(61, 156, 234, 20);
+		comboBoxArtikalObrisi.setBounds(61, 111, 234, 20);
 		contentPane.add(comboBoxArtikalObrisi);
 		//popuniComboBoxGrupaArtikala(comboBoxArtikalObrisi);
 		comboBoxArtikalObrisi.setSelectedItem(null);
@@ -106,12 +137,12 @@ public class JFrameObrisiArtikal extends JFrame {
 
 	}
 	
-	private void popuniComboBoxGlavnaGrupa(JComboBox<GlavnaGrupa> comboBox) {
+	private void popuniComboBoxGrupaArtikala(JComboBox<GrupaArtikala> comboBox) {
 		try {
-			ArrayList<GlavnaGrupa> lista = Kontroler.getInstance().getGlavnaGrupaArtikala();
+			ArrayList<GrupaArtikala> lista = Kontroler.getInstance().getGrupaArtikala();
 
-			for (GlavnaGrupa gg : lista) {
-				comboBox.addItem(gg);
+			for (GrupaArtikala ga : lista) {
+				comboBox.addItem(ga);
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -120,16 +151,16 @@ public class JFrameObrisiArtikal extends JFrame {
 		}
 	}
 	
-	private void popuniComboBoxGrupaArtikala(JComboBox<Grupa_Artikla> comboBox, Integer id_glavne_grupe) {
+	private void popuniComboBoxArtikli(JComboBox<Artikli> comboBox, Integer id_grupe_artikala) {
 		try {
 			comboBox.removeAllItems();
 			
 			//ArrayList<GlavnaGrupa> lista = Kontroler.getInstance().getGlavnaGrupaArtikala();
-			ArrayList<Grupa_Artikla> lista1 = Kontroler.getInstance().getGrupaArtikala(id_glavne_grupe);
+			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli(id_grupe_artikala);
 
 			//for (GlavnaGrupa gg : lista) {
-				for (Grupa_Artikla ga : lista1) {
-					comboBox.addItem(ga);
+				for (Artikli a : lista1) {
+					comboBox.addItem(a);
 					
 				}
 				
@@ -141,7 +172,6 @@ public class JFrameObrisiArtikal extends JFrame {
 			e.printStackTrace();
 		}
 	}	
-	
 }
 	
 	    

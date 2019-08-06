@@ -7,7 +7,6 @@ import javax.swing.ComboBoxModel;
 
 import dao.DAOArtikli;
 import dao.DAOFilijala;
-import dao.DAOGlavnaGrupaArtikala;
 import dao.DAOGrupaArtikala;
 import dao.DAOKupac;
 import dao.DAOMagacin;
@@ -15,8 +14,7 @@ import dao.DAORacunOtpremnica;
 import dao.DAOZaposleni;
 import model.Artikli;
 import model.Filijala;
-import model.GlavnaGrupa;
-import model.Grupa_Artikla;
+import model.GrupaArtikala;
 import model.Kupac;
 import model.Magacin;
 import model.RacunOtpremnica;
@@ -36,16 +34,21 @@ public class Kontroler {
 		return kontroler;
 	}
 	
-	public ArrayList<Artikli> getArtikli() throws ClassNotFoundException, SQLException {
+	public ArrayList<Artikli> getArtikli(Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
-		ArrayList<Artikli> lista = da.getArtikli();
+		ArrayList<Artikli> lista = da.getArtikli(id_grupe_artikala);
 		return lista;
 	}
 	
-	public  int insertArikli(Artikli a) throws ClassNotFoundException, SQLException {
+	public  void insertArikli(Artikli a) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
-		return da.insertArtikli(a);
+		da.insertArtikli(a);
 	}
+	
+	public  Artikli getDetaljiArtikli(int ida) throws ClassNotFoundException, SQLException {
+		DAOArtikli da = new DAOArtikli();
+	    return da.getDetaljiArtikli(ida);
+	}	
 	
 	public ArrayList<Zaposleni> getZaposleni() throws ClassNotFoundException, SQLException {
 		DAOZaposleni dz = new DAOZaposleni();
@@ -120,24 +123,20 @@ public class Kontroler {
 		return mg.getDetaljiMagacina(idm);
 	}		
 	
-	public ArrayList<GlavnaGrupa> getGlavnaGrupaArtikala() throws ClassNotFoundException, SQLException {
-		DAOGlavnaGrupaArtikala dgg = new DAOGlavnaGrupaArtikala();
-		ArrayList<GlavnaGrupa> lista = dgg.getGlavnaGrupaArtikala();
-		return lista;
-	}
 	
-	public void insertGlavnaGrupaArtikala(GlavnaGrupa gg) throws SQLException, ClassNotFoundException {
-		DAOGlavnaGrupaArtikala dgga = new DAOGlavnaGrupaArtikala();
-		dgga.insertGlavnaGrupaArtikala(gg);
-	}
-	
-	public ArrayList<Grupa_Artikla> getGrupaArtikala(Integer id_glavne_grupe) throws ClassNotFoundException, SQLException {
+	public ArrayList<GrupaArtikala> getGrupaArtikala() throws ClassNotFoundException, SQLException {
 		DAOGrupaArtikala dga = new DAOGrupaArtikala();
-		ArrayList<Grupa_Artikla> lista = dga.getGrupaArtikala(id_glavne_grupe);
+		ArrayList<GrupaArtikala> lista = dga.getGrupaArtikala();
 		return lista;
 	}
 	
-	public void insertGrupaArtikala(Grupa_Artikla ga) throws SQLException, ClassNotFoundException {
+	public ArrayList<GrupaArtikala> getGrupaArtikala(int id_grupe_artikla) throws ClassNotFoundException, SQLException {
+		DAOGrupaArtikala dga = new DAOGrupaArtikala();
+		ArrayList<GrupaArtikala> lista = dga.getGrupaArtikala(id_grupe_artikla);
+		return lista;
+	}
+	
+	public void insertGrupaArtikala(GrupaArtikala ga) throws SQLException, ClassNotFoundException {
 		DAOGrupaArtikala dga = new DAOGrupaArtikala();
 		dga.insertGrupaArtikala(ga);
 	}

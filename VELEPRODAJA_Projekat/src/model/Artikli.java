@@ -86,8 +86,6 @@ public class Artikli {
 	}
 	@Override
 	public String toString() {
-		return "Artikli [idArtikla=" + idArtikla + ", IdgrupaArtikla=" + IdgrupaArtikla + ", naziv_artikla="
-				+ naziv_artikla + ", jedinica_mere=" + jedinica_mere + ", neto_cena_artikla=" + neto_cena_artikla
-				+ ", stopa_PDV=" + stopa_PDV + ", marza_artikla=" + marza_artikla + "]";
+		return  naziv_artikla + "    ID artikla: " + idArtikla;
 	}
 }
