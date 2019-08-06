@@ -30,6 +30,12 @@ public class JFrameObrisiZaposlenog extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldIdZaposlenog;
+	private JButton btnNazadObrisiZaposlenog;
+	
+	public JButton getBtnNazadObrisiZaposlenog() {
+		return btnNazadObrisiZaposlenog;
+	}
+	
 
 	/**
 	 * Launch the application.
@@ -144,7 +150,7 @@ public class JFrameObrisiZaposlenog extends JFrame {
 			}
 		});
 		btnOtvoriZaposlenog.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriZaposlenog.setBounds(99, 176, 171, 23);
+		btnOtvoriZaposlenog.setBounds(213, 173, 171, 23);
 		contentPane.add(btnOtvoriZaposlenog);
 		
 		JLabel lblIdZaposlenog = new JLabel("ID zaposlenog :");
@@ -162,6 +168,10 @@ public class JFrameObrisiZaposlenog extends JFrame {
 		contentPane.add(comboBoxIzaberiteZaposlenog);
 		popuniComboBoxZaposleni(comboBoxIzaberiteZaposlenog);
 		comboBoxIzaberiteZaposlenog.setSelectedItem(null);
+		
+		btnNazadObrisiZaposlenog = new JButton("Nazad");
+		btnNazadObrisiZaposlenog.setBounds(55, 175, 89, 23);
+		contentPane.add(btnNazadObrisiZaposlenog);
 		comboBoxIzaberiteZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Zaposleni z = (Zaposleni) comboBoxIzaberiteZaposlenog.getSelectedItem();

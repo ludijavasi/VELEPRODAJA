@@ -31,6 +31,11 @@ public class JFrameObrisiFilijalu extends JFrame {
 	private JPanel contentPane;
 	private JComboBox comboBoxFilijalaObrisi;
 	private JTextField textFieldIdFilijaleObrisiFilijalu;
+	private JButton btnNazadObrisiFilijali;
+
+	public JButton getBtnNazadObrisiFilijali() {
+		return btnNazadObrisiFilijali;
+	}
 
 	/**
 	 * Launch the application.
@@ -155,7 +160,7 @@ public class JFrameObrisiFilijalu extends JFrame {
 		});
 		                 
 		btnOtvoriFilijalu.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriFilijalu.setBounds(189, 213, 160, 23);
+		btnOtvoriFilijalu.setBounds(286, 222, 160, 23);
 		contentPane.add(btnOtvoriFilijalu);
 		
 		JLabel lblIdFilijaleObrisiFilijalu = new JLabel("ID filijale :");
@@ -167,6 +172,10 @@ public class JFrameObrisiFilijalu extends JFrame {
 		textFieldIdFilijaleObrisiFilijalu.setBounds(232, 151, 86, 20);
 		contentPane.add(textFieldIdFilijaleObrisiFilijalu);
 		textFieldIdFilijaleObrisiFilijalu.setColumns(10);
+		
+		btnNazadObrisiFilijali = new JButton("Nazad");
+		btnNazadObrisiFilijali.setBounds(91, 224, 89, 23);
+		contentPane.add(btnNazadObrisiFilijali);
 	}
 	
 	private void popuniComboBoxFilijala(JComboBox<Filijala> comboBox) {

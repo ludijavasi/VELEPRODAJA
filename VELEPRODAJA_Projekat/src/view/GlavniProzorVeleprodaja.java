@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import jframe.JFrameFilijala;
+import jframe.JFrameKupac;
 import jframe.JFrameMagacin;
 import jframe.JFrameZaposleni;
 import jframeObrisi.JFrameObrisiArtikal;
@@ -17,13 +18,20 @@ import jframeObrisi.JFrameObrisiMagacin;
 import jframeObrisi.JFrameObrisiZaposlenog;
 import jframePregled.JFrameKontrolaZalihaPregled;
 import jframePregled.JFramePregledArtikala;
+import jframePregled.JFramePregledFilijale;
+import jframePregled.JFramePregledKupca;
+import jframePregled.JFramePregledMagacina;
 import jframePregled.JFramePregledTrenutnoPrijavljeniNaMrezi;
-import jframePregled.JFramePregledTrenutnoZaposlenih;
+import jframePregled.JFramePregledZaposlenih;
 import jframePregled.JFrameStavkeRacunaPregled;
 import kontroler.Kontroler;
 import model.RacunOtpremnica;
 import model.Zaposleni;
 import table.JTableModelRacunOtpremnica;
+import table.JTabelModelZaposleni;
+import table.JTableModelFilijala;
+import table.JTableModelKupac;
+import table.JTableModelMagacin;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -126,14 +134,13 @@ public class GlavniProzorVeleprodaja {
 					for (Zaposleni z : zaposleni) {
 						if (z.getUsernameZaposlenog().equals(username) && z.getPasswordZaposlenog().equals(password)) {
 							if (z.getTipZaposlenja().equals("Menadzer")) {
-								System.out.println("Menadzer");
 								logedIn = z;
 
 								panelAdmin.setVisible(true);
 								panelLogin.setVisible(false);									
 
 							} else if (z.getTipZaposlenja().equals("Komercijalista")) {
-								System.out.println("Komercijalista");
+								
 								logedIn = z;
 
 								panelUserKomercijalista.setVisible(true);
@@ -207,10 +214,19 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent arg0) {
 				JFramePregledTrenutnoPrijavljeniNaMrezi prijavljeni = new JFramePregledTrenutnoPrijavljeniNaMrezi();
 				panelAdmin.setVisible(false);
-				prijavljeni.setVisible(true);		
-				
+				prijavljeni.setVisible(true);	
+				prijavljeni.getBtnIzlazTrenutnoNaMrezi().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						prijavljeni.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
 			}
 		});
+
 
 		JMenuItem mntmIzlazAdmin = new JMenuItem("Izlaz");
 		mntmIzlazAdmin.addActionListener(new ActionListener() {
@@ -277,11 +293,7 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnSkladisteAdmin);
 
 		JMenuItem mntmKontrolaZalihaAdmin = new JMenuItem("Kontrola zaliha");
-		mntmKontrolaZalihaAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// JFrameKontrolaZalihaPregled
-			}
-		});
+	
 		mnSkladisteAdmin.add(mntmKontrolaZalihaAdmin);
 
 		JMenu mnAnalizaSkladistaAdmin = new JMenu("Analiza skladista");
@@ -298,15 +310,7 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnZaposleniAdmin);
 
 		JMenuItem mntmTrenutnoZaposleniAdmin = new JMenuItem("Trenutno zaposleni");
-		mntmTrenutnoZaposleniAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFramePregledTrenutnoZaposlenih trenzaposleni = new JFramePregledTrenutnoZaposlenih();
-				panelAdmin.setVisible(false);
-				trenzaposleni.setVisible(true);
-			}
-		});
-		mnZaposleniAdmin.add(mntmTrenutnoZaposleniAdmin);
-
+		
 		JMenuItem mntmZasnivanjeRadnogOdnosaAdmin = new JMenuItem("Zasnivanje radnog odnosa");
 		mntmZasnivanjeRadnogOdnosaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -329,6 +333,32 @@ public class GlavniProzorVeleprodaja {
 		mnMaticniPodaciAdmin.add(mnFilijalaAdmin);
 
 		JMenuItem mntmPregledFilijalaAdmin = new JMenuItem("Pregled filijala");
+		mntmPregledFilijalaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFramePregledFilijale pf = new JFramePregledFilijale();
+				panelAdmin.setVisible(false);
+				pf.setVisible(true);
+				postaviModelFilijala(new ArrayList<>(), pf.getTablePregleFilijale());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getFilijala();
+					postaviModelFilijala(lista, pf.getTablePregleFilijale());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				pf.getBtnIzlazPregledFilijale().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						pf.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mnFilijalaAdmin.add(mntmPregledFilijalaAdmin);
 
 		JMenuItem mntmDodavanjeFilijaleAdmin = new JMenuItem("Dodavanje filijale");
@@ -357,6 +387,16 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiFilijalu of = new JFrameObrisiFilijalu();
 				panelAdmin.setVisible(false);
 				of.setVisible(true);
+				of.getBtnNazadObrisiFilijali().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						of.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+				
 
 			}
 		});
@@ -371,9 +411,19 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmPregledZaposlenihMPAdmin = new JMenuItem("Pregled zaposlenih");
 		mntmPregledZaposlenihMPAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFramePregledTrenutnoZaposlenih tz = new JFramePregledTrenutnoZaposlenih();
+				JFramePregledZaposlenih tz = new JFramePregledZaposlenih();
 				panelAdmin.setVisible(false);
 				tz.setVisible(true);
+				postaviModelZaposleni(new ArrayList<>(), tz.getTablePregledTrenutnoZaposlenih());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getZaposleni();
+					postaviModelZaposleni(lista, tz.getTablePregledTrenutnoZaposlenih());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				tz.getBtnIzlazTrenutnoZaposleni().addActionListener(new ActionListener() {
 					
@@ -415,6 +465,15 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiZaposlenog oz = new JFrameObrisiZaposlenog();
 				panelAdmin.setVisible(false);
 				oz.setVisible(true);
+				oz.getBtnNazadObrisiZaposlenog().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						oz.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
 				
 
 			}
@@ -422,15 +481,48 @@ public class GlavniProzorVeleprodaja {
 		mnZaposleniMatPodaciAdmin.add(mntmObrisiZaposlenogAdmin);
 
 		JMenuItem mntmAzurirajZaposlenogAdmin = new JMenuItem("Azuriraj");
+		mntmAzurirajZaposlenogAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		mnZaposleniMatPodaciAdmin.add(mntmAzurirajZaposlenogAdmin);
 
-		JMenu mnSkladistaAdmin = new JMenu("Skladista");
+		JMenu mnSkladistaAdmin = new JMenu("Magacin");
 		mnMaticniPodaciAdmin.add(mnSkladistaAdmin);
 
-		JMenuItem mntmAktivnaSkladistaAdmin = new JMenuItem("Aktivna skladista");
+		JMenuItem mntmAktivnaSkladistaAdmin = new JMenuItem("Pregled magacina");
+		mntmAktivnaSkladistaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFramePregledMagacina pm = new JFramePregledMagacina();
+				panelAdmin.setVisible(false);
+				pm.setVisible(true);
+				postaviModelMagacina(new ArrayList<>(), pm.getTablePregledMagacina());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getMagacin();
+					postaviModelMagacina(lista, pm.getTablePregledMagacina());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				pm.getBtnIzlazPregledMagacina().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						pm.setVisible(false);				
+						
+					}
+					
+				});
+				panelAdmin.setVisible(true);
+				
+			}
+		});
 		mnSkladistaAdmin.add(mntmAktivnaSkladistaAdmin);
 
-		JMenuItem mntmDodajSkladisteAdmin = new JMenuItem("Dodaj skladiste");
+		JMenuItem mntmDodajSkladisteAdmin = new JMenuItem("Dodaj magacin");
 		mntmDodajSkladisteAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameMagacin jfm = new JFrameMagacin();
@@ -448,12 +540,23 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnSkladistaAdmin.add(mntmDodajSkladisteAdmin);
 
-		JMenuItem mntmObrisiSkladisteAdmin = new JMenuItem("Obrisi skladiste");
+		JMenuItem mntmObrisiSkladisteAdmin = new JMenuItem("Obrisi magacin");
 		mntmObrisiSkladisteAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameObrisiMagacin om = new JFrameObrisiMagacin();
 				panelAdmin.setVisible(false);
 				om.setVisible(true);
+				om.getBtnNazadObrisiMagacin().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						om.setVisible(false);				
+						
+					}
+					
+				});
+				panelAdmin.setVisible(true);
+				
 			}
 		});
 		mnSkladistaAdmin.add(mntmObrisiSkladisteAdmin);
@@ -464,10 +567,53 @@ public class GlavniProzorVeleprodaja {
 		JMenu mnKupciAdmin = new JMenu("Kupci");
 		mnMaticniPodaciAdmin.add(mnKupciAdmin);
 
-		JMenuItem mntmAktivniKupciAdmin = new JMenuItem("Aktivni kupci");
+		JMenuItem mntmAktivniKupciAdmin = new JMenuItem("Pregled kupaca");
+		mntmAktivniKupciAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFramePregledKupca pk = new JFramePregledKupca();
+				panelAdmin.setVisible(false);
+				pk.setVisible(true);
+				postaviModelKupac(new ArrayList<>(), pk.getTablePregleKupaca());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getKupac();
+					postaviModelKupac(lista, pk.getTablePregleKupaca());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				pk.getBtnIzlazPregledKupaca().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						pk.setVisible(false);				
+						
+					}
+					
+				});
+				panelAdmin.setVisible(true);
+				
+			}
+		});
 		mnKupciAdmin.add(mntmAktivniKupciAdmin);
 
 		JMenuItem mntmDodajKupcaAdmin = new JMenuItem("Dodaj kupca");
+		mntmDodajKupcaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameKupac jfk = new JFrameKupac();
+				jfk.getBtnPonistiAkcijuKupac().addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						jfk.setVisible(false);
+					}
+				});
+				jfk.getTextFieldIdKupca().setVisible(false);
+				jfk.setVisible(true);
+
+			}
+		});
+				
 		mnKupciAdmin.add(mntmDodajKupcaAdmin);
 
 		JMenuItem mntmObrisiKupcaAdmin = new JMenuItem("Obrisi kupca");
@@ -476,6 +622,17 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiKupca ok = new JFrameObrisiKupca();
 				panelAdmin.setVisible(false);
 				ok.setVisible(true);
+				ok.getBtnNazadObrisiKupca().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ok.setVisible(false);				
+						
+					}
+					
+				});
+				panelAdmin.setVisible(true);
+				
 			}
 		});
 		mnKupciAdmin.add(mntmObrisiKupcaAdmin);
@@ -654,8 +811,22 @@ public class GlavniProzorVeleprodaja {
 
 	}
 	
-	private void postaviModel(ArrayList lista, JTable t){
-		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
+	private void postaviModelZaposleni(ArrayList lista, JTable t){
+		JTabelModelZaposleni model = new JTabelModelZaposleni(lista);
 		t.setModel(model);
 	}	
+	private void postaviModelFilijala(ArrayList lista, JTable t){
+		JTableModelFilijala model = new JTableModelFilijala(lista);
+		t.setModel(model);
+	}	
+	private void postaviModelMagacina(ArrayList lista, JTable t){
+		JTableModelMagacin model = new JTableModelMagacin(lista);
+		t.setModel(model);
+	}
+	
+	private void postaviModelKupac(ArrayList lista, JTable t){
+		JTableModelKupac model = new JTableModelKupac(lista);
+		t.setModel(model);
+	}	
+	
 }

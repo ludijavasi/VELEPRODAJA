@@ -42,13 +42,113 @@ public class JFrameKupac extends JFrame {
 	private JTextField textTekuciRacunKupca;
 	private JComboBox comboBoxValutaPlacanja;
 	private JLabel lblIdKupca;
-	private JTextField textField;
+	private JTextField textFieldIdKupca;
 	private JButton btnDodajKupca;
 	private JButton btnObrisiKupca;
 	private JButton btnAzurirajKupca;
 	private JButton btnPonistiAkcijuKupac;
 	private JTextField textEMailKipca;
 	private JLabel lblDana;
+	private JTextField textFieldKontakOsobaKupca;
+	private JRadioButton rdbtnAktivan;
+	private JRadioButton rdbtnNeaktivan;
+	
+
+	public JRadioButton getRdbtnAktivan() {
+		return rdbtnAktivan;
+	}
+
+	public JRadioButton getRdbtnNeaktivan() {
+		return rdbtnNeaktivan;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public JTextField getTextNazivFirme() {
+		return textNazivFirme;
+	}
+
+	public JTextField getTextAdresaFirme() {
+		return textAdresaFirme;
+	}
+
+	public JTextField getTextGradOpstinaFirme() {
+		return textGradOpstinaFirme;
+	}
+
+	public JTextField getTextTelefonFirme() {
+		return textTelefonFirme;
+	}
+
+	public JPanel getPanelPoslovniPodaciKupca() {
+		return panelPoslovniPodaciKupca;
+	}
+
+	public JLabel getLblPib() {
+		return lblPib;
+	}
+
+	public JTextField getTextPibKupca() {
+		return textPibKupca;
+	}
+
+	public JLabel getLblTekucracunKupca() {
+		return lblTekucracunKupca;
+	}
+
+	public JLabel getLblValutaPlacanja() {
+		return lblValutaPlacanja;
+	}
+
+	public JLabel getLblStatusKupca() {
+		return lblStatusKupca;
+	}
+
+	public JTextField getTextTekuciRacunKupca() {
+		return textTekuciRacunKupca;
+	}
+
+	public JComboBox getComboBoxValutaPlacanja() {
+		return comboBoxValutaPlacanja;
+	}
+
+	public JLabel getLblIdKupca() {
+		return lblIdKupca;
+	}
+
+	public JTextField getTextFieldIdKupca() {
+		return textFieldIdKupca;
+	}
+
+	public JButton getBtnDodajKupca() {
+		return btnDodajKupca;
+	}
+
+	public JButton getBtnObrisiKupca() {
+		return btnObrisiKupca;
+	}
+
+	public JButton getBtnAzurirajKupca() {
+		return btnAzurirajKupca;
+	}
+
+	public JButton getBtnPonistiAkcijuKupac() {
+		return btnPonistiAkcijuKupac;
+	}
+
+	public JTextField getTextEMailKipca() {
+		return textEMailKipca;
+	}
+
+	public JLabel getLblDana() {
+		return lblDana;
+	}
+
+	public JTextField getTextFieldKontakOsobaKupca() {
+		return textFieldKontakOsobaKupca;
+	}
 
 	/**
 	 * Launch the application.
@@ -125,10 +225,6 @@ public class JFrameKupac extends JFrame {
 		panelPodacioKupcu.add(textTelefonFirme);
 		textTelefonFirme.setColumns(10);
 
-		JTextPane textPaneKontakOsobaFirme = new JTextPane();
-		textPaneKontakOsobaFirme.setBounds(102, 166, 121, 20);
-		panelPodacioKupcu.add(textPaneKontakOsobaFirme);
-
 		JLabel lblEMail = new JLabel("E - mail :");
 		lblEMail.setBounds(10, 138, 58, 14);
 		panelPodacioKupcu.add(lblEMail);
@@ -137,6 +233,11 @@ public class JFrameKupac extends JFrame {
 		textEMailKipca.setBounds(102, 135, 121, 20);
 		panelPodacioKupcu.add(textEMailKipca);
 		textEMailKipca.setColumns(10);
+		
+		textFieldKontakOsobaKupca = new JTextField();
+		textFieldKontakOsobaKupca.setBounds(102, 166, 121, 20);
+		panelPodacioKupcu.add(textFieldKontakOsobaKupca);
+		textFieldKontakOsobaKupca.setColumns(10);
 
 		panelPoslovniPodaciKupca = new JPanel();
 		panelPoslovniPodaciKupca.setBorder(
@@ -180,16 +281,16 @@ public class JFrameKupac extends JFrame {
 		lblIdKupca.setBounds(82, 154, 78, 14);
 		panelPoslovniPodaciKupca.add(lblIdKupca);
 
-		textField = new JTextField();
-		textField.setBounds(192, 151, 65, 20);
-		panelPoslovniPodaciKupca.add(textField);
-		textField.setColumns(10);
+		textFieldIdKupca = new JTextField();
+		textFieldIdKupca.setBounds(192, 151, 65, 20);
+		panelPoslovniPodaciKupca.add(textFieldIdKupca);
+		textFieldIdKupca.setColumns(10);
 
-		JRadioButton rdbtnAktivan = new JRadioButton("Aktivan");
+		rdbtnAktivan = new JRadioButton("Aktivan");
 		rdbtnAktivan.setBounds(126, 121, 78, 23);
 		panelPoslovniPodaciKupca.add(rdbtnAktivan);
 
-		JRadioButton rdbtnNeaktivan = new JRadioButton("Neaktivan");
+		rdbtnNeaktivan = new JRadioButton("Neaktivan");
 		rdbtnNeaktivan.setBounds(206, 121, 83, 23);
 		panelPoslovniPodaciKupca.add(rdbtnNeaktivan);
 
@@ -211,7 +312,7 @@ public class JFrameKupac extends JFrame {
 					String grad = textGradOpstinaFirme.getText();
 					String tel = textTelefonFirme.getText();
 					String email = textEMailKipca.getText();
-					String kont_osoba = textPaneKontakOsobaFirme.getText();
+					String kont_osoba = textFieldKontakOsobaKupca.getText();
 					int pib = Integer.parseInt(textPibKupca.getText());
 					String tek_racun = textTekuciRacunKupca.getText();
 					int valuta = Integer.parseInt(comboBoxValutaPlacanja.getSelectedItem().toString());

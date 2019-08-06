@@ -295,11 +295,7 @@ public class JFrameMagacin extends JFrame {
 
 		btnPrekiniackcijuMagacin = new JButton("Prekini akciju");
 		btnPrekiniackcijuMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnPrekiniackcijuMagacin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-			}
-		});
+		
 		btnPrekiniackcijuMagacin.setBounds(35, 347, 161, 23);
 		contentPaneMagacin.add(btnPrekiniackcijuMagacin);
 
