@@ -6,18 +6,27 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import table.JTableModelRacunOtpremnica;
+import table.JTabelModelZaposleni;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class JFramePregledTrenutnoZaposlenih extends JFrame {
+public class JFramePregledZaposlenih extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tablePregledTrenutnoZaposlenih;
 	private JButton btnIzlazTrenutnoZaposleni;
 	
+
+	public JTable getTablePregledTrenutnoZaposlenih() {
+		return tablePregledTrenutnoZaposlenih;
+	}
 
 	public JButton getBtnIzlazTrenutnoZaposleni() {
 		return btnIzlazTrenutnoZaposleni;
@@ -34,7 +43,7 @@ public class JFramePregledTrenutnoZaposlenih extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFramePregledTrenutnoZaposlenih frame = new JFramePregledTrenutnoZaposlenih();
+					JFramePregledZaposlenih frame = new JFramePregledZaposlenih();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +55,7 @@ public class JFramePregledTrenutnoZaposlenih extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFramePregledTrenutnoZaposlenih() {
+	public JFramePregledZaposlenih() {
 		setTitle("PREGLED TRENUTNO ZAPOSLENIH");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 605, 334);
@@ -66,5 +75,4 @@ public class JFramePregledTrenutnoZaposlenih extends JFrame {
 		btnIzlazTrenutnoZaposleni.setBounds(446, 244, 133, 23);
 		contentPane.add(btnIzlazTrenutnoZaposleni);
 	}
-
 }

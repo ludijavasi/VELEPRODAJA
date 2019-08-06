@@ -10,11 +10,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JFramePregledTrenutnoPrijavljeniNaMrezi extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableTrenutnoNaMrezi;
+	private JButton btnIzlazTrenutnoNaMrezi;
+
+	public JButton getBtnIzlazTrenutnoNaMrezi() {
+		return btnIzlazTrenutnoNaMrezi;
+	}
 
 	/**
 	 * Launch the application.
@@ -51,7 +58,8 @@ public class JFramePregledTrenutnoPrijavljeniNaMrezi extends JFrame {
 		tableTrenutnoNaMrezi = new JTable();
 		scrollPaneTrenutnoNaMrezi.setViewportView(tableTrenutnoNaMrezi);
 		
-		JButton btnIzlazTrenutnoNaMrezi = new JButton("Izlaz");
+		btnIzlazTrenutnoNaMrezi = new JButton("Izlaz");
+		
 		btnIzlazTrenutnoNaMrezi.setBounds(479, 240, 118, 23);
 		contentPane.add(btnIzlazTrenutnoNaMrezi);
 	}

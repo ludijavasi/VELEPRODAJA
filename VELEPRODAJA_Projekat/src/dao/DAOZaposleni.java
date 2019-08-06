@@ -139,19 +139,4 @@ public class DAOZaposleni {
 		
 	}
 
-        /*public void updateProdavnica(Prodavnica p) throws SQLException, ClassNotFoundException {
-		connect();
-		preparedStatement = konekcija.prepareStatement("UPDATE `prodavnice` SET `username` = ?, `password` = ?, `user_tip` = ? WHERE `prodavnice`.`id` = ?");
-
-		preparedStatement.setString(1, p.getUsername());
-		preparedStatement.setString(2, p.getPassword());
-		preparedStatement.setString(3, p.getUserTip());
-		preparedStatement.setInt(4, p.getPrid());
-		
-		preparedStatement.execute();
-		
-		konekcija.close();
-		
-	}*/
-
 }
