@@ -762,9 +762,8 @@ public class GlavniProzorVeleprodaja {
 				
 				postaviModelArtikli(new ArrayList<>(), artikal.getTablePregledArtikala());
 				ArrayList lista;
-				int id_grupe_artikala=0;
 				try {
-					lista = Kontroler.getInstance().getArtikli(id_grupe_artikala);
+					lista = Kontroler.getInstance().getArtikli();
 					postaviModelArtikli(lista, artikal.getTablePregledArtikala());
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block

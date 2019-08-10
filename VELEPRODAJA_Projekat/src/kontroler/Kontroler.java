@@ -34,9 +34,9 @@ public class Kontroler {
 		return kontroler;
 	}
 	
-	public ArrayList<Artikli> getArtikli(Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
+	public ArrayList<Artikli> getArtikli() throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
-		ArrayList<Artikli> lista = da.getArtikli(id_grupe_artikala);
+		ArrayList<Artikli> lista = da.getArtikli();
 		return lista;
 	}	
 	

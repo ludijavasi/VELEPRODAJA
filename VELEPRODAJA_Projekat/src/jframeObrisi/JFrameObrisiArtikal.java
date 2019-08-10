@@ -170,7 +170,7 @@ public class JFrameObrisiArtikal extends JFrame {
 			comboBox.removeAllItems();
 			
 			//ArrayList<GlavnaGrupa> lista = Kontroler.getInstance().getGlavnaGrupaArtikala();
-			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli(id_grupe_artikala);
+			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli();
 
 			//for (GlavnaGrupa gg : lista) {
 				for (Artikli a : lista1) {

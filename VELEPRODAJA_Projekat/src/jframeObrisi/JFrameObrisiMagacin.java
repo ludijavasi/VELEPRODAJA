@@ -1,4 +1,4 @@
-package jframeObrisi;
+ package jframeObrisi;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
