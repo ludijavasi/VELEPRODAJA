@@ -29,6 +29,12 @@ public class JFrameRacun_otpreminica extends JFrame {
 	private JTextField textFieldBrutoRacun;
 	private JTable tableStavkeRacuna;
 	private JButton btnNovaPoyicijaRacun;
+	private JButton btnPonistiAkcijuRacunOtpremnica;
+	
+
+	public JButton getBtnPonistiAkcijuRacunOtpremnica() {
+		return btnPonistiAkcijuRacunOtpremnica;
+	}
 
 	public JButton getBtnNovaPoyicijaRacun() {
 		return btnNovaPoyicijaRacun;
@@ -125,17 +131,20 @@ public class JFrameRacun_otpreminica extends JFrame {
 		btnIzmeniRacun.setBounds(157, 433, 89, 23);
 		contentPane.add(btnIzmeniRacun);
 
-		JButton btnBrisiRacun = new JButton("Brisi");
-		btnBrisiRacun.setBounds(263, 433, 89, 23);
-		contentPane.add(btnBrisiRacun);
+		JButton btnObrisiRacun = new JButton("Obrisi");
+		btnObrisiRacun.setBounds(263, 433, 89, 23);
+		contentPane.add(btnObrisiRacun);
 
 		JButton btnKreirajRacun = new JButton("Kreiraj");
-		btnKreirajRacun.setBounds(780, 433, 89, 23);
+		btnKreirajRacun.setBounds(780, 439, 89, 23);
 		contentPane.add(btnKreirajRacun);
+		
+		btnPonistiAkcijuRacunOtpremnica = new JButton("Ponisti akciju");
+		btnPonistiAkcijuRacunOtpremnica.setBounds(382, 433, 114, 23);
+		contentPane.add(btnPonistiAkcijuRacunOtpremnica);
 	}
 	private void postaviModelRAcunaOtpremnice(ArrayList lista, JTable t){
 		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
 		t.setModel(model);
 	}
-	
 }

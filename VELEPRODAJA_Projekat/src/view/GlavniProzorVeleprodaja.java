@@ -262,9 +262,23 @@ public class GlavniProzorVeleprodaja {
 		mntmKreirajRacunOtpremnicuAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
+				
 				panelAdmin.setVisible(false);
 				ro.setVisible(true);
-				ro.getBtnNovaPoyicijaRacun().addActionListener(new ActionListener() {
+				
+		        ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ro.setVisible(false);					
+						
+					}
+					
+				});
+		        panelAdmin.setVisible(true);	
+				
+				
+				ro.getBtnNovaPoyicijaRacun().addActionListener(new ActionListener() {					
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
