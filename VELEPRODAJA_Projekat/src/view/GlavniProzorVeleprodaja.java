@@ -262,8 +262,8 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmCeneArtiklaAdmin = new JMenuItem("Cene artikla");
 		mnProdajaAdmin.add(mntmCeneArtiklaAdmin);
 
-		JMenuItem mntmPovracajKupcaAdmin = new JMenuItem("Povra\u0107aj kupca");
-		mnProdajaAdmin.add(mntmPovracajKupcaAdmin);
+		JMenuItem mntmStorniranjeRacunaAdmin = new JMenuItem("Storniranje racuna");
+		mnProdajaAdmin.add(mntmStorniranjeRacunaAdmin);
 
 		JMenuItem mntmPregledRacunaAdmin = new JMenuItem("Pregled racuna");
 		mntmPregledRacunaAdmin.addActionListener(new ActionListener() {
@@ -309,14 +309,8 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmProdajaPoKupcimaAdmin = new JMenuItem("Prodaja po kupcima");
 		mnAnalizaProdajeAdmin.add(mntmProdajaPoKupcimaAdmin);
 
-		JMenuItem mntmRazlikaUCeniAdmin = new JMenuItem("Razlika u ceni");
-		mnAnalizaProdajeAdmin.add(mntmRazlikaUCeniAdmin);
-
 		JMenuItem mntmSumarniPregledDokumenataAdmin = new JMenuItem("Sumarni pregled dokumenata");
 		mnAnalizaProdajeAdmin.add(mntmSumarniPregledDokumenataAdmin);
-
-		JMenuItem mntmDnevnikProdajeProdaje = new JMenuItem("Dnevnik prodaje");
-		mnAnalizaProdajeAdmin.add(mntmDnevnikProdajeProdaje);
 
 		JMenu mnSkladisteAdmin = new JMenu("    Skladi\u0161te");
 		mnSkladisteAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -326,31 +320,11 @@ public class GlavniProzorVeleprodaja {
 	
 		mnSkladisteAdmin.add(mntmKontrolaZalihaAdmin);
 
-		JMenu mnAnalizaSkladistaAdmin = new JMenu("Analiza skladista");
-		mnSkladisteAdmin.add(mnAnalizaSkladistaAdmin);
-
-		JMenuItem mntmInforOSkladPromAdmin = new JMenuItem("Informacija o skladisnim promenama");
-		mnAnalizaSkladistaAdmin.add(mntmInforOSkladPromAdmin);
-
-		JMenuItem mntmIstorijaArtikalaAdmin = new JMenuItem("Istorija artikala");
-		mnSkladisteAdmin.add(mntmIstorijaArtikalaAdmin);
-
 		JMenu mnZaposleniAdmin = new JMenu("    Zaposleni");
 		mnZaposleniAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBarAdmin.add(mnZaposleniAdmin);
 
 		JMenuItem mntmTrenutnoZaposleniAdmin = new JMenuItem("Trenutno zaposleni");
-		
-		JMenuItem mntmZasnivanjeRadnogOdnosaAdmin = new JMenuItem("Zasnivanje radnog odnosa");
-		mntmZasnivanjeRadnogOdnosaAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-			}
-		});
-		mnZaposleniAdmin.add(mntmZasnivanjeRadnogOdnosaAdmin);
-
-		JMenuItem mntmPrekidRadnogOdnosaAdmin = new JMenuItem("Prekid radnog odnosa");
-		mnZaposleniAdmin.add(mntmPrekidRadnogOdnosaAdmin);
 
 		JMenuItem mntmPregledZaposlenihAdmin = new JMenuItem("Pregled zaposlenih");
 		mnZaposleniAdmin.add(mntmPregledZaposlenihAdmin);
@@ -855,18 +829,6 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmSumarniPregledDokumenataIzvAdmin = new JMenuItem("Sumarni pregled dokumenata");
 		mnAnalizaProdajeIzvestajAdmin.add(mntmSumarniPregledDokumenataIzvAdmin);
 
-		JMenuItem mntmDnevnikProdajeIzvAdmin = new JMenuItem("Dnevnik prodaje");
-		mnAnalizaProdajeIzvestajAdmin.add(mntmDnevnikProdajeIzvAdmin);
-
-		JMenu mnAnalizaSkladistaIzvestajAdmin = new JMenu("Analiza skladista");
-		mnIzvestajAdmin.add(mnAnalizaSkladistaIzvestajAdmin);
-
-		JMenuItem mntmInfOSkladisPromenIzvAdmin = new JMenuItem("Informacija o skladisnim promenama");
-		mnAnalizaSkladistaIzvestajAdmin.add(mntmInfOSkladisPromenIzvAdmin);
-
-		JMenuItem mntmStatistikaPotrosnjeIzvAdmin = new JMenuItem("Statistika potrosnje");
-		mnAnalizaSkladistaIzvestajAdmin.add(mntmStatistikaPotrosnjeIzvAdmin);
-
 		JMenu mnRezultatiAdmin = new JMenu("Rezultati");
 		mnIzvestajAdmin.add(mnRezultatiAdmin);
 
@@ -881,9 +843,6 @@ public class GlavniProzorVeleprodaja {
 
 		JMenuItem mntmGodisnjiIzvestajAdmin = new JMenuItem("Godisnji izvestaj");
 		mnRezultatiAdmin.add(mntmGodisnjiIzvestajAdmin);
-
-		JMenuItem mntmProdajaPoArtikluIzvAdmin = new JMenuItem("Prodaja po artiklu");
-		mnRezultatiAdmin.add(mntmProdajaPoArtikluIzvAdmin);
 
 		JMenu mnSistemAdmin = new JMenu("    Sistem");
 		mnSistemAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -953,9 +912,6 @@ public class GlavniProzorVeleprodaja {
 			}
 		});
 		mnSistemAdmin.add(mntmPromeniLozinkuAdmin);
-
-		JMenuItem mntmAzurirajSistemAdmin = new JMenuItem("Azuriraj");
-		mnSistemAdmin.add(mntmAzurirajSistemAdmin);
 		
 		panelUserKomercijalista = new JPanel();
 		frame.getContentPane().add(panelUserKomercijalista, "name_773056089739863");
