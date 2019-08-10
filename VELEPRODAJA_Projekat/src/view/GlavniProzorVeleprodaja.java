@@ -14,6 +14,7 @@ import jframe.JFrameKontrolaZaliha;
 import jframe.JFrameKupac;
 import jframe.JFrameMagacin;
 import jframe.JFramePromenaLozinke;
+import jframe.JFrameRacun_otpreminica;
 import jframe.JFrameZaposleni;
 import jframeObrisi.JFrameObrisiArtikal;
 import jframeObrisi.JFrameObrisiFilijalu;
@@ -258,6 +259,31 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnProdajaAdmin);
 
 		JMenuItem mntmKreirajRacunOtpremnicuAdmin = new JMenuItem("Kreiraj ra\u010Dun/otpremnicu");
+		mntmKreirajRacunOtpremnicuAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
+				panelAdmin.setVisible(false);
+				ro.setVisible(true);
+				ro.getBtnNovaPoyicijaRacun().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JFrameStavkeRacunaPregled srp = new JFrameStavkeRacunaPregled();
+						srp.setVisible(true);
+						srp.getBtnPrekidStavkeRacuna().addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								
+								srp.setVisible(false);
+								
+							}
+						});
+						
+					}
+				});
+			}
+		});
 		mnProdajaAdmin.add(mntmKreirajRacunOtpremnicuAdmin);
 
 		JMenuItem mntmCeneArtiklaAdmin = new JMenuItem("Cene artikla");

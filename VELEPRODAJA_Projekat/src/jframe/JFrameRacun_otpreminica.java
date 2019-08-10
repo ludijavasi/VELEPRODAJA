@@ -23,7 +23,12 @@ public class JFrameRacun_otpreminica extends JFrame {
 	private JTextField textFieldPDVRacun;
 	private JTextField textFieldBrutoRacun;
 	private JTable tableStavkeRacuna;
+	private JButton btnNovaPoyicijaRacun;
 
+	public JButton getBtnNovaPoyicijaRacun() {
+		return btnNovaPoyicijaRacun;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -104,7 +109,7 @@ public class JFrameRacun_otpreminica extends JFrame {
 		tableStavkeRacuna = new JTable();
 		scrollPaneRacun.setViewportView(tableStavkeRacuna);
 
-		JButton btnNovaPoyicijaRacun = new JButton("Nova Pozicija");
+		btnNovaPoyicijaRacun = new JButton("Nova Pozicija");
 		btnNovaPoyicijaRacun.setBounds(10, 433, 130, 23);
 		contentPane.add(btnNovaPoyicijaRacun);
 
@@ -120,4 +125,6 @@ public class JFrameRacun_otpreminica extends JFrame {
 		btnKreirajRacun.setBounds(780, 433, 89, 23);
 		contentPane.add(btnKreirajRacun);
 	}
+
+	
 }

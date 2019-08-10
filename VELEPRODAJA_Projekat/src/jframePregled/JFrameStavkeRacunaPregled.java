@@ -32,11 +32,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 	public JButton getBtnPrekidStavkeRacuna() {
 		return btnPrekidStavkeRacuna;
 	}
-
-	public void setBtnPrekidStavkeRacuna(JButton btnPrekidStavkeRacuna) {
-		this.btnPrekidStavkeRacuna = btnPrekidStavkeRacuna;
-	}
-
+	
 	public JTable getTableRacunOtpremnica() {
 		return tableRacunOtpremnica;
 	}
