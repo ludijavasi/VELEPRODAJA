@@ -16,6 +16,7 @@ import jframe.JFrameMagacin;
 import jframe.JFramePromenaLozinke;
 import jframe.JFrameRacun_otpreminica;
 import jframe.JFrameZaposleni;
+import jframeIzvestaji.JFrameCenaArtikla;
 import jframeObrisi.JFrameObrisiArtikal;
 import jframeObrisi.JFrameObrisiFilijalu;
 import jframeObrisi.JFrameObrisiGrupuArtikala;
@@ -301,6 +302,22 @@ public class GlavniProzorVeleprodaja {
 		mnProdajaAdmin.add(mntmKreirajRacunOtpremnicuAdmin);
 
 		JMenuItem mntmCeneArtiklaAdmin = new JMenuItem("Cene artikla");
+		mntmCeneArtiklaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameCenaArtikla ca = new JFrameCenaArtikla();
+				panelAdmin.setVisible(false);
+				ca.setVisible(true);
+				ca.getBtnNazadCenaArtikla().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ca.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mnProdajaAdmin.add(mntmCeneArtiklaAdmin);
 
 		JMenuItem mntmStorniranjeRacunaAdmin = new JMenuItem("Storniranje racuna");
