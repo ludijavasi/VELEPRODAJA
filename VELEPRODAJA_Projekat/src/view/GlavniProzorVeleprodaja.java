@@ -10,6 +10,7 @@ import javax.swing.border.TitledBorder;
 import jframe.JFrameArtikal;
 import jframe.JFrameFilijala;
 import jframe.JFrameGrupaArtikala;
+import jframe.JFrameKontrolaZaliha;
 import jframe.JFrameKupac;
 import jframe.JFrameMagacin;
 import jframe.JFramePromenaLozinke;
@@ -317,6 +318,43 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnSkladisteAdmin);
 
 		JMenuItem mntmKontrolaZalihaAdmin = new JMenuItem("Kontrola zaliha");
+		mntmKontrolaZalihaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameKontrolaZaliha kz = new JFrameKontrolaZaliha();
+				kz.setVisible(true);
+				kz.getBtnPrekidKontrolaZaliha().addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						kz.setVisible(false);
+						
+					}
+				});
+				kz.getBtnOkKontrolaZaliha().addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JFrameKontrolaZalihaPregled kzp = new JFrameKontrolaZalihaPregled();
+						kz.setVisible(false);
+						kzp.setVisible(true);
+						kzp.getBtnIzlazKontrolaZalihaPregled().addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+							kzp.setVisible(false);
+								
+							}
+						});
+						kzp.getBtnNoviPregledKontroleZaliha().addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								kz.setVisible(true);
+								kzp.setVisible(false);
+								
+							}
+						});
+					}
+				});
+			}
+		});
 	
 		mnSkladisteAdmin.add(mntmKontrolaZalihaAdmin);
 

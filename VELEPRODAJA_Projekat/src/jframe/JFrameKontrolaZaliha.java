@@ -21,6 +21,16 @@ public class JFrameKontrolaZaliha extends JFrame {
 	private JTextField textFieldSkladisteKontrolaZaliha;
 	private JTextField textFieldArtikalKontrolaZaliha;
 	private final ButtonGroup RadioButtonGropSortiranjeKontrolaZaliha = new ButtonGroup();
+	private JButton btnPrekidKontrolaZaliha;
+	private JButton btnOkKontrolaZaliha;
+
+	public JButton getBtnPrekidKontrolaZaliha() {
+		return btnPrekidKontrolaZaliha;
+	}
+
+	public JButton getBtnOkKontrolaZaliha() {
+		return btnOkKontrolaZaliha;
+	}
 
 	/**
 	 * Launch the application.
@@ -78,19 +88,19 @@ public class JFrameKontrolaZaliha extends JFrame {
 
 		JRadioButton rdbtnArtikal = new JRadioButton("Artikal");
 		RadioButtonGropSortiranjeKontrolaZaliha.add(rdbtnArtikal);
-		rdbtnArtikal.setBounds(6, 24, 109, 23);
+		rdbtnArtikal.setBounds(6, 60, 109, 23);
 		panelSortiranjeKontrolaZaliha.add(rdbtnArtikal);
 
 		JRadioButton rdbtnGrupaArikala = new JRadioButton("Grupa Arikala");
 		RadioButtonGropSortiranjeKontrolaZaliha.add(rdbtnGrupaArikala);
-		rdbtnGrupaArikala.setBounds(6, 53, 109, 23);
+		rdbtnGrupaArikala.setBounds(6, 29, 109, 23);
 		panelSortiranjeKontrolaZaliha.add(rdbtnGrupaArikala);
 
-		JButton btnOkKontrolaZaliha = new JButton("OK");
+		btnOkKontrolaZaliha = new JButton("OK");
 		btnOkKontrolaZaliha.setBounds(172, 283, 118, 23);
 		contentPane.add(btnOkKontrolaZaliha);
 
-		JButton btnPrekidKontrolaZaliha = new JButton("Prekid");
+		btnPrekidKontrolaZaliha = new JButton("Prekid");
 		btnPrekidKontrolaZaliha.setBounds(25, 283, 118, 23);
 		contentPane.add(btnPrekidKontrolaZaliha);
 

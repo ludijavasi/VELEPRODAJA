@@ -14,6 +14,20 @@ public class JFrameKontrolaZalihaPregled extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tablePregledZaliha;
+	private JButton btnNoviPregledKontroleZaliha;
+	private JButton btnIzlazKontrolaZalihaPregled;
+
+	public JButton getBtnNoviPregledKontroleZaliha() {
+		return btnNoviPregledKontroleZaliha;
+	}
+
+
+
+	public JButton getBtnIzlazKontrolaZalihaPregled() {
+		return btnIzlazKontrolaZalihaPregled;
+	}
+
+
 
 	/**
 	 * Launch the application.
@@ -50,12 +64,12 @@ public class JFrameKontrolaZalihaPregled extends JFrame {
 		tablePregledZaliha = new JTable();
 		scrollPanePregledZaliha.setViewportView(tablePregledZaliha);
 		
-		JButton btnNoviPregledKontroleZaliha = new JButton("Novi pregled");
+		btnNoviPregledKontroleZaliha = new JButton("Novi pregled");
 		btnNoviPregledKontroleZaliha.setBounds(10, 285, 126, 23);
 		contentPane.add(btnNoviPregledKontroleZaliha);
 		
-		JButton btnIzlazKontrolaZaliha = new JButton("Izlaz");
-		btnIzlazKontrolaZaliha.setBounds(460, 285, 109, 23);
-		contentPane.add(btnIzlazKontrolaZaliha);
+		btnIzlazKontrolaZalihaPregled = new JButton("Izlaz");
+		btnIzlazKontrolaZalihaPregled.setBounds(460, 285, 109, 23);
+		contentPane.add(btnIzlazKontrolaZalihaPregled);
 	}
 }
