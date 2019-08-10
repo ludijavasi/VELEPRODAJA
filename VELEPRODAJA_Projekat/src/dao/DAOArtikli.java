@@ -29,7 +29,7 @@ public class DAOArtikli {
 		
 		String select = "select * from artikal";
 		
-		if (id_grupe_artikala != null) 
+		if (id_grupe_artikala != 0) 
 		{
 			select += " where id_grupe_artikala=" + id_grupe_artikala.toString();
 		}

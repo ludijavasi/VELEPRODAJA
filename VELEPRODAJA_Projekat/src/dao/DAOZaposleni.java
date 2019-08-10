@@ -138,5 +138,20 @@ public class DAOZaposleni {
 		konekcija.close();
 		
 	}
+	
+	public void updateZaposleni(Zaposleni z) throws SQLException, ClassNotFoundException {
+		connect();
+		preparedStatement = konekcija.prepareStatement("UPDATE zaposleni SET password_zaposlenog = ? WHERE id_zaposlenog = ?");
+
+		
+		preparedStatement.setString(1, z.getPasswordZaposlenog());
+		preparedStatement.setInt(2, z.getIdZaposlenog());
+		
+				
+		preparedStatement.execute();
+		
+		konekcija.close();
+		
+	}
 
 }

@@ -10,12 +10,31 @@ import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 public class JFramePregledArtikala extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tablePregledArtikala;
+	private JButton btnIzlazPregledArtikala;		
+	
+
+	public JTable getTablePregledArtikala() {
+		return tablePregledArtikala;
+	}
+
+	public void setTablePregledArtikala(JTable tablePregledArtikala) {
+		this.tablePregledArtikala = tablePregledArtikala;
+	}
+
+	public JButton getBtnIzlazPregledArtikala() {
+		return btnIzlazPregledArtikala;
+	}
+
+	public void setBtnIzlazPregledArtikala(JButton btnIzlazPregledArtikala) {
+		this.btnIzlazPregledArtikala = btnIzlazPregledArtikala;
+	}
 
 	/**
 	 * Launch the application.
@@ -63,6 +82,11 @@ public class JFramePregledArtikala extends JFrame {
 		rdbtnArtikal.setBounds(289, 19, 109, 23);
 		panelSortiranjeArtikala.add(rdbtnArtikal);
 		
+		ButtonGroup grupaSortiranje = new ButtonGroup();
+		grupaSortiranje.add(rdbtnGlavnaGrupa);
+		grupaSortiranje.add(rdbtnGrupaArtikla);
+		grupaSortiranje.add(rdbtnArtikal);
+		
 		JScrollPane scrollPanePregledArtikala = new JScrollPane();
 		scrollPanePregledArtikala.setBounds(10, 90, 555, 184);
 		contentPane.add(scrollPanePregledArtikala);
@@ -70,7 +94,7 @@ public class JFramePregledArtikala extends JFrame {
 		tablePregledArtikala = new JTable();
 		scrollPanePregledArtikala.setViewportView(tablePregledArtikala);
 		
-		JButton btnIzlazPregledArtikala = new JButton("Izlaz");
+		btnIzlazPregledArtikala = new JButton("Izlaz");
 		btnIzlazPregledArtikala.setBounds(437, 291, 128, 23);
 		contentPane.add(btnIzlazPregledArtikala);
 	}

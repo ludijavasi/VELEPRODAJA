@@ -7,29 +7,38 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import jframe.JFrameArtikal;
 import jframe.JFrameFilijala;
+import jframe.JFrameGrupaArtikala;
 import jframe.JFrameKupac;
 import jframe.JFrameMagacin;
+import jframe.JFramePromenaLozinke;
 import jframe.JFrameZaposleni;
 import jframeObrisi.JFrameObrisiArtikal;
 import jframeObrisi.JFrameObrisiFilijalu;
+import jframeObrisi.JFrameObrisiGrupuArtikala;
 import jframeObrisi.JFrameObrisiKupca;
 import jframeObrisi.JFrameObrisiMagacin;
 import jframeObrisi.JFrameObrisiZaposlenog;
 import jframePregled.JFrameKontrolaZalihaPregled;
 import jframePregled.JFramePregledArtikala;
 import jframePregled.JFramePregledFilijale;
+import jframePregled.JFramePregledGrupeArtikala;
 import jframePregled.JFramePregledKupca;
 import jframePregled.JFramePregledMagacina;
 import jframePregled.JFramePregledTrenutnoPrijavljeniNaMrezi;
 import jframePregled.JFramePregledZaposlenih;
 import jframePregled.JFrameStavkeRacunaPregled;
 import kontroler.Kontroler;
+import model.Artikli;
+import model.GrupaArtikala;
 import model.RacunOtpremnica;
 import model.Zaposleni;
 import table.JTableModelRacunOtpremnica;
 import table.JTabelModelZaposleni;
+import table.JTableModelArtikal;
 import table.JTableModelFilijala;
+import table.JTableModelGrupeArtikala;
 import table.JTableModelKupac;
 import table.JTableModelMagacin;
 
@@ -248,14 +257,6 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnProdajaAdmin);
 
 		JMenuItem mntmKreirajRacunOtpremnicuAdmin = new JMenuItem("Kreiraj ra\u010Dun/otpremnicu");
-		mntmKreirajRacunOtpremnicuAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrameStavkeRacunaPregled racun = new JFrameStavkeRacunaPregled();
-				panelAdmin.setVisible(false);
-				racun.setVisible(true);				
-				
-			}
-		});
 		mnProdajaAdmin.add(mntmKreirajRacunOtpremnicuAdmin);
 
 		JMenuItem mntmCeneArtiklaAdmin = new JMenuItem("Cene artikla");
@@ -265,6 +266,35 @@ public class GlavniProzorVeleprodaja {
 		mnProdajaAdmin.add(mntmPovracajKupcaAdmin);
 
 		JMenuItem mntmPregledRacunaAdmin = new JMenuItem("Pregled racuna");
+		mntmPregledRacunaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrameStavkeRacunaPregled racun = new JFrameStavkeRacunaPregled();
+				panelAdmin.setVisible(false);
+				racun.setVisible(true);
+				
+				postaviModelRacunOtpremnica(new ArrayList<>(), racun.getTableRacunOtpremnica());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getRacun();
+					postaviModelRacunOtpremnica(lista, racun.getTableRacunOtpremnica());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                  racun.getBtnPrekidStavkeRacuna().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						racun.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
+			
 		mnProdajaAdmin.add(mntmPregledRacunaAdmin);
 
 		JMenu mnAnalizaProdajeAdmin = new JMenu("Analiza prodaje");
@@ -649,11 +679,50 @@ public class GlavniProzorVeleprodaja {
 				JFramePregledArtikala artikal = new JFramePregledArtikala();
 				panelAdmin.setVisible(false);
 				artikal.setVisible(true);
+				
+				postaviModelArtikli(new ArrayList<>(), artikal.getTablePregledArtikala());
+				ArrayList lista;
+				int id_grupe_artikala=0;
+				try {
+					lista = Kontroler.getInstance().getArtikli(id_grupe_artikala);
+					postaviModelArtikli(lista, artikal.getTablePregledArtikala());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				artikal.getBtnIzlazPregledArtikala().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						artikal.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
 			}
 		});
 		mnArtikliAdmin.add(mntmPregledArtikalaAdmin);
 
 		JMenuItem mntmDodajArtikalAdmin = new JMenuItem("Dodaj artikal");
+		mntmDodajArtikalAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrameArtikal jfa = new JFrameArtikal(0);
+				
+				panelAdmin.setVisible(false);
+				jfa.setVisible(true);
+				
+				jfa.getBtnPonistiAkciju().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jfa.setVisible(false);						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mnArtikliAdmin.add(mntmDodajArtikalAdmin);
 
 		JMenuItem mntmObrisiArtikalAdmin = new JMenuItem("Obrisi artikal");
@@ -662,6 +731,17 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiArtikal oa = new JFrameObrisiArtikal();
 				panelAdmin.setVisible(false);
 				oa.setVisible(true);
+				
+				
+				oa.getBtnNazadObrisiArtikal().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						oa.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
 			}
 		});
 		mnArtikliAdmin.add(mntmObrisiArtikalAdmin);
@@ -673,12 +753,84 @@ public class GlavniProzorVeleprodaja {
 		mnMaticniPodaciAdmin.add(mnGrupeArtikalaAdmin);
 
 		JMenuItem mntmPregledGrupeArtikalaAdmin = new JMenuItem("Pregled grupe artikala");
+		mntmPregledGrupeArtikalaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFramePregledGrupeArtikala pga = new JFramePregledGrupeArtikala();
+				panelAdmin.setVisible(false);
+				pga.setVisible(true);
+				
+				postaviModelGrupaArtikala(new ArrayList<>(), pga.getTablePregledGrupeArtikala());
+				ArrayList lista;
+				
+				int id_grupe_artikala;
+				
+				try {
+					lista = Kontroler.getInstance().getGrupaArtikala(0);
+					postaviModelGrupaArtikala(lista, pga.getTablePregledGrupeArtikala());
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				pga.getBtnIzlazPregledGrupeArtikala().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						pga.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mnGrupeArtikalaAdmin.add(mntmPregledGrupeArtikalaAdmin);
 
 		JMenuItem mntmDodajGrupuArtikalaAdmin = new JMenuItem("Dodaj grupu artikala");
+		mntmDodajGrupuArtikalaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JFrameGrupaArtikala jfga = new JFrameGrupaArtikala();
+				
+				panelAdmin.setVisible(false);
+				jfga.setVisible(true);
+				
+				jfga.getBtnPonistiAkcijuDodajGrupuArtikala().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jfga.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mnGrupeArtikalaAdmin.add(mntmDodajGrupuArtikalaAdmin);
 
 		JMenuItem mntmObrisiGrupuArtikalaAdmin = new JMenuItem("Obrisi grupu artikala");
+		mntmObrisiGrupuArtikalaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrameObrisiGrupuArtikala obga = new JFrameObrisiGrupuArtikala();
+				
+				panelAdmin.setVisible(false);
+				obga.setVisible(true);
+				
+				obga.getBtnNazadObrisiGA().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						obga.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mnGrupeArtikalaAdmin.add(mntmObrisiGrupuArtikalaAdmin);
 
 		JMenuItem mntmAzurirajGrupuArtikalaAdmin = new JMenuItem("Azuriraj");
@@ -738,6 +890,68 @@ public class GlavniProzorVeleprodaja {
 		menuBarAdmin.add(mnSistemAdmin);
 
 		JMenuItem mntmPromeniLozinkuAdmin = new JMenuItem("Promeni lozinku");
+		mntmPromeniLozinkuAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFramePromenaLozinke proloz = new JFramePromenaLozinke();
+				
+				
+				panelAdmin.setVisible(false);
+				proloz.setVisible(true);
+				
+				proloz.getBtnUReduPromenaLozinke().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if((proloz.getTextFieldUsername().getText().toString()).equals(logedIn.getUsernameZaposlenog()) && (proloz.getTextFieldPassword().getText().toString()).equals(logedIn.getPasswordZaposlenog())) {
+							JOptionPane.showMessageDialog(null, "Unesite novu lozinku!");
+						}else
+						{
+							JOptionPane.showMessageDialog(null, "Uneli ste pogresne podatke!");
+						}
+						
+						proloz.getTextFieldNewPassword().requestFocus();
+						
+						//proloz.getTextFieldNewPassword().getText();
+						//proloz.getTextFieldConfirmPassword().getText();
+						
+						//if((proloz.getTextFieldNewPassword().getText().toString()).equals(proloz.getTextFieldConfirmPassword().getText().toString())) {
+							
+							proloz.getBtnChangePassword().addActionListener(new ActionListener() {
+								
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									try {
+										if((proloz.getTextFieldNewPassword().getText().toString()).equals(proloz.getTextFieldConfirmPassword().getText().toString())) {
+										logedIn.setPasswordZaposlenog(proloz.getTextFieldNewPassword().getText());	
+										Kontroler.getInstance().updateZaposleni(logedIn);
+										JOptionPane.showMessageDialog(null, "Uspesno ste promenili lozinku!");
+										proloz.setVisible(false);
+										
+										}
+									} catch (ClassNotFoundException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									} catch (SQLException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+									
+									
+								}
+							});
+							
+							//panelAdmin.setVisible(true);
+							//Kontroler.getInstance().updateZaposleni(logedIn);
+							//JOptionPane.showMessageDialog(null, "Uspesno ste promenili lozinku!");
+						} 
+						
+					}
+				
+				);
+				panelAdmin.setVisible(true);
+			}
+		});
 		mnSistemAdmin.add(mntmPromeniLozinkuAdmin);
 
 		JMenuItem mntmAzurirajSistemAdmin = new JMenuItem("Azuriraj");
@@ -827,6 +1041,21 @@ public class GlavniProzorVeleprodaja {
 	private void postaviModelKupac(ArrayList lista, JTable t){
 		JTableModelKupac model = new JTableModelKupac(lista);
 		t.setModel(model);
-	}	
+	}
+	
+	private void postaviModelRacunOtpremnica(ArrayList lista, JTable t){
+		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
+		t.setModel(model);
+	}
+	
+	private void postaviModelArtikli(ArrayList lista, JTable t){
+		JTableModelArtikal model = new JTableModelArtikal(lista);
+		t.setModel(model);
+	}
+	
+	private void postaviModelGrupaArtikala(ArrayList lista, JTable t){
+		JTableModelGrupeArtikala model = new JTableModelGrupeArtikala(lista);
+		t.setModel(model);
+	}
 	
 }

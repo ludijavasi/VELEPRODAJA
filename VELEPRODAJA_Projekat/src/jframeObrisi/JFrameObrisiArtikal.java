@@ -31,6 +31,16 @@ public class JFrameObrisiArtikal extends JFrame {
 	private JPanel contentPane;
 	private JComboBox comboBoxGlavnaGrupaObrisi;
 	private JComboBox comboBoxArtikalObrisi;
+	private JButton btnNazadObrisiArtikal;	
+	
+
+	public JButton getBtnNazadObrisiArtikal() {
+		return btnNazadObrisiArtikal;
+	}
+
+	public void setBtnNazadObrisiArtikal(JButton btnNazadObrisiArtikal) {
+		this.btnNazadObrisiArtikal = btnNazadObrisiArtikal;
+	}
 
 	/**
 	 * Launch the application.
@@ -133,6 +143,11 @@ public class JFrameObrisiArtikal extends JFrame {
 		contentPane.add(comboBoxArtikalObrisi);
 		//popuniComboBoxGrupaArtikala(comboBoxArtikalObrisi);
 		comboBoxArtikalObrisi.setSelectedItem(null);		
+		
+	    btnNazadObrisiArtikal = new JButton("Nazad");
+		btnNazadObrisiArtikal.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNazadObrisiArtikal.setBounds(262, 205, 89, 23);
+		contentPane.add(btnNazadObrisiArtikal);
 
 	}
 	

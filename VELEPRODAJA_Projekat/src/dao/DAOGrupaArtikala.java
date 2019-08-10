@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.GrupaArtikala;
+import model.Magacin;
 
 public class DAOGrupaArtikala {
 	
@@ -65,6 +66,38 @@ public class DAOGrupaArtikala {
 		preparedStatement.execute();
 
 		konekcija.close();		
+	}
+	
+	public void deleteGrupaArtikala(int idga) throws SQLException, ClassNotFoundException {
+		connect();
+		preparedStatement = konekcija.prepareStatement("delete from grupa_artikala where id_grupe_artikala = ?");
+
+		preparedStatement.setInt(1, idga);
+		
+		preparedStatement.execute();
+		
+		konekcija.close();
+		
+	}
+	
+	public GrupaArtikala getDetaljiGrupeArtikala(int idga) throws ClassNotFoundException, SQLException {
+		GrupaArtikala ga = new GrupaArtikala();
+		connect();
+		
+		preparedStatement = konekcija.prepareStatement("SELECT * FROM grupa_artikala where id_grupe_artikala =?  ");
+		
+		preparedStatement.setInt(1, idga);
+		preparedStatement.execute();
+		rs = preparedStatement.getResultSet();
+		while (rs.next()) {
+			int idGrupeArtikala = rs.getInt("id_grupe_artikala");
+			String nazivGrupeArtikala = rs.getString("naziv_grupe_artikala");
+			
+			GrupaArtikala ga1 = new GrupaArtikala(idGrupeArtikala, nazivGrupeArtikala);
+			ga = ga1;
+		}
+		konekcija.close();
+		return ga;
 	}
 
 

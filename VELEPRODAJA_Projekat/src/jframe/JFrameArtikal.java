@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import com.toedter.calendar.JDateChooser;
 
+import jframeObrisi.JFrameObrisiArtikal;
 import kontroler.Kontroler;
 import model.Artikli;
 import model.GrupaArtikala;
@@ -34,7 +35,16 @@ public class JFrameArtikal extends JFrame {
 	private JComboBox comboBoxJedinicaMere;
 	private JComboBox comboBoxGrupaArtikla;
 	private JComboBox comboBoxStopaPDV;	
+	private JButton btnPonistiAkciju;	
 	
+
+	public JButton getBtnPonistiAkciju() {
+		return btnPonistiAkciju;
+	}
+
+	public void setBtnPonistiAkciju(JButton btnPonistiAkciju) {
+		this.btnPonistiAkciju = btnPonistiAkciju;
+	}
 
 	public JTextField getTextFieldNazivArtikla() {
 		return textFieldNazivArtikla;
@@ -230,6 +240,7 @@ public class JFrameArtikal extends JFrame {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
+			
 		});
 		btnDodajArtikal.setBounds(478, 35, 146, 23);
 		contentPane.add(btnDodajArtikal);
@@ -242,7 +253,7 @@ public class JFrameArtikal extends JFrame {
 		btnAzuriraj.setBounds(478, 120, 146, 23);
 		contentPane.add(btnAzuriraj);
 
-		JButton btnPonistiAkciju = new JButton("Ponisti akciju");
+		btnPonistiAkciju = new JButton("Ponisti akciju");
 		btnPonistiAkciju.setBounds(478, 165, 146, 23);
 		contentPane.add(btnPonistiAkciju);
 		
@@ -269,6 +280,7 @@ public class JFrameArtikal extends JFrame {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 	
 	private void popuniComboBoxGrupaArtikala(JComboBox<GrupaArtikala> comboBox) {

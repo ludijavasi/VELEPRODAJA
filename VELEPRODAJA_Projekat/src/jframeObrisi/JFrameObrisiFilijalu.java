@@ -70,7 +70,7 @@ public class JFrameObrisiFilijalu extends JFrame {
 		lblIzaberiFilijalu.setBounds(91, 52, 278, 17);
 		contentPane.add(lblIzaberiFilijalu);
 		
-		JComboBox comboBoxFilijalaObrisi = new JComboBox();
+		comboBoxFilijalaObrisi = new JComboBox();
 		comboBoxFilijalaObrisi.setBounds(91, 95, 355, 20);
 		contentPane.add(comboBoxFilijalaObrisi);
 		popuniComboBoxFilijala(comboBoxFilijalaObrisi);
@@ -103,9 +103,9 @@ public class JFrameObrisiFilijalu extends JFrame {
 					
 					
 					if(f.getStatus().equals("Aktivna")) {
-						jffo.getRdbtnAktivna().isSelected();
+						jffo.getRdbtnAktivna().setSelected(true);//.isSelected();
 					}else
-						jffo.getRdbtnNeaktivna().isSelected();
+						jffo.getRdbtnNeaktivna().setSelected(true);//.isSelected();
 					
 					
 					jffo.getTextIDFilijale().setEditable(false);

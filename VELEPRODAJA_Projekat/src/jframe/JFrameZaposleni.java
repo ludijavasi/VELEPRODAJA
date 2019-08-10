@@ -426,6 +426,37 @@ public class JFrameZaposleni extends JFrame {
 		contentPaneDodajZaposlenog.add(btnDodajZaposlenog);
 
 		btnObrisiZaposlenog = new JButton("Obrisi Zaposlenog");
+		btnObrisiZaposlenog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int rbz = Integer.parseInt(textIDZaposlenog.getText().trim());
+				
+				try {
+					Kontroler.getInstance().deleteZaposleni(rbz);
+					JOptionPane.showMessageDialog(null, "Uspesno ste obrisali zaposlenog!");
+					
+					textIme.setText("");
+					textPrezime.setText("");
+					textAdresa.setText("");
+					textGrad_Ostina.setText("");
+					textTelefon.setText("");
+					textEMail.setText("");
+					textUsername.setText("");
+					textPassword.setText("");
+					comboBoxStrucnaSprema.setSelectedItem(null);
+					textPlata.setText("");
+					comboBoxFilijalaPosla.setSelectedItem(null);
+					comboBoxTipZaposlenja.setSelectedItem(null);
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		btnObrisiZaposlenog.setBounds(109, 430, 155, 23);
 		contentPaneDodajZaposlenog.add(btnObrisiZaposlenog);
 

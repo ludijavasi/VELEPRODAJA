@@ -38,7 +38,8 @@ public class Kontroler {
 		DAOArtikli da = new DAOArtikli();
 		ArrayList<Artikli> lista = da.getArtikli(id_grupe_artikala);
 		return lista;
-	}
+	}	
+	
 	
 	public  void insertArikli(Artikli a) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
@@ -70,6 +71,11 @@ public class Kontroler {
 		DAOZaposleni dz = new DAOZaposleni();
 		dz.deleteZaposleni(idz);
 	}
+	
+	public void updateZaposleni(Zaposleni z) throws ClassNotFoundException, SQLException{
+		DAOZaposleni dz = new DAOZaposleni();
+		dz.updateZaposleni(z);
+	}	
 	
 	public ArrayList<Filijala> getFilijala() throws ClassNotFoundException, SQLException {
 		DAOFilijala df = new DAOFilijala();
@@ -151,6 +157,16 @@ public class Kontroler {
 		DAOGrupaArtikala dga = new DAOGrupaArtikala();
 		dga.insertGrupaArtikala(ga);
 	}	
+	
+	public  GrupaArtikala getDetaljiGrupaArtikala(int idga) throws ClassNotFoundException, SQLException {
+		DAOGrupaArtikala dga = new DAOGrupaArtikala();
+		return dga.getDetaljiGrupeArtikala(idga);
+	}	
+	
+	public void deleteGrupaArtikala(int idga) throws ClassNotFoundException, SQLException{
+		DAOGrupaArtikala dga = new DAOGrupaArtikala();		
+		dga.deleteGrupaArtikala(idga);
+	}
 	
 	public ArrayList<RacunOtpremnica> getRacun() throws ClassNotFoundException, SQLException {
 		DAORacunOtpremnica dro = new DAORacunOtpremnica();

@@ -26,6 +26,24 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 	private JTextField textFieldKolicina;
 	private JTextField textFieldRabat;
 	private JTable tableRacunOtpremnica;
+	private JButton btnPrekidStavkeRacuna;
+	
+
+	public JButton getBtnPrekidStavkeRacuna() {
+		return btnPrekidStavkeRacuna;
+	}
+
+	public void setBtnPrekidStavkeRacuna(JButton btnPrekidStavkeRacuna) {
+		this.btnPrekidStavkeRacuna = btnPrekidStavkeRacuna;
+	}
+
+	public JTable getTableRacunOtpremnica() {
+		return tableRacunOtpremnica;
+	}
+
+	public void setTableRacunOtpremnica(JTable tableRacunOtpremnica) {
+		this.tableRacunOtpremnica = tableRacunOtpremnica;
+	}
 
 	/**
 	 * Launch the application.
@@ -121,7 +139,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		btnSacuvajStavkeRacuna.setBounds(10, 376, 89, 23);
 		contentPane.add(btnSacuvajStavkeRacuna);
 		
-		JButton btnPrekidStavkeRacuna = new JButton("Prekid");
+		btnPrekidStavkeRacuna = new JButton("Prekid");
 		btnPrekidStavkeRacuna.setBounds(158, 376, 89, 23);
 		contentPane.add(btnPrekidStavkeRacuna);
 	}

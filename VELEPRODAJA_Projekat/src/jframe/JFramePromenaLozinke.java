@@ -21,6 +21,53 @@ public class JFramePromenaLozinke extends JFrame {
 	private JTextField textFieldPassword;
 	private JTextField textFieldNewPassword;
 	private JTextField textFieldConfirmPassword;
+	private JButton btnUReduPromenaLozinke;	
+	private JButton btnChangePassword;	
+	
+
+	public JButton getBtnChangePassword() {
+		return btnChangePassword;
+	}
+
+	public JButton getBtnUReduPromenaLozinke() {
+		return btnUReduPromenaLozinke;
+	}
+
+	public void setBtnUReduPromenaLozinke(JButton btnUReduPromenaLozinke) {
+		this.btnUReduPromenaLozinke = btnUReduPromenaLozinke;
+	}
+
+	public JTextField getTextFieldUsername() {
+		return textFieldUsername;
+	}
+
+	public void setTextFieldUsername(JTextField textFieldUsername) {
+		this.textFieldUsername = textFieldUsername;
+	}
+
+	public JTextField getTextFieldPassword() {
+		return textFieldPassword;
+	}
+
+	public void setTextFieldPassword(JTextField textFieldPassword) {
+		this.textFieldPassword = textFieldPassword;
+	}
+
+	public JTextField getTextFieldNewPassword() {
+		return textFieldNewPassword;
+	}
+
+	public void setTextFieldNewPassword(JTextField textFieldNewPassword) {
+		this.textFieldNewPassword = textFieldNewPassword;
+	}
+
+	public JTextField getTextFieldConfirmPassword() {
+		return textFieldConfirmPassword;
+	}
+
+	public void setTextFieldConfirmPassword(JTextField textFieldConfirmPassword) {
+		this.textFieldConfirmPassword = textFieldConfirmPassword;
+	}
 
 	/**
 	 * Launch the application.
@@ -82,7 +129,7 @@ public class JFramePromenaLozinke extends JFrame {
 		
 		JPanel panelChangePassword = new JPanel();
 		panelChangePassword.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Promena lozinke", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelChangePassword.setBounds(40, 220, 542, 100);
+		panelChangePassword.setBounds(40, 245, 542, 100);
 		contentPane.add(panelChangePassword);
 		panelChangePassword.setLayout(null);
 		
@@ -106,9 +153,14 @@ public class JFramePromenaLozinke extends JFrame {
 		panelChangePassword.add(textFieldConfirmPassword);
 		textFieldConfirmPassword.setColumns(10);
 		
-		JButton btnChangePassword = new JButton("Sacuvaj novu lozinku");
+		btnChangePassword = new JButton("Sacuvaj novu lozinku");
 		btnChangePassword.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnChangePassword.setBounds(238, 362, 207, 23);
+		btnChangePassword.setBounds(239, 368, 207, 23);
 		contentPane.add(btnChangePassword);
+		
+		btnUReduPromenaLozinke = new JButton("U redu");
+		btnUReduPromenaLozinke.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnUReduPromenaLozinke.setBounds(239, 198, 89, 23);
+		contentPane.add(btnUReduPromenaLozinke);
 	}
 }

@@ -322,12 +322,12 @@ public class JFrameFilijala extends JFrame {
 		textIDFilijale.setBounds(148, 97, 65, 20);
 		panelPoslovniPodaciFilijale.add(textIDFilijale);
 
-		JRadioButton rdbtnAktivna = new JRadioButton("Aktivna");
+		 rdbtnAktivna = new JRadioButton("Aktivna");
 		buttonGroupFilijala.add(rdbtnAktivna);
 		rdbtnAktivna.setBounds(39, 145, 109, 23);
 		panelPoslovniPodaciFilijale.add(rdbtnAktivna);
 
-		JRadioButton rdbtnNeaktivna = new JRadioButton("Neaktivna");
+		 rdbtnNeaktivna = new JRadioButton("Neaktivna");
 		buttonGroupFilijala.add(rdbtnNeaktivna);
 		rdbtnNeaktivna.setBounds(148, 145, 109, 23);
 		panelPoslovniPodaciFilijale.add(rdbtnNeaktivna);
