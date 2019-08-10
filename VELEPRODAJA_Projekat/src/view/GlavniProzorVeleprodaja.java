@@ -327,6 +327,34 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmTrenutnoZaposleniAdmin = new JMenuItem("Trenutno zaposleni");
 
 		JMenuItem mntmPregledZaposlenihAdmin = new JMenuItem("Pregled zaposlenih");
+		mntmPregledZaposlenihAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFramePregledZaposlenih tz = new JFramePregledZaposlenih();
+				panelAdmin.setVisible(false);
+				tz.setVisible(true);
+				postaviModelZaposleni(new ArrayList<>(), tz.getTablePregledTrenutnoZaposlenih());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getZaposleni();
+					postaviModelZaposleni(lista, tz.getTablePregledTrenutnoZaposlenih());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				tz.getBtnIzlazTrenutnoZaposleni().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						tz.setVisible(false);				
+						
+					}
+					
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mnZaposleniAdmin.add(mntmPregledZaposlenihAdmin);
 
 		JMenu mnMaticniPodaciAdmin = new JMenu("    Mati\u010Dni podaci");
