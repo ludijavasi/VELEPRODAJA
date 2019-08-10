@@ -19,6 +19,7 @@ import jframeObrisi.JFrameObrisiArtikal;
 import kontroler.Kontroler;
 import model.Artikli;
 import model.GrupaArtikala;
+import model.Magacin;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -176,6 +177,15 @@ public class JFrameArtikal extends JFrame {
 		panelArtikal.add(comboBoxGrupaArtikla);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikla);
 		comboBoxGrupaArtikla.setSelectedItem(null);
+		comboBoxGrupaArtikla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GrupaArtikala a = (GrupaArtikala) comboBoxGrupaArtikla.getSelectedItem();
+				textFieldNazivGrupeArtikala.setText(a.getNazivGrupeArtikala());
+			}
+		});
+		
+		
+		
 		
 		JLabel lblNazivGrupeArtikala = new JLabel("Naziv grupe artikala:");
 		lblNazivGrupeArtikala.setBounds(31, 55, 139, 14);
@@ -225,29 +235,34 @@ public class JFrameArtikal extends JFrame {
 		btnDodajArtikal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-
+					
 					String naziv = textFieldNazivArtikla.getText().trim();
+					String naziv_grupe_artikala = textFieldNazivGrupeArtikala.getText().trim();
 					String jm = (String) comboBoxJedinicaMere.getSelectedItem();
 					GrupaArtikala ga = (GrupaArtikala) comboBoxGrupaArtikla.getSelectedItem();
 					double netocena = Double.parseDouble(textFieldNetoCenaArtikla.getText().trim());
 					int stopaPdv = Integer.parseInt((String) comboBoxStopaPDV.getSelectedItem());
 					double marza = Double.parseDouble(textFieldMarza.getText().trim());
 
-					Artikli a = new Artikli(0, ga.getIdGrupeArtikala(), naziv, jm, netocena, stopaPdv, marza);
+					Artikli a = new Artikli(0, ga.getIdGrupeArtikala(), naziv_grupe_artikala, naziv, jm, netocena, stopaPdv, marza);
 
 					Kontroler.getInstance().insertArikli(a);
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli artikal");
 					
 					textFieldNazivArtikla.setText("");
+					textFieldNazivGrupeArtikala.setText("");
+					textFieldNetoCenaArtikla.setText("");
+					textFieldMarza.setText("");
+					comboBoxStopaPDV.setSelectedItem(null);
 					comboBoxJedinicaMere.setSelectedItem(null);
 					comboBoxGrupaArtikla.setSelectedItem(null);
-					textFieldNetoCenaArtikla.setText("");
-					comboBoxStopaPDV.setSelectedItem(null);
-					textFieldMarza.setText("");
-
+					
+					
+					
+					
 				} catch (Exception e) {
 					// TODO: handle exception
-					JOptionPane.showMessageDialog(null, e.getMessage());
+					e.printStackTrace();
 				}
 			}
 			
@@ -278,7 +293,9 @@ public class JFrameArtikal extends JFrame {
 				//comboBoxGrupaArtikla.setSelectedItem(a.getIdgrupaArtikla());
 				comboBoxGrupaArtikla.setSelectedIndex(0);
 				comboBoxGrupaArtikla.getModel().setSelectedItem(Kontroler.getInstance().getGrupaArtikala(a.getIdgrupaArtikla()).get(0));
-				
+				//textFieldNazivGrupeArtikala.setText(comboBoxGrupaArtikla.getSelectedItem());
+				GrupaArtikala ga = (GrupaArtikala) comboBoxGrupaArtikla.getSelectedItem();
+				textFieldNazivGrupeArtikala.setText(ga.getNazivGrupeArtikala());
 				textFieldNazivArtikla.setText(a.getNaziv_artikla());
 				comboBoxJedinicaMere.setSelectedItem(a.getJedinica_mere());
 				textFieldIDArtikla.setText(Integer.toString(a.getIdArtikla()));
