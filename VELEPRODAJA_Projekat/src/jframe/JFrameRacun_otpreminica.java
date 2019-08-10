@@ -2,6 +2,7 @@ package jframe;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +10,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import table.JTableModelGrupeArtikala;
+import table.JTableModelRacunOtpremnica;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
@@ -107,6 +112,9 @@ public class JFrameRacun_otpreminica extends JFrame {
 		contentPane.add(scrollPaneRacun);
 
 		tableStavkeRacuna = new JTable();
+		postaviModelRAcunaOtpremnice(new ArrayList<>(), tableStavkeRacuna);
+		ArrayList lista;
+		
 		scrollPaneRacun.setViewportView(tableStavkeRacuna);
 
 		btnNovaPoyicijaRacun = new JButton("Nova Pozicija");
@@ -125,6 +133,9 @@ public class JFrameRacun_otpreminica extends JFrame {
 		btnKreirajRacun.setBounds(780, 433, 89, 23);
 		contentPane.add(btnKreirajRacun);
 	}
-
+	private void postaviModelRAcunaOtpremnice(ArrayList lista, JTable t){
+		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
+		t.setModel(model);
+	}
 	
 }
