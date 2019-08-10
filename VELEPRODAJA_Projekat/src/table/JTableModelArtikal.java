@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import model.Artikli;
+import model.GrupaArtikala;
 import model.Magacin;
 
 public class JTableModelArtikal extends AbstractTableModel{
