@@ -36,6 +36,7 @@ public class JFrameArtikal extends JFrame {
 	private JComboBox comboBoxGrupaArtikla;
 	private JComboBox comboBoxStopaPDV;	
 	private JButton btnPonistiAkciju;	
+	private JTextField textFieldNazivGrupeArtikala;
 	
 
 	public JButton getBtnPonistiAkciju() {
@@ -133,16 +134,16 @@ public class JFrameArtikal extends JFrame {
 		JPanel panelArtikal = new JPanel();
 		panelArtikal.setBorder(
 				new TitledBorder(null, "Podaci o artiklu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelArtikal.setBounds(30, 11, 420, 166);
+		panelArtikal.setBounds(30, 11, 420, 178);
 		contentPane.add(panelArtikal);
 		panelArtikal.setLayout(null);
 
 		JLabel lblNazivArtikla = new JLabel("Naziv artikla :");
-		lblNazivArtikla.setBounds(31, 49, 80, 14);
+		lblNazivArtikla.setBounds(31, 91, 80, 14);
 		panelArtikal.add(lblNazivArtikla);
 
 		JLabel lblJedinicaMere = new JLabel("Jedinica mere :");
-		lblJedinicaMere.setBounds(31, 79, 107, 14);
+		lblJedinicaMere.setBounds(31, 125, 107, 14);
 		panelArtikal.add(lblJedinicaMere);
 
 		JLabel lblGrupaArtikla = new JLabel("Grupa Artikla :");
@@ -150,23 +151,23 @@ public class JFrameArtikal extends JFrame {
 		panelArtikal.add(lblGrupaArtikla);
 
 		textFieldNazivArtikla = new JTextField();
-		textFieldNazivArtikla.setBounds(200, 49, 199, 20);
+		textFieldNazivArtikla.setBounds(200, 85, 199, 20);
 		panelArtikal.add(textFieldNazivArtikla);
 		textFieldNazivArtikla.setColumns(10);
 
 		comboBoxJedinicaMere = new JComboBox();
 		comboBoxJedinicaMere
 				.setModel(new DefaultComboBoxModel(new String[] {"Kilogram", "Gram", "Litar", "Komad"}));
-		comboBoxJedinicaMere.setBounds(200, 76, 199, 20);
+		comboBoxJedinicaMere.setBounds(200, 122, 199, 20);
 		panelArtikal.add(comboBoxJedinicaMere);
 		comboBoxJedinicaMere.setSelectedItem(null);
 
 		JLabel lblIdArtikla = new JLabel("ID artikla :");
-		lblIdArtikla.setBounds(31, 124, 80, 14);
+		lblIdArtikla.setBounds(31, 150, 80, 14);
 		panelArtikal.add(lblIdArtikla);
 
 		textFieldIDArtikla = new JTextField();
-		textFieldIDArtikla.setBounds(200, 121, 64, 20);
+		textFieldIDArtikla.setBounds(200, 147, 64, 20);
 		panelArtikal.add(textFieldIDArtikla);
 		textFieldIDArtikla.setColumns(10);
 
@@ -175,11 +176,20 @@ public class JFrameArtikal extends JFrame {
 		panelArtikal.add(comboBoxGrupaArtikla);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikla);
 		comboBoxGrupaArtikla.setSelectedItem(null);
+		
+		JLabel lblNazivGrupeArtikala = new JLabel("Naziv grupe artikala:");
+		lblNazivGrupeArtikala.setBounds(31, 55, 139, 14);
+		panelArtikal.add(lblNazivGrupeArtikala);
+		
+		textFieldNazivGrupeArtikala = new JTextField();
+		textFieldNazivGrupeArtikala.setBounds(200, 52, 199, 20);
+		panelArtikal.add(textFieldNazivGrupeArtikala);
+		textFieldNazivGrupeArtikala.setColumns(10);
 
 		JPanel panelEkonomskiPodaciOArtiklu = new JPanel();
 		panelEkonomskiPodaciOArtiklu.setBorder(new TitledBorder(null, "Ekonomski podaci o artiklu",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelEkonomskiPodaciOArtiklu.setBounds(30, 188, 420, 102);
+		panelEkonomskiPodaciOArtiklu.setBounds(30, 200, 420, 102);
 		contentPane.add(panelEkonomskiPodaciOArtiklu);
 		panelEkonomskiPodaciOArtiklu.setLayout(null);
 
