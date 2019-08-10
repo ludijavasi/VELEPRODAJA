@@ -34,6 +34,9 @@ public class JFrameCenaArtikla extends JFrame {
 	public JButton getBtnNazadCenaArtikla() {
 		return btnNazadCenaArtikla;
 	}
+	public JTable getTableCenaArtikla() {
+		return tableCenaArtikla;
+	}
 
 	/**
 	 * Launch the application.
@@ -55,6 +58,7 @@ public class JFrameCenaArtikla extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameCenaArtikla() {
+		setTitle("Cena Artikla");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 330);
 		contentPane = new JPanel();
@@ -117,6 +121,7 @@ public class JFrameCenaArtikla extends JFrame {
 		btnNazadCenaArtikla.setBounds(335, 261, 89, 23);
 		contentPane.add(btnNazadCenaArtikla);
 	}
+	
 	private void postaviModelCeneArtikla(ArrayList lista, JTable t){
 		JTableModelCenaArtikla model = new JTableModelCenaArtikla(lista);
 		t.setModel(model);

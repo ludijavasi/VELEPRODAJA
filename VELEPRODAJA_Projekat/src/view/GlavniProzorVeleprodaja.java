@@ -40,10 +40,12 @@ import model.Zaposleni;
 import table.JTableModelRacunOtpremnica;
 import table.JTabelModelZaposleni;
 import table.JTableModelArtikal;
+import table.JTableModelCenaArtikla;
 import table.JTableModelFilijala;
 import table.JTableModelGrupeArtikala;
 import table.JTableModelKupac;
 import table.JTableModelMagacin;
+import table.JTableModelProdajnaCenaArtikla;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -359,6 +361,33 @@ public class GlavniProzorVeleprodaja {
 		mnProdajaAdmin.add(mnAnalizaProdajeAdmin);
 
 		JMenuItem mntmProdajnaCenaArtiklaAdmin = new JMenuItem("Prodajna cena artikla");
+		mntmProdajnaCenaArtiklaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrameCenaArtikla pca = new JFrameCenaArtikla();
+				pca.setVisible(true);
+				panelAdmin.setVisible(true);
+				pca.setTitle("Prodajna cena artikla");
+				pca.getBtnNazadCenaArtikla().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						pca.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+				postaviModelProdajneCeneArtikla(new ArrayList<>(), pca.getTableCenaArtikla());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getArtikli();
+					postaviModelProdajneCeneArtikla(lista,pca.getTableCenaArtikla());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnAnalizaProdajeAdmin.add(mntmProdajnaCenaArtiklaAdmin);
 
 		JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po artiklu");
@@ -1135,5 +1164,9 @@ public class GlavniProzorVeleprodaja {
 		JTableModelGrupeArtikala model = new JTableModelGrupeArtikala(lista);
 		t.setModel(model);
 	}
-	
+	private void postaviModelProdajneCeneArtikla(ArrayList lista, JTable t){
+		JTableModelProdajnaCenaArtikla model = new JTableModelProdajnaCenaArtikla(lista);
+		t.setModel(model);
+	}
+
 }
