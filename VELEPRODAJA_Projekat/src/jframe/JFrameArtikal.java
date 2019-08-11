@@ -121,6 +121,7 @@ public class JFrameArtikal extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.

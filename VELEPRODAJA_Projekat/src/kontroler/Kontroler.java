@@ -38,8 +38,7 @@ public class Kontroler {
 		DAOArtikli da = new DAOArtikli();
 		ArrayList<Artikli> lista = da.getArtikli();
 		return lista;
-	}	
-	
+	}		
 	
 	public  void insertArikli(Artikli a) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();

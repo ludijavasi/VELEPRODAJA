@@ -31,6 +31,7 @@ public class DAOArtikli {
 
 		preparedStatement.execute();
 		rs = preparedStatement.getResultSet();
+		
 
 		while (rs.next()) {
 			int idArtikla = rs.getInt("id_artikla");

@@ -32,18 +32,7 @@ public class Artikli {
 		this.naziv_grupe_artikala = naziv_grupe_artikala;
 	}
 	
-	public Artikli(int idArtikla, int idgrupaArtikla, String naziv_grupe_artikala, String naziv_artikla,
-			String jedinica_mere, double neto_cena_artikla, int stopa_PDV, double marza_artikla) {
-		super();
-		this.idArtikla = idArtikla;
-		IdgrupaArtikla = idgrupaArtikla;
-		this.naziv_grupe_artikala = naziv_grupe_artikala;
-		this.naziv_artikla = naziv_artikla;
-		this.jedinica_mere = jedinica_mere;
-		this.neto_cena_artikla = neto_cena_artikla;
-		this.stopa_PDV = stopa_PDV;
-		this.marza_artikla = marza_artikla;
-	}
+	
 	public String getNaziv_artikla() {
 		return naziv_artikla;
 	}
@@ -100,10 +89,22 @@ public class Artikli {
 		this.jedinica_mere = jedinica_mere;
 		this.neto_cena_artikla = neto_cena_artikla;
 		this.stopa_PDV = stopa_PDV;
-		this.marza_artikla = marza_artikla;
-		
-		
+		this.marza_artikla = marza_artikla;		
 	}
+	
+	public Artikli(int idArtikla, int idgrupaArtikla, String naziv_grupe_artikala, String naziv_artikla,
+			String jedinica_mere, double neto_cena_artikla, int stopa_PDV, double marza_artikla) {
+		super();
+		this.idArtikla = idArtikla;
+		IdgrupaArtikla = idgrupaArtikla;
+		this.naziv_grupe_artikala = naziv_grupe_artikala;
+		this.naziv_artikla = naziv_artikla;
+		this.jedinica_mere = jedinica_mere;
+		this.neto_cena_artikla = neto_cena_artikla;
+		this.stopa_PDV = stopa_PDV;
+		this.marza_artikla = marza_artikla;
+	}
+	
 	@Override
 	public String toString() {
 		return  naziv_artikla + "    ID artikla: " + idArtikla;
