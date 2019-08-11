@@ -2,12 +2,18 @@ package jframePregled;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kontroler.Kontroler;
+import model.Artikli;
+import model.GrupaArtikala;
 import table.JTableModelRacunOtpremnica;
 
 import javax.swing.JLabel;
@@ -15,12 +21,11 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class JFrameStavkeRacunaPregled extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldGrupaArtikala;
-	private JTextField textFieldArtikal;
 	private JTextField textFieldJedinicaMere;
 	private JTextField textFieldDostupnaKolicina;
 	private JTextField textFieldKolicina;
@@ -93,16 +98,6 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		lblRabat.setBounds(10, 150, 77, 14);
 		contentPane.add(lblRabat);
 		
-		textFieldGrupaArtikala = new JTextField();
-		textFieldGrupaArtikala.setBounds(184, 22, 137, 20);
-		contentPane.add(textFieldGrupaArtikala);
-		textFieldGrupaArtikala.setColumns(10);
-		
-		textFieldArtikal = new JTextField();
-		textFieldArtikal.setBounds(184, 47, 137, 20);
-		contentPane.add(textFieldArtikal);
-		textFieldArtikal.setColumns(10);
-		
 		textFieldJedinicaMere = new JTextField();
 		textFieldJedinicaMere.setBounds(184, 72, 137, 20);
 		contentPane.add(textFieldJedinicaMere);
@@ -138,10 +133,82 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		btnPrekidStavkeRacuna = new JButton("Prekid");
 		btnPrekidStavkeRacuna.setBounds(158, 376, 89, 23);
 		contentPane.add(btnPrekidStavkeRacuna);
+		
+		JComboBox comboBoxArtikalRacunStavke = new JComboBox();
+		comboBoxArtikalRacunStavke.setEditable(true);
+		comboBoxArtikalRacunStavke.setBounds(184, 47, 137, 20);
+		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalRacunStavke);
+		
+		contentPane.add(comboBoxArtikalRacunStavke);
+		
+		JComboBox comboBoxGrupaArtikalaRacunStavke = new JComboBox();
+		comboBoxGrupaArtikalaRacunStavke.setBounds(184, 22, 137, 20);
+		contentPane.add(comboBoxGrupaArtikalaRacunStavke);
+		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaRacunStavke);
+		comboBoxGrupaArtikalaRacunStavke.setSelectedItem(null);
+		
+		
+		
+		comboBoxGrupaArtikalaRacunStavke.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (comboBoxGrupaArtikalaRacunStavke.getSelectedItem() != null) {
+					popuniComboBoxArtikli(comboBoxArtikalRacunStavke,
+							((GrupaArtikala) comboBoxGrupaArtikalaRacunStavke.getSelectedItem()).getIdGrupeArtikala());
+					comboBoxArtikalRacunStavke.setSelectedItem(null);
+				}
+				else
+				{
+					comboBoxArtikalRacunStavke.removeAllItems();
+					comboBoxArtikalRacunStavke.setSelectedItem(null);
+				}
+				
+			}
+		});
 	}
-	
+		
 	private void postaviModel(ArrayList lista, JTable t){
 		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
 		t.setModel(model);
-	}		
+	}	
+	
+	private void popuniComboBoxGrupaArtikala(JComboBox<GrupaArtikala> comboBox) {
+		try {
+			ArrayList<GrupaArtikala> lista = Kontroler.getInstance().getGrupaArtikala();
+
+			for (GrupaArtikala ga : lista) {
+				comboBox.addItem(ga);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void popuniComboBoxArtikli(JComboBox<String> comboBox, Integer id_grupe_artikala) {
+
+		// ArrayList<GlavnaGrupa> lista =
+		// Kontroler.getInstance().getGlavnaGrupaArtikala();
+
+		try {
+			comboBox.removeAllItems();
+			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli();
+
+			// for (GlavnaGrupa gg : lista) {
+			for (Artikli a : lista1) {
+				comboBox.addItem(a.getNaziv_artikla());				
+
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}	
 }
