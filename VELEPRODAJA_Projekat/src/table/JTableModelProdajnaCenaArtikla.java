@@ -6,11 +6,11 @@ import javax.swing.table.AbstractTableModel;
 
 import model.Artikli;
 
-public class JTableModelCenaArtikla extends AbstractTableModel {
+public class JTableModelProdajnaCenaArtikla extends AbstractTableModel {
 	
 	ArrayList<Artikli> lista = new ArrayList<Artikli>();
 
-	public JTableModelCenaArtikla(ArrayList<Artikli> lista) {
+	public JTableModelProdajnaCenaArtikla(ArrayList<Artikli> lista) {
 		super();
 		this.lista = lista;
 	}
@@ -44,7 +44,8 @@ public class JTableModelCenaArtikla extends AbstractTableModel {
 		case 4:
 			return a.getStopa_PDV();
 		case 5:
-			return a.getNeto_cena_artikla()+(a.getNeto_cena_artikla()*a.getMarza_artikla())/100;
+			return a.getNeto_cena_artikla()+(a.getNeto_cena_artikla()*a.getMarza_artikla()/100)+(a.getNeto_cena_artikla()*
+					a.getStopa_PDV()/100);
 		
 		default:
 			return "Greska!";
@@ -64,10 +65,11 @@ public class JTableModelCenaArtikla extends AbstractTableModel {
 			case 4:
 				return "PDV";
 			case 5:
-				return "NETO CENA";
+				return "BRUTO CENA";
 			
 			default:
 				return "Greska!";
 	}
 		}
+
 }
