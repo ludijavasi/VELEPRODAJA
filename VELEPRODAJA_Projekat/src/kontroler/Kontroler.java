@@ -49,7 +49,12 @@ public class Kontroler {
 	public  Artikli getDetaljiArtikli(int ida) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
 	    return da.getDetaljiArtikli(ida);
-	}	
+	}
+	
+	public void deleteArtikal(int rba) throws ClassNotFoundException, SQLException{
+		DAOArtikli da = new DAOArtikli();
+		da.deleteArtikal(rba);
+	}
 	
 	public ArrayList<Zaposleni> getZaposleni() throws ClassNotFoundException, SQLException {
 		DAOZaposleni dz = new DAOZaposleni();

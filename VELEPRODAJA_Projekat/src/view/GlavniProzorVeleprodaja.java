@@ -825,9 +825,9 @@ public class GlavniProzorVeleprodaja {
 		mntmObrisiArtikalAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameObrisiArtikal oa = new JFrameObrisiArtikal();
-				panelAdmin.setVisible(false);
-				oa.setVisible(true);
 				
+				panelAdmin.setVisible(false);
+				oa.setVisible(true);				
 				
 				oa.getBtnNazadObrisiArtikal().addActionListener(new ActionListener() {
 					

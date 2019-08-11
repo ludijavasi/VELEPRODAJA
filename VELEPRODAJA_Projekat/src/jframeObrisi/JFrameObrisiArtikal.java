@@ -78,7 +78,15 @@ public class JFrameObrisiArtikal extends JFrame {
 				JFrameArtikal jfa = new JFrameArtikal(ida);
 				jfa.setVisible(true);
 				
-				
+				jfa.getBtnPonistiAkciju().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jfa.setVisible(false);
+						
+					}
+				});
+				jfa.setVisible(true);
 				/*try {
 					Artikli a = Kontroler.getInstance().getDetaljiArtikli(ida);
 					

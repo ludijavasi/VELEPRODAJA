@@ -42,7 +42,7 @@ public class DAOArtikli {
 			int stopa_PDV = rs.getInt("stopa_pdv_a");
 			double marza_artikla = rs.getDouble("marza_artikla");
 
-			Artikli a = new Artikli(idArtikla, idgrupaArtikla,naziv_grupe_artikala , naziv_artikla, jedinica_mere, neto_cena_artikla,
+			Artikli a = new Artikli(idArtikla, idgrupaArtikla, naziv_grupe_artikala , naziv_artikla, jedinica_mere, neto_cena_artikla,
 					stopa_PDV, marza_artikla);
 			lista.add(a);
 		}
@@ -104,5 +104,16 @@ public class DAOArtikli {
 		konekcija.close();
 		return a;
 	}	
+	
+	public void deleteArtikal(int ida) throws ClassNotFoundException, SQLException {
+		connect();
+		preparedStatement = konekcija.prepareStatement("delete from artikal where id_artikla = ?");
+
+		preparedStatement.setInt(1, ida);
+
+		preparedStatement.execute();
+
+		konekcija.close();
+	}
 
 }

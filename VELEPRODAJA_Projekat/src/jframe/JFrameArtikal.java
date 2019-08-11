@@ -2,6 +2,7 @@ package jframe;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,6 +39,7 @@ public class JFrameArtikal extends JFrame {
 	private JComboBox comboBoxStopaPDV;	
 	private JButton btnPonistiAkciju;	
 	private JTextField textFieldNazivGrupeArtikala;
+	private JButton btnObrisiArtikal;
 	
 
 	public JButton getBtnPonistiAkciju() {
@@ -179,8 +181,10 @@ public class JFrameArtikal extends JFrame {
 		comboBoxGrupaArtikla.setSelectedItem(null);
 		comboBoxGrupaArtikla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GrupaArtikala a = (GrupaArtikala) comboBoxGrupaArtikla.getSelectedItem();
-				textFieldNazivGrupeArtikala.setText(a.getNazivGrupeArtikala());
+				if (comboBoxGrupaArtikla.getSelectedItem() != null) {
+					GrupaArtikala a = (GrupaArtikala) comboBoxGrupaArtikla.getSelectedItem();
+					textFieldNazivGrupeArtikala.setText(a.getNazivGrupeArtikala());
+				}
 			}
 		});
 		
@@ -270,7 +274,35 @@ public class JFrameArtikal extends JFrame {
 		btnDodajArtikal.setBounds(478, 35, 146, 23);
 		contentPane.add(btnDodajArtikal);
 
-		JButton btnObrisiArtikal = new JButton("Obrisi artikal");
+		btnObrisiArtikal = new JButton("Obrisi artikal");
+		btnObrisiArtikal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int rba = Integer.parseInt(textFieldIDArtikla.getText().trim());
+				
+				try {
+					Kontroler.getInstance().deleteArtikal(rba);
+					JOptionPane.showMessageDialog(null, "Uspesno ste obrisali artikal!");
+					
+					textFieldNazivArtikla.setText("");
+					textFieldNazivGrupeArtikala.setText("");
+					textFieldNetoCenaArtikla.setText("");
+					textFieldMarza.setText("");
+					comboBoxStopaPDV.setSelectedItem(null);
+					comboBoxJedinicaMere.setSelectedItem(null);
+					comboBoxGrupaArtikla.setSelectedItem(null);
+					
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnObrisiArtikal.setBounds(478, 76, 146, 23);
 		contentPane.add(btnObrisiArtikal);
 
