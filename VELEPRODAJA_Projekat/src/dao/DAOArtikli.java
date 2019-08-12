@@ -22,13 +22,20 @@ public class DAOArtikli {
 		konekcija = DriverManager.getConnection("jdbc:mysql://localhost/veleprodaja", "root", "");
 	}
 
-	public ArrayList<Artikli> getArtikli() throws ClassNotFoundException, SQLException {
+	public ArrayList<Artikli> getArtikli(Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
 		ArrayList<Artikli> lista = new ArrayList<Artikli>();
 
 		connect();		
-		preparedStatement = konekcija.prepareStatement("select * from artikal");
+		//preparedStatement = konekcija.prepareStatement("select * from artikal");
+		
+		String select = "select * from artikal";
+		if(id_grupe_artikala > 0) 
+		{
+			select+=" where id_grupe_artikala=" + id_grupe_artikala.toString();
+		}
 
-
+		preparedStatement = konekcija.prepareStatement(select);
+		
 		preparedStatement.execute();
 		rs = preparedStatement.getResultSet();
 		

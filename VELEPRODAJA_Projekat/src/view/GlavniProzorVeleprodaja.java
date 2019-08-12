@@ -380,7 +380,7 @@ public class GlavniProzorVeleprodaja {
 				ArrayList lista;
 				
 				try {
-					lista = Kontroler.getInstance().getArtikli();
+					lista = Kontroler.getInstance().getArtikli(0);
 					postaviModelProdajneCeneArtikla(lista,pca.getTableCenaArtikla());
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
@@ -809,7 +809,7 @@ public class GlavniProzorVeleprodaja {
 				postaviModelArtikli(new ArrayList<>(), artikal.getTablePregledArtikala());
 				ArrayList lista;
 				try {
-					lista = Kontroler.getInstance().getArtikli();
+					lista = Kontroler.getInstance().getArtikli(0);
 					postaviModelArtikli(lista, artikal.getTablePregledArtikala());
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block

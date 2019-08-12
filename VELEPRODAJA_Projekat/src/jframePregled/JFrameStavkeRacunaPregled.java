@@ -194,7 +194,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 
 		try {
 			comboBox.removeAllItems();
-			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli();
+			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli(id_grupe_artikala);
 
 			// for (GlavnaGrupa gg : lista) {
 			for (Artikli a : lista1) {
