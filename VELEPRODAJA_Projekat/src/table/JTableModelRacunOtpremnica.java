@@ -59,21 +59,27 @@ public class JTableModelRacunOtpremnica extends AbstractTableModel{
 		
 		switch (c) {
 		case 0:
-			return "Broj racuna";
+			return "Redni broj";
 		case 1:
-			return "Naziv firme kupca";
+			return "Naziv Artikla";
 		case 2:
-			return "Naziv artikla";
+			return "Kolicin";
 		case 3:
-			return "Datum racuna";
+			return "Jedinica";
 		case 4:
-			return "Datum naplate racuna";
+			return "Cena/RSD";
 		case 5:
-			return "Poreska osnovica";
+			return "Rabat";
 		case 6:
-			return "Ukupna vrednost obra;unatog PDV-a";
+			return "Neto cena";
 		case 7:
-			return "Ukupna vrednost racuna";	
+			return "PDV";
+		case 8:
+			return "Neto ";
+		case 9:
+			return "Vrednost PDV";
+		case 10:
+			return "Bruto";
 
 		default:
 			return "Greska";

@@ -14,7 +14,9 @@ import javax.swing.border.EmptyBorder;
 import kontroler.Kontroler;
 import model.Artikli;
 import model.GrupaArtikala;
+import table.JTableModelProdajnaCenaArtikla;
 import table.JTableModelRacunOtpremnica;
+import table.JTableModelStavkeRacunaOtpremnice;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -124,6 +126,8 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		
 		tableRacunOtpremnica = new JTable();
 		scrollPaneRacunOtpremnica.setViewportView(tableRacunOtpremnica);	
+		postaviModelStavkeProdaje(new ArrayList<>(), tableRacunOtpremnica);
+		ArrayList lista;
 		
 				
 		JButton btnSacuvajStavkeRacuna = new JButton("Sacuvaj");
@@ -138,7 +142,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		comboBoxArtikalRacunStavke.setEditable(true);
 		comboBoxArtikalRacunStavke.setBounds(184, 47, 137, 20);
 		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalRacunStavke);
-		
+
 		contentPane.add(comboBoxArtikalRacunStavke);
 		
 		JComboBox comboBoxGrupaArtikalaRacunStavke = new JComboBox();
@@ -211,4 +215,8 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		}
 
 	}	
+	private void postaviModelStavkeProdaje(ArrayList lista, JTable t){
+		JTableModelStavkeRacunaOtpremnice model = new JTableModelStavkeRacunaOtpremnice(lista);
+		t.setModel(model);
+	}
 }
