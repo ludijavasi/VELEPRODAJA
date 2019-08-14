@@ -5,10 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import model.RacunOtpremnica;
+import model.Zaposleni;
 
 public class DAORacunOtpremnica {
 	
@@ -46,6 +49,40 @@ public class DAORacunOtpremnica {
 		konekcija.close();
 		return lista;
 
+	}
+	public int insertRacunOtpremnicu(RacunOtpremnica ro) throws ClassNotFoundException, SQLException {
+		connect();
+			
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd");
+		String datumRacuna = sdf.format(ro.getDatumRacuna());
+		String datumNaplateRacuna = sdf1.format(ro.getDatumNaplateRacuna());
+		
+		
+		preparedStatement = konekcija.prepareStatement(
+				"insert into racun_otpremnica(\r\n" + 
+				"id_zaposlenog, id_kupca, datum_racuna ,\r\n" + 
+				"datum_naplate_racuna,  poreska_osnovica_racuna , ukupan_iznos_obracunatog_pdv_a_racuna, \r\n" + 
+				"ukupna_vrednost_racuna , \r\n" + 
+				"status_racuna  ) values (?,?,?,?,0,0,0,'Aktivan')", Statement.RETURN_GENERATED_KEYS);
+		
+		preparedStatement.setInt(1, ro.getIdZaposlenog());
+		preparedStatement.setInt(2, ro.getIdKupca());
+		preparedStatement.setString(3, datumRacuna);
+		preparedStatement.setString(4, datumNaplateRacuna);
+
+		preparedStatement.execute();
+
+		int generisanId = -1;
+
+		ResultSet rs = preparedStatement.getGeneratedKeys();
+		if (rs.next()) {
+			generisanId = rs.getInt(1);
+		}
+
+		konekcija.close();
+
+		return generisanId;
 	}
 
 }

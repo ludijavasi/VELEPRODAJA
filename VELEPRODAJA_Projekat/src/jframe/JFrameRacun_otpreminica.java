@@ -2,26 +2,34 @@ package jframe;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
+import kontroler.Kontroler;
+import model.Kupac;
+import model.RacunOtpremnica;
 import table.JTableModelGrupeArtikala;
 import table.JTableModelRacunOtpremnica;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JFrameRacun_otpreminica extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldKupacRacun;
 	private JTextField textFieldRacunOtpremnicaRacun;
 	private JLabel lblDatumRacun;
 	private JTextField textFieldNetoRacun;
@@ -30,7 +38,28 @@ public class JFrameRacun_otpreminica extends JFrame {
 	private JTable tableStavkeRacuna;
 	private JButton btnNovaPoyicijaRacun;
 	private JButton btnPonistiAkcijuRacunOtpremnica;
+	private JComboBox<Kupac> comboBoxKupacRacun;
+	private int generatedID;
+	private JDateChooser dateChooserNaplateracuna;
+	private JButton btnKreirajRacun;
+	private JDateChooser dateChooserRacunOtpremnica;
 	
+
+	public int getGeneratedID() {
+		return generatedID;
+	}
+
+	public JComboBox<Kupac> getComboBoxKupacRacun() {
+		return comboBoxKupacRacun;
+	}
+
+	public JDateChooser getDateChooserRacunOtpremnica() {
+		return dateChooserRacunOtpremnica;
+	}
+
+	public JButton getBtnKreirajRacun() {
+		return btnKreirajRacun;
+	}
 
 	public JButton getBtnPonistiAkcijuRacunOtpremnica() {
 		return btnPonistiAkcijuRacunOtpremnica;
@@ -76,11 +105,6 @@ public class JFrameRacun_otpreminica extends JFrame {
 		lblRacunotpreminica.setBounds(10, 75, 113, 14);
 		contentPane.add(lblRacunotpreminica);
 
-		textFieldKupacRacun = new JTextField();
-		textFieldKupacRacun.setBounds(133, 31, 86, 20);
-		contentPane.add(textFieldKupacRacun);
-		textFieldKupacRacun.setColumns(10);
-
 		textFieldRacunOtpremnicaRacun = new JTextField();
 		textFieldRacunOtpremnicaRacun.setBounds(133, 72, 86, 20);
 		contentPane.add(textFieldRacunOtpremnicaRacun);
@@ -90,7 +114,7 @@ public class JFrameRacun_otpreminica extends JFrame {
 		lblDatumRacun.setBounds(306, 34, 46, 14);
 		contentPane.add(lblDatumRacun);
 
-		JDateChooser dateChooserRacunOtpremnica = new JDateChooser();
+		dateChooserRacunOtpremnica = new JDateChooser();
 		dateChooserRacunOtpremnica.setBounds(410, 31, 277, 20);
 		contentPane.add(dateChooserRacunOtpremnica);
 
@@ -135,16 +159,63 @@ public class JFrameRacun_otpreminica extends JFrame {
 		btnObrisiRacun.setBounds(263, 433, 89, 23);
 		contentPane.add(btnObrisiRacun);
 
-		JButton btnKreirajRacun = new JButton("Kreiraj");
+		btnKreirajRacun = new JButton("Kreiraj");
+		btnKreirajRacun.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					Date datumRacuna = dateChooserRacunOtpremnica.getDate();
+					Date datumNaplateRacuna = dateChooserNaplateracuna.getDate();
+					//proveri da nije iz proslosti
+					Kupac k =(Kupac) comboBoxKupacRacun.getSelectedItem();
+					int id = k.getIdKupca();
+					
+					RacunOtpremnica ro = new RacunOtpremnica(id, datumRacuna,datumNaplateRacuna);
+					generatedID = Kontroler.getInstance().insertRacunOtpremnicu(ro);
+					
+					JOptionPane.showMessageDialog(null, "Uspesno ste kreirali racun!");
+					
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
 		btnKreirajRacun.setBounds(780, 439, 89, 23);
 		contentPane.add(btnKreirajRacun);
 		
 		btnPonistiAkcijuRacunOtpremnica = new JButton("Ponisti akciju");
 		btnPonistiAkcijuRacunOtpremnica.setBounds(382, 433, 114, 23);
 		contentPane.add(btnPonistiAkcijuRacunOtpremnica);
+		
+		comboBoxKupacRacun = new JComboBox<Kupac>();
+		comboBoxKupacRacun.setBounds(133, 31, 86, 20);
+		contentPane.add(comboBoxKupacRacun);
+		popuniComboBoxKupacRacun(comboBoxKupacRacun);
+		
+		dateChooserNaplateracuna = new JDateChooser();
+		dateChooserNaplateracuna.setBounds(410, 49, 277, 20);
+		contentPane.add(dateChooserNaplateracuna);
 	}
+	public JDateChooser getDateChooserNaplateracuna() {
+		return dateChooserNaplateracuna;
+	}
+
 	private void postaviModelRAcunaOtpremnice(ArrayList lista, JTable t){
 		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
 		t.setModel(model);
+	}
+	private void popuniComboBoxKupacRacun(JComboBox<Kupac> comboBox) {
+		try {
+			ArrayList<Kupac> lista = Kontroler.getInstance().getKupac();
+			for (Kupac k : lista) {
+				comboBox.addItem(k);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

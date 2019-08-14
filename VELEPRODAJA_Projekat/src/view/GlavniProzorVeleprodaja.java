@@ -35,6 +35,7 @@ import jframePregled.JFrameStavkeRacunaPregled;
 import kontroler.Kontroler;
 import model.Artikli;
 import model.GrupaArtikala;
+import model.Kupac;
 import model.RacunOtpremnica;
 import model.Zaposleni;
 import table.JTableModelRacunOtpremnica;
@@ -54,6 +55,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -268,6 +270,31 @@ public class GlavniProzorVeleprodaja {
 				
 				panelAdmin.setVisible(false);
 				ro.setVisible(true);
+				
+				ro.getBtnKreirajRacun().addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						try {
+							Date datumRacuna = ro.getDateChooserRacunOtpremnica().getDate();
+							Date datumNaplateRacuna = ro.getDateChooserNaplateracuna().getDate();
+							//proveri da nije iz proslosti
+							Kupac k =(Kupac) ro.getComboBoxKupacRacun().getSelectedItem();
+							int idkupca = k.getIdKupca();
+							int idzaposlenog = logedIn.getIdZaposlenog();
+							int gid =ro.getGeneratedID();
+							RacunOtpremnica ro = new RacunOtpremnica(idzaposlenog,idkupca,datumRacuna,datumNaplateRacuna);
+							gid = Kontroler.getInstance().insertRacunOtpremnicu(ro);
+							
+							
+							JOptionPane.showMessageDialog(null, "Uspesno ste uneli nabavku!");
+							
+						} catch (ClassNotFoundException | SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					}
+				});
 				
 		        ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
 					

@@ -176,6 +176,10 @@ public class Kontroler {
 		DAORacunOtpremnica dro = new DAORacunOtpremnica();
 		ArrayList<RacunOtpremnica> lista = dro.getRacun();
 		return lista;
-	}	
+	}
+	public int insertRacunOtpremnicu(RacunOtpremnica ro) throws ClassNotFoundException, SQLException {
+		DAORacunOtpremnica dro = new DAORacunOtpremnica();
+		return dro.insertRacunOtpremnicu(ro);
+	}
 
 }

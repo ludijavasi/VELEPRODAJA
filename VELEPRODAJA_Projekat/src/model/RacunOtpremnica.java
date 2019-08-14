@@ -46,6 +46,17 @@ public class RacunOtpremnica {
 		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
 	}
 
+	public RacunOtpremnica(int id, Date d, Date datumNaplateRacuna) {
+		
+	}
+
+	public RacunOtpremnica(int idzaposlenog, int idkupca, Date datumRacuna, Date datumNaplateRacuna) {
+		this.idZaposlenog = idzaposlenog;
+		this.idKupca = idkupca;
+		this.datumRacuna = datumRacuna;
+		this.datumNaplateRacuna = datumNaplateRacuna;
+	}
+
 	public int getIdRacuna() {
 		return idRacuna;
 	}
