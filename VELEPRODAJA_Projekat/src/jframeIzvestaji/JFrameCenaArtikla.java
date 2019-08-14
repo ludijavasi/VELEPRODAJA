@@ -110,7 +110,7 @@ public class JFrameCenaArtikla extends JFrame {
 		ArrayList lista;
 		
 		try {
-			lista = Kontroler.getInstance().getArtikli(0);
+			lista = Kontroler.getInstance().getArtikli();
 			postaviModelCeneArtikla(lista,tableCenaArtikla);
 		} catch (ClassNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block

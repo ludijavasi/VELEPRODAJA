@@ -11,6 +11,7 @@ import dao.DAOGrupaArtikala;
 import dao.DAOKupac;
 import dao.DAOMagacin;
 import dao.DAORacunOtpremnica;
+import dao.DAOStavkeRacunaOtpremnice;
 import dao.DAOZaposleni;
 import model.Artikli;
 import model.Filijala;
@@ -18,6 +19,7 @@ import model.GrupaArtikala;
 import model.Kupac;
 import model.Magacin;
 import model.RacunOtpremnica;
+import model.StavkeRacunaOtpremnice;
 import model.Zaposleni;
 
 
@@ -34,11 +36,17 @@ public class Kontroler {
 		return kontroler;
 	}
 	
-	public ArrayList<Artikli> getArtikli(int id_grupe_artikala) throws ClassNotFoundException, SQLException {
+/*	public ArrayList<Artikli> getArtikli(int id_grupe_artikala) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
 		ArrayList<Artikli> lista = da.getArtikli(id_grupe_artikala);
 		return lista;
-	}		
+	}	*/
+	
+	public ArrayList<Artikli> getArtikli() throws ClassNotFoundException, SQLException {
+		DAOArtikli da = new DAOArtikli();
+		ArrayList<Artikli> lista = da.getArtikli();
+		return lista;
+	}	
 	
 	public  void insertArikli(Artikli a) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
@@ -180,6 +188,10 @@ public class Kontroler {
 	public int insertRacunOtpremnicu(RacunOtpremnica ro) throws ClassNotFoundException, SQLException {
 		DAORacunOtpremnica dro = new DAORacunOtpremnica();
 		return dro.insertRacunOtpremnicu(ro);
+	}
+	public void insertStavkaRacuna(StavkeRacunaOtpremnice sro) throws SQLException, ClassNotFoundException {
+		DAOStavkeRacunaOtpremnice dsro = new DAOStavkeRacunaOtpremnice();
+		dsro.insertStavkaRacuna(sro);
 	}
 
 }

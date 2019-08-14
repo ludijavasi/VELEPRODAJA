@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import model.RacunOtpremnica;
-import model.Zaposleni;
 
 public class DAORacunOtpremnica {
 	

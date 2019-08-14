@@ -14,11 +14,14 @@ import javax.swing.border.EmptyBorder;
 import kontroler.Kontroler;
 import model.Artikli;
 import model.GrupaArtikala;
+import model.Kupac;
+import model.StavkeRacunaOtpremnice;
 import table.JTableModelProdajnaCenaArtikla;
 import table.JTableModelRacunOtpremnica;
 import table.JTableModelStavkeRacunaOtpremnice;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -34,7 +37,26 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 	private JTextField textFieldRabat;
 	private JTable tableRacunOtpremnica;
 	private JButton btnPrekidStavkeRacuna;
+	private JButton btnSacuvajStavkeRacuna;
+	private JComboBox comboBoxGrupaArtikalaRacunStavke;
+	private JComboBox comboBoxArtikalRacunStavke;
+	private JTextField textFieldIdRacunStavkeRacuna;
 	
+	
+	
+	
+	public JComboBox getComboBoxGrupaArtikalaRacunStavke() {
+		return comboBoxGrupaArtikalaRacunStavke;
+	}
+	public JTextField getTextFieldIdRacunStavkeRacuna() {
+		return textFieldIdRacunStavkeRacuna;
+	}
+	public JComboBox<Artikli> getComboBoxArtikalRacunStavke() {
+		return comboBoxArtikalRacunStavke;
+	}
+	public JButton getBtnSacuvajStavkeRacuna() {
+		return btnSacuvajStavkeRacuna;
+	}
 
 	public JButton getBtnPrekidStavkeRacuna() {
 		return btnPrekidStavkeRacuna;
@@ -46,6 +68,26 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 
 	public void setTableRacunOtpremnica(JTable tableRacunOtpremnica) {
 		this.tableRacunOtpremnica = tableRacunOtpremnica;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public JTextField getTextFieldJedinicaMere() {
+		return textFieldJedinicaMere;
+	}
+
+	public JTextField getTextFieldDostupnaKolicina() {
+		return textFieldDostupnaKolicina;
+	}
+
+	public JTextField getTextFieldKolicina() {
+		return textFieldKolicina;
+	}
+
+	public JTextField getTextFieldRabat() {
+		return textFieldRabat;
 	}
 
 	/**
@@ -130,7 +172,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		ArrayList lista;
 		
 				
-		JButton btnSacuvajStavkeRacuna = new JButton("Sacuvaj");
+		btnSacuvajStavkeRacuna = new JButton("Sacuvaj");
 		btnSacuvajStavkeRacuna.setBounds(10, 376, 89, 23);
 		contentPane.add(btnSacuvajStavkeRacuna);
 		
@@ -138,22 +180,29 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		btnPrekidStavkeRacuna.setBounds(158, 376, 89, 23);
 		contentPane.add(btnPrekidStavkeRacuna);
 		
-		JComboBox comboBoxArtikalRacunStavke = new JComboBox();
+		comboBoxArtikalRacunStavke = new JComboBox();
 		comboBoxArtikalRacunStavke.setEditable(true);
 		comboBoxArtikalRacunStavke.setBounds(184, 47, 137, 20);
+		popuniComboBoxArtikli(comboBoxArtikalRacunStavke);
 		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalRacunStavke);
 
 		contentPane.add(comboBoxArtikalRacunStavke);
 		
-		JComboBox comboBoxGrupaArtikalaRacunStavke = new JComboBox();
+		comboBoxGrupaArtikalaRacunStavke = new JComboBox();
 		comboBoxGrupaArtikalaRacunStavke.setBounds(184, 22, 137, 20);
 		contentPane.add(comboBoxGrupaArtikalaRacunStavke);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaRacunStavke);
 		comboBoxGrupaArtikalaRacunStavke.setSelectedItem(null);
 		
+		textFieldIdRacunStavkeRacuna = new JTextField();
+		textFieldIdRacunStavkeRacuna.setBounds(331, 22, 86, 20);
+		contentPane.add(textFieldIdRacunStavkeRacuna);
+		textFieldIdRacunStavkeRacuna.setColumns(10);
 		
 		
-		comboBoxGrupaArtikalaRacunStavke.addActionListener(new ActionListener() {
+		
+		
+	/*	comboBoxGrupaArtikalaRacunStavke.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -169,7 +218,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 				}
 				
 			}
-		});
+		});*/
 	}
 		
 	private void postaviModel(ArrayList lista, JTable t){
@@ -191,20 +240,14 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		}
 	}
 
-	private void popuniComboBoxArtikli(JComboBox<String> comboBox, Integer id_grupe_artikala) {
-
-		// ArrayList<GlavnaGrupa> lista =
-		// Kontroler.getInstance().getGlavnaGrupaArtikala();
+	private void popuniComboBoxArtikli(JComboBox<Artikli> comboBox ) {
 
 		try {
-			comboBox.removeAllItems();
-			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli(id_grupe_artikala);
+			ArrayList<Artikli> lista = Kontroler.getInstance().getArtikli();
 
-			// for (GlavnaGrupa gg : lista) {
-			for (Artikli a : lista1) {
-				comboBox.addItem(a.getNaziv_artikla());				
-
-			}
+		for (Artikli a : lista) {
+			comboBox.addItem(a);	
+		}
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

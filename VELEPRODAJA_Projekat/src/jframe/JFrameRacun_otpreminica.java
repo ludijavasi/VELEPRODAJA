@@ -43,8 +43,20 @@ public class JFrameRacun_otpreminica extends JFrame {
 	private JDateChooser dateChooserNaplateracuna;
 	private JButton btnKreirajRacun;
 	private JDateChooser dateChooserRacunOtpremnica;
+	private JButton btnZapocniProdajuStavkeRacuna;
 	
+	public JButton getBtnZapocniProdajuStavkeRacuna() {
+		return btnZapocniProdajuStavkeRacuna;
+	}
+	public JTextField getTextFieldRacunOtpremnicaRacun() {
+		return textFieldRacunOtpremnicaRacun;
+	}
 
+	public JDateChooser getDateChooserNaplateracuna() {
+		return dateChooserNaplateracuna;
+	}
+
+	
 	public int getGeneratedID() {
 		return generatedID;
 	}
@@ -160,28 +172,6 @@ public class JFrameRacun_otpreminica extends JFrame {
 		contentPane.add(btnObrisiRacun);
 
 		btnKreirajRacun = new JButton("Kreiraj");
-		btnKreirajRacun.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				try {
-					Date datumRacuna = dateChooserRacunOtpremnica.getDate();
-					Date datumNaplateRacuna = dateChooserNaplateracuna.getDate();
-					//proveri da nije iz proslosti
-					Kupac k =(Kupac) comboBoxKupacRacun.getSelectedItem();
-					int id = k.getIdKupca();
-					
-					RacunOtpremnica ro = new RacunOtpremnica(id, datumRacuna,datumNaplateRacuna);
-					generatedID = Kontroler.getInstance().insertRacunOtpremnicu(ro);
-					
-					JOptionPane.showMessageDialog(null, "Uspesno ste kreirali racun!");
-					
-				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-		});
 		btnKreirajRacun.setBounds(780, 439, 89, 23);
 		contentPane.add(btnKreirajRacun);
 		
@@ -197,10 +187,12 @@ public class JFrameRacun_otpreminica extends JFrame {
 		dateChooserNaplateracuna = new JDateChooser();
 		dateChooserNaplateracuna.setBounds(410, 49, 277, 20);
 		contentPane.add(dateChooserNaplateracuna);
+		
+		btnZapocniProdajuStavkeRacuna = new JButton("Zapocni prodaju");
+		btnZapocniProdajuStavkeRacuna.setBounds(10, 100, 89, 23);
+		contentPane.add(btnZapocniProdajuStavkeRacuna);
 	}
-	public JDateChooser getDateChooserNaplateracuna() {
-		return dateChooserNaplateracuna;
-	}
+	
 
 	private void postaviModelRAcunaOtpremnice(ArrayList lista, JTable t){
 		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
@@ -218,4 +210,5 @@ public class JFrameRacun_otpreminica extends JFrame {
 			e.printStackTrace();
 		}
 	}
+
 }

@@ -37,6 +37,7 @@ import model.Artikli;
 import model.GrupaArtikala;
 import model.Kupac;
 import model.RacunOtpremnica;
+import model.StavkeRacunaOtpremnice;
 import model.Zaposleni;
 import table.JTableModelRacunOtpremnica;
 import table.JTabelModelZaposleni;
@@ -79,6 +80,7 @@ public class GlavniProzorVeleprodaja {
 	private JPanel panelUserMagacioner;
 	public Zaposleni logedIn = null;
 	private JPasswordField passwordFieldPassword;	
+	private int generatedID;
 
 	/**
 	 * Launch the application.
@@ -270,8 +272,7 @@ public class GlavniProzorVeleprodaja {
 				
 				panelAdmin.setVisible(false);
 				ro.setVisible(true);
-				
-				ro.getBtnKreirajRacun().addActionListener(new ActionListener() {
+				ro.getBtnZapocniProdajuStavkeRacuna().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
 						try {
@@ -281,53 +282,129 @@ public class GlavniProzorVeleprodaja {
 							Kupac k =(Kupac) ro.getComboBoxKupacRacun().getSelectedItem();
 							int idkupca = k.getIdKupca();
 							int idzaposlenog = logedIn.getIdZaposlenog();
-							int gid =ro.getGeneratedID();
 							RacunOtpremnica ro = new RacunOtpremnica(idzaposlenog,idkupca,datumRacuna,datumNaplateRacuna);
-							gid = Kontroler.getInstance().insertRacunOtpremnicu(ro);
+							generatedID = Kontroler.getInstance().insertRacunOtpremnicu(ro);
 							
 							
-							JOptionPane.showMessageDialog(null, "Uspesno ste uneli nabavku!");
+							JOptionPane.showMessageDialog(null, "Kreirali ste racun!");
 							
 						} catch (ClassNotFoundException | SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
+						JFrameStavkeRacunaPregled fsrp = new JFrameStavkeRacunaPregled();
+						fsrp.setVisible(true);
+						fsrp.getTextFieldIdRacunStavkeRacuna().setText(Integer.toString(generatedID));
+						Artikli a = (Artikli) fsrp.getComboBoxArtikalRacunStavke().getSelectedItem();
+						String s = a.getJedinica_mere();
+						fsrp.getTextFieldJedinicaMere().setText(s);
+						fsrp.getBtnSacuvajStavkeRacuna().addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								int idracuna = Integer.parseInt(fsrp.getTextFieldIdRacunStavkeRacuna().getText());
+							try {
+
+								Artikli artikal = (Artikli) fsrp.getComboBoxArtikalRacunStavke().getSelectedItem();
+
+								int kolicinaProdaje = Integer.parseInt(fsrp.getTextFieldKolicina().getText().trim());
+								
+								double rabatProdaje = Double.parseDouble(fsrp.getTextFieldRabat().getText().trim());
+
+								StavkeRacunaOtpremnice sro = new StavkeRacunaOtpremnice(idracuna, artikal, kolicinaProdaje, rabatProdaje);
+
+								Kontroler.getInstance().insertStavkaRacuna(sro);
+								
+								fsrp.getComboBoxGrupaArtikalaRacunStavke().setSelectedItem(null);
+								fsrp.getComboBoxArtikalRacunStavke().setSelectedItem(null);
+								fsrp.getTextFieldDostupnaKolicina().setText("");
+								fsrp.getTextFieldJedinicaMere().setText("");
+								fsrp.getTextFieldKolicina().setText("");
+								fsrp.getTextFieldRabat().setText("");
+
+							} catch (Exception e) {
+								JOptionPane.showMessageDialog(null, "Greska!!! kolicina mora biti broj i artikal u jedno nabavci se ne sme duplirati");
+							}
 					}
+							
 				});
+						fsrp.getBtnPrekidStavkeRacuna().addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								fsrp.setVisible(false);
+								String s = fsrp.getTextFieldIdRacunStavkeRacuna().getText().trim();
+								ro.getTextFieldRacunOtpremnicaRacun().setText(s);
+								
+							}
+						});
+						
+						ro.getBtnNovaPoyicijaRacun().addActionListener(new ActionListener() {
+								
+								@Override
+								public void actionPerformed(ActionEvent arg0) {
+									fsrp.setVisible(true);
+									String s =ro.getTextFieldRacunOtpremnicaRacun().getText().trim();
+									fsrp.getTextFieldIdRacunStavkeRacuna().setText(s);
+								}
+								
+						});
+									ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
+										
+										@Override
+										public void actionPerformed(ActionEvent e) {
+											ro.setVisible(false);					
+											
+										
+								}
+							});
+										
+						}
+					});
 				
-		        ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						ro.setVisible(false);					
-						
-					}
-					
-				});
+		        
 		        panelAdmin.setVisible(true);	
 				
 				
-				ro.getBtnNovaPoyicijaRacun().addActionListener(new ActionListener() {					
+				/*ro.getBtnNovaPoyicijaRacun().addActionListener(new ActionListener() {					
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JFrameStavkeRacunaPregled srp = new JFrameStavkeRacunaPregled();
 						srp.setVisible(true);
-						srp.getBtnPrekidStavkeRacuna().addActionListener(new ActionListener() {
-							
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								
-								srp.setVisible(false);
-								
+						Artikli a = (Artikli) srp.getComboBoxArtikalRacunStavke().getSelectedItem();
+						String s = a.getJedinica_mere();
+						srp.getTextFieldJedinicaMere().setText(s);
+						
+						srp.getBtnSacuvajStavkeRacuna().addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+									int idracuna = Integer.parseInt(ro.getTextFieldRacunOtpremnicaRacun().getText());
+								try {
+
+									Artikli artikal = (Artikli) srp.getComboBoxArtikalRacunStavke().getSelectedItem();
+
+									int kolicinaProdaje = Integer.parseInt(srp.getTextFieldKolicina().getText().trim());
+									
+									double rabatProdaje = Double.parseDouble(srp.getTextFieldRabat().getText().trim());
+
+									StavkeRacunaOtpremnice sro = new StavkeRacunaOtpremnice(idracuna, artikal, kolicinaProdaje, kolicinaProdaje);
+
+									Kontroler.getInstance().insertStavkaRacuna(sro);
+									
+									srp.getComboBoxArtikalRacunStavke().setSelectedIndex(0);
+									srp.getTextFieldDostupnaKolicina().setText("");
+									srp.getTextFieldJedinicaMere().setText("");
+									srp.getTextFieldKolicina().setText("");
+									srp.getTextFieldRabat().setText("");
+
+								} catch (Exception e) {
+									JOptionPane.showMessageDialog(null, "Greska!!! kolicina mora biti broj i artikal u jedno nabavci se ne sme duplirati");
+								} 
 							}
-						});
+						});*/
+						
 						
 					}
 				});
-			}
-		});
+/*srp.getBtnPrekidStavkeRacuna().*/
 		mnProdajaAdmin.add(mntmKreirajRacunOtpremnicuAdmin);
 
 		JMenuItem mntmCeneArtiklaAdmin = new JMenuItem("Cene artikla");
@@ -407,7 +484,7 @@ public class GlavniProzorVeleprodaja {
 				ArrayList lista;
 				
 				try {
-					lista = Kontroler.getInstance().getArtikli(0);
+					lista = Kontroler.getInstance().getArtikli();
 					postaviModelProdajneCeneArtikla(lista,pca.getTableCenaArtikla());
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
@@ -836,7 +913,7 @@ public class GlavniProzorVeleprodaja {
 				postaviModelArtikli(new ArrayList<>(), artikal.getTablePregledArtikala());
 				ArrayList lista;
 				try {
-					lista = Kontroler.getInstance().getArtikli(0);
+					lista = Kontroler.getInstance().getArtikli();
 					postaviModelArtikli(lista, artikal.getTablePregledArtikala());
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block

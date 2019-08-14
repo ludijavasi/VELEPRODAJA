@@ -21,8 +21,35 @@ public class DAOArtikli {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		konekcija = DriverManager.getConnection("jdbc:mysql://localhost/veleprodaja", "root", "");
 	}
+	
+	public ArrayList<Artikli> getArtikli() throws ClassNotFoundException, SQLException {
+		ArrayList<Artikli> lista = new ArrayList<Artikli>();
 
-	public ArrayList<Artikli> getArtikli(Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
+		connect();		
+		preparedStatement = konekcija.prepareStatement("select * from artikal");
+		preparedStatement.execute();
+		rs = preparedStatement.getResultSet();
+		
+
+		while (rs.next()) {
+			int idArtikla = rs.getInt("id_artikla");
+			int idgrupaArtikla = rs.getInt("id_grupe_artikala");
+			String naziv_grupe_artikala = rs.getString("naziv_grupe_artikala");
+			String naziv_artikla = rs.getString("naziv_artikla");
+			String jedinica_mere = rs.getString("jedinica_mere");
+			double neto_cena_artikla = rs.getDouble("neto_cena_artikla");
+			int stopa_PDV = rs.getInt("stopa_pdv_a");
+			double marza_artikla = rs.getDouble("marza_artikla");
+
+			Artikli a = new Artikli(idArtikla, idgrupaArtikla, naziv_grupe_artikala , naziv_artikla, jedinica_mere, neto_cena_artikla,
+					stopa_PDV, marza_artikla);
+			lista.add(a);
+		}
+		konekcija.close();
+		return lista;
+	}
+
+/*	public ArrayList<Artikli> getArtikli(Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
 		ArrayList<Artikli> lista = new ArrayList<Artikli>();
 
 		connect();		
@@ -57,7 +84,7 @@ public class DAOArtikli {
 		konekcija.close();
 		return lista;
 	}
-
+*/
 	public void insertArtikli(Artikli a) throws SQLException, ClassNotFoundException {
 		connect();
 
