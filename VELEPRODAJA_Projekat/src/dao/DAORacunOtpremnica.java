@@ -64,7 +64,7 @@ public class DAORacunOtpremnica {
 				"id_zaposlenog, id_kupca, datum_racuna ,\r\n" + 
 				"datum_naplate_racuna,  poreska_osnovica_racuna , ukupan_iznos_obracunatog_pdv_a_racuna, \r\n" + 
 				"ukupna_vrednost_racuna , \r\n" + 
-				"status_racuna  ) values (?,?,?,?,0,0,0,'Aktivan')", Statement.RETURN_GENERATED_KEYS);
+				"status_racuna  ) values (?,?,?,?,0,0,0,'Kreiran')", Statement.RETURN_GENERATED_KEYS);
 		
 		preparedStatement.setInt(1, ro.getIdZaposlenog());
 		preparedStatement.setInt(2, ro.getIdKupca());
@@ -91,7 +91,7 @@ public class DAORacunOtpremnica {
 		preparedStatement = konekcija
 				.prepareStatement("UPDATE racun_otpremnica set "
 						+ "poreska_osnovica_racuna  = ?, ukupan_iznos_obracunatog_pdv_a_racuna   = ?,"
-						+ "ukupna_vrednost_racuna =? ,WHERE \r\n" + 
+						+ "ukupna_vrednost_racuna =?, status_racuna = 'Aktivan'  WHERE \r\n" + 
 						"id_racuna = ?");
 
 		preparedStatement.setDouble(1, poreska_osnovica_racuna);

@@ -272,7 +272,6 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent e) {
 				JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
 				
-				panelAdmin.setVisible(false);
 				ro.setVisible(true);
 				ro.getBtnZapocniProdajuStavkeRacuna().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -391,7 +390,6 @@ public class GlavniProzorVeleprodaja {
 									
 									JOptionPane.showMessageDialog(null, "Racun je uspesno zavrsen");
 									
-									panelAdmin.setVisible(true);;
 									ro.setVisible(false);									
 									
 								} catch (Exception e) {
