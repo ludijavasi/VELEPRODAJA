@@ -41,6 +41,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 	private JComboBox comboBoxGrupaArtikalaRacunStavke;
 	private JComboBox comboBoxArtikalRacunStavke;
 	private JTextField textFieldIdRacunStavkeRacuna;
+	private JTextField textFieldArtikalStavkeRacuna;
 	
 	
 	
@@ -168,8 +169,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		
 		tableRacunOtpremnica = new JTable();
 		scrollPaneRacunOtpremnica.setViewportView(tableRacunOtpremnica);	
-		postaviModelStavkeProdaje(new ArrayList<>(), tableRacunOtpremnica);
-		ArrayList lista;
+		
 		
 				
 		btnSacuvajStavkeRacuna = new JButton("Sacuvaj");
@@ -180,24 +180,33 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		btnPrekidStavkeRacuna.setBounds(158, 376, 89, 23);
 		contentPane.add(btnPrekidStavkeRacuna);
 		
-		comboBoxArtikalRacunStavke = new JComboBox();
-		comboBoxArtikalRacunStavke.setEditable(true);
-		comboBoxArtikalRacunStavke.setBounds(184, 47, 137, 20);
-		popuniComboBoxArtikli(comboBoxArtikalRacunStavke);
-		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalRacunStavke);
-
-		contentPane.add(comboBoxArtikalRacunStavke);
-		
 		comboBoxGrupaArtikalaRacunStavke = new JComboBox();
 		comboBoxGrupaArtikalaRacunStavke.setBounds(184, 22, 137, 20);
 		contentPane.add(comboBoxGrupaArtikalaRacunStavke);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaRacunStavke);
 		comboBoxGrupaArtikalaRacunStavke.setSelectedItem(null);
 		
+		comboBoxArtikalRacunStavke = new JComboBox();
+		comboBoxArtikalRacunStavke.setEditable(true);
+		comboBoxArtikalRacunStavke.setBounds(184, 47, 137, 20);
+		popuniComboBoxArtikli(comboBoxArtikalRacunStavke);
+		if((comboBoxGrupaArtikalaRacunStavke.getSelectedItem() != null)) {
+		int idga = ((GrupaArtikala)comboBoxGrupaArtikalaRacunStavke.getSelectedItem()).getIdGrupeArtikala();
+		}
+		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalRacunStavke);
+
+		contentPane.add(comboBoxArtikalRacunStavke);
+			
+		
 		textFieldIdRacunStavkeRacuna = new JTextField();
 		textFieldIdRacunStavkeRacuna.setBounds(331, 22, 86, 20);
 		contentPane.add(textFieldIdRacunStavkeRacuna);
 		textFieldIdRacunStavkeRacuna.setColumns(10);
+		
+		textFieldArtikalStavkeRacuna = new JTextField();
+		textFieldArtikalStavkeRacuna.setBounds(331, 47, 86, 20);
+		contentPane.add(textFieldArtikalStavkeRacuna);
+		textFieldArtikalStavkeRacuna.setColumns(10);
 		
 		
 		
@@ -258,8 +267,4 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		}
 
 	}	
-	private void postaviModelStavkeProdaje(ArrayList lista, JTable t){
-		JTableModelStavkeRacunaOtpremnice model = new JTableModelStavkeRacunaOtpremnice(lista);
-		t.setModel(model);
-	}
 }

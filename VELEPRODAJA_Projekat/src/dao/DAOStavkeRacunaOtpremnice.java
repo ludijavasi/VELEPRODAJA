@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import model.GrupaArtikala;
+import model.Izvestaj;
 import model.StavkeRacunaOtpremnice;
 
 
@@ -37,5 +40,4 @@ public class DAOStavkeRacunaOtpremnice {
 
 		konekcija.close();
 	}
-
 }

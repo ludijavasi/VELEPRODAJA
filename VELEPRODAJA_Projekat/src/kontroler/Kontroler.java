@@ -8,6 +8,7 @@ import javax.swing.ComboBoxModel;
 import dao.DAOArtikli;
 import dao.DAOFilijala;
 import dao.DAOGrupaArtikala;
+import dao.DAOIzvestaj;
 import dao.DAOKupac;
 import dao.DAOMagacin;
 import dao.DAORacunOtpremnica;
@@ -16,6 +17,7 @@ import dao.DAOZaposleni;
 import model.Artikli;
 import model.Filijala;
 import model.GrupaArtikala;
+import model.Izvestaj;
 import model.Kupac;
 import model.Magacin;
 import model.RacunOtpremnica;
@@ -192,6 +194,10 @@ public class Kontroler {
 	public void insertStavkaRacuna(StavkeRacunaOtpremnice sro) throws SQLException, ClassNotFoundException {
 		DAOStavkeRacunaOtpremnice dsro = new DAOStavkeRacunaOtpremnice();
 		dsro.insertStavkaRacuna(sro);
+	}
+	public ArrayList<Izvestaj> getStavkeRacunaOtpremniceIzvestaj(int id_racuna) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+		return di.getStavkeRacunaOtpremniceIzvestaj(id_racuna);
 	}
 
 }

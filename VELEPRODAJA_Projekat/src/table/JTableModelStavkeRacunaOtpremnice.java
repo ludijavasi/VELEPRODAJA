@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import model.Izvestaj;
 import model.StavkeRacunaOtpremnice;
 
 public class JTableModelStavkeRacunaOtpremnice extends AbstractTableModel {
 	
-		ArrayList<StavkeRacunaOtpremnice> lista = new ArrayList<>();
+		ArrayList<Izvestaj> lista = new ArrayList<>();
 	
-	public JTableModelStavkeRacunaOtpremnice(ArrayList<StavkeRacunaOtpremnice> lista) {
+	public JTableModelStavkeRacunaOtpremnice(ArrayList<Izvestaj> lista) {
 		super();
 		this.lista = lista;
 	}
@@ -30,16 +31,16 @@ public class JTableModelStavkeRacunaOtpremnice extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int r, int c) {
 		
-		StavkeRacunaOtpremnice sro = lista.get(r);
+		Izvestaj sro = lista.get(r);
 		switch (c) {
 		case 0:
-			return sro.getArtikal().getNaziv_artikla();
+			return sro.getNaziv_artikla();
 		case 1:
 			return sro.getKolicinaProdaje();
 		case 2:
-			return sro.getArtikal().getNeto_cena_artikla();
+			return sro.getNeto_cena_artikla();
 		case 3:
-			return sro.getArtikal().getStopa_PDV();	
+			return sro.getStopa_PDV();	
 
 		default:
 			return "Greska";

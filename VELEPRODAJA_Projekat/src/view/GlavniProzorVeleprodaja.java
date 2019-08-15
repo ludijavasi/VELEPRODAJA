@@ -40,6 +40,7 @@ import model.RacunOtpremnica;
 import model.StavkeRacunaOtpremnice;
 import model.Zaposleni;
 import table.JTableModelRacunOtpremnica;
+import table.JTableModelStavkeRacunaOtpremnice;
 import table.JTabelModelZaposleni;
 import table.JTableModelArtikal;
 import table.JTableModelCenaArtikla;
@@ -298,6 +299,7 @@ public class GlavniProzorVeleprodaja {
 						Artikli a = (Artikli) fsrp.getComboBoxArtikalRacunStavke().getSelectedItem();
 						String s = a.getJedinica_mere();
 						fsrp.getTextFieldJedinicaMere().setText(s);
+						
 						fsrp.getBtnSacuvajStavkeRacuna().addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
 								int idracuna = Integer.parseInt(fsrp.getTextFieldIdRacunStavkeRacuna().getText());
@@ -313,6 +315,16 @@ public class GlavniProzorVeleprodaja {
 
 								Kontroler.getInstance().insertStavkaRacuna(sro);
 								
+								postaviModelStavkeProdaje(new ArrayList<>(), fsrp.getTableRacunOtpremnica());
+								ArrayList lista;
+								try {
+									lista = Kontroler.getInstance().getStavkeRacunaOtpremniceIzvestaj(idracuna);
+									postaviModelStavkeProdaje(lista, fsrp.getTableRacunOtpremnica());
+								} catch (ClassNotFoundException | SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								
 								fsrp.getComboBoxGrupaArtikalaRacunStavke().setSelectedItem(null);
 								fsrp.getComboBoxArtikalRacunStavke().setSelectedItem(null);
 								fsrp.getTextFieldDostupnaKolicina().setText("");
@@ -323,6 +335,7 @@ public class GlavniProzorVeleprodaja {
 							} catch (Exception e) {
 								JOptionPane.showMessageDialog(null, "Greska!!! kolicina mora biti broj i artikal u jedno nabavci se ne sme duplirati");
 							}
+							
 					}
 							
 				});
@@ -356,12 +369,12 @@ public class GlavniProzorVeleprodaja {
 										
 								}
 							});
-										
+									panelAdmin.setVisible(true);			
 						}
 					});
 				
 		        
-		        panelAdmin.setVisible(true);	
+		        
 				
 				
 				/*ro.getBtnNovaPoyicijaRacun().addActionListener(new ActionListener() {					
@@ -437,8 +450,9 @@ public class GlavniProzorVeleprodaja {
 				panelAdmin.setVisible(false);
 				racun.setVisible(true);
 				
-				postaviModelRacunOtpremnica(new ArrayList<>(), racun.getTableRacunOtpremnica());
 				ArrayList lista;
+				postaviModelRacunOtpremnica(new ArrayList<>(), racun.getTableRacunOtpremnica());
+				
 				
 				try {
 					lista = Kontroler.getInstance().getRacun();
@@ -1270,6 +1284,10 @@ public class GlavniProzorVeleprodaja {
 	}
 	private void postaviModelProdajneCeneArtikla(ArrayList lista, JTable t){
 		JTableModelProdajnaCenaArtikla model = new JTableModelProdajnaCenaArtikla(lista);
+		t.setModel(model);
+	}
+	private void postaviModelStavkeProdaje(ArrayList lista, JTable t){
+		JTableModelStavkeRacunaOtpremnice model = new JTableModelStavkeRacunaOtpremnice(lista);
 		t.setModel(model);
 	}
 
