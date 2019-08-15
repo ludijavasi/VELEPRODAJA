@@ -25,8 +25,9 @@ public class DAOIzvestaj {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
-		preparedStatement = konekcija.prepareStatement("SELECT naziv_artikla,kolicina_prodaje,jedinica_mere,"
-				+ "neto_cena_artikla,stopa_pdv_a FROM artikal,stavke_prodaje WHERE id_racuna = ?");
+		preparedStatement = konekcija.prepareStatement("SELECT naziv_artikla,kolicina_prodaje,jedinica_mere,neto_cena_artikla,stopa_pdv_a \r\n" + 
+				"FROM stavke_prodaje join artikal on stavke_prodaje.id_artikla = artikal.id_artikla\r\n" + 
+				"WHERE id_racuna = ?");
 		preparedStatement.setInt(1, id_racuna);
 		preparedStatement.execute();
 

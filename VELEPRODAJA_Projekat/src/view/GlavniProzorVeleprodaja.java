@@ -304,7 +304,7 @@ public class GlavniProzorVeleprodaja {
 							public void actionPerformed(ActionEvent arg0) {
 								int idracuna = Integer.parseInt(fsrp.getTextFieldIdRacunStavkeRacuna().getText());
 							try {
-
+								
 								Artikli artikal = (Artikli) fsrp.getComboBoxArtikalRacunStavke().getSelectedItem();
 
 								int kolicinaProdaje = Integer.parseInt(fsrp.getTextFieldKolicina().getText().trim());
