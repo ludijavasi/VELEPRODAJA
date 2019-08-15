@@ -25,9 +25,9 @@ public class DAOIzvestaj {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
-		preparedStatement = konekcija.prepareStatement("SELECT naziv_artikla,kolicina_prodaje,jedinica_mere,neto_cena_artikla,stopa_pdv_a \r\n" + 
-				"FROM stavke_prodaje join artikal on stavke_prodaje.id_artikla = artikal.id_artikla\r\n" + 
-				"WHERE id_racuna = ?");
+		preparedStatement = konekcija.prepareStatement("SELECT naziv_artikla,kolicina_prodaje,jedinica_mere,neto_cena_artikla, "
+				+ "rabat_prodaje, stopa_pdv_a FROM stavke_prodaje "
+				+ "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla WHERE id_racuna = ?");
 		preparedStatement.setInt(1, id_racuna);
 		preparedStatement.execute();
 
@@ -40,8 +40,11 @@ public class DAOIzvestaj {
 			String jedinica_mere = rs.getString("jedinica_mere");
 			double neto_cena_artikla = rs.getDouble("neto_cena_artikla");
 			int stopa_PDV = rs.getInt("stopa_pdv_a");
+			double rabatProdaje = rs.getDouble("rabat_prodaje");
 			
-			Izvestaj ga = new Izvestaj(naziv, kolicina_prodaje, jedinica_mere, neto_cena_artikla, stopa_PDV);
+			Izvestaj ga = new Izvestaj(naziv, kolicina_prodaje, jedinica_mere, neto_cena_artikla, stopa_PDV, rabatProdaje);
+			
+			
 
 			lista.add(ga);
 		}

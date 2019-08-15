@@ -199,5 +199,11 @@ public class Kontroler {
 		DAOIzvestaj di = new DAOIzvestaj();
 		return di.getStavkeRacunaOtpremniceIzvestaj(id_racuna);
 	}
+	public void updateRacun(int idr, double poreska_osnovica_racuna, double ukupan_iznos_obracunatog_pdv_a_racuna, 
+			double ukupna_vrednost_racuna ) throws SQLException, ClassNotFoundException {
+		DAORacunOtpremnica ro = new DAORacunOtpremnica();
+		ro.updateRacun(idr, poreska_osnovica_racuna, ukupan_iznos_obracunatog_pdv_a_racuna, ukupna_vrednost_racuna);
+	}
+
 
 }

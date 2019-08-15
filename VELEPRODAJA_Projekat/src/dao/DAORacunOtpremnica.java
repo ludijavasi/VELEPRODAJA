@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import model.Izvestaj;
 import model.RacunOtpremnica;
 
 public class DAORacunOtpremnica {
@@ -83,5 +84,25 @@ public class DAORacunOtpremnica {
 
 		return generisanId;
 	}
+	public void updateRacun(int idr, double poreska_osnovica_racuna, double ukupan_iznos_obracunatog_pdv_a_racuna, 
+			double ukupna_vrednost_racuna ) throws SQLException, ClassNotFoundException {
+		connect();
+
+		preparedStatement = konekcija
+				.prepareStatement("UPDATE racun_otpremnica set "
+						+ "poreska_osnovica_racuna  = ?, ukupan_iznos_obracunatog_pdv_a_racuna   = ?,"
+						+ "ukupna_vrednost_racuna =? ,WHERE \r\n" + 
+						"id_racuna = ?");
+
+		preparedStatement.setDouble(1, poreska_osnovica_racuna);
+		preparedStatement.setDouble(2, ukupan_iznos_obracunatog_pdv_a_racuna);
+		preparedStatement.setDouble(3, ukupna_vrednost_racuna);
+		preparedStatement.setInt(4, idr);
+
+		preparedStatement.execute();
+
+		konekcija.close();
+	}
+
 
 }

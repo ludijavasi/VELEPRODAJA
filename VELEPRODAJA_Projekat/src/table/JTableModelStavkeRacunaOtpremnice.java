@@ -19,7 +19,7 @@ public class JTableModelStavkeRacunaOtpremnice extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		
-		return 4;
+		return 6;
 	}
 
 	@Override
@@ -38,9 +38,13 @@ public class JTableModelStavkeRacunaOtpremnice extends AbstractTableModel {
 		case 1:
 			return sro.getKolicinaProdaje();
 		case 2:
-			return sro.getNeto_cena_artikla();
+			return sro.getJedinica_mere();	
 		case 3:
+			return sro.getNeto_cena_artikla();
+		case 4:
 			return sro.getStopa_PDV();	
+		case 5:
+			return sro.getRabatProdaje();	
 
 		default:
 			return "Greska";
@@ -62,6 +66,8 @@ public class JTableModelStavkeRacunaOtpremnice extends AbstractTableModel {
 			return "Neto cena";
 		case 4:
 			return "PDV";
+		case 5:
+			return "Rabat";
 		
 		default:
 			return "Greska";

@@ -45,6 +45,19 @@ public class JFrameRacun_otpreminica extends JFrame {
 	private JDateChooser dateChooserRacunOtpremnica;
 	private JButton btnZapocniProdajuStavkeRacuna;
 	
+	public JTextField getTextFieldNetoRacun() {
+		// TODO Auto-generated method stub
+		return textFieldNetoRacun;
+	}
+	public JTextField getTextFieldPDVRacun() {
+		return textFieldPDVRacun;
+	}
+	public JTextField getTextFieldBrutoRacun() {
+		return textFieldBrutoRacun;
+	}
+	public JTable getTableStavkeRacuna() {
+		return tableStavkeRacuna;
+	}
 	public JButton getBtnZapocniProdajuStavkeRacuna() {
 		return btnZapocniProdajuStavkeRacuna;
 	}
@@ -210,5 +223,6 @@ public class JFrameRacun_otpreminica extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	
 
 }

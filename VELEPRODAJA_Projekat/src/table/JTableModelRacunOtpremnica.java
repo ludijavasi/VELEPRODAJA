@@ -3,14 +3,17 @@ package table;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
 
+import model.Izvestaj;
 import model.RacunOtpremnica;
 
-public class JTableModelRacunOtpremnica extends AbstractTableModel{
+public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 	
-	ArrayList<RacunOtpremnica> lista = new ArrayList<>();
+	ArrayList<Izvestaj> lista = new ArrayList<>();
 	
-	public JTableModelRacunOtpremnica(ArrayList<RacunOtpremnica> lista) {
+	public JTableModelRacunOtpremnica(ArrayList<Izvestaj> lista) {
 		super();
 		this.lista = lista;
 	}
@@ -18,7 +21,7 @@ public class JTableModelRacunOtpremnica extends AbstractTableModel{
 	@Override
 	public int getColumnCount() {
 		
-		return 8;
+		return 11;
 	}
 
 	@Override
@@ -29,24 +32,35 @@ public class JTableModelRacunOtpremnica extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int r, int c) {
-		RacunOtpremnica ro = lista.get(r);
+		Izvestaj ro = lista.get(r);
 		switch (c) {
 		case 0:
-			return ro.getIdRacuna();
+			return new Integer(r + 1);
 		case 1:
-			return ro.getKupac().getNazivFirmeKupca();
+			return ro.getNaziv_artikla();
 		case 2:
-			return ro.getArtikal().getNaziv_artikla();
+			return ro.getKolicinaProdaje();
 		case 3:
-			return ro.getDatumRacuna();
+			return ro.getJedinica_mere();
 		case 4:
-			return ro.getDatumNaplateRacuna();
+			return ro.getNeto_cena_artikla();
 		case 5:
-			return ro.getPoreskaOsnovicaRacuna();
+			return ro.getRabatProdaje();
 		case 6:
-			return ro.getUkupanIznosObracunatogPdvaRacuna();
+			return ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100);
 		case 7:
-			return ro.getUkupnaVrednostRacuna();	
+			return ro.getStopa_PDV();
+		case 8:
+			return (ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
+					*ro.getKolicinaProdaje();
+		case 9:
+			return ((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
+					*ro.getKolicinaProdaje())*ro.getStopa_PDV()/100;
+		case 10:
+			return ((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
+					*ro.getKolicinaProdaje())+
+					(((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
+					*ro.getKolicinaProdaje())*ro.getStopa_PDV()/100);
 
 		default:
 			return "Greska";
