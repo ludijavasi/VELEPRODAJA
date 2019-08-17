@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
@@ -99,28 +100,17 @@ public class JFrameCenaArtikla extends JFrame {
 		scrollPaneCenaArtikla.setBounds(10, 122, 794, 216);
 		contentPane.add(scrollPaneCenaArtikla);
 		
-		tableCenaArtikla = new JTable();
-		scrollPaneCenaArtikla.setViewportView(tableCenaArtikla);
-		postaviModelCeneArtikla(new ArrayList<>(), tableCenaArtikla);
-		ArrayList lista;
-		
-		try {
-			lista = Kontroler.getInstance().getArtikli(0);
-			postaviModelCeneArtikla(lista,tableCenaArtikla);
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
 		btnNazadCenaArtikla = new JButton("Nazad");
 		btnNazadCenaArtikla.setBounds(715, 347, 89, 23);
 		contentPane.add(btnNazadCenaArtikla);
 		
-		comboBoxGrupaArtikalaCenaArtikala = new JComboBox();
+		comboBoxGrupaArtikalaCenaArtikala  = new JComboBox<GrupaArtikala>();
 		comboBoxGrupaArtikalaCenaArtikala.setBounds(112, 12, 168, 20);
 		contentPane.add(comboBoxGrupaArtikalaCenaArtikala);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaCenaArtikala);
 		comboBoxGrupaArtikalaCenaArtikala.setSelectedItem(null);
+		
+		
 		
 		comboBoxGrupaArtikalaCenaArtikala.addActionListener(new ActionListener() {
 			@Override
@@ -140,13 +130,45 @@ public class JFrameCenaArtikla extends JFrame {
 			
 		});
 		
-		
-		comboBoxArtikalCenaArtikala = new JComboBox();
+		comboBoxGrupaArtikalaCenaArtikala.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				postaviModelCeneArtikla(new ArrayList<GrupaArtikala>(), tableCenaArtikla);
+				ArrayList<Artikli>lista;
+				try {
+						lista = Kontroler.getInstance().getArtikli(((GrupaArtikala) 
+									comboBoxGrupaArtikalaCenaArtikala.getSelectedItem()).getIdGrupeArtikala());
+						postaviModelCeneArtikla(lista, tableCenaArtikla);
+					
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				
+			}
+		});
+	
+		comboBoxArtikalCenaArtikala = new JComboBox<Artikli>();
 		comboBoxArtikalCenaArtikala.setEditable(true);
 		comboBoxArtikalCenaArtikala.setBounds(112, 41, 168, 20);
 		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalCenaArtikala);
 		contentPane.add(comboBoxArtikalCenaArtikala);	
+	
+		tableCenaArtikla = new JTable();
+		scrollPaneCenaArtikla.setViewportView(tableCenaArtikla);
+		postaviModelCeneArtikla(new ArrayList<>(), tableCenaArtikla);
+		ArrayList lista;
+		try {
+			if(comboBoxArtikalCenaArtikala.getSelectedItem()==null && comboBoxGrupaArtikalaCenaArtikala.getSelectedItem()==null) {
+				lista = Kontroler.getInstance().getArtikli(0);
+				postaviModelCeneArtikla(lista,tableCenaArtikla);
+				}
 		
+			} catch (ClassNotFoundException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	}
 	
 	private void postaviModelCeneArtikla(ArrayList lista, JTable t){

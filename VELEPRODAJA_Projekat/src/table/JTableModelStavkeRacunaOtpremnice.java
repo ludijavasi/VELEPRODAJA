@@ -78,6 +78,8 @@ public class JTableModelStavkeRacunaOtpremnice extends AbstractTableModel {
 		lista.clear();;
 		fireTableDataChanged();
 	}
-
+	public void updateTable() {
+		fireTableDataChanged();
+	}
 
 }
