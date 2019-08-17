@@ -25,6 +25,7 @@ import model.Zaposleni;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -415,7 +416,17 @@ public class JFrameZaposleni extends JFrame {
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (SQLException e) {
+				} catch(SQLIntegrityConstraintViolationException e1){
+					JOptionPane.showMessageDialog(btnDodajZaposlenog, "Username vec postoji!");
+					textUsername.setText("");
+				} catch(NumberFormatException e1){
+					JOptionPane.showMessageDialog(btnDodajZaposlenog, "Sva polja moraju biti popunjena!");
+					//textUsername.setText("");
+				}
+				
+				
+				
+				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

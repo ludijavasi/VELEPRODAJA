@@ -131,8 +131,8 @@ public class JFrameObrisiFilijalu extends JFrame {
 					public void actionPerformed(ActionEvent arg0) {
 						int rbn = Integer.parseInt(jffo.getTextIDFilijale().getText().trim());
 						try {
-							Kontroler.getInstance().obrisiMagacin(rbn);
-							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali magacin!");
+							Kontroler.getInstance().obrisiFilijalu(rbn);
+							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali filijalu!");
 							jffo.setVisible(false);
 							/*
 							 * textFieldAdresaMagacina.setText(""); textFieldEmailMagacina.setText("");

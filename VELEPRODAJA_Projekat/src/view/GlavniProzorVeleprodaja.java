@@ -151,7 +151,8 @@ public class GlavniProzorVeleprodaja {
 				
 				try {
 					ArrayList<Zaposleni> zaposleni = Kontroler.getInstance().getZaposleni();
-					for (Zaposleni z : zaposleni) {
+					for (Zaposleni z : zaposleni) {						
+						
 						if (z.getUsernameZaposlenog().equals(username) && z.getPasswordZaposlenog().equals(password)) {
 							if (z.getTipZaposlenja().equals("Menadzer")) {
 								logedIn = z;
