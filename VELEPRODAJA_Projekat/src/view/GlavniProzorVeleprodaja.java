@@ -237,11 +237,17 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mnTrenutnoPrijavljeniAdmin = new JMenuItem("Trenutno prijavljeni");
 		mnPrijavaAdmin.add(mnTrenutnoPrijavljeniAdmin);
 		mnTrenutnoPrijavljeniAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
+			public void actionPerformed(ActionEvent arg0) {	
 				int idzap = logedIn.getIdZaposlenog();
 				JFrameZaposleni jfzo = new JFrameZaposleni();
+				jfzo.getBtnObrisiZaposlenog().setVisible(true);
+				jfzo.getBtnDodajZaposlenog().setVisible(false);
+				jfzo.getBtnDodajZaposlenog().setVisible(false);
+				jfzo.getBtnAzurirajZaposlenog().setVisible(false);
+				jfzo.getBtnPonistiAkciju().setBounds(570, 420, 99, 23);
+				
 				jfzo.setVisible(true);
+				
 				
 			    try {
 					Zaposleni z = Kontroler.getInstance().getDetaljiZaposleni(idzap);
@@ -264,7 +270,6 @@ public class GlavniProzorVeleprodaja {
 					jfzo.getTextUsername().setText(z.getUsernameZaposlenog());
 					jfzo.getTextPassword().setText(z.getPasswordZaposlenog());					
 					
-					
 				} catch (ClassNotFoundException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -272,7 +277,7 @@ public class GlavniProzorVeleprodaja {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-
+			  
 			    jfzo.getBtnPonistiAkciju().addActionListener(new ActionListener() {
 					
 					@Override
@@ -281,6 +286,7 @@ public class GlavniProzorVeleprodaja {
 						
 					}
 				});
+			   
 				panelAdmin.setVisible(true);
 			}
 		});

@@ -63,7 +63,14 @@ public class JFrameZaposleni extends JFrame {
 	private JPanel panelPodaciOPosluZaposleni;
 	private JTextField textTelefon;
 	private JTextField textEMail;
+	private JButton btnAzurirajZaposlenog;
 	
+	
+	
+	public JButton getBtnAzurirajZaposlenog() {
+		return btnAzurirajZaposlenog;
+	}
+
 	private JDateChooser dateChooserDatumZaposlenja;
 	private JDateChooser dateChooserPrestankaZaposlenja;
 	
@@ -378,7 +385,7 @@ public class JFrameZaposleni extends JFrame {
 		lblIdZaposlenog.setBounds(20, 93, 90, 14);
 		panel.add(lblIdZaposlenog);
 
-		JButton btnDodajZaposlenog = new JButton("Dodaj Zaposlenog");
+		btnDodajZaposlenog = new JButton("Dodaj Zaposlenog");
 		btnDodajZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -471,7 +478,7 @@ public class JFrameZaposleni extends JFrame {
 		btnObrisiZaposlenog.setBounds(109, 430, 155, 23);
 		contentPaneDodajZaposlenog.add(btnObrisiZaposlenog);
 
-		JButton btnAzurirajZaposlenog = new JButton("Azuriraj Zaposlenog");
+		btnAzurirajZaposlenog = new JButton("Azuriraj Zaposlenog");
 		btnAzurirajZaposlenog.setBounds(295, 430, 155, 23);
 		contentPaneDodajZaposlenog.add(btnAzurirajZaposlenog);
 
@@ -513,6 +520,7 @@ public class JFrameZaposleni extends JFrame {
 		lblTipZaposlenja = new JLabel("Tip zaposlenja :");
 		lblTipZaposlenja.setBounds(10, 91, 103, 14);
 		panelPodaciOPosluZaposleni.add(lblTipZaposlenja);
+		
 	}
 	
 	private void popuniComboBoxFilijala(JComboBox<Filijala> comboBox) {
