@@ -42,6 +42,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 	private JComboBox comboBoxArtikalRacunStavke;
 	private JTextField textFieldIdRacunStavkeRacuna;
 	private JTextField textFieldArtikalStavkeRacuna;
+	private int generatedID;
 	
 	
 	
@@ -182,17 +183,35 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		
 		comboBoxGrupaArtikalaRacunStavke = new JComboBox();
 		comboBoxGrupaArtikalaRacunStavke.setBounds(184, 22, 137, 20);
-		contentPane.add(comboBoxGrupaArtikalaRacunStavke);
+		contentPane.add(comboBoxGrupaArtikalaRacunStavke);		
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaRacunStavke);
 		comboBoxGrupaArtikalaRacunStavke.setSelectedItem(null);
+		
+		comboBoxGrupaArtikalaRacunStavke.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//JOptionPane.showMessageDialog(null, "COMBOBOX ACTION");
+				if (comboBoxGrupaArtikalaRacunStavke.getSelectedItem() != null) {
+					popuniComboBoxArtikli(comboBoxArtikalRacunStavke,
+							((GrupaArtikala) comboBoxGrupaArtikalaRacunStavke.getSelectedItem()).getIdGrupeArtikala());
+					comboBoxArtikalRacunStavke.setSelectedItem(null);
+				}
+				else
+				{
+					comboBoxArtikalRacunStavke.removeAllItems();
+					comboBoxArtikalRacunStavke.setSelectedItem(null);
+				}
+			}
+		});
+	
 		
 		comboBoxArtikalRacunStavke = new JComboBox();
 		comboBoxArtikalRacunStavke.setEditable(true);
 		comboBoxArtikalRacunStavke.setBounds(184, 47, 137, 20);
-		popuniComboBoxArtikli(comboBoxArtikalRacunStavke);
-		if((comboBoxGrupaArtikalaRacunStavke.getSelectedItem() != null)) {
-		int idga = ((GrupaArtikala)comboBoxGrupaArtikalaRacunStavke.getSelectedItem()).getIdGrupeArtikala();
-		}
+		//popuniComboBoxArtikli(comboBoxArtikalRacunStavke);
+		//if((comboBoxGrupaArtikalaRacunStavke.getSelectedItem() != null)) {
+		//int idga = ((GrupaArtikala)comboBoxGrupaArtikalaRacunStavke.getSelectedItem()).getIdGrupeArtikala();
+		//}
 		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalRacunStavke);
 
 		contentPane.add(comboBoxArtikalRacunStavke);
@@ -208,7 +227,19 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		contentPane.add(textFieldArtikalStavkeRacuna);
 		textFieldArtikalStavkeRacuna.setColumns(10);
 		
-		
+		/*comboBoxArtikalRacunStavke.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(comboBoxArtikalRacunStavke.getSelectedItem() != null) {
+					
+					
+					
+					
+				}
+				
+			}
+		});*/
 		
 		
 	/*	comboBoxGrupaArtikalaRacunStavke.addActionListener(new ActionListener() {
@@ -249,14 +280,18 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		}
 	}
 
-	private void popuniComboBoxArtikli(JComboBox<Artikli> comboBox ) {
+	private void popuniComboBoxArtikli(JComboBox<String> comboBox, Integer id_grupe_artikala) {
+		
 
 		try {
-			ArrayList<Artikli> lista = Kontroler.getInstance().getArtikli();
+			comboBox.removeAllItems();
+			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli(id_grupe_artikala);
 
-		for (Artikli a : lista) {
-			comboBox.addItem(a);	
-		}
+			// for (GlavnaGrupa gg : lista) {
+			for (Artikli a : lista1) {
+				comboBox.addItem(a.toString());		
+
+			}
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
