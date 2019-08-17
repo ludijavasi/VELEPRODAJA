@@ -57,7 +57,9 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JTextField;
@@ -116,7 +118,7 @@ public class GlavniProzorVeleprodaja {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 
-		JPanel panelLogin = new JPanel();
+		JPanel  panelLogin = new JPanel();
 		frame.getContentPane().add(panelLogin, "name_268101549302672");
 		panelLogin.setLayout(null);
 
@@ -180,7 +182,7 @@ public class GlavniProzorVeleprodaja {
 							break;
 						}
 					}
-					if (logedIn == null) {
+					if (logedIn == null || username == null) {
 						JOptionPane.showMessageDialog(panelLogin, "Pogresan username / password");
 					}
 				} catch (HeadlessException e) {
@@ -194,7 +196,8 @@ public class GlavniProzorVeleprodaja {
 					e.printStackTrace();
 				}				
 				
-				textFieldUsername.setText("");
+				textFieldUsername.grabFocus();
+				textFieldUsername.selectAll();
 				passwordFieldPassword.setText("");				
 			
 			}
@@ -223,7 +226,9 @@ public class GlavniProzorVeleprodaja {
 		mntmOdjavaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelAdmin.setVisible(false);
-				panelLogin.setVisible(true);				
+				panelLogin.setVisible(true);
+				textFieldUsername.setText("");
+				textFieldUsername.grabFocus();
 			}
 		});
 		
@@ -233,14 +238,46 @@ public class GlavniProzorVeleprodaja {
 		mnPrijavaAdmin.add(mnTrenutnoPrijavljeniAdmin);
 		mnTrenutnoPrijavljeniAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFramePregledTrenutnoPrijavljeniNaMrezi prijavljeni = new JFramePregledTrenutnoPrijavljeniNaMrezi();
-				panelAdmin.setVisible(false);
-				prijavljeni.setVisible(true);	
-				prijavljeni.getBtnIzlazTrenutnoNaMrezi().addActionListener(new ActionListener() {
+				
+				int idzap = logedIn.getIdZaposlenog();
+				JFrameZaposleni jfzo = new JFrameZaposleni();
+				jfzo.setVisible(true);
+				
+			    try {
+					Zaposleni z = Kontroler.getInstance().getDetaljiZaposleni(idzap);
+					
+					jfzo.getTextIDZaposlenog().setText(Integer.toString(z.getIdZaposlenog()));
+					jfzo.getTextIme().setText(z.getImeZaposlenog());
+					jfzo.getTextPrezime().setText(z.getPrezimeZaposlenog());
+					jfzo.getTextAdresa().setText(z.getAdresaZaposlenog());
+					jfzo.getTextGrad_Ostina().setText(z.getGradOpstinaZaposlenog());
+					jfzo.getTextTelefon().setText(z.getTelefonZaposlenog());
+					jfzo.getTextEMail().setText(z.getEmailZaposlenog());					
+					
+					jfzo.getTextPlata().setText(Double.toString(z.getPlataZaposlenog()));
+					jfzo.getComboBoxTipZaposlenja().setSelectedItem(z.getTipZaposlenja());
+					
+					jfzo.getComboBoxStrucnaSprema().setSelectedItem(z.getStrucnaSpremaZaposlenog());
+					jfzo.getDateChooserDatumZaposlenja().setDate(z.getDatumPocetkaZaposlenja());
+					jfzo.getDateChooserPrestankaZaposlenja().setDate(z.getDatumZavrsetkaZaposlenja());
+					
+					jfzo.getTextUsername().setText(z.getUsernameZaposlenog());
+					jfzo.getTextPassword().setText(z.getPasswordZaposlenog());					
+					
+					
+				} catch (ClassNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+
+			    jfzo.getBtnPonistiAkciju().addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						prijavljeni.setVisible(false);
+						jfzo.setVisible(false);
 						
 					}
 				});
@@ -272,10 +309,26 @@ public class GlavniProzorVeleprodaja {
 		mntmKreirajRacunOtpremnicuAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
+				ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ro.setVisible(false);
+						
+					}
+				});
 				
 				ro.setVisible(true);
 				ro.getBtnZapocniProdajuStavkeRacuna().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						Kupac k1 =(Kupac) ro.getComboBoxKupacRacun().getSelectedItem();
+						int ValutaKupca = k1.getValutaPlacanjaKupca();
+						Date d = ro.getDateChooserRacunOtpremnica().getDate();
+						Calendar cal = Calendar.getInstance();
+						cal.add(Calendar.DAY_OF_MONTH, ValutaKupca);
+						Date d1 = cal.getTime();
+						ro.getDateChooserNaplateracuna().setDate(d1);
+						
 						
 						try {
 							Date datumRacuna = ro.getDateChooserRacunOtpremnica().getDate();

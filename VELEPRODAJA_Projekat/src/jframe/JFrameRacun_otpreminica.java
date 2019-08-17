@@ -3,7 +3,12 @@ package jframe;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JFrame;
@@ -15,6 +20,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import kontroler.Kontroler;
+import model.Artikli;
 import model.Kupac;
 import model.RacunOtpremnica;
 import table.JTableModelGrupeArtikala;
@@ -45,6 +51,10 @@ public class JFrameRacun_otpreminica extends JFrame {
 	private JDateChooser dateChooserRacunOtpremnica;
 	private JButton btnZapocniProdajuStavkeRacuna;
 	
+	
+	public void setDateChooserNaplateracuna(JDateChooser dateChooserNaplateracuna) {
+		this.dateChooserNaplateracuna = dateChooserNaplateracuna;
+	}
 	public JTextField getTextFieldNetoRacun() {
 		// TODO Auto-generated method stub
 		return textFieldNetoRacun;
@@ -131,7 +141,7 @@ public class JFrameRacun_otpreminica extends JFrame {
 		contentPane.add(lblRacunotpreminica);
 
 		textFieldRacunOtpremnicaRacun = new JTextField();
-		textFieldRacunOtpremnicaRacun.setBounds(133, 72, 86, 20);
+		textFieldRacunOtpremnicaRacun.setBounds(133, 72, 130, 20);
 		contentPane.add(textFieldRacunOtpremnicaRacun);
 		textFieldRacunOtpremnicaRacun.setColumns(10);
 
@@ -142,28 +152,40 @@ public class JFrameRacun_otpreminica extends JFrame {
 		dateChooserRacunOtpremnica = new JDateChooser();
 		dateChooserRacunOtpremnica.setBounds(410, 31, 277, 20);
 		contentPane.add(dateChooserRacunOtpremnica);
+		Date date = new Date();
+		Calendar calendar = Calendar.getInstance();
+		int subtractYearValue = 0;
+
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+		int currentDate= Calendar.getInstance().get(Calendar.DATE);
+
+		calendar.set(currentYear - subtractYearValue , currentMonth , currentDate);
+		date.setTime(calendar.getTimeInMillis());
+
+		dateChooserRacunOtpremnica.setDate(date);
 
 		JLabel lblNetopdvbruto = new JLabel("Neto/PDV/Bruto :");
-		lblNetopdvbruto.setBounds(306, 75, 91, 14);
+		lblNetopdvbruto.setBounds(306, 104, 91, 14);
 		contentPane.add(lblNetopdvbruto);
 
 		textFieldNetoRacun = new JTextField();
-		textFieldNetoRacun.setBounds(410, 72, 86, 20);
+		textFieldNetoRacun.setBounds(410, 101, 86, 20);
 		contentPane.add(textFieldNetoRacun);
 		textFieldNetoRacun.setColumns(10);
 
 		textFieldPDVRacun = new JTextField();
-		textFieldPDVRacun.setBounds(505, 72, 86, 20);
+		textFieldPDVRacun.setBounds(506, 101, 86, 20);
 		contentPane.add(textFieldPDVRacun);
 		textFieldPDVRacun.setColumns(10);
 
 		textFieldBrutoRacun = new JTextField();
-		textFieldBrutoRacun.setBounds(601, 72, 86, 20);
+		textFieldBrutoRacun.setBounds(601, 101, 86, 20);
 		contentPane.add(textFieldBrutoRacun);
 		textFieldBrutoRacun.setColumns(10);
 
 		JScrollPane scrollPaneRacun = new JScrollPane();
-		scrollPaneRacun.setBounds(10, 122, 859, 288);
+		scrollPaneRacun.setBounds(10, 141, 859, 269);
 		contentPane.add(scrollPaneRacun);
 
 		tableStavkeRacuna = new JTable();
@@ -193,17 +215,26 @@ public class JFrameRacun_otpreminica extends JFrame {
 		contentPane.add(btnPonistiAkcijuRacunOtpremnica);
 		
 		comboBoxKupacRacun = new JComboBox<Kupac>();
-		comboBoxKupacRacun.setBounds(133, 31, 86, 20);
+		comboBoxKupacRacun.setBounds(133, 31, 130, 20);
 		contentPane.add(comboBoxKupacRacun);
 		popuniComboBoxKupacRacun(comboBoxKupacRacun);
 		
 		dateChooserNaplateracuna = new JDateChooser();
-		dateChooserNaplateracuna.setBounds(410, 49, 277, 20);
+		dateChooserNaplateracuna.setBounds(410, 69, 277, 20);
 		contentPane.add(dateChooserNaplateracuna);
 		
 		btnZapocniProdajuStavkeRacuna = new JButton("Zapocni prodaju");
-		btnZapocniProdajuStavkeRacuna.setBounds(10, 100, 89, 23);
+		btnZapocniProdajuStavkeRacuna.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
+		btnZapocniProdajuStavkeRacuna.setBounds(133, 103, 130, 23);
 		contentPane.add(btnZapocniProdajuStavkeRacuna);
+		
+		JLabel lblValutaRacunOtpremnica = new JLabel("Valuta :");
+		lblValutaRacunOtpremnica.setBounds(306, 75, 46, 14);
+		contentPane.add(lblValutaRacunOtpremnica);
 	}
 	
 
@@ -223,6 +254,4 @@ public class JFrameRacun_otpreminica extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	
-
 }
