@@ -9,6 +9,7 @@ public class Zaposleni {
 	private int idFilijale;
 	private String imeZaposlenog;
 	private String prezimeZaposlenog;
+	private String jmbgZaposlenog;
 	private String adresaZaposlenog;
 	private String gradOpstinaZaposlenog;	
 	private String telefonZaposlenog;
@@ -22,7 +23,7 @@ public class Zaposleni {
 	private String passwordZaposlenog;
 	
 	
-	public Zaposleni(int idZaposlenog, int idFilijale, String imeZaposlenog, String prezimeZaposlenog,
+	public Zaposleni(int idZaposlenog, int idFilijale, String imeZaposlenog, String prezimeZaposlenog, String jmbgZaposlenog,
 			String adresaZaposlenog, String gradOpstinaZaposlenog, String telefonZaposlenog, String emailZaposlenog,
 			String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja,
 			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog,
@@ -32,6 +33,7 @@ public class Zaposleni {
 		this.idFilijale = idFilijale;
 		this.imeZaposlenog = imeZaposlenog;
 		this.prezimeZaposlenog = prezimeZaposlenog;
+		this.jmbgZaposlenog = jmbgZaposlenog;
 		this.adresaZaposlenog = adresaZaposlenog;
 		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
 		this.telefonZaposlenog = telefonZaposlenog;
@@ -46,7 +48,7 @@ public class Zaposleni {
 	}
 
 
-	public Zaposleni(String imeZaposlenog, String prezimeZaposlenog, String adresaZaposlenog,
+	public Zaposleni(String imeZaposlenog, String prezimeZaposlenog, String jmbgZaposlenog, String adresaZaposlenog,
 			String gradOpstinaZaposlenog, String telefonZaposlenog, String emailZaposlenog,
 			String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja,
 			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog,
@@ -54,6 +56,7 @@ public class Zaposleni {
 		super();
 		this.imeZaposlenog = imeZaposlenog;
 		this.prezimeZaposlenog = prezimeZaposlenog;
+		this.jmbgZaposlenog = jmbgZaposlenog;
 		this.adresaZaposlenog = adresaZaposlenog;
 		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
 		this.telefonZaposlenog = telefonZaposlenog;
@@ -68,7 +71,7 @@ public class Zaposleni {
 	}
 
 
-	public Zaposleni(int idFilijale, String imeZaposlenog, String prezimeZaposlenog, String adresaZaposlenog,
+	public Zaposleni(int idFilijale, String imeZaposlenog, String prezimeZaposlenog, String jmbgZaposlenog, String adresaZaposlenog,
 			String gradOpstinaZaposlenog, String telefonZaposlenog, String emailZaposlenog,
 			String strucnaSpremaZaposlenog, Date datumPocetkaZaposlenja, Date datumZavrsetkaZaposlenja,
 			double plataZaposlenog, String tipZaposlenja, String usernameZaposlenog,
@@ -77,6 +80,7 @@ public class Zaposleni {
 		this.idFilijale = idFilijale;
 		this.imeZaposlenog = imeZaposlenog;
 		this.prezimeZaposlenog = prezimeZaposlenog;
+		this.jmbgZaposlenog = jmbgZaposlenog;
 		this.adresaZaposlenog = adresaZaposlenog;
 		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
 		this.telefonZaposlenog = telefonZaposlenog;
@@ -243,6 +247,17 @@ public class Zaposleni {
 
 	public void setPasswordZaposlenog(String passwordZaposlenog) {
 		this.passwordZaposlenog = passwordZaposlenog;
+	}		
+
+
+	
+	public String getJmbgZaposlenog() {
+		return jmbgZaposlenog;
+	}
+
+
+	public void setJmbgZaposlenog(String jmbgZaposlenog) {
+		this.jmbgZaposlenog = jmbgZaposlenog;
 	}
 
 

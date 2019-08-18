@@ -64,6 +64,7 @@ import java.util.Date;
 
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -74,10 +75,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class GlavniProzorVeleprodaja {
 
-	private JFrame frame;
+	private JFrame frmVeleprodaja;
 	private JTextField textFieldUsername;
 	private JPanel panelAdmin;
 	private JPanel panelUserKomercijalista;
@@ -94,7 +97,7 @@ public class GlavniProzorVeleprodaja {
 			public void run() {
 				try {
 					GlavniProzorVeleprodaja window = new GlavniProzorVeleprodaja();
-					window.frame.setVisible(true);
+					window.frmVeleprodaja.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -113,37 +116,40 @@ public class GlavniProzorVeleprodaja {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 646, 475);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		frmVeleprodaja = new JFrame();
+		frmVeleprodaja.setFont(new Font("Arial", Font.BOLD, 14));
+		frmVeleprodaja.setTitle("VELEPRODAJA");
+		frmVeleprodaja.setBounds(100, 100, 700, 500);
+		frmVeleprodaja.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmVeleprodaja.getContentPane().setLayout(new CardLayout(0, 0));
 
 		JPanel  panelLogin = new JPanel();
-		frame.getContentPane().add(panelLogin, "name_268101549302672");
+		frmVeleprodaja.getContentPane().add(panelLogin, "name_268101549302672");
 		panelLogin.setLayout(null);
 
 		JPanel panelLogovanja = new JPanel();
-		panelLogovanja.setBorder(new TitledBorder(null, "Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelLogovanja.setBounds(135, 85, 399, 177);
+		panelLogovanja.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Login", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelLogovanja.setBounds(150, 100, 400, 200);
 		panelLogin.add(panelLogovanja);
 		panelLogovanja.setLayout(null);
 
 		JLabel lblUsername = new JLabel("Username :");
-		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblUsername.setBounds(26, 48, 93, 14);
+		lblUsername.setFont(new Font("Arial", Font.BOLD, 14));
+		lblUsername.setBounds(26, 48, 100, 20);
 		panelLogovanja.add(lblUsername);
 
 		JLabel lblPassword = new JLabel("Password :");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPassword.setBounds(26, 87, 93, 14);
+		lblPassword.setFont(new Font("Arial", Font.BOLD, 14));
+		lblPassword.setBounds(26, 87, 100, 20);
 		panelLogovanja.add(lblPassword);
 
 		textFieldUsername = new JTextField();
-		textFieldUsername.setBounds(177, 47, 191, 20);
+		textFieldUsername.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldUsername.setBounds(150, 47, 220, 20);
 		panelLogovanja.add(textFieldUsername);
 		textFieldUsername.setColumns(10);
 
-		JButton btnLogin = new JButton("Login");
+		JButton btnLogin = new JButton("Login");        
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -202,27 +208,29 @@ public class GlavniProzorVeleprodaja {
 			
 			}
 			});
-		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLogin.setBounds(141, 132, 89, 23);
-		panelLogovanja.add(btnLogin);
+		btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
+		btnLogin.setBounds(150, 150, 100, 25);
+		panelLogovanja.add(btnLogin);		
 		
 		passwordFieldPassword = new JPasswordField();
-		passwordFieldPassword.setBounds(177, 86, 191, 20);
+		passwordFieldPassword.setFont(new Font("Arial", Font.PLAIN, 13));
+		passwordFieldPassword.setBounds(150, 86, 220, 20);
 		panelLogovanja.add(passwordFieldPassword);
 
 		panelAdmin = new JPanel();
-		frame.getContentPane().add(panelAdmin, "name_268160544207166");
+		frmVeleprodaja.getContentPane().add(panelAdmin, "name_268160544207166");
 		panelAdmin.setLayout(null);
 
 		JMenuBar menuBarAdmin = new JMenuBar();
-		menuBarAdmin.setBounds(0, 0, 656, 27);
+		menuBarAdmin.setBounds(0, 0, 684, 27);
 		panelAdmin.add(menuBarAdmin);
 
 		JMenu mnPrijavaAdmin = new JMenu("Prijava");
-		mnPrijavaAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnPrijavaAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnPrijavaAdmin);
 
 		JMenuItem mntmOdjavaAdmin = new JMenuItem("Odjava");
+		mntmOdjavaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmOdjavaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelAdmin.setVisible(false);
@@ -234,17 +242,20 @@ public class GlavniProzorVeleprodaja {
 		
 		mnPrijavaAdmin.add(mntmOdjavaAdmin);
 		
+		mntmOdjavaAdmin.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK));
+		
 		JMenuItem mnTrenutnoPrijavljeniAdmin = new JMenuItem("Trenutno prijavljeni");
+		mnTrenutnoPrijavljeniAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnPrijavaAdmin.add(mnTrenutnoPrijavljeniAdmin);
 		mnTrenutnoPrijavljeniAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 				int idzap = logedIn.getIdZaposlenog();
 				JFrameZaposleni jfzo = new JFrameZaposleni();
-				jfzo.getBtnObrisiZaposlenog().setVisible(true);
-				jfzo.getBtnDodajZaposlenog().setVisible(false);
-				jfzo.getBtnDodajZaposlenog().setVisible(false);
+				jfzo.getBtnObrisiZaposlenog().setVisible(false);
+				jfzo.getBtnDodajZaposlenog().setVisible(false);				
 				jfzo.getBtnAzurirajZaposlenog().setVisible(false);
-				jfzo.getBtnPonistiAkciju().setBounds(570, 420, 99, 23);
+				jfzo.getBtnPonistiAkciju().setVisible(true);
+				//jfzo.getBtnPonistiAkciju().setBounds(570, 420, 99, 23);
 				
 				jfzo.setVisible(true);
 				
@@ -256,6 +267,7 @@ public class GlavniProzorVeleprodaja {
 					jfzo.getTextIme().setText(z.getImeZaposlenog());
 					jfzo.getTextPrezime().setText(z.getPrezimeZaposlenog());
 					jfzo.getTextAdresa().setText(z.getAdresaZaposlenog());
+					jfzo.getTextJMBG().setText(z.getJmbgZaposlenog());
 					jfzo.getTextGrad_Ostina().setText(z.getGradOpstinaZaposlenog());
 					jfzo.getTextTelefon().setText(z.getTelefonZaposlenog());
 					jfzo.getTextEMail().setText(z.getEmailZaposlenog());					
@@ -293,6 +305,7 @@ public class GlavniProzorVeleprodaja {
 
 
 		JMenuItem mntmIzlazAdmin = new JMenuItem("Izlaz");
+		mntmIzlazAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmIzlazAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -305,13 +318,14 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnPrijavaAdmin.add(mntmIzlazAdmin);
 
-		mntmIzlazAdmin.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
+		mntmIzlazAdmin.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, InputEvent.CTRL_DOWN_MASK));
 
 		JMenu mnProdajaAdmin = new JMenu("    Prodaja");
-		mnProdajaAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnProdajaAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnProdajaAdmin);
 
 		JMenuItem mntmKreirajRacunOtpremnicuAdmin = new JMenuItem("Kreiraj ra\u010Dun/otpremnicu");
+		mntmKreirajRacunOtpremnicuAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmKreirajRacunOtpremnicuAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
@@ -487,6 +501,7 @@ public class GlavniProzorVeleprodaja {
 		mnProdajaAdmin.add(mntmKreirajRacunOtpremnicuAdmin);
 
 		JMenuItem mntmCeneArtiklaAdmin = new JMenuItem("Cene artikla");
+		mntmCeneArtiklaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmCeneArtiklaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameCenaArtikla ca = new JFrameCenaArtikla();
@@ -505,10 +520,12 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnProdajaAdmin.add(mntmCeneArtiklaAdmin);
 
-		JMenuItem mntmStorniranjeRacunaAdmin = new JMenuItem("Storniranje racuna");
+		JMenuItem mntmStorniranjeRacunaAdmin = new JMenuItem("Storniranje ra\u010Duna");
+		mntmStorniranjeRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnProdajaAdmin.add(mntmStorniranjeRacunaAdmin);
 
-		JMenuItem mntmPregledRacunaAdmin = new JMenuItem("Pregled racuna");
+		JMenuItem mntmPregledRacunaAdmin = new JMenuItem("Pregled ra\u010Duna");
+		mntmPregledRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmPregledRacunaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -542,9 +559,11 @@ public class GlavniProzorVeleprodaja {
 		mnProdajaAdmin.add(mntmPregledRacunaAdmin);
 
 		JMenu mnAnalizaProdajeAdmin = new JMenu("Analiza prodaje");
+		mnAnalizaProdajeAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnProdajaAdmin.add(mnAnalizaProdajeAdmin);
 
 		JMenuItem mntmProdajnaCenaArtiklaAdmin = new JMenuItem("Prodajna cena artikla");
+		mntmProdajnaCenaArtiklaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmProdajnaCenaArtiklaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameCenaArtikla pca = new JFrameCenaArtikla();
@@ -575,19 +594,23 @@ public class GlavniProzorVeleprodaja {
 		mnAnalizaProdajeAdmin.add(mntmProdajnaCenaArtiklaAdmin);
 
 		JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po artiklu");
+		mntmProdajaPoArtikluAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmProdajaPoArtikluAdmin);
 
 		JMenuItem mntmProdajaPoKupcimaAdmin = new JMenuItem("Prodaja po kupcima");
+		mntmProdajaPoKupcimaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmProdajaPoKupcimaAdmin);
 
 		JMenuItem mntmSumarniPregledDokumenataAdmin = new JMenuItem("Sumarni pregled dokumenata");
+		mntmSumarniPregledDokumenataAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmSumarniPregledDokumenataAdmin);
 
 		JMenu mnSkladisteAdmin = new JMenu("    Skladi\u0161te");
-		mnSkladisteAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnSkladisteAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnSkladisteAdmin);
 
 		JMenuItem mntmKontrolaZalihaAdmin = new JMenuItem("Kontrola zaliha");
+		mntmKontrolaZalihaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmKontrolaZalihaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameKontrolaZaliha kz = new JFrameKontrolaZaliha();
@@ -629,12 +652,13 @@ public class GlavniProzorVeleprodaja {
 		mnSkladisteAdmin.add(mntmKontrolaZalihaAdmin);
 
 		JMenu mnZaposleniAdmin = new JMenu("    Zaposleni");
-		mnZaposleniAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnZaposleniAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnZaposleniAdmin);
 
 		JMenuItem mntmTrenutnoZaposleniAdmin = new JMenuItem("Trenutno zaposleni");
 
 		JMenuItem mntmPregledZaposlenihAdmin = new JMenuItem("Pregled zaposlenih");
+		mntmPregledZaposlenihAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmPregledZaposlenihAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFramePregledZaposlenih tz = new JFramePregledZaposlenih();
@@ -666,13 +690,15 @@ public class GlavniProzorVeleprodaja {
 		mnZaposleniAdmin.add(mntmPregledZaposlenihAdmin);
 
 		JMenu mnMaticniPodaciAdmin = new JMenu("    Mati\u010Dni podaci");
-		mnMaticniPodaciAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnMaticniPodaciAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnMaticniPodaciAdmin);
 
 		JMenu mnFilijalaAdmin = new JMenu("Filijala");
+		mnFilijalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnMaticniPodaciAdmin.add(mnFilijalaAdmin);
 
 		JMenuItem mntmPregledFilijalaAdmin = new JMenuItem("Pregled filijala");
+		mntmPregledFilijalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmPregledFilijalaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFramePregledFilijale pf = new JFramePregledFilijale();
@@ -702,6 +728,7 @@ public class GlavniProzorVeleprodaja {
 		mnFilijalaAdmin.add(mntmPregledFilijalaAdmin);
 
 		JMenuItem mntmDodavanjeFilijaleAdmin = new JMenuItem("Dodavanje filijale");
+		mntmDodavanjeFilijaleAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmDodavanjeFilijaleAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameFilijala jf = new JFrameFilijala();
@@ -721,7 +748,8 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnFilijalaAdmin.add(mntmDodavanjeFilijaleAdmin);
 
-		JMenuItem mntmBrisanjeFilijaleAdmin = new JMenuItem("Brisanje filijale");
+		JMenuItem mntmBrisanjeFilijaleAdmin = new JMenuItem("Obri\u0161i filijalu");
+		mntmBrisanjeFilijaleAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmBrisanjeFilijaleAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameObrisiFilijalu of = new JFrameObrisiFilijalu();
@@ -742,13 +770,16 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnFilijalaAdmin.add(mntmBrisanjeFilijaleAdmin);
 
-		JMenuItem mntmAzuriranjeFilijaleAdmin = new JMenuItem("Azuriranje");
+		JMenuItem mntmAzuriranjeFilijaleAdmin = new JMenuItem("A\u017Euriranje");
+		mntmAzuriranjeFilijaleAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnFilijalaAdmin.add(mntmAzuriranjeFilijaleAdmin);
 
 		JMenu mnZaposleniMatPodaciAdmin = new JMenu("Zaposleni");
+		mnZaposleniMatPodaciAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnMaticniPodaciAdmin.add(mnZaposleniMatPodaciAdmin);
 
 		JMenuItem mntmPregledZaposlenihMPAdmin = new JMenuItem("Pregled zaposlenih");
+		mntmPregledZaposlenihMPAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmPregledZaposlenihMPAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFramePregledZaposlenih tz = new JFramePregledZaposlenih();
@@ -780,6 +811,7 @@ public class GlavniProzorVeleprodaja {
 		mnZaposleniMatPodaciAdmin.add(mntmPregledZaposlenihMPAdmin);
 
 		JMenuItem mntmDodajZaposlenogAdmin = new JMenuItem("Dodaj zaposlenog");
+		mntmDodajZaposlenogAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmDodajZaposlenogAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameZaposleni fz = new JFrameZaposleni();
@@ -799,7 +831,8 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnZaposleniMatPodaciAdmin.add(mntmDodajZaposlenogAdmin);
 
-		JMenuItem mntmObrisiZaposlenogAdmin = new JMenuItem("Obrisi zaposlenog");
+		JMenuItem mntmObrisiZaposlenogAdmin = new JMenuItem("Obri\u0161i zaposlenog");
+		mntmObrisiZaposlenogAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmObrisiZaposlenogAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameObrisiZaposlenog oz = new JFrameObrisiZaposlenog();
@@ -820,7 +853,8 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnZaposleniMatPodaciAdmin.add(mntmObrisiZaposlenogAdmin);
 
-		JMenuItem mntmAzurirajZaposlenogAdmin = new JMenuItem("Azuriraj");
+		JMenuItem mntmAzurirajZaposlenogAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajZaposlenogAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmAzurirajZaposlenogAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -828,9 +862,11 @@ public class GlavniProzorVeleprodaja {
 		mnZaposleniMatPodaciAdmin.add(mntmAzurirajZaposlenogAdmin);
 
 		JMenu mnSkladistaAdmin = new JMenu("Magacin");
+		mnSkladistaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnMaticniPodaciAdmin.add(mnSkladistaAdmin);
 
 		JMenuItem mntmAktivnaSkladistaAdmin = new JMenuItem("Pregled magacina");
+		mntmAktivnaSkladistaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmAktivnaSkladistaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFramePregledMagacina pm = new JFramePregledMagacina();
@@ -863,6 +899,7 @@ public class GlavniProzorVeleprodaja {
 		mnSkladistaAdmin.add(mntmAktivnaSkladistaAdmin);
 
 		JMenuItem mntmDodajSkladisteAdmin = new JMenuItem("Dodaj magacin");
+		mntmDodajSkladisteAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmDodajSkladisteAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameMagacin jfm = new JFrameMagacin();
@@ -880,7 +917,8 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnSkladistaAdmin.add(mntmDodajSkladisteAdmin);
 
-		JMenuItem mntmObrisiSkladisteAdmin = new JMenuItem("Obrisi magacin");
+		JMenuItem mntmObrisiSkladisteAdmin = new JMenuItem("Obri\u0161i magacin");
+		mntmObrisiSkladisteAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmObrisiSkladisteAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameObrisiMagacin om = new JFrameObrisiMagacin();
@@ -901,13 +939,16 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnSkladistaAdmin.add(mntmObrisiSkladisteAdmin);
 
-		JMenuItem mntmAzurirajSkladistaAdmin = new JMenuItem("Azuriraj");
+		JMenuItem mntmAzurirajSkladistaAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajSkladistaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnSkladistaAdmin.add(mntmAzurirajSkladistaAdmin);
 
 		JMenu mnKupciAdmin = new JMenu("Kupci");
+		mnKupciAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnMaticniPodaciAdmin.add(mnKupciAdmin);
 
 		JMenuItem mntmAktivniKupciAdmin = new JMenuItem("Pregled kupaca");
+		mntmAktivniKupciAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmAktivniKupciAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFramePregledKupca pk = new JFramePregledKupca();
@@ -940,6 +981,7 @@ public class GlavniProzorVeleprodaja {
 		mnKupciAdmin.add(mntmAktivniKupciAdmin);
 
 		JMenuItem mntmDodajKupcaAdmin = new JMenuItem("Dodaj kupca");
+		mntmDodajKupcaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmDodajKupcaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameKupac jfk = new JFrameKupac();
@@ -956,7 +998,8 @@ public class GlavniProzorVeleprodaja {
 				
 		mnKupciAdmin.add(mntmDodajKupcaAdmin);
 
-		JMenuItem mntmObrisiKupcaAdmin = new JMenuItem("Obrisi kupca");
+		JMenuItem mntmObrisiKupcaAdmin = new JMenuItem("Obri\u0161i kupca");
+		mntmObrisiKupcaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmObrisiKupcaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameObrisiKupca ok = new JFrameObrisiKupca();
@@ -977,13 +1020,16 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnKupciAdmin.add(mntmObrisiKupcaAdmin);
 
-		JMenuItem mntmAzurirajKupcaAdmin = new JMenuItem("Azuriraj");
+		JMenuItem mntmAzurirajKupcaAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajKupcaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnKupciAdmin.add(mntmAzurirajKupcaAdmin);
 
 		JMenu mnArtikliAdmin = new JMenu("Artikli");
+		mnArtikliAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnMaticniPodaciAdmin.add(mnArtikliAdmin);
 
 		JMenuItem mntmPregledArtikalaAdmin = new JMenuItem("Pregled artikala");
+		mntmPregledArtikalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmPregledArtikalaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFramePregledArtikala artikal = new JFramePregledArtikala();
@@ -1014,6 +1060,7 @@ public class GlavniProzorVeleprodaja {
 		mnArtikliAdmin.add(mntmPregledArtikalaAdmin);
 
 		JMenuItem mntmDodajArtikalAdmin = new JMenuItem("Dodaj artikal");
+		mntmDodajArtikalAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmDodajArtikalAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -1034,7 +1081,8 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnArtikliAdmin.add(mntmDodajArtikalAdmin);
 
-		JMenuItem mntmObrisiArtikalAdmin = new JMenuItem("Obrisi artikal");
+		JMenuItem mntmObrisiArtikalAdmin = new JMenuItem("Obri\u0161i artikal");
+		mntmObrisiArtikalAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmObrisiArtikalAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameObrisiArtikal oa = new JFrameObrisiArtikal();
@@ -1055,13 +1103,16 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnArtikliAdmin.add(mntmObrisiArtikalAdmin);
 
-		JMenuItem mntmAzurirajArtikleAdmin = new JMenuItem("Azuriraj");
+		JMenuItem mntmAzurirajArtikleAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajArtikleAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnArtikliAdmin.add(mntmAzurirajArtikleAdmin);
 
 		JMenu mnGrupeArtikalaAdmin = new JMenu("Grupe artikala");
+		mnGrupeArtikalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnMaticniPodaciAdmin.add(mnGrupeArtikalaAdmin);
 
 		JMenuItem mntmPregledGrupeArtikalaAdmin = new JMenuItem("Pregled grupe artikala");
+		mntmPregledGrupeArtikalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmPregledGrupeArtikalaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -1099,6 +1150,7 @@ public class GlavniProzorVeleprodaja {
 		mnGrupeArtikalaAdmin.add(mntmPregledGrupeArtikalaAdmin);
 
 		JMenuItem mntmDodajGrupuArtikalaAdmin = new JMenuItem("Dodaj grupu artikala");
+		mntmDodajGrupuArtikalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmDodajGrupuArtikalaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -1120,7 +1172,8 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnGrupeArtikalaAdmin.add(mntmDodajGrupuArtikalaAdmin);
 
-		JMenuItem mntmObrisiGrupuArtikalaAdmin = new JMenuItem("Obrisi grupu artikala");
+		JMenuItem mntmObrisiGrupuArtikalaAdmin = new JMenuItem("Obri\u0161i grupu artikala");
+		mntmObrisiGrupuArtikalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmObrisiGrupuArtikalaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -1142,26 +1195,32 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnGrupeArtikalaAdmin.add(mntmObrisiGrupuArtikalaAdmin);
 
-		JMenuItem mntmAzurirajGrupuArtikalaAdmin = new JMenuItem("Azuriraj");
+		JMenuItem mntmAzurirajGrupuArtikalaAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajGrupuArtikalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnGrupeArtikalaAdmin.add(mntmAzurirajGrupuArtikalaAdmin);
 
 		JMenu mnIzvestajAdmin = new JMenu("    Izve\u0161taj");
-		mnIzvestajAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnIzvestajAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnIzvestajAdmin);
 
 		JMenu mnAnalizaProdajeIzvestajAdmin = new JMenu("Analiza prodaje");
+		mnAnalizaProdajeIzvestajAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnIzvestajAdmin.add(mnAnalizaProdajeIzvestajAdmin);
 
 		JMenuItem mntmProdajnaCenaArtiklaIzvAdmin = new JMenuItem("Prodajna cena artikla");
+		mntmProdajnaCenaArtiklaIzvAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeIzvestajAdmin.add(mntmProdajnaCenaArtiklaIzvAdmin);
 
 		JMenuItem mntmProdajaPoArtiklimaIzvAdmin = new JMenuItem("Prodaja po artiklima");
+		mntmProdajaPoArtiklimaIzvAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeIzvestajAdmin.add(mntmProdajaPoArtiklimaIzvAdmin);
 
 		JMenuItem mntmProdajaPoKupcimaIzvAdmin = new JMenuItem("Prodaja po kupcima");
+		mntmProdajaPoKupcimaIzvAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeIzvestajAdmin.add(mntmProdajaPoKupcimaIzvAdmin);
 
 		JMenuItem mntmSumarniPregledDokumenataIzvAdmin = new JMenuItem("Sumarni pregled dokumenata");
+		mntmSumarniPregledDokumenataIzvAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeIzvestajAdmin.add(mntmSumarniPregledDokumenataIzvAdmin);
 
 		JMenu mnRezultatiAdmin = new JMenu("Rezultati");
@@ -1180,10 +1239,11 @@ public class GlavniProzorVeleprodaja {
 		mnRezultatiAdmin.add(mntmGodisnjiIzvestajAdmin);
 
 		JMenu mnSistemAdmin = new JMenu("    Sistem");
-		mnSistemAdmin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mnSistemAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnSistemAdmin);
 
 		JMenuItem mntmPromeniLozinkuAdmin = new JMenuItem("Promeni lozinku");
+		mntmPromeniLozinkuAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmPromeniLozinkuAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -1249,7 +1309,7 @@ public class GlavniProzorVeleprodaja {
 		mnSistemAdmin.add(mntmPromeniLozinkuAdmin);
 		
 		panelUserKomercijalista = new JPanel();
-		frame.getContentPane().add(panelUserKomercijalista, "name_773056089739863");
+		frmVeleprodaja.getContentPane().add(panelUserKomercijalista, "name_773056089739863");
 		panelUserKomercijalista.setLayout(null);
 		
 		JMenuBar menuBarUserKom = new JMenuBar();
@@ -1282,7 +1342,7 @@ public class GlavniProzorVeleprodaja {
 		mnPrijavaUserKom.add(mntmIzlazUserKom);
 		
 		panelUserMagacioner = new JPanel();
-		frame.getContentPane().add(panelUserMagacioner, "name_847361888603433");
+		frmVeleprodaja.getContentPane().add(panelUserMagacioner, "name_847361888603433");
 		panelUserMagacioner.setLayout(null);
 		
 		JMenuBar menuBarUserMag = new JMenuBar();

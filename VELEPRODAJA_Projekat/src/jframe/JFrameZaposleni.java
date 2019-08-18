@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
 
 public class JFrameZaposleni extends JFrame {
 
@@ -76,6 +77,7 @@ public class JFrameZaposleni extends JFrame {
 	
 	private JButton btnDodajZaposlenog;
 	private JButton btnObrisiZaposlenog;
+	private JTextField textJMBG;
 	
 	
 
@@ -223,6 +225,10 @@ public class JFrameZaposleni extends JFrame {
 
 	public void setBtnObrisiZaposlenog(JButton btnObrisiZaposlenog) {
 		this.btnObrisiZaposlenog = btnObrisiZaposlenog;
+	}	
+
+	public JTextField getTextJMBG() {
+		return textJMBG;
 	}
 
 	/**
@@ -247,7 +253,7 @@ public class JFrameZaposleni extends JFrame {
 	public JFrameZaposleni() {
 		setTitle("ZAPOSLENI");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 685, 503);
+		setBounds(100, 100, 860, 550);
 		contentPaneDodajZaposlenog = new JPanel();
 		contentPaneDodajZaposlenog.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneDodajZaposlenog);
@@ -256,87 +262,114 @@ public class JFrameZaposleni extends JFrame {
 		JPanel panelLicnipodaci = new JPanel();
 		panelLicnipodaci
 				.setBorder(new TitledBorder(null, "Licni podaci", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelLicnipodaci.setBounds(10, 11, 265, 226);
+		panelLicnipodaci.setBounds(10, 10, 400, 300);
 		contentPaneDodajZaposlenog.add(panelLicnipodaci);
 		panelLicnipodaci.setLayout(null);
 
 		JLabel lblIme = new JLabel("Ime :");
-		lblIme.setBounds(10, 30, 46, 14);
+		lblIme.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIme.setBounds(10, 20, 100, 20);
 		panelLicnipodaci.add(lblIme);
 
 		textIme = new JTextField();
-		textIme.setBounds(102, 27, 134, 20);
+		textIme.setFont(new Font("Arial", Font.PLAIN, 13));
+		textIme.setBounds(150, 20, 220, 20);
 		panelLicnipodaci.add(textIme);
 		textIme.setColumns(10);
 
 		lblPrezime = new JLabel("Prezime :");
-		lblPrezime.setBounds(10, 67, 61, 14);
+		lblPrezime.setFont(new Font("Arial", Font.BOLD, 14));
+		lblPrezime.setBounds(10, 60, 100, 20);
 		panelLicnipodaci.add(lblPrezime);
 
 		textPrezime = new JTextField();
-		textPrezime.setBounds(102, 58, 134, 20);
+		textPrezime.setFont(new Font("Arial", Font.PLAIN, 13));
+		textPrezime.setBounds(150, 60, 220, 20);
 		panelLicnipodaci.add(textPrezime);
 		textPrezime.setColumns(10);
 
 		lblAdresa = new JLabel("Adresa :");
-		lblAdresa.setBounds(10, 104, 61, 14);
+		lblAdresa.setFont(new Font("Arial", Font.BOLD, 14));
+		lblAdresa.setBounds(10, 140, 100, 20);
 		panelLicnipodaci.add(lblAdresa);
 
 		textAdresa = new JTextField();
-		textAdresa.setBounds(102, 95, 134, 20);
+		textAdresa.setFont(new Font("Arial", Font.PLAIN, 13));
+		textAdresa.setBounds(150, 140, 220, 20);
 		panelLicnipodaci.add(textAdresa);
 		textAdresa.setColumns(10);
 
-		lblGradostina = new JLabel("Grad/Ostina :");
-		lblGradostina.setBounds(10, 136, 82, 14);
+		lblGradostina = new JLabel("Grad / Op\u0161tina :");
+		lblGradostina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGradostina.setBounds(10, 180, 120, 20);
 		panelLicnipodaci.add(lblGradostina);
 
 		textGrad_Ostina = new JTextField();
-		textGrad_Ostina.setBounds(102, 133, 134, 20);
+		textGrad_Ostina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textGrad_Ostina.setBounds(150, 180, 220, 20);
 		panelLicnipodaci.add(textGrad_Ostina);
 		textGrad_Ostina.setColumns(10);
 		
 		JLabel lblTelefon = new JLabel("Telefon :");
-		lblTelefon.setBounds(10, 173, 82, 14);
+		lblTelefon.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTelefon.setBounds(10, 220, 100, 20);
 		panelLicnipodaci.add(lblTelefon);
 		
 		JLabel lblEMail = new JLabel("E mail :");
-		lblEMail.setBounds(10, 198, 61, 14);
+		lblEMail.setFont(new Font("Arial", Font.BOLD, 14));
+		lblEMail.setBounds(10, 260, 100, 20);
 		panelLicnipodaci.add(lblEMail);
 		
 		textTelefon = new JTextField();
-		textTelefon.setBounds(102, 164, 134, 20);
+		textTelefon.setFont(new Font("Arial", Font.PLAIN, 13));
+		textTelefon.setBounds(150, 220, 220, 20);
 		panelLicnipodaci.add(textTelefon);
 		textTelefon.setColumns(10);
 		
 		textEMail = new JTextField();
-		textEMail.setBounds(102, 195, 134, 20);
+		textEMail.setFont(new Font("Arial", Font.PLAIN, 13));
+		textEMail.setBounds(150, 260, 220, 20);
 		panelLicnipodaci.add(textEMail);
 		textEMail.setColumns(10);
+		
+		JLabel lblJmbg = new JLabel("JMBG :");
+		lblJmbg.setFont(new Font("Arial", Font.BOLD, 14));
+		lblJmbg.setBounds(10, 100, 100, 20);
+		panelLicnipodaci.add(lblJmbg);
+		
+		textJMBG = new JTextField();
+		textJMBG.setFont(new Font("Arial", Font.PLAIN, 13));
+		textJMBG.setBounds(150, 100, 220, 20);
+		panelLicnipodaci.add(textJMBG);
+		textJMBG.setColumns(10);
 
 		panelPodacioZaposlenju = new JPanel();
 		panelPodacioZaposlenju.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 				"Podaci o zaposlenju", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPodacioZaposlenju.setBounds(295, 22, 331, 200);
+		panelPodacioZaposlenju.setBounds(430, 10, 400, 140);
 		contentPaneDodajZaposlenog.add(panelPodacioZaposlenju);
 		panelPodacioZaposlenju.setLayout(null);
 
-		lblStrucnaSprema = new JLabel("Strucna sprema :");
-		lblStrucnaSprema.setBounds(10, 25, 122, 14);
+		lblStrucnaSprema = new JLabel("Stru\u010Dna sprema :");
+		lblStrucnaSprema.setFont(new Font("Arial", Font.BOLD, 14));
+		lblStrucnaSprema.setBounds(10, 20, 220, 20);
 		panelPodacioZaposlenju.add(lblStrucnaSprema);
 
 		comboBoxStrucnaSprema = new JComboBox();
+		comboBoxStrucnaSprema.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxStrucnaSprema.setModel(
 				new DefaultComboBoxModel(new String[] { "IV stepen", "V stepen", "VI stepen", "VII stepen" }));
-		comboBoxStrucnaSprema.setBounds(190, 22, 131, 20);
+		comboBoxStrucnaSprema.setBounds(250, 20, 130, 20);
 		panelPodacioZaposlenju.add(comboBoxStrucnaSprema);
 
 		lblDatumPocetkaZaposlenja = new JLabel("Datum pocetka zaposlenja :");
-		lblDatumPocetkaZaposlenja.setBounds(10, 63, 158, 14);
+		lblDatumPocetkaZaposlenja.setFont(new Font("Arial", Font.BOLD, 14));
+		lblDatumPocetkaZaposlenja.setBounds(10, 60, 220, 20);
 		panelPodacioZaposlenju.add(lblDatumPocetkaZaposlenja);
 
 		lblDatumPrestankaZaposlenja = new JLabel("Datum prestanka zaposlenja :");
-		lblDatumPrestankaZaposlenja.setBounds(10, 109, 175, 14);
+		lblDatumPrestankaZaposlenja.setFont(new Font("Arial", Font.BOLD, 14));
+		lblDatumPrestankaZaposlenja.setBounds(10, 100, 220, 20);
 		panelPodacioZaposlenju.add(lblDatumPrestankaZaposlenja);
 
 		/*JCheckBox chckbxDatumPrestankaPoslaNeodredjeno = new JCheckBox("Datum prestanka posla neodredjeno");
@@ -344,48 +377,53 @@ public class JFrameZaposleni extends JFrame {
 		panelPodacioZaposlenju.add(chckbxDatumPrestankaPoslaNeodredjeno);*/
 
 		dateChooserDatumZaposlenja = new JDateChooser();
-		dateChooserDatumZaposlenja.setBounds(190, 63, 131, 20);
+		dateChooserDatumZaposlenja.setForeground(Color.BLACK);
+		dateChooserDatumZaposlenja.setBounds(250, 60, 130, 20);
 		panelPodacioZaposlenju.add(dateChooserDatumZaposlenja);
 
 		dateChooserPrestankaZaposlenja = new JDateChooser();
-		dateChooserPrestankaZaposlenja.setBounds(190, 103, 131, 20);
+		dateChooserPrestankaZaposlenja.setBounds(250, 100, 130, 20);
 		panelPodacioZaposlenju.add(dateChooserPrestankaZaposlenja);		
 
 		panel = new JPanel();
 		panel.setBorder(
 				new TitledBorder(null, "Korisnicki podaci", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(295, 254, 265, 131);
+		panel.setBounds(10, 340, 400, 140);
 		contentPaneDodajZaposlenog.add(panel);
 		panel.setLayout(null);
 
 		lblUsername = new JLabel("Username :");
-		lblUsername.setBounds(10, 23, 81, 14);
+		lblUsername.setFont(new Font("Arial", Font.BOLD, 14));
+		lblUsername.setBounds(10, 20, 100, 20);
 		panel.add(lblUsername);
 
 		textUsername = new JTextField();
-		textUsername.setBounds(101, 20, 128, 20);
+		textUsername.setBounds(150, 20, 220, 20);
 		panel.add(textUsername);
 		textUsername.setColumns(10);
 
 		lblPassword = new JLabel("Password :");
-		lblPassword.setBounds(10, 62, 81, 14);
+		lblPassword.setFont(new Font("Arial", Font.BOLD, 14));
+		lblPassword.setBounds(10, 60, 100, 20);
 		panel.add(lblPassword);
 
 		textPassword = new JTextField();
-		textPassword.setBounds(101, 59, 128, 20);
+		textPassword.setBounds(150, 60, 220, 20);
 		panel.add(textPassword);
 		textPassword.setColumns(10);
 
 		textIDZaposlenog = new JTextField();
-		textIDZaposlenog.setBounds(125, 90, 86, 20);
+		textIDZaposlenog.setBounds(150, 100, 50, 20);
 		panel.add(textIDZaposlenog);
 		textIDZaposlenog.setColumns(10);
 
-		lblIdZaposlenog = new JLabel("ID Zaposlenog :");
-		lblIdZaposlenog.setBounds(20, 93, 90, 14);
+		lblIdZaposlenog = new JLabel("ID zaposlenog :");
+		lblIdZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdZaposlenog.setBounds(10, 100, 130, 20);
 		panel.add(lblIdZaposlenog);
 
-		btnDodajZaposlenog = new JButton("Dodaj Zaposlenog");
+		btnDodajZaposlenog = new JButton("Dodaj zaposlenog");
+		btnDodajZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
 		btnDodajZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -395,6 +433,7 @@ public class JFrameZaposleni extends JFrame {
 
 					String ime = textIme.getText();
 					String prezime = textPrezime.getText();
+					String jmbg = textJMBG.getText(); 
 					String adresa = textAdresa.getText();
 					String grad = textGrad_Ostina.getText();
 					String tel = textTelefon.getText();
@@ -414,7 +453,7 @@ public class JFrameZaposleni extends JFrame {
 					Double plata = Double.parseDouble(textPlata.getText().trim());
 					String tip_zaposlenja = (String) comboBoxTipZaposlenja.getSelectedItem();
 
-					Zaposleni z = new Zaposleni(idfilijale, ime, prezime, adresa, grad, tel, email, struc_sprema, datum_poc, datum_zav, plata, tip_zaposlenja, username, password);
+					Zaposleni z = new Zaposleni(idfilijale, ime, prezime, jmbg, adresa, grad, tel, email, struc_sprema, datum_poc, datum_zav, plata, tip_zaposlenja, username, password);
 
 					Kontroler.getInstance().insertZaposleni(z);
 
@@ -428,7 +467,7 @@ public class JFrameZaposleni extends JFrame {
 					textUsername.setText("");
 				} catch(NumberFormatException e1){
 					JOptionPane.showMessageDialog(btnDodajZaposlenog, "Sva polja moraju biti popunjena!");
-					//textUsername.setText("");
+					textUsername.setText("");
 				}
 				
 				
@@ -440,10 +479,11 @@ public class JFrameZaposleni extends JFrame {
 
 			}
 		});
-		btnDodajZaposlenog.setBounds(295, 396, 155, 23);
+		btnDodajZaposlenog.setBounds(450, 410, 180, 25);
 		contentPaneDodajZaposlenog.add(btnDodajZaposlenog);
 
-		btnObrisiZaposlenog = new JButton("Obrisi Zaposlenog");
+		btnObrisiZaposlenog = new JButton("Obri\u0161i zaposlenog");
+		btnObrisiZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
 		btnObrisiZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -455,6 +495,7 @@ public class JFrameZaposleni extends JFrame {
 					
 					textIme.setText("");
 					textPrezime.setText("");
+					textJMBG.setText("");
 					textAdresa.setText("");
 					textGrad_Ostina.setText("");
 					textTelefon.setText("");
@@ -475,50 +516,58 @@ public class JFrameZaposleni extends JFrame {
 				}
 			}
 		});
-		btnObrisiZaposlenog.setBounds(109, 430, 155, 23);
+		btnObrisiZaposlenog.setBounds(650, 410, 180, 25);
 		contentPaneDodajZaposlenog.add(btnObrisiZaposlenog);
 
-		btnAzurirajZaposlenog = new JButton("Azuriraj Zaposlenog");
-		btnAzurirajZaposlenog.setBounds(295, 430, 155, 23);
+		btnAzurirajZaposlenog = new JButton("A\u017Euriraj zaposlenog");
+		btnAzurirajZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAzurirajZaposlenog.setBounds(450, 455, 180, 25);
 		contentPaneDodajZaposlenog.add(btnAzurirajZaposlenog);
 
-		btnPonistiAkciju = new JButton("Ponisti akciju");
-		btnPonistiAkciju.setBounds(109, 396, 155, 23);
+		btnPonistiAkciju = new JButton("Poni\u0161ti akciju");
+		btnPonistiAkciju.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonistiAkciju.setBounds(650, 455, 180, 25);
 		contentPaneDodajZaposlenog.add(btnPonistiAkciju);
 
 		panelPodaciOPosluZaposleni = new JPanel();
 		panelPodaciOPosluZaposleni.setBorder(
 				new TitledBorder(null, "Podaci o poslu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPodaciOPosluZaposleni.setBounds(10, 248, 270, 137);
+		panelPodaciOPosluZaposleni.setBounds(430, 173, 400, 137);
 		contentPaneDodajZaposlenog.add(panelPodaciOPosluZaposleni);
 		panelPodaciOPosluZaposleni.setLayout(null);
 
 		lblFilijalaPosla = new JLabel("Filijala posla :");
-		lblFilijalaPosla.setBounds(10, 29, 78, 14);
+		lblFilijalaPosla.setFont(new Font("Arial", Font.BOLD, 14));
+		lblFilijalaPosla.setBounds(10, 20, 220, 20);
 		panelPodaciOPosluZaposleni.add(lblFilijalaPosla);
         
 		comboBoxFilijalaPosla = new JComboBox();
-		comboBoxFilijalaPosla.setBounds(114, 26, 131, 20);
+		comboBoxFilijalaPosla.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxFilijalaPosla.setBounds(250, 20, 130, 20);
 		panelPodaciOPosluZaposleni.add(comboBoxFilijalaPosla);
 		popuniComboBoxFilijala(comboBoxFilijalaPosla);
 
 		lblPlata = new JLabel("Plata :");
-		lblPlata.setBounds(10, 66, 46, 14);
+		lblPlata.setFont(new Font("Arial", Font.BOLD, 14));
+		lblPlata.setBounds(10, 60, 220, 20);
 		panelPodaciOPosluZaposleni.add(lblPlata);
 
 		textPlata = new JTextField();
-		textPlata.setBounds(114, 57, 131, 20);
+		textPlata.setFont(new Font("Arial", Font.PLAIN, 13));
+		textPlata.setBounds(250, 60, 130, 20);
 		panelPodaciOPosluZaposleni.add(textPlata);
 		textPlata.setColumns(10);
 
 		comboBoxTipZaposlenja = new JComboBox();
-		comboBoxTipZaposlenja.setBounds(114, 90, 131, 20);
+		comboBoxTipZaposlenja.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxTipZaposlenja.setBounds(250, 100, 130, 20);
 		panelPodaciOPosluZaposleni.add(comboBoxTipZaposlenja);
 		comboBoxTipZaposlenja
 				.setModel(new DefaultComboBoxModel(new String[] { "Menadzer", "Komercijalista", "Magacioner" }));
 
 		lblTipZaposlenja = new JLabel("Tip zaposlenja :");
-		lblTipZaposlenja.setBounds(10, 91, 103, 14);
+		lblTipZaposlenja.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTipZaposlenja.setBounds(10, 100, 220, 20);
 		panelPodaciOPosluZaposleni.add(lblTipZaposlenja);
 		
 	}

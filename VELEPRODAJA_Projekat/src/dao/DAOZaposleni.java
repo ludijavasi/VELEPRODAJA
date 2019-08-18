@@ -37,6 +37,7 @@ public class DAOZaposleni {
 			int idFilijale = rs.getInt("id_filijale");
 			String imeZaposlenog = rs.getString("ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("prezime_zaposlenog");
+			String jmbgZaposlenog = rs.getString("jmbg_zaposlenog");
 			String adresaZaposlenog = rs.getString("adresa_zaposlenog");
 			String gradOpstinaZaposlenog = rs.getString("grad_opstina_zaposlenog");			
 			String telefonZaposlenog = rs.getString("telefon_zaposlenog");
@@ -50,7 +51,7 @@ public class DAOZaposleni {
 			String passwordZaposlenog = rs.getString("password_zaposlenog");
 						
 
-			Zaposleni z = new Zaposleni(idZaposlenog, idFilijale, imeZaposlenog, prezimeZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
+			Zaposleni z = new Zaposleni(idZaposlenog, idFilijale, imeZaposlenog, prezimeZaposlenog, jmbgZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
 
 			lista.add(z);
 		}
@@ -67,26 +68,27 @@ public class DAOZaposleni {
 		String datum_zav = sdf.format(z.getDatumZavrsetkaZaposlenja());
 
 		preparedStatement = konekcija
-				.prepareStatement("INSERT INTO zaposleni (id_filijale, ime_zaposlenog, prezime_zaposlenog, adresa_zaposlenog, "
+				.prepareStatement("INSERT INTO zaposleni (id_filijale, ime_zaposlenog, prezime_zaposlenog, jmbg_zaposlenog, adresa_zaposlenog, "
 		                           +" grad_opstina_zaposlenog, telefon_zaposlenog, e_mail_zaposlenog,"
 						           +" strucna_sprema_zaposlenog, datum_pocetka_zaposlenja, datum_zavrsetka_zaposlenja, "
 		                           +" plata_zaposlenog, tip_zaposlenja, username_zaposlenog, password_zaposlenog)"
-						           +" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+						           +" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
         preparedStatement.setInt(1, z.getIdFilijale());
 		preparedStatement.setString(2, z.getImeZaposlenog());
 		preparedStatement.setString(3, z.getPrezimeZaposlenog());
-		preparedStatement.setString(4, z.getAdresaZaposlenog());
-		preparedStatement.setString(5, z.getGradOpstinaZaposlenog());		
-		preparedStatement.setString(6, z.getTelefonZaposlenog());
-		preparedStatement.setString(7, z.getEmailZaposlenog());		
-		preparedStatement.setString(8, z.getStrucnaSpremaZaposlenog());
-		preparedStatement.setString(9, datum_poc);
-		preparedStatement.setString(10, datum_zav);
-		preparedStatement.setDouble(11, z.getPlataZaposlenog());
-		preparedStatement.setString(12, z.getTipZaposlenja());
-		preparedStatement.setString(13, z.getUsernameZaposlenog());
-		preparedStatement.setString(14, z.getPasswordZaposlenog());
+		preparedStatement.setString(4, z.getJmbgZaposlenog());
+		preparedStatement.setString(5, z.getAdresaZaposlenog());
+		preparedStatement.setString(6, z.getGradOpstinaZaposlenog());		
+		preparedStatement.setString(7, z.getTelefonZaposlenog());
+		preparedStatement.setString(8, z.getEmailZaposlenog());		
+		preparedStatement.setString(9, z.getStrucnaSpremaZaposlenog());
+		preparedStatement.setString(10, datum_poc);
+		preparedStatement.setString(11, datum_zav);
+		preparedStatement.setDouble(12, z.getPlataZaposlenog());
+		preparedStatement.setString(13, z.getTipZaposlenja());
+		preparedStatement.setString(14, z.getUsernameZaposlenog());
+		preparedStatement.setString(15, z.getPasswordZaposlenog());
 
 		preparedStatement.execute();
 
@@ -108,6 +110,7 @@ public class DAOZaposleni {
 			int idFilijale = rs.getInt("id_filijale");
 			String imeZaposlenog = rs.getString("ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("prezime_zaposlenog");
+			String jmbgZaposlenog = rs.getString("jmbg_zaposlenog");
 			String adresaZaposlenog = rs.getString("adresa_zaposlenog");
 			String gradOpstinaZaposlenog = rs.getString("grad_opstina_zaposlenog");			
 			String telefonZaposlenog = rs.getString("telefon_zaposlenog");
@@ -119,7 +122,7 @@ public class DAOZaposleni {
 			String tipZaposlenja = rs.getString("tip_zaposlenja");
 			String usernameZaposlenog = rs.getString("username_zaposlenog");
 			String passwordZaposlenog = rs.getString("password_zaposlenog");
-			Zaposleni z1 = new Zaposleni(idZaposlenog, idFilijale, imeZaposlenog, prezimeZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
+			Zaposleni z1 = new Zaposleni(idZaposlenog, idFilijale, imeZaposlenog, prezimeZaposlenog, jmbgZaposlenog, adresaZaposlenog, gradOpstinaZaposlenog, telefonZaposlenog, emailZaposlenog, strucnaSpremaZaposlenog, datumPocetkaZaposlenja, datumZavrsetkaZaposlenja, plataZaposlenog, tipZaposlenja, usernameZaposlenog, passwordZaposlenog);
 			z = z1;
 		}
 		konekcija.close();

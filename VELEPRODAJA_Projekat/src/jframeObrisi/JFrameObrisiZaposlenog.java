@@ -84,6 +84,7 @@ public class JFrameObrisiZaposlenog extends JFrame {
 					jfzo.getTextIDZaposlenog().setText(Integer.toString(z.getIdZaposlenog()));
 					jfzo.getTextIme().setText(z.getImeZaposlenog());
 					jfzo.getTextPrezime().setText(z.getPrezimeZaposlenog());
+					jfzo.getTextJMBG().setText(z.getJmbgZaposlenog());
 					jfzo.getTextAdresa().setText(z.getAdresaZaposlenog());
 					jfzo.getTextGrad_Ostina().setText(z.getGradOpstinaZaposlenog());
 					jfzo.getTextTelefon().setText(z.getTelefonZaposlenog());
