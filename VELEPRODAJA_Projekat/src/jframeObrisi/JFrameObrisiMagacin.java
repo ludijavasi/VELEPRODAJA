@@ -74,6 +74,7 @@ public class JFrameObrisiMagacin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFrameMagacin jfmo = new JFrameMagacin();
 				jfmo.getBtnDodajMagacin().setVisible(false);
+				jfmo.getBtnAzurirajMagacin().setVisible(false);
 				int idm = Integer.parseInt(textFieldIdMagacinaObrisiMagacin.getText().trim());
 				try {
 					Magacin m = Kontroler.getInstance().getDetaljiMagacina(idm);

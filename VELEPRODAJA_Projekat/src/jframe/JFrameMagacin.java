@@ -154,7 +154,7 @@ public class JFrameMagacin extends JFrame {
 	public JFrameMagacin() {
 		setTitle("MAGACIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 597, 451);
+		setBounds(100, 100, 600, 430);
 		contentPaneMagacin = new JPanel();
 		contentPaneMagacin.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneMagacin);
@@ -163,72 +163,73 @@ public class JFrameMagacin extends JFrame {
 		JPanel panelMagacin = new JPanel();
 		panelMagacin.setBorder(
 				new TitledBorder(null, "Podaci o magacinu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelMagacin.setBounds(35, 36, 522, 300);
+		panelMagacin.setBounds(20, 20, 540, 260);
 		contentPaneMagacin.add(panelMagacin);
 		panelMagacin.setLayout(null);
 
 		JLabel lblAdresaMagacina = new JLabel("Adresa :");
-		lblAdresaMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAdresaMagacina.setBounds(10, 85, 147, 22);
+		lblAdresaMagacina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblAdresaMagacina.setBounds(10, 60, 150, 20);
 		panelMagacin.add(lblAdresaMagacina);
 
 		textFieldAdresaMagacina = new JTextField();
-		textFieldAdresaMagacina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldAdresaMagacina.setBounds(188, 86, 256, 20);
+		textFieldAdresaMagacina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldAdresaMagacina.setBounds(200, 60, 250, 20);
 		panelMagacin.add(textFieldAdresaMagacina);
 		textFieldAdresaMagacina.setColumns(10);
 
 		JLabel lblTelefonMagacina = new JLabel("Telefon :");
-		lblTelefonMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTelefonMagacina.setBounds(10, 174, 147, 22);
+		lblTelefonMagacina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTelefonMagacina.setBounds(10, 140, 150, 20);
 		panelMagacin.add(lblTelefonMagacina);
 
 		textFieldTelefonMagacina = new JTextField();
-		textFieldTelefonMagacina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldTelefonMagacina.setBounds(188, 175, 256, 20);
+		textFieldTelefonMagacina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldTelefonMagacina.setBounds(200, 140, 250, 20);
 		panelMagacin.add(textFieldTelefonMagacina);
 		textFieldTelefonMagacina.setColumns(10);
 
-		JLabel lblGradOpstina = new JLabel("Grad / Opstina :");
-		lblGradOpstina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblGradOpstina.setBounds(10, 128, 147, 22);
+		JLabel lblGradOpstina = new JLabel("Grad / Op\u0161tina :");
+		lblGradOpstina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGradOpstina.setBounds(10, 100, 150, 20);
 		panelMagacin.add(lblGradOpstina);
 
 		textFieldGradMagacina = new JTextField();
-		textFieldGradMagacina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldGradMagacina.setBounds(188, 129, 256, 20);
+		textFieldGradMagacina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldGradMagacina.setBounds(200, 100, 250, 20);
 		panelMagacin.add(textFieldGradMagacina);
 		textFieldGradMagacina.setColumns(10);
 
 		JLabel lblEmailMagacina = new JLabel("E-mail :");
-		lblEmailMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblEmailMagacina.setBounds(10, 220, 147, 22);
+		lblEmailMagacina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblEmailMagacina.setBounds(10, 180, 150, 20);
 		panelMagacin.add(lblEmailMagacina);
 
 		textFieldEmailMagacina = new JTextField();
-		textFieldEmailMagacina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldEmailMagacina.setBounds(188, 221, 256, 20);
+		textFieldEmailMagacina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldEmailMagacina.setBounds(200, 180, 250, 20);
 		panelMagacin.add(textFieldEmailMagacina);
 		textFieldEmailMagacina.setColumns(10);
 
-		lblIdMagacina = new JLabel("ID MAGACINA :");
-		lblIdMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIdMagacina.setBounds(109, 264, 131, 25);
+		lblIdMagacina = new JLabel("ID magacina :");
+		lblIdMagacina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdMagacina.setBounds(10, 220, 150, 20);
 		panelMagacin.add(lblIdMagacina);
 
 		textFieldIdMagacina = new JTextField();
-		textFieldIdMagacina.setBounds(250, 268, 131, 20);
+		textFieldIdMagacina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdMagacina.setBounds(200, 220, 50, 20);
 		panelMagacin.add(textFieldIdMagacina);
 		textFieldIdMagacina.setColumns(10);
 
 		JLabel lblNazivMagacina = new JLabel("Naziv magacina :");
-		lblNazivMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNazivMagacina.setBounds(10, 40, 125, 17);
+		lblNazivMagacina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNazivMagacina.setBounds(10, 20, 150, 20);
 		panelMagacin.add(lblNazivMagacina);
 
 		textFieldNazivMagacina = new JTextField();
-		textFieldNazivMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textFieldNazivMagacina.setBounds(188, 40, 256, 20);
+		textFieldNazivMagacina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldNazivMagacina.setBounds(200, 20, 250, 20);
 		panelMagacin.add(textFieldNazivMagacina);
 		textFieldNazivMagacina.setColumns(10);
 
@@ -264,11 +265,11 @@ public class JFrameMagacin extends JFrame {
 
 			}
 		});
-		btnDodajMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnDodajMagacin.setBounds(385, 347, 172, 23);
+		btnDodajMagacin.setFont(new Font("Arial", Font.BOLD, 14));
+		btnDodajMagacin.setBounds(180, 300, 180, 25);
 		contentPaneMagacin.add(btnDodajMagacin);
 
-		btnObrisiMagacin = new JButton("Obrisi magacin");
+		btnObrisiMagacin = new JButton("Obri\u0161i magacin");
 		btnObrisiMagacin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int rbn = Integer.parseInt(textFieldIdMagacina.getText().trim());
@@ -289,19 +290,19 @@ public class JFrameMagacin extends JFrame {
 
 			}
 		});
-		btnObrisiMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnObrisiMagacin.setBounds(206, 347, 172, 23);
+		btnObrisiMagacin.setFont(new Font("Arial", Font.BOLD, 14));
+		btnObrisiMagacin.setBounds(380, 300, 180, 25);
 		contentPaneMagacin.add(btnObrisiMagacin);
 
-		btnPrekiniackcijuMagacin = new JButton("Prekini akciju");
-		btnPrekiniackcijuMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnPrekiniackcijuMagacin = new JButton("Poni\u0161ti akciju");
+		btnPrekiniackcijuMagacin.setFont(new Font("Arial", Font.BOLD, 14));
 		
-		btnPrekiniackcijuMagacin.setBounds(35, 347, 161, 23);
+		btnPrekiniackcijuMagacin.setBounds(380, 345, 180, 25);
 		contentPaneMagacin.add(btnPrekiniackcijuMagacin);
 
-		btnAzurirajMagacin = new JButton("Azuriraj");
-		btnAzurirajMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAzurirajMagacin.setBounds(35, 378, 89, 23);
+		btnAzurirajMagacin = new JButton("A\u017Euriraj");
+		btnAzurirajMagacin.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAzurirajMagacin.setBounds(180, 345, 180, 25);
 		contentPaneMagacin.add(btnAzurirajMagacin);
 	}
 }
