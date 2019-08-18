@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JRadioButton;
+import java.awt.Font;
 
 public class JFrameKupac extends JFrame {
 
@@ -172,7 +173,7 @@ public class JFrameKupac extends JFrame {
 	public JFrameKupac() {
 		setTitle("KUPAC");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 589, 349);
+		setBounds(100, 100, 860, 430);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -181,117 +182,140 @@ public class JFrameKupac extends JFrame {
 		JPanel panelPodacioKupcu = new JPanel();
 		panelPodacioKupcu.setBorder(
 				new TitledBorder(null, "Podaci o kupcu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPodacioKupcu.setBounds(10, 11, 242, 202);
+		panelPodacioKupcu.setBounds(10, 10, 400, 260);
 		contentPane.add(panelPodacioKupcu);
 		panelPodacioKupcu.setLayout(null);
 
 		JLabel lblNazivFirme = new JLabel("Naziv firme :");
-		lblNazivFirme.setBounds(10, 14, 82, 14);
+		lblNazivFirme.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNazivFirme.setBounds(10, 20, 150, 20);
 		panelPodacioKupcu.add(lblNazivFirme);
 
 		JLabel lblAdresaFirme = new JLabel("Adresa firme :");
-		lblAdresaFirme.setBounds(10, 45, 82, 14);
+		lblAdresaFirme.setFont(new Font("Arial", Font.BOLD, 14));
+		lblAdresaFirme.setBounds(10, 60, 150, 20);
 		panelPodacioKupcu.add(lblAdresaFirme);
 
-		JLabel lblGradOpstina = new JLabel("Grad/Opstina");
-		lblGradOpstina.setBounds(10, 76, 82, 14);
+		JLabel lblGradOpstina = new JLabel("Grad / Op\u0161tina :");
+		lblGradOpstina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGradOpstina.setBounds(10, 100, 150, 20);
 		panelPodacioKupcu.add(lblGradOpstina);
 
 		JLabel lblTelefonFirme = new JLabel("Telefon :");
-		lblTelefonFirme.setBounds(10, 107, 82, 14);
+		lblTelefonFirme.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTelefonFirme.setBounds(10, 140, 150, 20);
 		panelPodacioKupcu.add(lblTelefonFirme);
 
 		JLabel lblKontakOsobaFirme = new JLabel("Kontakt osoba :");
-		lblKontakOsobaFirme.setBounds(10, 172, 82, 14);
+		lblKontakOsobaFirme.setFont(new Font("Arial", Font.BOLD, 14));
+		lblKontakOsobaFirme.setBounds(10, 220, 150, 20);
 		panelPodacioKupcu.add(lblKontakOsobaFirme);
 
 		textNazivFirme = new JTextField();
-		textNazivFirme.setBounds(102, 11, 121, 20);
+		textNazivFirme.setFont(new Font("Arial", Font.PLAIN, 13));
+		textNazivFirme.setBounds(170, 20, 220, 20);
 		panelPodacioKupcu.add(textNazivFirme);
 		textNazivFirme.setColumns(10);
 
 		textAdresaFirme = new JTextField();
-		textAdresaFirme.setBounds(102, 42, 121, 20);
+		textAdresaFirme.setFont(new Font("Arial", Font.PLAIN, 13));
+		textAdresaFirme.setBounds(170, 60, 220, 20);
 		panelPodacioKupcu.add(textAdresaFirme);
 		textAdresaFirme.setColumns(10);
 
 		textGradOpstinaFirme = new JTextField();
-		textGradOpstinaFirme.setBounds(99, 73, 124, 20);
+		textGradOpstinaFirme.setFont(new Font("Arial", Font.PLAIN, 13));
+		textGradOpstinaFirme.setBounds(170, 100, 220, 20);
 		panelPodacioKupcu.add(textGradOpstinaFirme);
 		textGradOpstinaFirme.setColumns(10);
 
 		textTelefonFirme = new JTextField();
-		textTelefonFirme.setBounds(102, 104, 121, 20);
+		textTelefonFirme.setFont(new Font("Arial", Font.PLAIN, 13));
+		textTelefonFirme.setBounds(170, 140, 220, 20);
 		panelPodacioKupcu.add(textTelefonFirme);
 		textTelefonFirme.setColumns(10);
 
-		JLabel lblEMail = new JLabel("E - mail :");
-		lblEMail.setBounds(10, 138, 58, 14);
+		JLabel lblEMail = new JLabel("E-mail :");
+		lblEMail.setFont(new Font("Arial", Font.BOLD, 14));
+		lblEMail.setBounds(10, 180, 150, 20);
 		panelPodacioKupcu.add(lblEMail);
 
 		textEMailKipca = new JTextField();
-		textEMailKipca.setBounds(102, 135, 121, 20);
+		textEMailKipca.setFont(new Font("Arial", Font.PLAIN, 13));
+		textEMailKipca.setBounds(170, 180, 220, 20);
 		panelPodacioKupcu.add(textEMailKipca);
 		textEMailKipca.setColumns(10);
 		
 		textFieldKontakOsobaKupca = new JTextField();
-		textFieldKontakOsobaKupca.setBounds(102, 166, 121, 20);
+		textFieldKontakOsobaKupca.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldKontakOsobaKupca.setBounds(170, 220, 220, 20);
 		panelPodacioKupcu.add(textFieldKontakOsobaKupca);
 		textFieldKontakOsobaKupca.setColumns(10);
 
 		panelPoslovniPodaciKupca = new JPanel();
 		panelPoslovniPodaciKupca.setBorder(
 				new TitledBorder(null, "Poslovni podaci kupca", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPoslovniPodaciKupca.setBounds(262, 11, 301, 202);
+		panelPoslovniPodaciKupca.setBounds(430, 10, 400, 260);
 		contentPane.add(panelPoslovniPodaciKupca);
 		panelPoslovniPodaciKupca.setLayout(null);
 
 		lblPib = new JLabel("PIB :");
-		lblPib.setBounds(10, 34, 107, 14);
+		lblPib.setFont(new Font("Arial", Font.BOLD, 14));
+		lblPib.setBounds(10, 20, 120, 20);
 		panelPoslovniPodaciKupca.add(lblPib);
 
 		textPibKupca = new JTextField();
-		textPibKupca.setBounds(127, 31, 130, 20);
+		textPibKupca.setFont(new Font("Arial", Font.PLAIN, 13));
+		textPibKupca.setBounds(140, 20, 250, 20);
 		panelPoslovniPodaciKupca.add(textPibKupca);
 		textPibKupca.setColumns(10);
 
 		lblTekucracunKupca = new JLabel("Tekuci Racun :");
-		lblTekucracunKupca.setBounds(10, 65, 107, 14);
+		lblTekucracunKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTekucracunKupca.setBounds(10, 60, 120, 20);
 		panelPoslovniPodaciKupca.add(lblTekucracunKupca);
 
-		lblValutaPlacanja = new JLabel("Valuta placanja :");
-		lblValutaPlacanja.setBounds(10, 90, 107, 14);
+		lblValutaPlacanja = new JLabel("Valuta pla\u0107anja :");
+		lblValutaPlacanja.setFont(new Font("Arial", Font.BOLD, 14));
+		lblValutaPlacanja.setBounds(10, 100, 120, 20);
 		panelPoslovniPodaciKupca.add(lblValutaPlacanja);
 
 		lblStatusKupca = new JLabel("Status :");
-		lblStatusKupca.setBounds(10, 125, 46, 14);
+		lblStatusKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		lblStatusKupca.setBounds(10, 140, 120, 20);
 		panelPoslovniPodaciKupca.add(lblStatusKupca);
 
 		textTekuciRacunKupca = new JTextField();
-		textTekuciRacunKupca.setBounds(127, 62, 130, 20);
+		textTekuciRacunKupca.setFont(new Font("Arial", Font.PLAIN, 13));
+		textTekuciRacunKupca.setBounds(140, 60, 250, 20);
 		panelPoslovniPodaciKupca.add(textTekuciRacunKupca);
 		textTekuciRacunKupca.setColumns(10);
 
 		comboBoxValutaPlacanja = new JComboBox();
+		comboBoxValutaPlacanja.setFont(new Font("Arial", Font.BOLD, 14));
 		comboBoxValutaPlacanja.setModel(new DefaultComboBoxModel(new String[] { "30", "60", "90", "120" }));
-		comboBoxValutaPlacanja.setBounds(127, 87, 65, 20);
+		comboBoxValutaPlacanja.setBounds(140, 100, 70, 20);
 		panelPoslovniPodaciKupca.add(comboBoxValutaPlacanja);
 
 		lblIdKupca = new JLabel("ID Kupca :");
-		lblIdKupca.setBounds(82, 154, 78, 14);
+		lblIdKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdKupca.setBounds(10, 180, 120, 20);
 		panelPoslovniPodaciKupca.add(lblIdKupca);
 
 		textFieldIdKupca = new JTextField();
-		textFieldIdKupca.setBounds(192, 151, 65, 20);
+		textFieldIdKupca.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdKupca.setBounds(140, 180, 70, 20);
 		panelPoslovniPodaciKupca.add(textFieldIdKupca);
 		textFieldIdKupca.setColumns(10);
 
 		rdbtnAktivan = new JRadioButton("Aktivan");
-		rdbtnAktivan.setBounds(126, 121, 78, 23);
+		rdbtnAktivan.setFont(new Font("Arial", Font.BOLD, 14));
+		rdbtnAktivan.setBounds(149, 140, 100, 20);
 		panelPoslovniPodaciKupca.add(rdbtnAktivan);
 
 		rdbtnNeaktivan = new JRadioButton("Neaktivan");
-		rdbtnNeaktivan.setBounds(206, 121, 83, 23);
+		rdbtnNeaktivan.setFont(new Font("Arial", Font.BOLD, 14));
+		rdbtnNeaktivan.setBounds(290, 140, 100, 20);
 		panelPoslovniPodaciKupca.add(rdbtnNeaktivan);
 
 		ButtonGroup status = new ButtonGroup();
@@ -299,10 +323,12 @@ public class JFrameKupac extends JFrame {
 		status.add(rdbtnNeaktivan);
 
 		lblDana = new JLabel("dana");
-		lblDana.setBounds(202, 90, 46, 14);
+		lblDana.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblDana.setBounds(220, 100, 100, 20);
 		panelPoslovniPodaciKupca.add(lblDana);
 
-		btnDodajKupca = new JButton("Dodaj Kupca");
+		btnDodajKupca = new JButton("Dodaj kupca");
+		btnDodajKupca.setFont(new Font("Arial", Font.BOLD, 14));
 		btnDodajKupca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -342,19 +368,22 @@ public class JFrameKupac extends JFrame {
 
 			}
 		});
-		btnDodajKupca.setBounds(272, 224, 118, 23);
+		btnDodajKupca.setBounds(430, 290, 180, 25);
 		contentPane.add(btnDodajKupca);
 
-		btnObrisiKupca = new JButton("Obrisi Kupca");
-		btnObrisiKupca.setBounds(134, 259, 118, 23);
+		btnObrisiKupca = new JButton("Obri\u0161i kupca");
+		btnObrisiKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		btnObrisiKupca.setBounds(650, 290, 180, 25);
 		contentPane.add(btnObrisiKupca);
 
-		btnAzurirajKupca = new JButton("Azuriraj");
-		btnAzurirajKupca.setBounds(282, 258, 118, 23);
+		btnAzurirajKupca = new JButton("A\u017Euriraj");
+		btnAzurirajKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAzurirajKupca.setBounds(430, 340, 180, 25);
 		contentPane.add(btnAzurirajKupca);
 
-		btnPonistiAkcijuKupac = new JButton("Ponisti akciju");
-		btnPonistiAkcijuKupac.setBounds(134, 224, 118, 23);
+		btnPonistiAkcijuKupac = new JButton("Poni\u0161ti akciju");
+		btnPonistiAkcijuKupac.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonistiAkcijuKupac.setBounds(650, 340, 180, 25);
 		contentPane.add(btnPonistiAkcijuKupac);
 	}
 }

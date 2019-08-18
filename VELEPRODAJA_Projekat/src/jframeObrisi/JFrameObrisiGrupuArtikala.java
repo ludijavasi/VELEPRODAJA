@@ -100,6 +100,7 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				JFrameGrupaArtikala jfoga = new JFrameGrupaArtikala();
+				jfoga.getBtnAzurirajDodajGrupuArtikala().setVisible(false);
 				jfoga.getBtnDodajGrupuArtikala().setVisible(false);
 				
 				int idga = Integer.parseInt(textFieldIdGrupeArtikalaObrisiGA.getText().trim());

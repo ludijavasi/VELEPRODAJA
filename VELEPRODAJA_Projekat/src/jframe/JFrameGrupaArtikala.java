@@ -33,6 +33,10 @@ public class JFrameGrupaArtikala extends JFrame {
 	private JButton btnAzurirajDodajGrupuArtikala;	
 	
 
+	public JButton getBtnAzurirajDodajGrupuArtikala() {
+		return btnAzurirajDodajGrupuArtikala;
+	}
+
 	public JButton getBtnObrisiGrupuArtikala() {
 		return btnObrisiGrupuArtikala;
 	}
@@ -95,20 +99,20 @@ public class JFrameGrupaArtikala extends JFrame {
 	public JFrameGrupaArtikala() {
 		setTitle("GRUPA ARTIKALA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 532, 352);
+		setBounds(100, 100, 500, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblUnesiteGrupuArtikala = new JLabel("Unesite grupu artikala :");
-		lblUnesiteGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteGrupuArtikala.setBounds(30, 22, 264, 17);
+		lblUnesiteGrupuArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		lblUnesiteGrupuArtikala.setBounds(30, 20, 270, 20);
 		contentPane.add(lblUnesiteGrupuArtikala);
 		
 		textFieldGrupaArtikala = new JTextField();
-		textFieldGrupaArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textFieldGrupaArtikala.setBounds(30, 50, 243, 20);
+		textFieldGrupaArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldGrupaArtikala.setBounds(30, 50, 260, 20);
 		contentPane.add(textFieldGrupaArtikala);
 		textFieldGrupaArtikala.setColumns(10);
 		
@@ -135,11 +139,11 @@ public class JFrameGrupaArtikala extends JFrame {
 				}
 			}
 		});
-		btnDodajGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnDodajGrupuArtikala.setBounds(30, 181, 186, 23);
+		btnDodajGrupuArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		btnDodajGrupuArtikala.setBounds(30, 180, 186, 25);
 		contentPane.add(btnDodajGrupuArtikala);
 		
-		btnObrisiGrupuArtikala = new JButton("Obrisi grupu artikala");
+		btnObrisiGrupuArtikala = new JButton("Obri\u0161i grupu artikala");
 		btnObrisiGrupuArtikala.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -166,26 +170,27 @@ public class JFrameGrupaArtikala extends JFrame {
 			}
 		});
 		btnObrisiGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnObrisiGrupuArtikala.setBounds(292, 183, 196, 23);
+		btnObrisiGrupuArtikala.setBounds(280, 180, 180, 25);
 		contentPane.add(btnObrisiGrupuArtikala);
 		
-		btnAzurirajDodajGrupuArtikala = new JButton("Azuriraj");
-		btnAzurirajDodajGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAzurirajDodajGrupuArtikala.setBounds(30, 227, 186, 23);
+		btnAzurirajDodajGrupuArtikala = new JButton("A\u017Euriraj");
+		btnAzurirajDodajGrupuArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAzurirajDodajGrupuArtikala.setBounds(30, 227, 180, 25);
 		contentPane.add(btnAzurirajDodajGrupuArtikala);
 		
-		btnPonistiAkcijuDodajGrupuArtikala = new JButton("Ponisti akciju");
+		btnPonistiAkcijuDodajGrupuArtikala = new JButton("Poni\u0161ti akciju");
 		btnPonistiAkcijuDodajGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnPonistiAkcijuDodajGrupuArtikala.setBounds(292, 229, 196, 23);
+		btnPonistiAkcijuDodajGrupuArtikala.setBounds(280, 229, 180, 25);
 		contentPane.add(btnPonistiAkcijuDodajGrupuArtikala);
 		
 		JLabel lblIdGrupeArtikala = new JLabel("ID grupe artikala:");
-		lblIdGrupeArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIdGrupeArtikala.setBounds(30, 95, 144, 17);
+		lblIdGrupeArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdGrupeArtikala.setBounds(30, 90, 144, 17);
 		contentPane.add(lblIdGrupeArtikala);
 		
 		textFieldIdGrupeArtikala = new JTextField();
-		textFieldIdGrupeArtikala.setBounds(187, 95, 86, 20);
+		textFieldIdGrupeArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdGrupeArtikala.setBounds(220, 90, 70, 20);
 		contentPane.add(textFieldIdGrupeArtikala);
 		textFieldIdGrupeArtikala.setColumns(10);
 	}

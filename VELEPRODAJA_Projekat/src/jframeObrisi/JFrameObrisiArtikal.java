@@ -78,6 +78,8 @@ public class JFrameObrisiArtikal extends JFrame {
 				int ida = ((Artikli)comboBoxArtikalObrisi.getSelectedItem()).getIdArtikla();
 				JFrameArtikal jfa = new JFrameArtikal(ida);
 				jfa.setVisible(true);
+				jfa.getBtnDodajArtikal().setVisible(false);
+				jfa.getBtnAzuriraj().setVisible(false);
 				
 				jfa.getBtnPonistiAkciju().addActionListener(new ActionListener() {
 					
@@ -125,7 +127,7 @@ public class JFrameObrisiArtikal extends JFrame {
 		contentPane.add(comboBoxGrupaArtikalaObrisi);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaObrisi);
 		comboBoxGrupaArtikalaObrisi.setSelectedItem(null);
-	/*	comboBoxGrupaArtikalaObrisi.addActionListener(new ActionListener() {
+		comboBoxGrupaArtikalaObrisi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(null, "COMBOBOX ACTION");
@@ -140,7 +142,7 @@ public class JFrameObrisiArtikal extends JFrame {
 					comboBoxArtikalObrisi.setSelectedItem(null);
 				}
 			}
-		});*/
+		});
 		
 		JLabel lblUnesiteArtikalObrisi = new JLabel("Unesite artikal :");
 		lblUnesiteArtikalObrisi.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -174,7 +176,7 @@ public class JFrameObrisiArtikal extends JFrame {
 		}
 	}
 	
-/*	private void popuniComboBoxArtikli(JComboBox<Artikli> comboBox, Integer id_grupe_artikala) {
+	private void popuniComboBoxArtikli(JComboBox<Artikli> comboBox, Integer id_grupe_artikala) {
 		try {
 			comboBox.removeAllItems();
 			
@@ -195,7 +197,7 @@ public class JFrameObrisiArtikal extends JFrame {
 			e.printStackTrace();
 		}
 	}	
-	*/
+	
 }
 	
 	    

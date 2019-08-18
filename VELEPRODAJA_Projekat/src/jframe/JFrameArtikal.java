@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class JFrameArtikal extends JFrame {
 
@@ -40,7 +41,17 @@ public class JFrameArtikal extends JFrame {
 	private JButton btnPonistiAkciju;	
 	private JTextField textFieldNazivGrupeArtikala;
 	private JButton btnObrisiArtikal;
+	private JButton btnDodajArtikal;
+	private JButton btnAzuriraj;	
 	
+
+	public JButton getBtnDodajArtikal() {
+		return btnDodajArtikal;
+	}
+
+	public JButton getBtnAzuriraj() {
+		return btnAzuriraj;
+	}
 
 	public JButton getBtnPonistiAkciju() {
 		return btnPonistiAkciju;
@@ -129,7 +140,7 @@ public class JFrameArtikal extends JFrame {
 	public JFrameArtikal(int ida) {
 		setTitle("ARTIKAL");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 708, 402);
+		setBounds(100, 100, 860, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -138,45 +149,53 @@ public class JFrameArtikal extends JFrame {
 		JPanel panelArtikal = new JPanel();
 		panelArtikal.setBorder(
 				new TitledBorder(null, "Podaci o artiklu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelArtikal.setBounds(30, 11, 420, 178);
+		panelArtikal.setBounds(10, 10, 400, 220);
 		contentPane.add(panelArtikal);
 		panelArtikal.setLayout(null);
 
 		JLabel lblNazivArtikla = new JLabel("Naziv artikla :");
-		lblNazivArtikla.setBounds(31, 91, 80, 14);
+		lblNazivArtikla.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNazivArtikla.setBounds(10, 100, 150, 20);
 		panelArtikal.add(lblNazivArtikla);
 
 		JLabel lblJedinicaMere = new JLabel("Jedinica mere :");
-		lblJedinicaMere.setBounds(31, 125, 107, 14);
+		lblJedinicaMere.setFont(new Font("Arial", Font.BOLD, 14));
+		lblJedinicaMere.setBounds(10, 140, 150, 20);
 		panelArtikal.add(lblJedinicaMere);
 
-		JLabel lblGrupaArtikla = new JLabel("Grupa Artikla :");
-		lblGrupaArtikla.setBounds(31, 24, 128, 14);
+		JLabel lblGrupaArtikla = new JLabel("Grupa artikala :");
+		lblGrupaArtikla.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGrupaArtikla.setBounds(10, 20, 150, 20);
 		panelArtikal.add(lblGrupaArtikla);
 
 		textFieldNazivArtikla = new JTextField();
-		textFieldNazivArtikla.setBounds(200, 85, 199, 20);
+		textFieldNazivArtikla.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldNazivArtikla.setBounds(170, 100, 220, 20);
 		panelArtikal.add(textFieldNazivArtikla);
 		textFieldNazivArtikla.setColumns(10);
 
 		comboBoxJedinicaMere = new JComboBox();
+		comboBoxJedinicaMere.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxJedinicaMere
 				.setModel(new DefaultComboBoxModel(new String[] {"Kilogram", "Gram", "Litar", "Komad"}));
-		comboBoxJedinicaMere.setBounds(200, 122, 199, 20);
+		comboBoxJedinicaMere.setBounds(170, 140, 220, 20);
 		panelArtikal.add(comboBoxJedinicaMere);
 		comboBoxJedinicaMere.setSelectedItem(null);
 
 		JLabel lblIdArtikla = new JLabel("ID artikla :");
-		lblIdArtikla.setBounds(31, 150, 80, 14);
+		lblIdArtikla.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdArtikla.setBounds(10, 180, 150, 20);
 		panelArtikal.add(lblIdArtikla);
 
 		textFieldIDArtikla = new JTextField();
-		textFieldIDArtikla.setBounds(200, 147, 64, 20);
+		textFieldIDArtikla.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIDArtikla.setBounds(170, 180, 70, 20);
 		panelArtikal.add(textFieldIDArtikla);
 		textFieldIDArtikla.setColumns(10);
 
 		comboBoxGrupaArtikla = new JComboBox();
-		comboBoxGrupaArtikla.setBounds(200, 21, 199, 20);
+		comboBoxGrupaArtikla.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxGrupaArtikla.setBounds(170, 20, 220, 20);
 		panelArtikal.add(comboBoxGrupaArtikla);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikla);
 		comboBoxGrupaArtikla.setSelectedItem(null);
@@ -193,50 +212,18 @@ public class JFrameArtikal extends JFrame {
 		
 		
 		JLabel lblNazivGrupeArtikala = new JLabel("Naziv grupe artikala:");
-		lblNazivGrupeArtikala.setBounds(31, 55, 139, 14);
+		lblNazivGrupeArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNazivGrupeArtikala.setBounds(10, 60, 150, 20);
 		panelArtikal.add(lblNazivGrupeArtikala);
 		
 		textFieldNazivGrupeArtikala = new JTextField();
-		textFieldNazivGrupeArtikala.setBounds(200, 52, 199, 20);
+		textFieldNazivGrupeArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldNazivGrupeArtikala.setBounds(170, 60, 220, 20);
 		panelArtikal.add(textFieldNazivGrupeArtikala);
 		textFieldNazivGrupeArtikala.setColumns(10);
 
-		JPanel panelEkonomskiPodaciOArtiklu = new JPanel();
-		panelEkonomskiPodaciOArtiklu.setBorder(new TitledBorder(null, "Ekonomski podaci o artiklu",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelEkonomskiPodaciOArtiklu.setBounds(30, 200, 420, 102);
-		contentPane.add(panelEkonomskiPodaciOArtiklu);
-		panelEkonomskiPodaciOArtiklu.setLayout(null);
-
-		JLabel lblMarza = new JLabel("Marza :");
-		lblMarza.setBounds(10, 72, 107, 14);
-		panelEkonomskiPodaciOArtiklu.add(lblMarza);
-
-		JLabel lblStopaPdva = new JLabel("Stopa PDV-a :");
-		lblStopaPdva.setBounds(10, 47, 107, 14);
-		panelEkonomskiPodaciOArtiklu.add(lblStopaPdva);
-
-		JLabel lblNetoCenaArtikla = new JLabel("Neto cena artikla :");
-		lblNetoCenaArtikla.setBounds(10, 22, 128, 14);
-		panelEkonomskiPodaciOArtiklu.add(lblNetoCenaArtikla);
-
-		textFieldNetoCenaArtikla = new JTextField();
-		textFieldNetoCenaArtikla.setBounds(200, 19, 198, 20);
-		panelEkonomskiPodaciOArtiklu.add(textFieldNetoCenaArtikla);
-		textFieldNetoCenaArtikla.setColumns(10);
-
-		comboBoxStopaPDV = new JComboBox();
-		comboBoxStopaPDV.setModel(new DefaultComboBoxModel(new String[] {"10", "20"}));
-		comboBoxStopaPDV.setBounds(200, 44, 86, 20);
-		panelEkonomskiPodaciOArtiklu.add(comboBoxStopaPDV);
-		comboBoxStopaPDV.setSelectedItem(null);
-
-		textFieldMarza = new JTextField();
-		textFieldMarza.setBounds(200, 69, 86, 20);
-		panelEkonomskiPodaciOArtiklu.add(textFieldMarza);
-		textFieldMarza.setColumns(10);
-
-		JButton btnDodajArtikal = new JButton("Dodaj artikal");
+		btnDodajArtikal = new JButton("Dodaj artikal");
+		btnDodajArtikal.setFont(new Font("Arial", Font.BOLD, 14));
 		btnDodajArtikal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -272,10 +259,11 @@ public class JFrameArtikal extends JFrame {
 			}
 			
 		});
-		btnDodajArtikal.setBounds(478, 35, 146, 23);
+		btnDodajArtikal.setBounds(430, 240, 180, 25);
 		contentPane.add(btnDodajArtikal);
 
-		btnObrisiArtikal = new JButton("Obrisi artikal");
+		btnObrisiArtikal = new JButton("Obri\u0161i artikal");
+		btnObrisiArtikal.setFont(new Font("Arial", Font.BOLD, 14));
 		btnObrisiArtikal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int rba = Integer.parseInt(textFieldIDArtikla.getText().trim());
@@ -304,16 +292,59 @@ public class JFrameArtikal extends JFrame {
 				}
 			}
 		});
-		btnObrisiArtikal.setBounds(478, 76, 146, 23);
+		btnObrisiArtikal.setBounds(650, 240, 180, 25);
 		contentPane.add(btnObrisiArtikal);
 
-		JButton btnAzuriraj = new JButton("Azuriraj");
-		btnAzuriraj.setBounds(478, 120, 146, 23);
+		btnAzuriraj = new JButton("A\u017Euriraj");
+		btnAzuriraj.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAzuriraj.setBounds(430, 290, 180, 25);
 		contentPane.add(btnAzuriraj);
 
-		btnPonistiAkciju = new JButton("Ponisti akciju");
-		btnPonistiAkciju.setBounds(478, 165, 146, 23);
+		btnPonistiAkciju = new JButton("Poni\u0161ti akciju");
+		btnPonistiAkciju.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonistiAkciju.setBounds(650, 290, 180, 25);
 		contentPane.add(btnPonistiAkciju);
+		
+				JPanel panelEkonomskiPodaciOArtiklu = new JPanel();
+				panelEkonomskiPodaciOArtiklu.setBounds(430, 10, 400, 220);
+				contentPane.add(panelEkonomskiPodaciOArtiklu);
+				panelEkonomskiPodaciOArtiklu.setBorder(new TitledBorder(null, "Ekonomski podaci o artiklu",
+						TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panelEkonomskiPodaciOArtiklu.setLayout(null);
+				
+						JLabel lblMarza = new JLabel("Mar\u017Ea :");
+						lblMarza.setFont(new Font("Arial", Font.BOLD, 14));
+						lblMarza.setBounds(10, 100, 120, 20);
+						panelEkonomskiPodaciOArtiklu.add(lblMarza);
+						
+								JLabel lblStopaPdva = new JLabel("Stopa PDV-a :");
+								lblStopaPdva.setFont(new Font("Arial", Font.BOLD, 14));
+								lblStopaPdva.setBounds(10, 60, 120, 20);
+								panelEkonomskiPodaciOArtiklu.add(lblStopaPdva);
+								
+										JLabel lblNetoCenaArtikla = new JLabel("Neto cena artikla :");
+										lblNetoCenaArtikla.setFont(new Font("Arial", Font.BOLD, 14));
+										lblNetoCenaArtikla.setBounds(10, 20, 140, 20);
+										panelEkonomskiPodaciOArtiklu.add(lblNetoCenaArtikla);
+										
+												textFieldNetoCenaArtikla = new JTextField();
+												textFieldNetoCenaArtikla.setFont(new Font("Arial", Font.PLAIN, 13));
+												textFieldNetoCenaArtikla.setBounds(160, 20, 230, 20);
+												panelEkonomskiPodaciOArtiklu.add(textFieldNetoCenaArtikla);
+												textFieldNetoCenaArtikla.setColumns(10);
+												
+														comboBoxStopaPDV = new JComboBox();
+														comboBoxStopaPDV.setFont(new Font("Arial", Font.PLAIN, 13));
+														comboBoxStopaPDV.setModel(new DefaultComboBoxModel(new String[] {"10", "20"}));
+														comboBoxStopaPDV.setBounds(160, 60, 230, 20);
+														panelEkonomskiPodaciOArtiklu.add(comboBoxStopaPDV);
+														comboBoxStopaPDV.setSelectedItem(null);
+														
+																textFieldMarza = new JTextField();
+																textFieldMarza.setFont(new Font("Arial", Font.PLAIN, 13));
+																textFieldMarza.setBounds(160, 100, 230, 20);
+																panelEkonomskiPodaciOArtiklu.add(textFieldMarza);
+																textFieldMarza.setColumns(10);
 		
 		if(ida > 0)
 		{

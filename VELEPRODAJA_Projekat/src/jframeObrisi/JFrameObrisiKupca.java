@@ -84,7 +84,8 @@ public class JFrameObrisiKupca extends JFrame {
 		btnOtvoriKupcaObrisiKupca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameKupac jfk = new JFrameKupac();
-				//jffo.getBtnDodajFilijalu().setVisible(true);
+				jfk.getBtnDodajKupca().setVisible(false);
+				jfk.getBtnAzurirajKupca().setVisible(false);
 				int idk = Integer.parseInt(textFieldIdKupcaObrisiKupca.getText().trim());
 				
 				try {
@@ -101,10 +102,10 @@ public class JFrameObrisiKupca extends JFrame {
 					jfk.getTextTekuciRacunKupca().setText(k.getTekuciRacunKupca());
 					jfk.getComboBoxValutaPlacanja().setSelectedItem(k.getValutaPlacanjaKupca());
 					
-					if(k.getStatusKupca().equals("Aktivna")) {
-						jfk.getRdbtnAktivan().isSelected();
+					if(k.getStatusKupca().equals("Aktivan")) {
+						jfk.getRdbtnAktivan().setSelected(true);
 					}else
-						jfk.getRdbtnNeaktivan().isSelected();
+						jfk.getRdbtnNeaktivan().setSelected(true);
 					
 					
 					

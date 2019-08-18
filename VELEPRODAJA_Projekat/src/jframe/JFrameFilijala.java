@@ -330,30 +330,35 @@ public class JFrameFilijala extends JFrame {
 
 		lblIDFilijale = new JLabel("ID filijale :");
 		lblIDFilijale.setFont(new Font("Arial", Font.BOLD, 14));
-		lblIDFilijale.setBounds(10, 100, 100, 20);
+		lblIDFilijale.setBounds(10, 140, 100, 20);
 		panelPoslovniPodaciFilijale.add(lblIDFilijale);
 
 		textIDFilijale = new JTextField();
 		textIDFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textIDFilijale.setColumns(10);
-		textIDFilijale.setBounds(140, 100, 50, 20);
+		textIDFilijale.setBounds(140, 140, 50, 20);
 		panelPoslovniPodaciFilijale.add(textIDFilijale);
 
 		 rdbtnAktivna = new JRadioButton("Aktivna");
 		 rdbtnAktivna.setFont(new Font("Arial", Font.BOLD, 14));
 		buttonGroupFilijala.add(rdbtnAktivna);
-		rdbtnAktivna.setBounds(10, 140, 100, 20);
+		rdbtnAktivna.setBounds(140, 100, 100, 20);
 		panelPoslovniPodaciFilijale.add(rdbtnAktivna);
 
 		 rdbtnNeaktivna = new JRadioButton("Neaktivna");
 		 rdbtnNeaktivna.setFont(new Font("Arial", Font.BOLD, 14));
 		buttonGroupFilijala.add(rdbtnNeaktivna);
-		rdbtnNeaktivna.setBounds(140, 140, 100, 20);
+		rdbtnNeaktivna.setBounds(290, 100, 100, 20);
 		panelPoslovniPodaciFilijale.add(rdbtnNeaktivna);
 
 		ButtonGroup status = new ButtonGroup();
 		status.add(rdbtnAktivna);
 		status.add(rdbtnNeaktivna);
+		
+		JLabel lblNewLabel = new JLabel("Status :");
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNewLabel.setBounds(10, 100, 120, 20);
+		panelPoslovniPodaciFilijale.add(lblNewLabel);
 
 		btnDodajFilijalu = new JButton("Dodaj filijalu");
 		btnDodajFilijalu.setFont(new Font("Arial", Font.BOLD, 14));
