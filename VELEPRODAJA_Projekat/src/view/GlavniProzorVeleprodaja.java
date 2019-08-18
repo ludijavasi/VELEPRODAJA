@@ -838,6 +838,7 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiZaposlenog oz = new JFrameObrisiZaposlenog();
 				panelAdmin.setVisible(false);
 				oz.setVisible(true);
+			
 				oz.getBtnNazadObrisiZaposlenog().addActionListener(new ActionListener() {
 					
 					@Override

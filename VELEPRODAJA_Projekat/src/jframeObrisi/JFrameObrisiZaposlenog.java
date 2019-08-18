@@ -75,6 +75,9 @@ public class JFrameObrisiZaposlenog extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				JFrameZaposleni jfzo = new JFrameZaposleni();
+				
+				jfzo.getBtnDodajZaposlenog().setVisible(false);
+				jfzo.getBtnAzurirajZaposlenog().setVisible(false);
 				//jfzo.getBtnDodajZaposlenog().setVisible(false);
 				int idz = Integer.parseInt(textFieldIdZaposlenog.getText().trim());
 				

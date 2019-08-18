@@ -86,7 +86,8 @@ public class JFrameObrisiFilijalu extends JFrame {
 		btnOtvoriFilijalu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameFilijala jffo = new JFrameFilijala();
-				//jffo.getBtnDodajFilijalu().setVisible(true);
+				jffo.getBtnDodajFilijalu().setVisible(false);
+				jffo.getBtnAzurirajFilijalu().setVisible(false);
 				int idf = Integer.parseInt(textFieldIdFilijaleObrisiFilijalu.getText().trim());
 				try {
 					Filijala f = Kontroler.getInstance().getDetaljiFilijale(idf);

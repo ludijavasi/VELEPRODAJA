@@ -64,13 +64,7 @@ public class JFrameZaposleni extends JFrame {
 	private JPanel panelPodaciOPosluZaposleni;
 	private JTextField textTelefon;
 	private JTextField textEMail;
-	private JButton btnAzurirajZaposlenog;
-	
-	
-	
-	public JButton getBtnAzurirajZaposlenog() {
-		return btnAzurirajZaposlenog;
-	}
+	private JButton btnAzurirajZaposlenog;	
 
 	private JDateChooser dateChooserDatumZaposlenja;
 	private JDateChooser dateChooserPrestankaZaposlenja;
@@ -78,7 +72,11 @@ public class JFrameZaposleni extends JFrame {
 	private JButton btnDodajZaposlenog;
 	private JButton btnObrisiZaposlenog;
 	private JTextField textJMBG;
+		
 	
+	public JButton getBtnAzurirajZaposlenog() {
+		return btnAzurirajZaposlenog;
+	}	
 	
 
 	public JButton getBtnDodajZaposlenog() {
@@ -563,7 +561,7 @@ public class JFrameZaposleni extends JFrame {
 		comboBoxTipZaposlenja.setBounds(250, 100, 130, 20);
 		panelPodaciOPosluZaposleni.add(comboBoxTipZaposlenja);
 		comboBoxTipZaposlenja
-				.setModel(new DefaultComboBoxModel(new String[] { "Menadzer", "Komercijalista", "Magacioner" }));
+				.setModel(new DefaultComboBoxModel(new String[] {"Menad\u017Eer", "Komercijalista", "Magacioner"}));
 
 		lblTipZaposlenja = new JLabel("Tip zaposlenja :");
 		lblTipZaposlenja.setFont(new Font("Arial", Font.BOLD, 14));

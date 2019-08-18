@@ -24,6 +24,7 @@ import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class JFrameFilijala extends JFrame {
 
@@ -230,7 +231,7 @@ public class JFrameFilijala extends JFrame {
 	public JFrameFilijala() {
 		setTitle("FILIJALA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 602, 343);
+		setBounds(100, 100, 860, 402);
 		contentPaneFilijala = new JPanel();
 		contentPaneFilijala.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneFilijala);
@@ -240,96 +241,114 @@ public class JFrameFilijala extends JFrame {
 		panelPodaciOFilijali.setLayout(null);
 		panelPodaciOFilijali.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Podaci o filijali",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPodaciOFilijali.setBounds(10, 11, 242, 182);
+		panelPodaciOFilijali.setBounds(10, 10, 400, 220);
 		contentPaneFilijala.add(panelPodaciOFilijali);
 
 		JLabel labelNayivfilijale = new JLabel("Naziv filijale :");
-		labelNayivfilijale.setBounds(10, 45, 82, 14);
+		labelNayivfilijale.setFont(new Font("Arial", Font.BOLD, 14));
+		labelNayivfilijale.setBounds(10, 20, 150, 20);
 		panelPodaciOFilijali.add(labelNayivfilijale);
 
 		JLabel lblAdresaFilijale = new JLabel("Adresa filijale :");
-		lblAdresaFilijale.setBounds(10, 70, 82, 14);
+		lblAdresaFilijale.setFont(new Font("Arial", Font.BOLD, 14));
+		lblAdresaFilijale.setBounds(10, 60, 150, 20);
 		panelPodaciOFilijali.add(lblAdresaFilijale);
 
-		JLabel lblGradOpstinaFilijale = new JLabel("Grad/Opstina");
-		lblGradOpstinaFilijale.setBounds(10, 95, 82, 14);
+		JLabel lblGradOpstinaFilijale = new JLabel("Grad / Op\u0161tina :");
+		lblGradOpstinaFilijale.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGradOpstinaFilijale.setBounds(10, 100, 150, 20);
 		panelPodaciOFilijali.add(lblGradOpstinaFilijale);
 
 		JLabel lblTelefonFilijale = new JLabel("Telefon :");
-		lblTelefonFilijale.setBounds(10, 120, 82, 14);
+		lblTelefonFilijale.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTelefonFilijale.setBounds(10, 140, 150, 20);
 		panelPodaciOFilijali.add(lblTelefonFilijale);
 
 		JLabel lblE_MailFilijale = new JLabel("E-mail :");
-		lblE_MailFilijale.setBounds(10, 151, 82, 14);
+		lblE_MailFilijale.setFont(new Font("Arial", Font.BOLD, 14));
+		lblE_MailFilijale.setBounds(10, 180, 150, 20);
 		panelPodaciOFilijali.add(lblE_MailFilijale);
 
 		textNazivFilijale = new JTextField();
+		textNazivFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textNazivFilijale.setColumns(10);
-		textNazivFilijale.setBounds(102, 42, 121, 20);
+		textNazivFilijale.setBounds(170, 20, 220, 20);
 		panelPodaciOFilijali.add(textNazivFilijale);
 
 		textAdresaFilijale = new JTextField();
+		textAdresaFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textAdresaFilijale.setColumns(10);
-		textAdresaFilijale.setBounds(102, 67, 121, 20);
+		textAdresaFilijale.setBounds(170, 60, 220, 20);
 		panelPodaciOFilijali.add(textAdresaFilijale);
 
 		textGradOpstinaFilijale = new JTextField();
+		textGradOpstinaFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textGradOpstinaFilijale.setColumns(10);
-		textGradOpstinaFilijale.setBounds(102, 92, 124, 20);
+		textGradOpstinaFilijale.setBounds(170, 100, 220, 20);
 		panelPodaciOFilijali.add(textGradOpstinaFilijale);
 
 		textE_MailFilijale = new JTextField();
+		textE_MailFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textE_MailFilijale.setColumns(10);
-		textE_MailFilijale.setBounds(99, 148, 124, 20);
+		textE_MailFilijale.setBounds(170, 180, 220, 20);
 		panelPodaciOFilijali.add(textE_MailFilijale);
 
 		textTelefonFilijale = new JTextField();
+		textTelefonFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textTelefonFilijale.setColumns(10);
-		textTelefonFilijale.setBounds(102, 117, 121, 20);
+		textTelefonFilijale.setBounds(170, 140, 220, 20);
 		panelPodaciOFilijali.add(textTelefonFilijale);
 
 		panelPoslovniPodaciFilijale = new JPanel();
 		panelPoslovniPodaciFilijale.setLayout(null);
 		panelPoslovniPodaciFilijale.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 				"Poslovni podaci filijale", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPoslovniPodaciFilijale.setBounds(272, 11, 301, 182);
+		panelPoslovniPodaciFilijale.setBounds(430, 10, 400, 220);
 		contentPaneFilijala.add(panelPoslovniPodaciFilijale);
 
 		lblPibFilijale = new JLabel("PIB :");
-		lblPibFilijale.setBounds(10, 34, 107, 14);
+		lblPibFilijale.setFont(new Font("Arial", Font.BOLD, 14));
+		lblPibFilijale.setBounds(10, 20, 100, 20);
 		panelPoslovniPodaciFilijale.add(lblPibFilijale);
 
 		textPibFilijale = new JTextField();
+		textPibFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textPibFilijale.setColumns(10);
-		textPibFilijale.setBounds(127, 31, 130, 20);
+		textPibFilijale.setBounds(140, 20, 250, 20);
 		panelPoslovniPodaciFilijale.add(textPibFilijale);
 
-		lblTekuciRacunFilijale = new JLabel("Tekuci Racun :");
-		lblTekuciRacunFilijale.setBounds(10, 65, 107, 14);
+		lblTekuciRacunFilijale = new JLabel("Tekuci ra\u010Dun :");
+		lblTekuciRacunFilijale.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTekuciRacunFilijale.setBounds(10, 60, 120, 20);
 		panelPoslovniPodaciFilijale.add(lblTekuciRacunFilijale);
 
 		textTekuciRacunFilijale = new JTextField();
+		textTekuciRacunFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textTekuciRacunFilijale.setColumns(10);
-		textTekuciRacunFilijale.setBounds(127, 62, 130, 20);
+		textTekuciRacunFilijale.setBounds(140, 60, 250, 20);
 		panelPoslovniPodaciFilijale.add(textTekuciRacunFilijale);
 
-		lblIDFilijale = new JLabel("ID Filijale:");
-		lblIDFilijale.setBounds(39, 100, 78, 14);
+		lblIDFilijale = new JLabel("ID filijale :");
+		lblIDFilijale.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIDFilijale.setBounds(10, 100, 100, 20);
 		panelPoslovniPodaciFilijale.add(lblIDFilijale);
 
 		textIDFilijale = new JTextField();
+		textIDFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textIDFilijale.setColumns(10);
-		textIDFilijale.setBounds(148, 97, 65, 20);
+		textIDFilijale.setBounds(140, 100, 50, 20);
 		panelPoslovniPodaciFilijale.add(textIDFilijale);
 
 		 rdbtnAktivna = new JRadioButton("Aktivna");
+		 rdbtnAktivna.setFont(new Font("Arial", Font.BOLD, 14));
 		buttonGroupFilijala.add(rdbtnAktivna);
-		rdbtnAktivna.setBounds(39, 145, 109, 23);
+		rdbtnAktivna.setBounds(10, 140, 100, 20);
 		panelPoslovniPodaciFilijale.add(rdbtnAktivna);
 
 		 rdbtnNeaktivna = new JRadioButton("Neaktivna");
+		 rdbtnNeaktivna.setFont(new Font("Arial", Font.BOLD, 14));
 		buttonGroupFilijala.add(rdbtnNeaktivna);
-		rdbtnNeaktivna.setBounds(148, 145, 109, 23);
+		rdbtnNeaktivna.setBounds(140, 140, 100, 20);
 		panelPoslovniPodaciFilijale.add(rdbtnNeaktivna);
 
 		ButtonGroup status = new ButtonGroup();
@@ -337,6 +356,7 @@ public class JFrameFilijala extends JFrame {
 		status.add(rdbtnNeaktivna);
 
 		btnDodajFilijalu = new JButton("Dodaj filijalu");
+		btnDodajFilijalu.setFont(new Font("Arial", Font.BOLD, 14));
 		btnDodajFilijalu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -374,19 +394,22 @@ public class JFrameFilijala extends JFrame {
 
 			}
 		});
-		btnDodajFilijalu.setBounds(311, 204, 118, 23);
+		btnDodajFilijalu.setBounds(430, 250, 180, 25);
 		contentPaneFilijala.add(btnDodajFilijalu);
 
-		btnObrisiFilijalu = new JButton("Obrisi filijalu");
-		btnObrisiFilijalu.setBounds(97, 238, 118, 23);
+		btnObrisiFilijalu = new JButton("Obri\u0161i filijalu");
+		btnObrisiFilijalu.setFont(new Font("Arial", Font.BOLD, 14));
+		btnObrisiFilijalu.setBounds(650, 250, 180, 25);
 		contentPaneFilijala.add(btnObrisiFilijalu);
 
-		btnAzurirajFilijalu = new JButton("Azuriraj");
-		btnAzurirajFilijalu.setBounds(311, 238, 118, 23);
+		btnAzurirajFilijalu = new JButton("A\u017Euriraj");
+		btnAzurirajFilijalu.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAzurirajFilijalu.setBounds(430, 300, 180, 25);
 		contentPaneFilijala.add(btnAzurirajFilijalu);
 
-		btnPonistiAkcijuFilijala = new JButton("Ponisti akciju");
-		btnPonistiAkcijuFilijala.setBounds(97, 204, 118, 23);
+		btnPonistiAkcijuFilijala = new JButton("Poni\u0161ti akciju");
+		btnPonistiAkcijuFilijala.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonistiAkcijuFilijala.setBounds(650, 300, 180, 25);
 		contentPaneFilijala.add(btnPonistiAkcijuFilijala);
 	}
 }
