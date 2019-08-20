@@ -63,15 +63,15 @@ public class JFrameObrisiArtikal extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameObrisiArtikal() {
-		setTitle("OBRISI ARTIKAL");
+		setTitle("OBRI\u0160I ARTIKAL");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnOtvoriArtikalObrisi = new JButton("Otvori artikal");
+		JButton btnOtvoriArtikalObrisi = new JButton("Otvorite artikal");
 		btnOtvoriArtikalObrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -113,17 +113,18 @@ public class JFrameObrisiArtikal extends JFrame {
 				
 			}
 		});
-		btnOtvoriArtikalObrisi.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriArtikalObrisi.setBounds(61, 203, 156, 23);
+		btnOtvoriArtikalObrisi.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOtvoriArtikalObrisi.setBounds(60, 180, 180, 25);
 		contentPane.add(btnOtvoriArtikalObrisi);
 		
 		JLabel lblUnesiteGrupuArtikala = new JLabel("Unesite grupu artikala :");
-		lblUnesiteGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteGrupuArtikala.setBounds(61, 11, 234, 17);
+		lblUnesiteGrupuArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		lblUnesiteGrupuArtikala.setBounds(60, 20, 250, 20);
 		contentPane.add(lblUnesiteGrupuArtikala);
 		
 		JComboBox comboBoxGrupaArtikalaObrisi = new JComboBox();
-		comboBoxGrupaArtikalaObrisi.setBounds(61, 39, 234, 20);
+		comboBoxGrupaArtikalaObrisi.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxGrupaArtikalaObrisi.setBounds(60, 60, 300, 20);
 		contentPane.add(comboBoxGrupaArtikalaObrisi);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaObrisi);
 		comboBoxGrupaArtikalaObrisi.setSelectedItem(null);
@@ -145,19 +146,20 @@ public class JFrameObrisiArtikal extends JFrame {
 		});
 		
 		JLabel lblUnesiteArtikalObrisi = new JLabel("Unesite artikal :");
-		lblUnesiteArtikalObrisi.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteArtikalObrisi.setBounds(61, 83, 234, 17);
+		lblUnesiteArtikalObrisi.setFont(new Font("Arial", Font.BOLD, 14));
+		lblUnesiteArtikalObrisi.setBounds(60, 100, 250, 20);
 		contentPane.add(lblUnesiteArtikalObrisi);
 		
 		comboBoxArtikalObrisi = new JComboBox();
-		comboBoxArtikalObrisi.setBounds(61, 111, 234, 20);
+		comboBoxArtikalObrisi.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxArtikalObrisi.setBounds(60, 140, 300, 20);
 		contentPane.add(comboBoxArtikalObrisi);
 		//popuniComboBoxGrupaArtikala(comboBoxArtikalObrisi);
 		comboBoxArtikalObrisi.setSelectedItem(null);		
 		
 	    btnNazadObrisiArtikal = new JButton("Nazad");
-		btnNazadObrisiArtikal.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNazadObrisiArtikal.setBounds(262, 205, 89, 23);
+		btnNazadObrisiArtikal.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadObrisiArtikal.setBounds(260, 180, 100, 23);
 		contentPane.add(btnNazadObrisiArtikal);
 
 	}
