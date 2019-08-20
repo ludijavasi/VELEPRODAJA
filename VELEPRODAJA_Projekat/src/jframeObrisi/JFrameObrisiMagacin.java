@@ -56,20 +56,20 @@ public class JFrameObrisiMagacin extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameObrisiMagacin() {
-		setTitle("OBRISI MAGACIN");
+		setTitle("OBRI\u0160I MAGACIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblUnesiteIdMagacina = new JLabel("Izaberi magacin");
-		lblUnesiteIdMagacina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteIdMagacina.setBounds(58, 48, 331, 17);
+		JLabel lblUnesiteIdMagacina = new JLabel("Unesite magacin :");
+		lblUnesiteIdMagacina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblUnesiteIdMagacina.setBounds(60, 20, 250, 20);
 		contentPane.add(lblUnesiteIdMagacina);
 
-		JButton btnOtvoriMagacin = new JButton("Otvori magacin");
+		JButton btnOtvoriMagacin = new JButton("Otvorite magacin");
 		btnOtvoriMagacin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameMagacin jfmo = new JFrameMagacin();
@@ -131,12 +131,13 @@ public class JFrameObrisiMagacin extends JFrame {
 			}
 
 		});
-		btnOtvoriMagacin.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriMagacin.setBounds(224, 166, 165, 23);
+		btnOtvoriMagacin.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOtvoriMagacin.setBounds(60, 140, 180, 25);
 		contentPane.add(btnOtvoriMagacin);
 
 		comboBoxMagacinaObrisi = new JComboBox<Magacin>();
-		comboBoxMagacinaObrisi.setBounds(58, 88, 331, 20);
+		comboBoxMagacinaObrisi.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxMagacinaObrisi.setBounds(60, 60, 300, 20);
 		contentPane.add(comboBoxMagacinaObrisi);
 		popuniComboBoxMagacin(comboBoxMagacinaObrisi);
 		comboBoxMagacinaObrisi.setSelectedItem(null);
@@ -147,22 +148,25 @@ public class JFrameObrisiMagacin extends JFrame {
 			}
 		});
 
-		JLabel lblIdMagacinaObrisiMagacin = new JLabel("ID Magacina :");
-		lblIdMagacinaObrisiMagacin.setBounds(122, 128, 77, 14);
+		JLabel lblIdMagacinaObrisiMagacin = new JLabel("ID magacina :");
+		lblIdMagacinaObrisiMagacin.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdMagacinaObrisiMagacin.setBounds(60, 100, 120, 20);
 		contentPane.add(lblIdMagacinaObrisiMagacin);
 
 		textFieldIdMagacinaObrisiMagacin = new JTextField();
+		textFieldIdMagacinaObrisiMagacin.setFont(new Font("Arial", Font.PLAIN, 13));
 		textFieldIdMagacinaObrisiMagacin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 			}
 		});
-		textFieldIdMagacinaObrisiMagacin.setBounds(239, 125, 86, 20);
+		textFieldIdMagacinaObrisiMagacin.setBounds(220, 100, 70, 20);
 		contentPane.add(textFieldIdMagacinaObrisiMagacin);
 		textFieldIdMagacinaObrisiMagacin.setColumns(10);
 		
 		btnNazadObrisiMagacin = new JButton("Nazad");
-		btnNazadObrisiMagacin.setBounds(58, 168, 89, 23);
+		btnNazadObrisiMagacin.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadObrisiMagacin.setBounds(260, 140, 100, 25);
 		contentPane.add(btnNazadObrisiMagacin);
 	}
 

@@ -57,20 +57,20 @@ public class JFrameObrisiZaposlenog extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameObrisiZaposlenog() {
-		setTitle("OBRISI ZAPOSLENOG");
+		setTitle("OBRI\u0160I ZAPOSLENOG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIzaberiteZaposlenog = new JLabel("Izaberite zaposlenog :");
-		lblIzaberiteZaposlenog.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIzaberiteZaposlenog.setBounds(55, 49, 251, 17);
+		JLabel lblIzaberiteZaposlenog = new JLabel("Unesite zaposlenog :");
+		lblIzaberiteZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIzaberiteZaposlenog.setBounds(60, 20, 250, 20);
 		contentPane.add(lblIzaberiteZaposlenog);
 		
-		JButton btnOtvoriZaposlenog = new JButton("Otvori zaposlenog");
+		JButton btnOtvoriZaposlenog = new JButton("Otvorite zaposlenog");
 		btnOtvoriZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -153,28 +153,31 @@ public class JFrameObrisiZaposlenog extends JFrame {
 			    
 			}
 		});
-		btnOtvoriZaposlenog.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriZaposlenog.setBounds(213, 173, 171, 23);
+		btnOtvoriZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOtvoriZaposlenog.setBounds(60, 140, 180, 25);
 		contentPane.add(btnOtvoriZaposlenog);
 		
 		JLabel lblIdZaposlenog = new JLabel("ID zaposlenog :");
-		lblIdZaposlenog.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIdZaposlenog.setBounds(55, 131, 155, 14);
+		lblIdZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdZaposlenog.setBounds(60, 100, 120, 20);
 		contentPane.add(lblIdZaposlenog);
 		
 		textFieldIdZaposlenog = new JTextField();
-		textFieldIdZaposlenog.setBounds(220, 128, 86, 20);
+		textFieldIdZaposlenog.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdZaposlenog.setBounds(220, 100, 70, 20);
 		contentPane.add(textFieldIdZaposlenog);
 		textFieldIdZaposlenog.setColumns(10);
 		
 		JComboBox<Zaposleni> comboBoxIzaberiteZaposlenog = new JComboBox();
-		comboBoxIzaberiteZaposlenog.setBounds(55, 87, 251, 20);
+		comboBoxIzaberiteZaposlenog.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxIzaberiteZaposlenog.setBounds(60, 60, 300, 20);
 		contentPane.add(comboBoxIzaberiteZaposlenog);
 		popuniComboBoxZaposleni(comboBoxIzaberiteZaposlenog);
 		comboBoxIzaberiteZaposlenog.setSelectedItem(null);
 		
 		btnNazadObrisiZaposlenog = new JButton("Nazad");
-		btnNazadObrisiZaposlenog.setBounds(55, 175, 89, 23);
+		btnNazadObrisiZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadObrisiZaposlenog.setBounds(260, 140, 100, 25);
 		contentPane.add(btnNazadObrisiZaposlenog);
 		comboBoxIzaberiteZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

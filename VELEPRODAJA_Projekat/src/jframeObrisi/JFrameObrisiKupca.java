@@ -56,31 +56,31 @@ public class JFrameObrisiKupca extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameObrisiKupca() {
-		setTitle("OBRISI KUPCA");
+		setTitle("OBRI\u0160I KUPCA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIzaberiteKupca = new JLabel("Izaberite kupca :");
-		lblIzaberiteKupca.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIzaberiteKupca.setBounds(63, 52, 137, 17);
+		JLabel lblIzaberiteKupca = new JLabel("Unesite kupca :");
+		lblIzaberiteKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIzaberiteKupca.setBounds(60, 20, 250, 20);
 		contentPane.add(lblIzaberiteKupca);
 		
 		textFieldIdKupcaObrisiKupca = new JTextField();
-		textFieldIdKupcaObrisiKupca.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textFieldIdKupcaObrisiKupca.setBounds(255, 128, 48, 20);
+		textFieldIdKupcaObrisiKupca.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdKupcaObrisiKupca.setBounds(170, 100, 70, 20);
 		contentPane.add(textFieldIdKupcaObrisiKupca);
 		textFieldIdKupcaObrisiKupca.setColumns(10);
 		
 		btnNazadObrisiKupca = new JButton("Nazad");
-		btnNazadObrisiKupca.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNazadObrisiKupca.setBounds(63, 190, 79, 23);
+		btnNazadObrisiKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadObrisiKupca.setBounds(260, 140, 100, 25);
 		contentPane.add(btnNazadObrisiKupca);
 		
-		JButton btnOtvoriKupcaObrisiKupca = new JButton("Otvori kupca");
+		JButton btnOtvoriKupcaObrisiKupca = new JButton("Otvorite kupca");
 		btnOtvoriKupcaObrisiKupca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameKupac jfk = new JFrameKupac();
@@ -159,12 +159,13 @@ public class JFrameObrisiKupca extends JFrame {
 				
 			}
 		});
-		btnOtvoriKupcaObrisiKupca.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriKupcaObrisiKupca.setBounds(245, 190, 149, 23);
+		btnOtvoriKupcaObrisiKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOtvoriKupcaObrisiKupca.setBounds(60, 140, 180, 25);
 		contentPane.add(btnOtvoriKupcaObrisiKupca);
 		
 		JComboBox comboBoxObrisiKupca = new JComboBox();
-		comboBoxObrisiKupca.setBounds(63, 82, 337, 20);
+		comboBoxObrisiKupca.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxObrisiKupca.setBounds(60, 60, 300, 20);
 		contentPane.add(comboBoxObrisiKupca);
 		popuniComboBoxKupca(comboBoxObrisiKupca);
 		comboBoxObrisiKupca.setSelectedItem(null);
@@ -175,8 +176,9 @@ public class JFrameObrisiKupca extends JFrame {
 			}
 		});
 		
-		JLabel lblIdKupca = new JLabel("ID Kupca :");
-		lblIdKupca.setBounds(63, 133, 58, 14);
+		JLabel lblIdKupca = new JLabel("ID kupca :");
+		lblIdKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdKupca.setBounds(60, 100, 100, 20);
 		contentPane.add(lblIdKupca);
 	}
 	private void popuniComboBoxKupca(JComboBox<Kupac> comboBox) {

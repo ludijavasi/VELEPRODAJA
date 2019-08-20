@@ -57,21 +57,22 @@ public class JFrameObrisiFilijalu extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameObrisiFilijalu() {
-		setTitle("OBRISI FILIJALU");
+		setTitle("OBRI\u0160I FILIJALU");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 536, 337);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIzaberiFilijalu = new JLabel("Izaberite filijalu :");
-		lblIzaberiFilijalu.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIzaberiFilijalu.setBounds(91, 52, 278, 17);
+		JLabel lblIzaberiFilijalu = new JLabel("Unesite filijalu :");
+		lblIzaberiFilijalu.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIzaberiFilijalu.setBounds(60, 20, 250, 20);
 		contentPane.add(lblIzaberiFilijalu);
 		
 		comboBoxFilijalaObrisi = new JComboBox();
-		comboBoxFilijalaObrisi.setBounds(91, 95, 355, 20);
+		comboBoxFilijalaObrisi.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxFilijalaObrisi.setBounds(60, 60, 300, 20);
 		contentPane.add(comboBoxFilijalaObrisi);
 		popuniComboBoxFilijala(comboBoxFilijalaObrisi);
 		comboBoxFilijalaObrisi.setSelectedItem(null);
@@ -82,7 +83,7 @@ public class JFrameObrisiFilijalu extends JFrame {
 			}
 		});
 		
-		JButton btnOtvoriFilijalu = new JButton("Otvori filijalu");
+		JButton btnOtvoriFilijalu = new JButton("Otvorite filijalu");
 		btnOtvoriFilijalu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameFilijala jffo = new JFrameFilijala();
@@ -160,22 +161,24 @@ public class JFrameObrisiFilijalu extends JFrame {
 
 		});
 		                 
-		btnOtvoriFilijalu.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriFilijalu.setBounds(286, 222, 160, 23);
+		btnOtvoriFilijalu.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOtvoriFilijalu.setBounds(60, 140, 180, 25);
 		contentPane.add(btnOtvoriFilijalu);
 		
 		JLabel lblIdFilijaleObrisiFilijalu = new JLabel("ID filijale :");
-		lblIdFilijaleObrisiFilijalu.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIdFilijaleObrisiFilijalu.setBounds(91, 151, 100, 17);
+		lblIdFilijaleObrisiFilijalu.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdFilijaleObrisiFilijalu.setBounds(60, 100, 100, 20);
 		contentPane.add(lblIdFilijaleObrisiFilijalu);
 		
 		textFieldIdFilijaleObrisiFilijalu = new JTextField();
-		textFieldIdFilijaleObrisiFilijalu.setBounds(232, 151, 86, 20);
+		textFieldIdFilijaleObrisiFilijalu.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdFilijaleObrisiFilijalu.setBounds(170, 100, 70, 20);
 		contentPane.add(textFieldIdFilijaleObrisiFilijalu);
 		textFieldIdFilijaleObrisiFilijalu.setColumns(10);
 		
 		btnNazadObrisiFilijali = new JButton("Nazad");
-		btnNazadObrisiFilijali.setBounds(91, 224, 89, 23);
+		btnNazadObrisiFilijali.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadObrisiFilijali.setBounds(260, 140, 100, 25);
 		contentPane.add(btnNazadObrisiFilijali);
 	}
 	

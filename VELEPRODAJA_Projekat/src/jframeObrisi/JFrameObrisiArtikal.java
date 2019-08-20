@@ -159,7 +159,7 @@ public class JFrameObrisiArtikal extends JFrame {
 		
 	    btnNazadObrisiArtikal = new JButton("Nazad");
 		btnNazadObrisiArtikal.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNazadObrisiArtikal.setBounds(260, 180, 100, 23);
+		btnNazadObrisiArtikal.setBounds(260, 180, 100, 25);
 		contentPane.add(btnNazadObrisiArtikal);
 
 	}

@@ -58,22 +58,22 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameObrisiGrupuArtikala() {
-		setTitle("OBRISI GRUPU ARTIKALA");
+		setTitle("OBRI\u0160I GRUPU ARTIKALA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 601, 378);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblUnesiteGrupuArtikala = new JLabel("Unesite grupu artikala:");
-		lblUnesiteGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUnesiteGrupuArtikala.setBounds(35, 50, 223, 17);
+		lblUnesiteGrupuArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		lblUnesiteGrupuArtikala.setBounds(60, 20, 250, 20);
 		contentPane.add(lblUnesiteGrupuArtikala);
 		
 		comboBoxObrisiGrupuArtikala = new JComboBox();
-		comboBoxObrisiGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		comboBoxObrisiGrupuArtikala.setBounds(35, 102, 223, 20);
+		comboBoxObrisiGrupuArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxObrisiGrupuArtikala.setBounds(60, 60, 300, 20);
 		contentPane.add(comboBoxObrisiGrupuArtikala);
 		popuniComboBoxGrupaArtikala(comboBoxObrisiGrupuArtikala);
 		comboBoxObrisiGrupuArtikala.setSelectedItem(null);
@@ -85,13 +85,13 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 	});
 		
 		JLabel lblIdGrupeArtikalaObrisiGA = new JLabel("ID grupe artikala :");
-		lblIdGrupeArtikalaObrisiGA.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIdGrupeArtikalaObrisiGA.setBounds(35, 165, 152, 17);
+		lblIdGrupeArtikalaObrisiGA.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdGrupeArtikalaObrisiGA.setBounds(60, 100, 150, 20);
 		contentPane.add(lblIdGrupeArtikalaObrisiGA);
 		
 		textFieldIdGrupeArtikalaObrisiGA = new JTextField();
-		textFieldIdGrupeArtikalaObrisiGA.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textFieldIdGrupeArtikalaObrisiGA.setBounds(197, 163, 61, 20);
+		textFieldIdGrupeArtikalaObrisiGA.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdGrupeArtikalaObrisiGA.setBounds(190, 100, 70, 20);
 		contentPane.add(textFieldIdGrupeArtikalaObrisiGA);
 		textFieldIdGrupeArtikalaObrisiGA.setColumns(10);
 		
@@ -158,13 +158,13 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 				
 			}
 		});
-		btnOtvoriteGrupuArtikalaObrisiGA.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnOtvoriteGrupuArtikalaObrisiGA.setBounds(35, 225, 193, 23);
+		btnOtvoriteGrupuArtikalaObrisiGA.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOtvoriteGrupuArtikalaObrisiGA.setBounds(60, 140, 200, 25);
 		contentPane.add(btnOtvoriteGrupuArtikalaObrisiGA);
 		
 		btnNazadObrisiGA = new JButton("Nazad");
-		btnNazadObrisiGA.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNazadObrisiGA.setBounds(276, 227, 89, 23);
+		btnNazadObrisiGA.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadObrisiGA.setBounds(270, 140, 90, 25);
 		contentPane.add(btnNazadObrisiGA);
 	}
 	
