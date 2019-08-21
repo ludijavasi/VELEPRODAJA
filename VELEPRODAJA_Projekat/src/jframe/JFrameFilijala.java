@@ -205,7 +205,7 @@ public class JFrameFilijala extends JFrame {
 
 	public void setRdbtnNeaktivna(JRadioButton rdbtnNeaktivna) {
 		this.rdbtnNeaktivna = rdbtnNeaktivna;
-	}
+	}	
 	
 	
 

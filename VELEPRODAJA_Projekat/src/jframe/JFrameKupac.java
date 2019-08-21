@@ -150,6 +150,7 @@ public class JFrameKupac extends JFrame {
 	public JTextField getTextFieldKontakOsobaKupca() {
 		return textFieldKontakOsobaKupca;
 	}
+	
 
 	/**
 	 * Launch the application.

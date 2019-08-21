@@ -227,7 +227,12 @@ public class JFrameZaposleni extends JFrame {
 
 	public JTextField getTextJMBG() {
 		return textJMBG;
+	}	
+
+	public JLabel getLblIdZaposlenog() {
+		return lblIdZaposlenog;
 	}
+
 
 	/**
 	 * Launch the application.
@@ -359,6 +364,7 @@ public class JFrameZaposleni extends JFrame {
 				new DefaultComboBoxModel(new String[] { "IV stepen", "V stepen", "VI stepen", "VII stepen" }));
 		comboBoxStrucnaSprema.setBounds(250, 20, 130, 20);
 		panelPodacioZaposlenju.add(comboBoxStrucnaSprema);
+		comboBoxStrucnaSprema.setSelectedItem(null);
 
 		lblDatumPocetkaZaposlenja = new JLabel("Datum pocetka zaposlenja :");
 		lblDatumPocetkaZaposlenja.setFont(new Font("Arial", Font.BOLD, 14));
@@ -543,7 +549,9 @@ public class JFrameZaposleni extends JFrame {
 		comboBoxFilijalaPosla.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxFilijalaPosla.setBounds(250, 20, 130, 20);
 		panelPodaciOPosluZaposleni.add(comboBoxFilijalaPosla);
+		comboBoxFilijalaPosla.setSelectedItem(null);
 		popuniComboBoxFilijala(comboBoxFilijalaPosla);
+		
 
 		lblPlata = new JLabel("Plata :");
 		lblPlata.setFont(new Font("Arial", Font.BOLD, 14));
@@ -560,8 +568,10 @@ public class JFrameZaposleni extends JFrame {
 		comboBoxTipZaposlenja.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxTipZaposlenja.setBounds(250, 100, 130, 20);
 		panelPodaciOPosluZaposleni.add(comboBoxTipZaposlenja);
+		comboBoxTipZaposlenja.setSelectedItem(null);
 		comboBoxTipZaposlenja
 				.setModel(new DefaultComboBoxModel(new String[] {"Menad\u017Eer", "Komercijalista", "Magacioner"}));
+		
 
 		lblTipZaposlenja = new JLabel("Tip zaposlenja :");
 		lblTipZaposlenja.setFont(new Font("Arial", Font.BOLD, 14));
