@@ -226,6 +226,112 @@ public class Izvestaj {
 		this.ukupanIznosObracunatogPdvaRacuna = ukupanIznosObracunatogPdvaRacuna;
 		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
 	}
+	//FILIJALA
+	private int idFilijale;
+	private String nazivFilijale;
+	private String adresaFilijale;
+	private String gradOpstinaFilijale;
+	private String telefonFilijale;
+	private String emailFilijale;
+	private int pibFilijale;
+	private String tekuciRacunFilijale;
+	private String status;
+	public int getIdFilijale() {
+		return idFilijale;
+	}
+	public void setIdFilijale(int idFilijale) {
+		this.idFilijale = idFilijale;
+	}
+	public String getNazivFilijale() {
+		return nazivFilijale;
+	}
+	public void setNazivFilijale(String nazivFilijale) {
+		this.nazivFilijale = nazivFilijale;
+	}
+	public String getAdresaFilijale() {
+		return adresaFilijale;
+	}
+	public void setAdresaFilijale(String adresaFilijale) {
+		this.adresaFilijale = adresaFilijale;
+	}
+	public String getGradOpstinaFilijale() {
+		return gradOpstinaFilijale;
+	}
+	public void setGradOpstinaFilijale(String gradOpstinaFilijale) {
+		this.gradOpstinaFilijale = gradOpstinaFilijale;
+	}
+	public String getTelefonFilijale() {
+		return telefonFilijale;
+	}
+	public void setTelefonFilijale(String telefonFilijale) {
+		this.telefonFilijale = telefonFilijale;
+	}
+	public String getEmailFilijale() {
+		return emailFilijale;
+	}
+	public void setEmailFilijale(String emailFilijale) {
+		this.emailFilijale = emailFilijale;
+	}
+	public int getPibFilijale() {
+		return pibFilijale;
+	}
+	public void setPibFilijale(int pibFilijale) {
+		this.pibFilijale = pibFilijale;
+	}
+	public String getTekuciRacunFilijale() {
+		return tekuciRacunFilijale;
+	}
+	public void setTekuciRacunFilijale(String tekuciRacunFilijale) {
+		this.tekuciRacunFilijale = tekuciRacunFilijale;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Izvestaj(int idArtikla, int idgrupaArtikla, String naziv_grupe_artikala, String naziv_artikla,
+			String jedinica_mere, double neto_cena_artikla, int stopa_PDV, double marza_artikla, int idracunOtpremnica,
+			Artikli artikal, double kolicinaProdaje, double rabatProdaje, int idRacuna, int idZaposlenog, int idKupca,
+			Zaposleni zaposleni, Kupac kupac, Artikli artikalRacun, Date datumRacuna, Date datumNaplateRacuna,
+			double poreskaOsnovicaRacuna, double ukupanIznosObracunatogPdvaRacuna, double ukupnaVrednostRacuna,
+			int idFilijale, String nazivFilijale, String adresaFilijale, String gradOpstinaFilijale,
+			String telefonFilijale, String emailFilijale, int pibFilijale, String tekuciRacunFilijale, String status) {
+		super();
+		this.idArtikla = idArtikla;
+		IdgrupaArtikla = idgrupaArtikla;
+		this.naziv_grupe_artikala = naziv_grupe_artikala;
+		this.naziv_artikla = naziv_artikla;
+		this.jedinica_mere = jedinica_mere;
+		this.neto_cena_artikla = neto_cena_artikla;
+		this.stopa_PDV = stopa_PDV;
+		this.marza_artikla = marza_artikla;
+		this.idracunOtpremnica = idracunOtpremnica;
+		this.artikal = artikal;
+		this.kolicinaProdaje = kolicinaProdaje;
+		this.rabatProdaje = rabatProdaje;
+		this.idRacuna = idRacuna;
+		this.idZaposlenog = idZaposlenog;
+		this.idKupca = idKupca;
+		this.zaposleni = zaposleni;
+		this.kupac = kupac;
+		this.artikalRacun = artikalRacun;
+		this.datumRacuna = datumRacuna;
+		this.datumNaplateRacuna = datumNaplateRacuna;
+		this.poreskaOsnovicaRacuna = poreskaOsnovicaRacuna;
+		this.ukupanIznosObracunatogPdvaRacuna = ukupanIznosObracunatogPdvaRacuna;
+		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
+		this.idFilijale = idFilijale;
+		this.nazivFilijale = nazivFilijale;
+		this.adresaFilijale = adresaFilijale;
+		this.gradOpstinaFilijale = gradOpstinaFilijale;
+		this.telefonFilijale = telefonFilijale;
+		this.emailFilijale = emailFilijale;
+		this.pibFilijale = pibFilijale;
+		this.tekuciRacunFilijale = tekuciRacunFilijale;
+		this.status = status;
+	}
+	
 	
 	
 	

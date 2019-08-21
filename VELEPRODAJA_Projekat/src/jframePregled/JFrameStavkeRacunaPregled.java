@@ -187,7 +187,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaRacunStavke);
 		comboBoxGrupaArtikalaRacunStavke.setSelectedItem(null);
 		
-		comboBoxGrupaArtikalaRacunStavke.addActionListener(new ActionListener() {
+	/*	comboBoxGrupaArtikalaRacunStavke.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(null, "COMBOBOX ACTION");
@@ -203,12 +203,12 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 				}
 			}
 		});
-	
+	*/
 		
 		comboBoxArtikalRacunStavke = new JComboBox();
 		comboBoxArtikalRacunStavke.setEditable(true);
 		comboBoxArtikalRacunStavke.setBounds(184, 47, 137, 20);
-		//popuniComboBoxArtikli(comboBoxArtikalRacunStavke);
+		popuniComboBoxArtikliTSVI(comboBoxArtikalRacunStavke);
 		//if((comboBoxGrupaArtikalaRacunStavke.getSelectedItem() != null)) {
 		//int idga = ((GrupaArtikala)comboBoxGrupaArtikalaRacunStavke.getSelectedItem()).getIdGrupeArtikala();
 		//}
@@ -279,6 +279,29 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	
+	private void popuniComboBoxArtikliTSVI(JComboBox<Artikli> comboBox) {
+		
+		try {
+			comboBox.removeAllItems();
+			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikliSVI();
+
+			// for (GlavnaGrupa gg : lista) {
+			for (Artikli a : lista1) {
+				comboBox.addItem(a);		
+
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}	
+	
 
 	private void popuniComboBoxArtikli(JComboBox<String> comboBox, Integer id_grupe_artikala) {
 		

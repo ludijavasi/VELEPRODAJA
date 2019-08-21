@@ -58,19 +58,11 @@ public class DAOArtikli {
 		return lista;
 	}
 
-/*	public ArrayList<Artikli> getArtikli(Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
+	public ArrayList<Artikli> getArtikliSVI() throws ClassNotFoundException, SQLException {
 		ArrayList<Artikli> lista = new ArrayList<Artikli>();
 
 		connect();		
-		//preparedStatement = konekcija.prepareStatement("select * from artikal");
-		
-		String select = "select * from artikal";
-		if(id_grupe_artikala > 0) 
-		{
-			select+=" where id_grupe_artikala=" + id_grupe_artikala.toString();
-		}
-
-		preparedStatement = konekcija.prepareStatement(select);
+		preparedStatement = konekcija.prepareStatement("select * from artikal");
 		
 		preparedStatement.execute();
 		rs = preparedStatement.getResultSet();
@@ -93,7 +85,7 @@ public class DAOArtikli {
 		konekcija.close();
 		return lista;
 	}
-*/
+
 	public void insertArtikli(Artikli a) throws SQLException, ClassNotFoundException {
 		connect();
 

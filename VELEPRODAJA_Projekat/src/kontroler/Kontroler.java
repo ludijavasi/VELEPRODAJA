@@ -38,11 +38,11 @@ public class Kontroler {
 		return kontroler;
 	}
 	
-/*	public ArrayList<Artikli> getArtikli(int id_grupe_artikala) throws ClassNotFoundException, SQLException {
+	public ArrayList<Artikli> getArtikliSVI() throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
-		ArrayList<Artikli> lista = da.getArtikli(id_grupe_artikala);
+		ArrayList<Artikli> lista = da.getArtikliSVI();
 		return lista;
-	}	*/
+	}	
 	
 	public ArrayList<Artikli> getArtikli(int id_grupe_artikala) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
