@@ -10,7 +10,7 @@ public class Izvestaj {
 	private String naziv_artikla;
 	private String jedinica_mere;
 	private double neto_cena_artikla;
-	private int stopa_PDV;
+	private double stopa_PDV;
 	private double marza_artikla;
 	public int getIdArtikla() {
 		return idArtikla;
@@ -48,7 +48,7 @@ public class Izvestaj {
 	public void setNeto_cena_artikla(double neto_cena_artikla) {
 		this.neto_cena_artikla = neto_cena_artikla;
 	}
-	public int getStopa_PDV() {
+	public double getStopa_PDV() {
 		return stopa_PDV;
 	}
 	public void setStopa_PDV(int stopa_PDV) {
@@ -330,6 +330,199 @@ public class Izvestaj {
 		this.pibFilijale = pibFilijale;
 		this.tekuciRacunFilijale = tekuciRacunFilijale;
 		this.status = status;
+	}
+
+	private String nazivFirmeKupca;
+	private String adresaKupca;
+	private String gradOpstinaKupca;
+	private String telefonKupca;
+	private String emailKupca;
+	private String kontaktOsobaKupca;
+	private int pibKupca;
+	private String tekuciRacunKupca;
+	private int valutaPlacanjaKupca;
+	private String statusKupca;
+	
+	
+	
+	
+	public String getNazivFirmeKupca() {
+		return nazivFirmeKupca;
+	}
+	public void setNazivFirmeKupca(String nazivFirmeKupca) {
+		this.nazivFirmeKupca = nazivFirmeKupca;
+	}
+	public String getAdresaKupca() {
+		return adresaKupca;
+	}
+	public void setAdresaKupca(String adresaKupca) {
+		this.adresaKupca = adresaKupca;
+	}
+	public String getGradOpstinaKupca() {
+		return gradOpstinaKupca;
+	}
+	public void setGradOpstinaKupca(String gradOpstinaKupca) {
+		this.gradOpstinaKupca = gradOpstinaKupca;
+	}
+	public String getTelefonKupca() {
+		return telefonKupca;
+	}
+	public void setTelefonKupca(String telefonKupca) {
+		this.telefonKupca = telefonKupca;
+	}
+	public String getEmailKupca() {
+		return emailKupca;
+	}
+	public void setEmailKupca(String emailKupca) {
+		this.emailKupca = emailKupca;
+	}
+	public String getKontaktOsobaKupca() {
+		return kontaktOsobaKupca;
+	}
+	public void setKontaktOsobaKupca(String kontaktOsobaKupca) {
+		this.kontaktOsobaKupca = kontaktOsobaKupca;
+	}
+	public int getPibKupca() {
+		return pibKupca;
+	}
+	public void setPibKupca(int pibKupca) {
+		this.pibKupca = pibKupca;
+	}
+	public String getTekuciRacunKupca() {
+		return tekuciRacunKupca;
+	}
+	public void setTekuciRacunKupca(String tekuciRacunKupca) {
+		this.tekuciRacunKupca = tekuciRacunKupca;
+	}
+	public int getValutaPlacanjaKupca() {
+		return valutaPlacanjaKupca;
+	}
+	public void setValutaPlacanjaKupca(int valutaPlacanjaKupca) {
+		this.valutaPlacanjaKupca = valutaPlacanjaKupca;
+	}
+	public String getStatusKupca() {
+		return statusKupca;
+	}
+	public void setStatusKupca(String statusKupca) {
+		this.statusKupca = statusKupca;
+	}
+	
+	private String imeZaposlenog;
+	private String prezimeZaposlenog;
+	private String jmbgZaposlenog;
+	private String adresaZaposlenog;
+	private String gradOpstinaZaposlenog;	
+	private String telefonZaposlenog;
+	private String emailZaposlenog;
+	private String strucnaSpremaZaposlenog;
+	private Date datumPocetkaZaposlenja;
+	private Date datumZavrsetkaZaposlenja;
+	private double plataZaposlenog;	
+	private String tipZaposlenja;
+	private String usernameZaposlenog;
+	private String passwordZaposlenog;
+	
+	
+	
+	public String getImeZaposlenog() {
+		return imeZaposlenog;
+	}
+	public void setImeZaposlenog(String imeZaposlenog) {
+		this.imeZaposlenog = imeZaposlenog;
+	}
+	public String getPrezimeZaposlenog() {
+		return prezimeZaposlenog;
+	}
+	public void setPrezimeZaposlenog(String prezimeZaposlenog) {
+		this.prezimeZaposlenog = prezimeZaposlenog;
+	}
+	public String getJmbgZaposlenog() {
+		return jmbgZaposlenog;
+	}
+	public void setJmbgZaposlenog(String jmbgZaposlenog) {
+		this.jmbgZaposlenog = jmbgZaposlenog;
+	}
+	public String getAdresaZaposlenog() {
+		return adresaZaposlenog;
+	}
+	public void setAdresaZaposlenog(String adresaZaposlenog) {
+		this.adresaZaposlenog = adresaZaposlenog;
+	}
+	public String getGradOpstinaZaposlenog() {
+		return gradOpstinaZaposlenog;
+	}
+	public void setGradOpstinaZaposlenog(String gradOpstinaZaposlenog) {
+		this.gradOpstinaZaposlenog = gradOpstinaZaposlenog;
+	}
+	public String getTelefonZaposlenog() {
+		return telefonZaposlenog;
+	}
+	public void setTelefonZaposlenog(String telefonZaposlenog) {
+		this.telefonZaposlenog = telefonZaposlenog;
+	}
+	public String getEmailZaposlenog() {
+		return emailZaposlenog;
+	}
+	public void setEmailZaposlenog(String emailZaposlenog) {
+		this.emailZaposlenog = emailZaposlenog;
+	}
+	public String getStrucnaSpremaZaposlenog() {
+		return strucnaSpremaZaposlenog;
+	}
+	public void setStrucnaSpremaZaposlenog(String strucnaSpremaZaposlenog) {
+		this.strucnaSpremaZaposlenog = strucnaSpremaZaposlenog;
+	}
+	public Date getDatumPocetkaZaposlenja() {
+		return datumPocetkaZaposlenja;
+	}
+	public void setDatumPocetkaZaposlenja(Date datumPocetkaZaposlenja) {
+		this.datumPocetkaZaposlenja = datumPocetkaZaposlenja;
+	}
+	public Date getDatumZavrsetkaZaposlenja() {
+		return datumZavrsetkaZaposlenja;
+	}
+	public void setDatumZavrsetkaZaposlenja(Date datumZavrsetkaZaposlenja) {
+		this.datumZavrsetkaZaposlenja = datumZavrsetkaZaposlenja;
+	}
+	public double getPlataZaposlenog() {
+		return plataZaposlenog;
+	}
+	public void setPlataZaposlenog(double plataZaposlenog) {
+		this.plataZaposlenog = plataZaposlenog;
+	}
+	public String getTipZaposlenja() {
+		return tipZaposlenja;
+	}
+	public void setTipZaposlenja(String tipZaposlenja) {
+		this.tipZaposlenja = tipZaposlenja;
+	}
+	public String getUsernameZaposlenog() {
+		return usernameZaposlenog;
+	}
+	public void setUsernameZaposlenog(String usernameZaposlenog) {
+		this.usernameZaposlenog = usernameZaposlenog;
+	}
+	public String getPasswordZaposlenog() {
+		return passwordZaposlenog;
+	}
+	public void setPasswordZaposlenog(String passwordZaposlenog) {
+		this.passwordZaposlenog = passwordZaposlenog;
+	}
+	public Izvestaj(int idRAcuna2, Date datum_racuna, String naziv_firme_kupca, String username_zaposlenog,
+			String naziv_filijale, String grupa_artikala, int idArtikla2, String naziv_artikla2,
+			int koicina_prodaje, double neto_cena_artikla, double marza_artikla, double stopa_pdv_a) {
+			this.idRacuna = idRAcuna2;
+			this.datumRacuna = datum_racuna;
+			this.nazivFirmeKupca = naziv_firme_kupca;
+			this.usernameZaposlenog = username_zaposlenog;
+			this.nazivFilijale = naziv_filijale;
+			this.naziv_grupe_artikala = grupa_artikala;
+			this.idArtikla = idArtikla2;
+			this.naziv_artikla = naziv_artikla2;
+			this.kolicinaProdaje = koicina_prodaje;
+			this.neto_cena_artikla = neto_cena_artikla;
+			this.marza_artikla = marza_artikla;
+			this.stopa_PDV = stopa_pdv_a;
 	}
 	
 	

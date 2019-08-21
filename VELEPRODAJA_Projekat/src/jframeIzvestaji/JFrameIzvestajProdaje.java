@@ -27,6 +27,31 @@ public class JFrameIzvestajProdaje extends JFrame {
 	private JTextField txtProdajnavrednostIzvestajProdaje;
 	private JTextField textFieldRucIzvestajProdaje;
 	private JTable tableIzvestajProdaje;
+	
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public JTextField getTextFieldNabavnaVrenostIzvestajNabavke() {
+		return textFieldNabavnaVrenostIzvestajNabavke;
+	}
+
+	public JTextField getTextFieldOsnovicaIzvestaj() {
+		return textFieldOsnovicaIzvestaj;
+	}
+
+	public JTextField getTxtProdajnavrednostIzvestajProdaje() {
+		return txtProdajnavrednostIzvestajProdaje;
+	}
+
+	public JTextField getTextFieldRucIzvestajProdaje() {
+		return textFieldRucIzvestajProdaje;
+	}
+
+	public JTable getTableIzvestajProdaje() {
+		return tableIzvestajProdaje;
+	}
 
 	/**
 	 * Launch the application.

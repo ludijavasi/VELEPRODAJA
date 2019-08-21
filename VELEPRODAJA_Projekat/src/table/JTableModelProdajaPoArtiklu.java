@@ -19,7 +19,7 @@ public class JTableModelProdajaPoArtiklu extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		
-		return 10;
+		return 11;
 	}
 
 	@Override
@@ -37,31 +37,36 @@ public class JTableModelProdajaPoArtiklu extends AbstractTableModel {
 		case 0:
 			return ro.getNazivFilijale();
 		case 1:
-			return ro.getNaziv_artikla();
+			return ro.getNaziv_grupe_artikala();
 		case 2:
 			return ro.getIdArtikla();
 		case 3:
 			return ro.getNaziv_artikla();
-	/*	case 4:
-			return //ro.getKolicinaProdaje();
+		case 4:
+			return ro.getKolicinaProdaje();
 		case 5:
 			return ro.getNeto_cena_artikla();
-		case 6:
-			return //(ro.getNeto_cena_artikla()*ro.getKolicinaProdaje()*ro.getMarza_artikla()/100);
+		case 6: 
+			return ro.getNeto_cena_artikla()*ro.getKolicinaProdaje();
 		case 7:
-			return //(ro.getu
-		*/case 8:
-			return (ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
-					*ro.getKolicinaProdaje();
+			return (ro.getNeto_cena_artikla()*ro.getKolicinaProdaje()*ro.getMarza_artikla()/100);
+		case 8:
+			return (ro.getNeto_cena_artikla()*ro.getKolicinaProdaje()+
+					(ro.getNeto_cena_artikla()*ro.getKolicinaProdaje()*ro.getMarza_artikla()/100))/ro.getKolicinaProdaje();
 		case 9:
-			return ((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
-					*ro.getKolicinaProdaje())*ro.getStopa_PDV()/100;
+			return ((ro.getNeto_cena_artikla()*ro.getKolicinaProdaje()+
+					(ro.getNeto_cena_artikla()*ro.getKolicinaProdaje()*ro.getMarza_artikla()/100))
+					/ro.getKolicinaProdaje())*ro.getKolicinaProdaje();
 		case 10:
+			return (((ro.getNeto_cena_artikla()*ro.getKolicinaProdaje()+
+					(ro.getNeto_cena_artikla()*ro.getKolicinaProdaje()*ro.getMarza_artikla()/100))
+					/ro.getKolicinaProdaje())*ro.getKolicinaProdaje())*(ro.getStopa_PDV()/100);
+/*		case 10:
 			return ((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
 					*ro.getKolicinaProdaje())+
 					(((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
 					*ro.getKolicinaProdaje())*ro.getStopa_PDV()/100);
-
+*/
 		default:
 			return "Greska";
 		}
@@ -84,13 +89,15 @@ public class JTableModelProdajaPoArtiklu extends AbstractTableModel {
 		case 5:
 			return "NABAVNA CENA";
 		case 6:
-			return "MARZA";
+			return "NABAVNA VREDNOST";
 		case 7:
+			return "MARZA";
+		case 8:
 			return "PROSECNA PRODAJNA CENA "
 					+ "BEZ PDV-A";
-		case 8:
-			return "NABAVNA VREDNOST";
 		case 9:
+			return "PRODAJNA VREDNOST";
+		case 10:
 			return "OSNOVICA";
 
 		default:

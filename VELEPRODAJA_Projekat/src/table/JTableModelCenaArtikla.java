@@ -44,7 +44,7 @@ public class JTableModelCenaArtikla extends AbstractTableModel {
 		case 4:
 			return a.getStopa_PDV();
 		case 5:
-			return a.getNeto_cena_artikla()+(a.getNeto_cena_artikla()*a.getMarza_artikla())/100;
+			return a.getNeto_cena_artikla();
 		
 		default:
 			return "Greska!";
