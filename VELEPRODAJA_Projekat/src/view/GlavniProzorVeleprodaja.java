@@ -17,6 +17,7 @@ import jframe.JFramePromenaLozinke;
 import jframe.JFrameRacun_otpreminica;
 import jframe.JFrameZaposleni;
 import jframeIzvestaji.JFrameCenaArtikla;
+import jframeIzvestaji.JFrameIzvestajProdaje;
 import jframeObrisi.JFrameObrisiArtikal;
 import jframeObrisi.JFrameObrisiFilijalu;
 import jframeObrisi.JFrameObrisiGrupuArtikala;
@@ -48,6 +49,7 @@ import table.JTableModelFilijala;
 import table.JTableModelGrupeArtikala;
 import table.JTableModelKupac;
 import table.JTableModelMagacin;
+import table.JTableModelProdajaPoArtiklu;
 import table.JTableModelProdajnaCenaArtikla;
 
 import javax.swing.JLabel;
@@ -594,6 +596,31 @@ public class GlavniProzorVeleprodaja {
 		mnAnalizaProdajeAdmin.add(mntmProdajnaCenaArtiklaAdmin);
 
 		JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po artiklu");
+		mntmProdajaPoArtikluAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrameIzvestajProdaje ip = new JFrameIzvestajProdaje();
+				ip.setVisible(true);
+				postaviModelIzvestajProdajePoArtiklu(new ArrayList<>(), ip.getTableIzvestajProdaje());
+					ArrayList lista;
+					try {
+						lista = Kontroler.getInstance().getIzvestajProdaje();
+						postaviModelIzvestajProdajePoArtiklu(lista, ip.getTableIzvestajProdaje());
+						double sum = 0;
+				        int prow=1;
+
+				        JTable t = ip.getTableIzvestajProdaje();
+				        for (int i = 0; i < t.getRowCount(); i++) {
+				            sum = sum + Double.parseDouble(t.getValueAt(prow, 6).toString());
+				            	ip.getTextFieldNabavnaVrenostIzvestajNabavke().setText(Double.toString(sum));
+				        }
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					 
+				
+			}
+		});
 		mntmProdajaPoArtikluAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmProdajaPoArtikluAdmin);
 
@@ -1463,5 +1490,9 @@ public class GlavniProzorVeleprodaja {
 		JTableModelStavkeRacunaOtpremnice model = new JTableModelStavkeRacunaOtpremnice(lista);
 		t.setModel(model);
 	}
-
+	private void postaviModelIzvestajProdajePoArtiklu (ArrayList lista, JTable t){
+		JTableModelProdajaPoArtiklu model = new JTableModelProdajaPoArtiklu(lista);
+		t.setModel(model);
+	}
+	
 }
