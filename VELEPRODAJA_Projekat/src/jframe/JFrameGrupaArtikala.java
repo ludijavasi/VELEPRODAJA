@@ -129,8 +129,7 @@ public class JFrameGrupaArtikala extends JFrame {
 				try {
 				String naziv = textFieldGrupaArtikala.getText();
 				
-				GrupaArtikala ga = new GrupaArtikala(0, naziv);
-				
+				GrupaArtikala ga = new GrupaArtikala(0, naziv);				
 				
 					Kontroler.getInstance().insertGrupaArtikala(ga);
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli grupu artikala!");

@@ -550,8 +550,7 @@ public class JFrameZaposleni extends JFrame {
 		comboBoxFilijalaPosla.setBounds(250, 20, 130, 20);
 		panelPodaciOPosluZaposleni.add(comboBoxFilijalaPosla);
 		comboBoxFilijalaPosla.setSelectedItem(null);
-		popuniComboBoxFilijala(comboBoxFilijalaPosla);
-		
+		popuniComboBoxFilijala(comboBoxFilijalaPosla);		
 
 		lblPlata = new JLabel("Plata :");
 		lblPlata.setFont(new Font("Arial", Font.BOLD, 14));

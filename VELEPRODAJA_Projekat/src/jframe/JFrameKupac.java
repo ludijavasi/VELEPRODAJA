@@ -366,7 +366,6 @@ public class JFrameKupac extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		});
 		btnDodajKupca.setBounds(430, 290, 180, 25);

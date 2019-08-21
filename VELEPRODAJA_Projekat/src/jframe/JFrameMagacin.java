@@ -287,7 +287,6 @@ public class JFrameMagacin extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
 			}
 		});
 		btnObrisiMagacin.setFont(new Font("Arial", Font.BOLD, 14));

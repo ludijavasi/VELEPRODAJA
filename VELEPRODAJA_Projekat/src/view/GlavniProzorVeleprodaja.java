@@ -259,8 +259,7 @@ public class GlavniProzorVeleprodaja {
 				jfzo.getBtnPonistiAkciju().setVisible(true);
 				//jfzo.getBtnPonistiAkciju().setBounds(570, 420, 99, 23);
 				
-				jfzo.setVisible(true);
-				
+				jfzo.setVisible(true);				
 				
 			    try {
 					Zaposleni z = Kontroler.getInstance().getDetaljiZaposleni(idzap);

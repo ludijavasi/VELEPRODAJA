@@ -215,9 +215,7 @@ public class JFrameArtikal extends JFrame {
 					textFieldNazivGrupeArtikala.setText(a.getNazivGrupeArtikala());
 				}
 			}
-		});
-		
-		
+		});		
 		
 		
 		JLabel lblNazivGrupeArtikala = new JLabel("Naziv grupe artikala:");
@@ -256,9 +254,7 @@ public class JFrameArtikal extends JFrame {
 					textFieldMarza.setText("");
 					comboBoxStopaPDV.setSelectedItem(null);
 					comboBoxJedinicaMere.setSelectedItem(null);
-					comboBoxGrupaArtikla.setSelectedItem(null);
-					
-					
+					comboBoxGrupaArtikla.setSelectedItem(null);					
 					
 					
 				} catch (Exception e) {
