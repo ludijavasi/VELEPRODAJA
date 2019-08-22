@@ -605,12 +605,26 @@ public class GlavniProzorVeleprodaja {
 						lista = Kontroler.getInstance().getIzvestajProdaje();
 						postaviModelIzvestajProdajePoArtiklu(lista, ip.getTableIzvestajProdaje());
 						double sum = 0;
+						double sum1 = 0;
+						double sum2 = 0;
 				        int prow=1;
 
 				        for (int i = 0; i < ip.getTableIzvestajProdaje().getRowCount(); i++) {
 				            sum = sum + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i, 6).toString());
-				            	ip.getTextFieldNabavnaVrenostIzvestajNabavke().setText(Double.toString(sum));
+				            ip.getTextFieldNabavnaVrenostIzvestajNabavke().setText(Double.toString(sum));
 				        }
+				            	
+				            	 for (int i1 = 0; i1 < ip.getTableIzvestajProdaje().getRowCount(); i1++) {
+							            sum1 = sum1 + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i1, 10).toString());
+							            	ip.getTextFieldOsnovicaIzvestaj().setText(Double.toString(sum1));
+				            	 }
+
+				            	 for (int i2 = 0; i2 < ip.getTableIzvestajProdaje().getRowCount(); i2++) {
+							            sum2 = sum2 + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i2, 9).toString());
+							            	ip.getTxtProdajnavrednostIzvestajProdaje().setText(Double.toString(sum2));
+				            	 }
+				            	ip.getTextFieldRucIzvestajProdaje().setText(Double.toString(sum2-sum));
+				        
 					} catch (ClassNotFoundException | SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

@@ -91,7 +91,7 @@ public class DAOIzvestaj {
 			double stopa_pdv_a = rs.getDouble("artikal.stopa_pdv_a");
 			
 			Izvestaj ga = new Izvestaj(idRacuna, datum_racuna, naziv_firme_kupca, username_zaposlenog, naziv_filijale,
-					grupa_artikala, idArtikla, naziv_artikla, idArtikla, neto_cena_artikla, marza_artikla, stopa_pdv_a);
+					grupa_artikala, idArtikla, naziv_artikla, koicina_prodaje, neto_cena_artikla, marza_artikla, stopa_pdv_a);
 			
 
 			lista.add(ga);
