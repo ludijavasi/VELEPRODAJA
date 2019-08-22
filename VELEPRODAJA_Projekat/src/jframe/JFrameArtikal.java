@@ -42,7 +42,8 @@ public class JFrameArtikal extends JFrame {
 	private JTextField textFieldNazivGrupeArtikala;
 	private JButton btnObrisiArtikal;
 	private JButton btnDodajArtikal;
-	private JButton btnAzuriraj;	
+	private JButton btnAzuriraj;
+	private JLabel lblIdArtikla;
 	
 
 	public JButton getBtnDodajArtikal() {
@@ -115,6 +116,14 @@ public class JFrameArtikal extends JFrame {
 
 	public void setComboBoxStopaPDV(JComboBox comboBoxStopaPDV) {
 		this.comboBoxStopaPDV = comboBoxStopaPDV;
+	}	
+
+	public JButton getBtnObrisiArtikal() {
+		return btnObrisiArtikal;
+	}	
+
+	public JLabel getLblIdArtikla() {
+		return lblIdArtikla;
 	}
 
 	/**
@@ -182,7 +191,7 @@ public class JFrameArtikal extends JFrame {
 		panelArtikal.add(comboBoxJedinicaMere);
 		comboBoxJedinicaMere.setSelectedItem(null);
 
-		JLabel lblIdArtikla = new JLabel("ID artikla :");
+		lblIdArtikla = new JLabel("ID artikla :");
 		lblIdArtikla.setFont(new Font("Arial", Font.BOLD, 14));
 		lblIdArtikla.setBounds(10, 180, 150, 20);
 		panelArtikal.add(lblIdArtikla);
@@ -206,9 +215,7 @@ public class JFrameArtikal extends JFrame {
 					textFieldNazivGrupeArtikala.setText(a.getNazivGrupeArtikala());
 				}
 			}
-		});
-		
-		
+		});		
 		
 		
 		JLabel lblNazivGrupeArtikala = new JLabel("Naziv grupe artikala:");
@@ -247,9 +254,7 @@ public class JFrameArtikal extends JFrame {
 					textFieldMarza.setText("");
 					comboBoxStopaPDV.setSelectedItem(null);
 					comboBoxJedinicaMere.setSelectedItem(null);
-					comboBoxGrupaArtikla.setSelectedItem(null);
-					
-					
+					comboBoxGrupaArtikla.setSelectedItem(null);					
 					
 					
 				} catch (Exception e) {

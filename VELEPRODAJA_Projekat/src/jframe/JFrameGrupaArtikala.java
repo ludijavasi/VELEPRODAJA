@@ -31,6 +31,7 @@ public class JFrameGrupaArtikala extends JFrame {
 	private JButton btnObrisiGrupuArtikala;
 	private JButton btnPonistiAkcijuDodajGrupuArtikala;
 	private JButton btnAzurirajDodajGrupuArtikala;	
+	private JLabel lblIdGrupeArtikala;
 	
 
 	public JButton getBtnAzurirajDodajGrupuArtikala() {
@@ -75,6 +76,10 @@ public class JFrameGrupaArtikala extends JFrame {
 
 	public void setBtnDodajGrupuArtikala(JButton btnDodajGrupuArtikala) {
 		this.btnDodajGrupuArtikala = btnDodajGrupuArtikala;
+	}	
+
+	public JLabel getLblIdGrupeArtikala() {
+		return lblIdGrupeArtikala;
 	}
 
 	/**
@@ -124,8 +129,7 @@ public class JFrameGrupaArtikala extends JFrame {
 				try {
 				String naziv = textFieldGrupaArtikala.getText();
 				
-				GrupaArtikala ga = new GrupaArtikala(0, naziv);
-				
+				GrupaArtikala ga = new GrupaArtikala(0, naziv);				
 				
 					Kontroler.getInstance().insertGrupaArtikala(ga);
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli grupu artikala!");
@@ -183,7 +187,7 @@ public class JFrameGrupaArtikala extends JFrame {
 		btnPonistiAkcijuDodajGrupuArtikala.setBounds(280, 229, 180, 25);
 		contentPane.add(btnPonistiAkcijuDodajGrupuArtikala);
 		
-		JLabel lblIdGrupeArtikala = new JLabel("ID grupe artikala:");
+		lblIdGrupeArtikala = new JLabel("ID grupe artikala:");
 		lblIdGrupeArtikala.setFont(new Font("Arial", Font.BOLD, 14));
 		lblIdGrupeArtikala.setBounds(30, 90, 144, 17);
 		contentPane.add(lblIdGrupeArtikala);

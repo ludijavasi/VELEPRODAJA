@@ -259,8 +259,7 @@ public class GlavniProzorVeleprodaja {
 				jfzo.getBtnPonistiAkciju().setVisible(true);
 				//jfzo.getBtnPonistiAkciju().setBounds(570, 420, 99, 23);
 				
-				jfzo.setVisible(true);
-				
+				jfzo.setVisible(true);				
 				
 			    try {
 					Zaposleni z = Kontroler.getInstance().getDetaljiZaposleni(idzap);
@@ -758,6 +757,15 @@ public class GlavniProzorVeleprodaja {
 		mntmDodavanjeFilijaleAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameFilijala jf = new JFrameFilijala();
+				
+			    jf.getBtnAzurirajFilijalu().setVisible(false);
+			    jf.getBtnObrisiFilijalu().setVisible(false);
+			    jf.getBtnDodajFilijalu().setBounds(650, 250, 180, 25);
+			    
+			    jf.getLblIDFilijale().setVisible(false);
+			    jf.getTextIDFilijale().setVisible(false);				
+				
+				
 				panelAdmin.setVisible(false);
 				jf.setVisible(true);
 				
@@ -841,6 +849,14 @@ public class GlavniProzorVeleprodaja {
 		mntmDodajZaposlenogAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameZaposleni fz = new JFrameZaposleni();
+				
+				fz.getBtnAzurirajZaposlenog().setVisible(false);
+				fz.getBtnObrisiZaposlenog().setVisible(false);
+				fz.getBtnDodajZaposlenog().setBounds(650, 410, 180, 25);
+				
+				fz.getLblIdZaposlenog().setVisible(false);
+				fz.getTextIDZaposlenog().setVisible(false);				
+				
 				panelAdmin.setVisible(false);
 				fz.setVisible(true);
 				
@@ -930,14 +946,20 @@ public class GlavniProzorVeleprodaja {
 		mntmDodajSkladisteAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameMagacin jfm = new JFrameMagacin();
+				
 				jfm.getBtnObrisiMagacin().setVisible(false);
+				jfm.getBtnAzurirajMagacin().setVisible(false);
+				jfm.getBtnDodajMagacin().setBounds(380, 300, 180, 25);				
+				
 				jfm.getLblIdMagacina().setVisible(false);
+				jfm.getTextFieldIdMagacina().setVisible(false);
+				
 				jfm.getBtnPrekiniackcijuMagacin().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						jfm.setVisible(false);
 					}
 				});
-				jfm.getTextFieldIdMagacina().setVisible(false);
+				
 				jfm.setVisible(true);
 
 			}
@@ -1012,6 +1034,14 @@ public class GlavniProzorVeleprodaja {
 		mntmDodajKupcaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameKupac jfk = new JFrameKupac();
+				
+				jfk.getBtnAzurirajKupca().setVisible(false);
+				jfk.getBtnObrisiKupca().setVisible(false);
+				jfk.getBtnDodajKupca().setBounds(650, 290, 180, 25);
+				
+				jfk.getTextFieldIdKupca().setVisible(false);
+				jfk.getLblIdKupca().setVisible(false);				
+				
 				jfk.getBtnPonistiAkcijuKupac().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						jfk.setVisible(false);
@@ -1081,7 +1111,7 @@ public class GlavniProzorVeleprodaja {
 						
 					}
 				});
-				panelAdmin.setVisible(true);
+				panelAdmin.setVisible(true);				
 			}
 		});
 		mnArtikliAdmin.add(mntmPregledArtikalaAdmin);
@@ -1092,6 +1122,13 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent e) {
 				
 				JFrameArtikal jfa = new JFrameArtikal(0);
+				
+				jfa.getBtnAzuriraj().setVisible(false);
+				jfa.getBtnObrisiArtikal().setVisible(false);
+				jfa.getBtnDodajArtikal().setBounds(650, 240, 180, 25);
+				
+				jfa.getLblIdArtikla().setVisible(false);
+				jfa.getTextFieldIDArtikla().setVisible(false);
 				
 				panelAdmin.setVisible(false);
 				jfa.setVisible(true);
@@ -1182,6 +1219,14 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				JFrameGrupaArtikala jfga = new JFrameGrupaArtikala();
+				
+				jfga.getBtnAzurirajDodajGrupuArtikala().setVisible(false);
+				jfga.getBtnObrisiGrupuArtikala().setVisible(false);
+				jfga.getBtnDodajGrupuArtikala().setBounds(280, 180, 180, 25);
+				
+				jfga.getLblIdGrupeArtikala().setVisible(false);
+				jfga.getTextFieldIdGrupeArtikala().setVisible(false);
+				
 				
 				panelAdmin.setVisible(false);
 				jfga.setVisible(true);

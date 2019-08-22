@@ -47,9 +47,7 @@ public class JFrameFilijala extends JFrame {
 	private JButton btnAzurirajFilijalu;
 	private JRadioButton rdbtnAktivna;
 	private JRadioButton rdbtnNeaktivna;
-	private final ButtonGroup buttonGroupFilijala = new ButtonGroup();
-	
-	
+	private final ButtonGroup buttonGroupFilijala = new ButtonGroup();	
 
 	public JPanel getContentPaneFilijala() {
 		return contentPaneFilijala;
@@ -205,7 +203,7 @@ public class JFrameFilijala extends JFrame {
 
 	public void setRdbtnNeaktivna(JRadioButton rdbtnNeaktivna) {
 		this.rdbtnNeaktivna = rdbtnNeaktivna;
-	}
+	}	
 	
 	
 
