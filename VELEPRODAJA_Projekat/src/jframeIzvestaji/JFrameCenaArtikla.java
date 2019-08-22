@@ -80,22 +80,6 @@ public class JFrameCenaArtikla extends JFrame {
 		lblArtikal.setBounds(10, 44, 46, 14);
 		contentPane.add(lblArtikal);
 		
-		JPanel panelFilterCenaArtikla = new JPanel();
-		panelFilterCenaArtikla.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelFilterCenaArtikla.setBounds(10, 69, 300, 42);
-		contentPane.add(panelFilterCenaArtikla);
-		panelFilterCenaArtikla.setLayout(null);
-		
-		JRadioButton rdbtnGrupaArtikla = new JRadioButton("Grupa Artikla");
-		buttonGroup.add(rdbtnGrupaArtikla);
-		rdbtnGrupaArtikla.setBounds(35, 12, 109, 23);
-		panelFilterCenaArtikla.add(rdbtnGrupaArtikla);
-		
-		JRadioButton rdbtnArtikal = new JRadioButton("Artikal");
-		buttonGroup.add(rdbtnArtikal);
-		rdbtnArtikal.setBounds(156, 12, 109, 23);
-		panelFilterCenaArtikla.add(rdbtnArtikal);
-		
 		JScrollPane scrollPaneCenaArtikla = new JScrollPane();
 		scrollPaneCenaArtikla.setBounds(10, 122, 794, 216);
 		contentPane.add(scrollPaneCenaArtikla);
