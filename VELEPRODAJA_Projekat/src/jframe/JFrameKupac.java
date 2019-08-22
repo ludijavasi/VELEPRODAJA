@@ -351,18 +351,27 @@ public class JFrameKupac extends JFrame {
 					}
 
 					Kupac k = new Kupac(naziv, adresa, grad, tel, email, kont_osoba, pib, tek_racun, valuta, status);
+					
+					if (textPibKupca.getText().toString().length() != 8) {
+					      throw new ArithmeticException(); 					
+					} 	
 
 					Kontroler.getInstance().insertKupac(k);
 
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novog kupca!");
-
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (SQLException e) {
+				} catch(NumberFormatException e1){
+					JOptionPane.showMessageDialog(btnDodajKupca, "Sva polja moraju biti popunjena!");
+					
+				}   catch(ArithmeticException e1){
+					JOptionPane.showMessageDialog(btnDodajKupca, "Uneli ste pogresan broj cifara! (PIB = 8 cifara)");
+					
+				}
+				
+				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

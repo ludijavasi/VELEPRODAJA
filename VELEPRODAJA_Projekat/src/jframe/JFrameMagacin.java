@@ -258,7 +258,10 @@ public class JFrameMagacin extends JFrame {
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (SQLException e) {
+				} catch(NumberFormatException e1){
+					JOptionPane.showMessageDialog(btnDodajMagacin, "Sva polja moraju biti popunjena!");			
+				
+				}catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

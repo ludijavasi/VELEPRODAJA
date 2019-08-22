@@ -27,10 +27,13 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class JFrameZaposleni extends JFrame {
 
@@ -275,6 +278,23 @@ public class JFrameZaposleni extends JFrame {
 		panelLicnipodaci.add(lblIme);
 
 		textIme = new JTextField();
+		textIme.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+                Character c = e.getKeyChar();				
+				
+				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {					
+							
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "U polje morate uneti slovo!");
+					textIme.setText("");
+				}		
+				
+			}
+		});
 		textIme.setFont(new Font("Arial", Font.PLAIN, 13));
 		textIme.setBounds(150, 20, 220, 20);
 		panelLicnipodaci.add(textIme);
@@ -286,6 +306,22 @@ public class JFrameZaposleni extends JFrame {
 		panelLicnipodaci.add(lblPrezime);
 
 		textPrezime = new JTextField();
+		textPrezime.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				    Character c = e.getKeyChar();				
+					
+					if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {					
+								
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "U polje morate uneti slovo!");
+						textPrezime.setText("");
+					}	
+			}
+		});
 		textPrezime.setFont(new Font("Arial", Font.PLAIN, 13));
 		textPrezime.setBounds(150, 60, 220, 20);
 		panelLicnipodaci.add(textPrezime);
@@ -341,6 +377,21 @@ public class JFrameZaposleni extends JFrame {
 		panelLicnipodaci.add(lblJmbg);
 		
 		textJMBG = new JTextField();
+		textJMBG.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+                Character c = e.getKeyChar();   
+                
+				
+				if(!(Character.isDigit(c) || Character.isISOControl(c)))
+				{
+					JOptionPane.showMessageDialog(null, "U polje morate uneti broj!");
+					
+					e.consume();				
+				}
+			}
+		});
 		textJMBG.setFont(new Font("Arial", Font.PLAIN, 13));
 		textJMBG.setBounds(150, 100, 220, 20);
 		panelLicnipodaci.add(textJMBG);
@@ -431,9 +482,7 @@ public class JFrameZaposleni extends JFrame {
 		btnDodajZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				try {
-					
-					
+				try {					
 
 					String ime = textIme.getText();
 					String prezime = textPrezime.getText();
@@ -458,10 +507,35 @@ public class JFrameZaposleni extends JFrame {
 					String tip_zaposlenja = (String) comboBoxTipZaposlenja.getSelectedItem();
 
 					Zaposleni z = new Zaposleni(idfilijale, ime, prezime, jmbg, adresa, grad, tel, email, struc_sprema, datum_poc, datum_zav, plata, tip_zaposlenja, username, password);
-
+					
+					if (textJMBG.getText().toString().length() != 13) {
+					      throw new ArithmeticException(); 					
+					} 	
+					
+					Date today = Calendar.getInstance().getTime();
+					if(datum_poc.before(today) || datum_poc.after(datum_zav)) {
+						JOptionPane.showMessageDialog(null, "Uneli ste pogresan datum u polje! \n(datum pocetka < datum zavrsetka)\n(datum pocetka > danasnji datum)");
+						return;
+					}	
+					
 					Kontroler.getInstance().insertZaposleni(z);
 
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novog zaposlenog!");
+					
+					textIme.setText("");
+					textPrezime.setText("");
+					textJMBG.setText("");
+					textAdresa.setText("");
+					textGrad_Ostina.setText("");
+					textTelefon.setText("");
+					textEMail.setText("");
+					textUsername.setText("");
+					textPassword.setText("");
+					comboBoxStrucnaSprema.setSelectedItem(null);
+					textPlata.setText("");
+					comboBoxFilijalaPosla.setSelectedItem(null);
+					comboBoxTipZaposlenja.setSelectedItem(null);
+					dateChooserDatumZaposlenja.setSelectableDateRange(null, null);
 
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -472,15 +546,15 @@ public class JFrameZaposleni extends JFrame {
 				} catch(NumberFormatException e1){
 					JOptionPane.showMessageDialog(btnDodajZaposlenog, "Sva polja moraju biti popunjena!");
 					textUsername.setText("");
-				}
-				
-				
+				}   catch(ArithmeticException e1){
+					JOptionPane.showMessageDialog(btnDodajZaposlenog, "Uneli ste pogresan broj cifara! (JMBG = 13 cifara)");
+					textJMBG.setText("");
+				}				
 				
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
-
+				}				
 			}
 		});
 		btnDodajZaposlenog.setBounds(450, 410, 180, 25);
@@ -558,6 +632,22 @@ public class JFrameZaposleni extends JFrame {
 		panelPodaciOPosluZaposleni.add(lblPlata);
 
 		textPlata = new JTextField();
+		textPlata.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+                Character c = e.getKeyChar();   
+                
+				
+				if(!(Character.isDigit(c) || Character.isISOControl(c)))
+				{
+					JOptionPane.showMessageDialog(null, "U polje morate uneti broj!");
+					
+					e.consume();				
+				}
+				
+			}
+		});
 		textPlata.setFont(new Font("Arial", Font.PLAIN, 13));
 		textPlata.setBounds(250, 60, 130, 20);
 		panelPodaciOPosluZaposleni.add(textPlata);
