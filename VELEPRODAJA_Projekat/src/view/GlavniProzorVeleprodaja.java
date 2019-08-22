@@ -608,9 +608,8 @@ public class GlavniProzorVeleprodaja {
 						double sum = 0;
 				        int prow=1;
 
-				        JTable t = ip.getTableIzvestajProdaje();
-				        for (int i = 0; i < t.getRowCount(); i++) {
-				            sum = sum + Double.parseDouble(t.getValueAt(prow, 6).toString());
+				        for (int i = 0; i < ip.getTableIzvestajProdaje().getRowCount(); i++) {
+				            sum = sum + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i, 6).toString());
 				            	ip.getTextFieldNabavnaVrenostIzvestajNabavke().setText(Double.toString(sum));
 				        }
 					} catch (ClassNotFoundException | SQLException e1) {
