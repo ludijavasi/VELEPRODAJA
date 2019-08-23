@@ -57,6 +57,47 @@ public class DAOArtikli {
 		konekcija.close();
 		return lista;
 	}
+	
+	public ArrayList<Artikli> getArtikli(Integer id_grupe_artikala, Integer id_artikla) throws ClassNotFoundException, SQLException {
+		ArrayList<Artikli> lista = new ArrayList<Artikli>();
+
+		connect();		
+		//preparedStatement = konekcija.prepareStatement("select * from artikal");
+		
+		String select = "select grupa_artikala.naziv_grupe_artikala as naziv_grupe, artikal.* from artikal inner join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala";
+		if(id_artikla > 0)
+		{
+			select+=" where id_artikla=" + id_artikla.toString();
+		}
+		else if(id_grupe_artikala > 0) 
+		{
+			select+=" where id_grupe_artikala=" + id_grupe_artikala.toString();
+		}
+		
+		preparedStatement = konekcija.prepareStatement(select);
+		
+		preparedStatement.execute();
+		rs = preparedStatement.getResultSet();
+		
+
+		while (rs.next()) {
+			int idArtikla = rs.getInt("id_artikla");
+			int idgrupaArtikla = rs.getInt("id_grupe_artikala");
+//			String naziv_grupe_artikala = rs.getString("naziv_grupe_artikala");
+			String naziv_grupe_artikala = rs.getString("naziv_grupe");
+			String naziv_artikla = rs.getString("naziv_artikla");
+			String jedinica_mere = rs.getString("jedinica_mere");
+			double neto_cena_artikla = rs.getDouble("neto_cena_artikla");
+			int stopa_PDV = rs.getInt("stopa_pdv_a");
+			double marza_artikla = rs.getDouble("marza_artikla");
+
+			Artikli a = new Artikli(idArtikla, idgrupaArtikla, naziv_grupe_artikala , naziv_artikla, jedinica_mere, neto_cena_artikla,
+					stopa_PDV, marza_artikla);
+			lista.add(a);
+		}
+		konekcija.close();
+		return lista;
+	}
 
 	public ArrayList<Artikli> getArtikliSVI() throws ClassNotFoundException, SQLException {
 		ArrayList<Artikli> lista = new ArrayList<Artikli>();

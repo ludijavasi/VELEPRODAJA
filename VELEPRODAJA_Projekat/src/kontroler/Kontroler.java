@@ -50,6 +50,12 @@ public class Kontroler {
 		return lista;
 	}	
 	
+	public ArrayList<Artikli> getArtikli(int id_grupe_artikala, int id_artikla) throws ClassNotFoundException, SQLException {
+		DAOArtikli da = new DAOArtikli();
+		ArrayList<Artikli> lista = da.getArtikli(id_grupe_artikala, id_artikla);
+		return lista;
+	}	
+	
 	public  void insertArikli(Artikli a) throws ClassNotFoundException, SQLException {
 		DAOArtikli da = new DAOArtikli();
 		da.insertArtikli(a);
