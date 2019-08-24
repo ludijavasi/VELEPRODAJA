@@ -34,7 +34,6 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 	private JTextField txtProdajnavrednostIzvestajProdajeFilijala;
 	private JTextField textFieldRucIzvestajProdajeFiljala;
 	private JTable tableIzvestajProdaje;
-	private JComboBox comboBoxArtikalIzvestajProdaje;
 	
 
 	public JPanel getContentPane() {
@@ -92,28 +91,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		lblFilijal.setBounds(30, 11, 166, 14);
 		contentPane.add(lblFilijal);
 		
-		JComboBox comboBoxFilijalaIzvestajProdaje = new JComboBox();
-		comboBoxFilijalaIzvestajProdaje.setBounds(30, 47, 166, 20);
-		contentPane.add(comboBoxFilijalaIzvestajProdaje);
-		popuniComboBoxFilijala(comboBoxFilijalaIzvestajProdaje);
-		comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
-		comboBoxFilijalaIzvestajProdaje.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				postaviModelProdajaPoArtiklu(new ArrayList<Filijala>(), tableIzvestajProdaje);
-				ArrayList lista;
-				try {
-						lista = Kontroler.getInstance().getIzvestajProdajePoFilijali(((Filijala) 
-									comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(), 0, 0);
-						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
-					
-					} catch (ClassNotFoundException | SQLException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}			
-				
-			}
-		});
+		
 		
 		
 		JPanel panel = new JPanel();
@@ -147,35 +125,55 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		lblGrupaArtiklaIzvestajProdaje.setBounds(0, 11, 92, 14);
 		panel_1.add(lblGrupaArtiklaIzvestajProdaje);
 		
+		JComboBox comboBoxFilijalaIzvestajProdaje = new JComboBox();
+		comboBoxFilijalaIzvestajProdaje.setBounds(30, 47, 166, 20);
+		contentPane.add(comboBoxFilijalaIzvestajProdaje);
+		popuniComboBoxFilijala(comboBoxFilijalaIzvestajProdaje);
+		comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+		comboBoxFilijalaIzvestajProdaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				postaviModelProdajaPoArtiklu(new ArrayList<Filijala>(), tableIzvestajProdaje);
+				ArrayList lista;
+				try {
+					
+						lista = Kontroler.getInstance().getIzvestajProdajePoFilijali(((Filijala) 
+									comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(), 0, 0);
+						
+						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
+
+						
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}			
+				
+			}
+		});
+		
+		
 		JComboBox comboBoxGrupaArtikalaIzvestajProdaje = new JComboBox();
 		comboBoxGrupaArtikalaIzvestajProdaje.setBounds(78, 8, 80, 20);
 		panel_1.add(comboBoxGrupaArtikalaIzvestajProdaje);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaIzvestajProdaje);
 		comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-		
 		comboBoxGrupaArtikalaIzvestajProdaje.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-                if (comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem() != null) {
+				postaviModelProdajaPoArtiklu(new ArrayList<GrupaArtikala>(), tableIzvestajProdaje);
+				ArrayList lista;
+				try {
 					
-					//pamcenje i skidanje actionlistener-a
-					//ActionListener al = comboBoxArtikalIzvestajProdaje.getActionListeners()[0];
-					//comboBoxArtikalIzvestajProdaje.removeActionListener(al);
+						lista = Kontroler.getInstance().getIzvestajProdajePoFilijaliPoGrupi(((Filijala) 
+								comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(),((GrupaArtikala) 
+								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala());
+						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
 					
-					popuniComboBoxArtikli(comboBoxArtikalIzvestajProdaje,
-							((GrupaArtikala) comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala());
-					comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
-					
-					//vracanje zapamcenog actionlistener-a
-					//comboBoxArtikalIzvestajProdaje.addActionListener(al);
-				}
-				else
-				{
-					comboBoxArtikalIzvestajProdaje.removeAllItems();
-					comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
-				}
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 				
 			}
 		});
@@ -184,7 +182,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		lblArtikalIzvestajProdaje.setBounds(184, 11, 46, 14);
 		panel_1.add(lblArtikalIzvestajProdaje);
 		
-		comboBoxArtikalIzvestajProdaje = new JComboBox();
+		JComboBox comboBoxArtikalIzvestajProdaje = new JComboBox();
 		comboBoxArtikalIzvestajProdaje.setBounds(240, 8, 133, 20);
 		panel_1.add(comboBoxArtikalIzvestajProdaje);
 		
@@ -237,6 +235,8 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		textFieldRucIzvestajProdajeFiljala.setBounds(635, 8, 86, 20);
 		panelIzvestajFilijala.add(textFieldRucIzvestajProdajeFiljala);
 		textFieldRucIzvestajProdajeFiljala.setColumns(10);
+		
+		
 	}
 	private void postaviModelProdajaPoArtiklu(ArrayList lista, JTable t){
 		 JTableModelProdajaPoFilijali model = new  JTableModelProdajaPoFilijali(lista);

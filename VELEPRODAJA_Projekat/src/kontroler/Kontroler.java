@@ -222,6 +222,10 @@ public class Kontroler {
 		DAOIzvestaj di = new DAOIzvestaj();
 		return di.getIzvestajProdajePoZposlenom();
 	}
+	public ArrayList<Izvestaj> getIzvestajProdajePoFilijaliPoGrupi(Integer id_filijale, Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+		return di.getIzvestajProdajePoFilijaliPoGrupi(id_filijale, id_grupe_artikala);
+	}
 
 
 }
