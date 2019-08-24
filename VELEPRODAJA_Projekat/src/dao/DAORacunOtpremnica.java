@@ -40,7 +40,7 @@ public class DAORacunOtpremnica {
 			Date datumRacuna = rs.getDate("datum_racuna");
 			Date datumNaplateRacuna = rs.getDate("datum_naplate_racuna");
 			double poreskaOsnovica = rs.getFloat("poreska_osnovica_racuna");
-			double ukupnoPdv = rs.getFloat("ukupna_vrednost_obracunatog_pdv_a_racuna");
+			double ukupnoPdv = rs.getFloat("ukupan_iznos_obracunatog_pdv_a_racuna");
 			double ukupnaVrednostRacuna = rs.getFloat("ukupna_vrednost_racuna");
 			RacunOtpremnica ro = new RacunOtpremnica(idRacuna, idZaposlenog, idKupca, datumRacuna, datumNaplateRacuna, poreskaOsnovica, ukupnoPdv, ukupnaVrednostRacuna);
 

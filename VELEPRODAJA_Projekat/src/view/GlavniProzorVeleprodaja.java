@@ -371,9 +371,7 @@ public class GlavniProzorVeleprodaja {
 						JFrameStavkeRacunaPregled fsrp = new JFrameStavkeRacunaPregled();
 						fsrp.setVisible(true);
 						fsrp.getTextFieldIdRacunStavkeRacuna().setText(Integer.toString(generatedID));
-						Artikli a = (Artikli) fsrp.getComboBoxArtikalRacunStavke().getSelectedItem();
-						//String s = a.getJedinica_mere();
-						fsrp.getTextFieldJedinicaMere().setText(a.getJedinica_mere());
+						
 						
 						fsrp.getBtnSacuvajStavkeRacuna().addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
