@@ -196,7 +196,7 @@ public class JFrameCenaArtikla extends JFrame {
 		t.setModel(model);
 	}
 	
-	private void popuniComboBoxGrupaArtikala(JComboBox<GrupaArtikala> comboBox) {
+	private  void popuniComboBoxGrupaArtikala(JComboBox<GrupaArtikala> comboBox) {
 		try {
 			ArrayList<GrupaArtikala> lista = Kontroler.getInstance().getGrupaArtikala();
 
@@ -210,7 +210,7 @@ public class JFrameCenaArtikla extends JFrame {
 		}
 	}
 
-	private void popuniComboBoxArtikli(JComboBox<Artikli> comboBox, Integer id_grupe_artikala) {
+	private  void popuniComboBoxArtikli(JComboBox<Artikli> comboBox, Integer id_grupe_artikala) {
 		
 
 		try {
@@ -232,4 +232,5 @@ public class JFrameCenaArtikla extends JFrame {
 		}
 
 	}	
+	
 }

@@ -508,11 +508,15 @@ public class Izvestaj {
 	public void setPasswordZaposlenog(String passwordZaposlenog) {
 		this.passwordZaposlenog = passwordZaposlenog;
 	}
-	public Izvestaj(int idRAcuna2, Date datum_racuna, String naziv_firme_kupca, String username_zaposlenog,
+	
+	public Izvestaj(int idFilijale,int idRAcuna2, Date datum_racuna,int IdFirme, String naziv_firme_kupca, String username_zaposlenog,
 			String naziv_filijale, String grupa_artikala, int idArtikla2, String naziv_artikla2,
 			int koicina_prodaje, double neto_cena_artikla, double marza_artikla, double stopa_pdv_a) {
+			
+			this.idFilijale = idFilijale;
 			this.idRacuna = idRAcuna2;
 			this.datumRacuna = datum_racuna;
+			this.idKupca = IdFirme;
 			this.nazivFirmeKupca = naziv_firme_kupca;
 			this.usernameZaposlenog = username_zaposlenog;
 			this.nazivFilijale = naziv_filijale;
@@ -523,6 +527,47 @@ public class Izvestaj {
 			this.neto_cena_artikla = neto_cena_artikla;
 			this.marza_artikla = marza_artikla;
 			this.stopa_PDV = stopa_pdv_a;
+	}
+	public Izvestaj(int idZaposlenog,String imeZaposlenog,String prezimeZaposlenog, int idRAcuna2, Date datum_racuna,int IdFirme, String naziv_firme_kupca, String username_zaposlenog,
+			String naziv_filijale, String grupa_artikala, int idArtikla2, String naziv_artikla2,
+			int koicina_prodaje, double neto_cena_artikla, double marza_artikla, double stopa_pdv_a) {
+			
+			this.idZaposlenog = idZaposlenog;
+			this.imeZaposlenog = imeZaposlenog;
+			this.prezimeZaposlenog = prezimeZaposlenog;
+		    this.idRacuna = idRAcuna2;
+			this.datumRacuna = datum_racuna;
+			this.idKupca = IdFirme;
+			this.nazivFirmeKupca = naziv_firme_kupca;
+			this.usernameZaposlenog = username_zaposlenog;
+			this.nazivFilijale = naziv_filijale;
+			this.naziv_grupe_artikala = grupa_artikala;
+			this.idArtikla = idArtikla2;
+			this.naziv_artikla = naziv_artikla2;
+			this.kolicinaProdaje = koicina_prodaje;
+			this.neto_cena_artikla = neto_cena_artikla;
+			this.marza_artikla = marza_artikla;
+			this.stopa_PDV = stopa_pdv_a;
+	}
+	
+	public Izvestaj(int idRacunaK,Date  datum_racuna, int IdFirme, String naziv_firme_kupca, String username_zaposlenog,
+			String naziv_filijale, String grupa_artikala, int idArtikla, String naziv_artikla, int koicina_prodaje, double neto_cena_artikla,
+			double marza_artikla, double stopa_pdv_a) {
+		
+		this.idRacuna = idRacunaK;
+		this.datumRacuna = datum_racuna;
+		this.idKupca = IdFirme;
+		this.nazivFirmeKupca = naziv_firme_kupca;
+		this.usernameZaposlenog = username_zaposlenog;
+		this.nazivFilijale = naziv_filijale;
+		this.naziv_grupe_artikala = grupa_artikala;
+		this.idArtikla = idArtikla;
+		this.naziv_artikla = naziv_artikla;
+		this.kolicinaProdaje = koicina_prodaje;
+		this.neto_cena_artikla = neto_cena_artikla;
+		this.marza_artikla = marza_artikla;
+		this.stopa_PDV = stopa_pdv_a;
+		
 	}
 	
 	

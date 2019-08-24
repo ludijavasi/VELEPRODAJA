@@ -12,20 +12,20 @@ import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 
 import table.JTableModelCenaArtikla;
-import table.JTableModelProdajaPoArtiklu;
+import table.JTableModelProdajaPoFilijali;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class JFrameIzvestajProdaje extends JFrame {
+public class JFrameIzvestajProdajeFilijala extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldNabavnaVrenostIzvestajNabavke;
-	private JTextField textFieldOsnovicaIzvestaj;
-	private JTextField txtProdajnavrednostIzvestajProdaje;
-	private JTextField textFieldRucIzvestajProdaje;
+	private JTextField textFieldNabavnaVrenostIzvestajFilijala;
+	private JTextField textFieldOsnovicaIzvestajFilijala;
+	private JTextField txtProdajnavrednostIzvestajProdajeFilijala;
+	private JTextField textFieldRucIzvestajProdajeFiljala;
 	private JTable tableIzvestajProdaje;
 	
 
@@ -34,19 +34,19 @@ public class JFrameIzvestajProdaje extends JFrame {
 	}
 
 	public JTextField getTextFieldNabavnaVrenostIzvestajNabavke() {
-		return textFieldNabavnaVrenostIzvestajNabavke;
+		return textFieldNabavnaVrenostIzvestajFilijala;
 	}
 
 	public JTextField getTextFieldOsnovicaIzvestaj() {
-		return textFieldOsnovicaIzvestaj;
+		return textFieldOsnovicaIzvestajFilijala;
 	}
 
 	public JTextField getTxtProdajnavrednostIzvestajProdaje() {
-		return txtProdajnavrednostIzvestajProdaje;
+		return txtProdajnavrednostIzvestajProdajeFilijala;
 	}
 
 	public JTextField getTextFieldRucIzvestajProdaje() {
-		return textFieldRucIzvestajProdaje;
+		return textFieldRucIzvestajProdajeFiljala;
 	}
 
 	public JTable getTableIzvestajProdaje() {
@@ -60,7 +60,7 @@ public class JFrameIzvestajProdaje extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFrameIzvestajProdaje frame = new JFrameIzvestajProdaje();
+					JFrameIzvestajProdajeFilijala frame = new JFrameIzvestajProdajeFilijala();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,9 +72,9 @@ public class JFrameIzvestajProdaje extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFrameIzvestajProdaje() {
+	public JFrameIzvestajProdajeFilijala() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 836, 488);
+		setBounds(100, 100, 836, 522);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -131,42 +131,6 @@ public class JFrameIzvestajProdaje extends JFrame {
 		comboBoxArtikalIzvestajProdaje.setBounds(240, 8, 133, 20);
 		panel_1.add(comboBoxArtikalIzvestajProdaje);
 		
-		JLabel lblNabavnaVrenost = new JLabel("Nabavna vrenost :");
-		lblNabavnaVrenost.setBounds(10, 424, 46, 14);
-		contentPane.add(lblNabavnaVrenost);
-		
-		textFieldNabavnaVrenostIzvestajNabavke = new JTextField();
-		textFieldNabavnaVrenostIzvestajNabavke.setBounds(93, 421, 86, 20);
-		contentPane.add(textFieldNabavnaVrenostIzvestajNabavke);
-		textFieldNabavnaVrenostIzvestajNabavke.setColumns(10);
-		
-		JLabel lblOsnovica = new JLabel("Osnovica :");
-		lblOsnovica.setBounds(198, 424, 46, 14);
-		contentPane.add(lblOsnovica);
-		
-		textFieldOsnovicaIzvestaj = new JTextField();
-		textFieldOsnovicaIzvestaj.setBounds(254, 421, 86, 20);
-		contentPane.add(textFieldOsnovicaIzvestaj);
-		textFieldOsnovicaIzvestaj.setColumns(10);
-		
-		JLabel lblProdajnaVrednost = new JLabel("Prodajna vrednost :");
-		lblProdajnaVrednost.setBounds(360, 424, 46, 14);
-		contentPane.add(lblProdajnaVrednost);
-		
-		txtProdajnavrednostIzvestajProdaje = new JTextField();
-		txtProdajnavrednostIzvestajProdaje.setBounds(416, 421, 86, 20);
-		contentPane.add(txtProdajnavrednostIzvestajProdaje);
-		txtProdajnavrednostIzvestajProdaje.setColumns(10);
-		
-		JLabel lblRuc = new JLabel("RUC :");
-		lblRuc.setBounds(537, 424, 46, 14);
-		contentPane.add(lblRuc);
-		
-		textFieldRucIzvestajProdaje = new JTextField();
-		textFieldRucIzvestajProdaje.setBounds(593, 421, 86, 20);
-		contentPane.add(textFieldRucIzvestajProdaje);
-		textFieldRucIzvestajProdaje.setColumns(10);
-		
 		JScrollPane scrollPaneIzvestajProdaje = new JScrollPane();
 		scrollPaneIzvestajProdaje.setBounds(20, 163, 777, 231);
 		contentPane.add(scrollPaneIzvestajProdaje);
@@ -175,9 +139,50 @@ public class JFrameIzvestajProdaje extends JFrame {
 		postaviModelProdajaPoArtiklu(new ArrayList<>(), tableIzvestajProdaje);
 		ArrayList lista;
 		scrollPaneIzvestajProdaje.setViewportView(tableIzvestajProdaje);
+		
+		JPanel panelIzvestajFilijala = new JPanel();
+		panelIzvestajFilijala.setBounds(30, 422, 767, 43);
+		contentPane.add(panelIzvestajFilijala);
+		panelIzvestajFilijala.setLayout(null);
+		
+		JLabel lblNabavnaVrenostFilijala = new JLabel("Nabavna vrenost :");
+		lblNabavnaVrenostFilijala.setBounds(10, 11, 46, 14);
+		panelIzvestajFilijala.add(lblNabavnaVrenostFilijala);
+		
+		textFieldNabavnaVrenostIzvestajFilijala = new JTextField();
+		textFieldNabavnaVrenostIzvestajFilijala.setBounds(91, 8, 86, 20);
+		panelIzvestajFilijala.add(textFieldNabavnaVrenostIzvestajFilijala);
+		textFieldNabavnaVrenostIzvestajFilijala.setColumns(10);
+		
+		JLabel lblOsnovica = new JLabel("Osnovica :");
+		lblOsnovica.setBounds(201, 11, 46, 14);
+		panelIzvestajFilijala.add(lblOsnovica);
+		
+		textFieldOsnovicaIzvestajFilijala = new JTextField();
+		textFieldOsnovicaIzvestajFilijala.setBounds(273, 8, 86, 20);
+		panelIzvestajFilijala.add(textFieldOsnovicaIzvestajFilijala);
+		textFieldOsnovicaIzvestajFilijala.setColumns(10);
+		
+		JLabel lblProdajnaVrednost = new JLabel("Prodajna vrednost :");
+		lblProdajnaVrednost.setBounds(394, 11, 46, 14);
+		panelIzvestajFilijala.add(lblProdajnaVrednost);
+		
+		txtProdajnavrednostIzvestajProdajeFilijala = new JTextField();
+		txtProdajnavrednostIzvestajProdajeFilijala.setBounds(450, 8, 86, 20);
+		panelIzvestajFilijala.add(txtProdajnavrednostIzvestajProdajeFilijala);
+		txtProdajnavrednostIzvestajProdajeFilijala.setColumns(10);
+		
+		JLabel lblRuc = new JLabel("RUC :");
+		lblRuc.setBounds(562, 11, 46, 14);
+		panelIzvestajFilijala.add(lblRuc);
+		
+		textFieldRucIzvestajProdajeFiljala = new JTextField();
+		textFieldRucIzvestajProdajeFiljala.setBounds(635, 8, 86, 20);
+		panelIzvestajFilijala.add(textFieldRucIzvestajProdajeFiljala);
+		textFieldRucIzvestajProdajeFiljala.setColumns(10);
 	}
 	private void postaviModelProdajaPoArtiklu(ArrayList lista, JTable t){
-		 JTableModelProdajaPoArtiklu model = new  JTableModelProdajaPoArtiklu(lista);
+		 JTableModelProdajaPoFilijali model = new  JTableModelProdajaPoFilijali(lista);
 		t.setModel(model);
 	}
 }

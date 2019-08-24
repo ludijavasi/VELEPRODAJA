@@ -17,7 +17,9 @@ import jframe.JFramePromenaLozinke;
 import jframe.JFrameRacun_otpreminica;
 import jframe.JFrameZaposleni;
 import jframeIzvestaji.JFrameCenaArtikla;
-import jframeIzvestaji.JFrameIzvestajProdaje;
+import jframeIzvestaji.JFrameIzvestajProdajeFilijala;
+import jframeIzvestaji.JFrameIzvestajProdajeKupac;
+import jframeIzvestaji.JFrameIzvestajProdajeZaposleni;
 import jframeObrisi.JFrameObrisiArtikal;
 import jframeObrisi.JFrameObrisiFilijalu;
 import jframeObrisi.JFrameObrisiGrupuArtikala;
@@ -36,6 +38,7 @@ import jframePregled.JFrameStavkeRacunaPregled;
 import kontroler.Kontroler;
 import model.Artikli;
 import model.GrupaArtikala;
+import model.Izvestaj;
 import model.Kupac;
 import model.RacunOtpremnica;
 import model.StavkeRacunaOtpremnice;
@@ -49,7 +52,9 @@ import table.JTableModelFilijala;
 import table.JTableModelGrupeArtikala;
 import table.JTableModelKupac;
 import table.JTableModelMagacin;
-import table.JTableModelProdajaPoArtiklu;
+import table.JTableModelProdajaPoFilijali;
+import table.JTableModelProdajaPoKupacu;
+import table.JTableModelProdajaPoZaposlenom;
 import table.JTableModelProdajnaCenaArtikla;
 
 import javax.swing.JLabel;
@@ -592,15 +597,15 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnAnalizaProdajeAdmin.add(mntmProdajnaCenaArtiklaAdmin);
 
-		JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po artiklu");
+		JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po filijali");
 		mntmProdajaPoArtikluAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrameIzvestajProdaje ip = new JFrameIzvestajProdaje();
+				JFrameIzvestajProdajeFilijala ip = new JFrameIzvestajProdajeFilijala();
 				ip.setVisible(true);
 				postaviModelIzvestajProdajePoArtiklu(new ArrayList<>(), ip.getTableIzvestajProdaje());
 					ArrayList lista;
 					try {
-						lista = Kontroler.getInstance().getIzvestajProdaje();
+						lista = Kontroler.getInstance().getIzvestajProdajePoFilijali();
 						postaviModelIzvestajProdajePoArtiklu(lista, ip.getTableIzvestajProdaje());
 						double sum = 0;
 						double sum1 = 0;
@@ -608,17 +613,17 @@ public class GlavniProzorVeleprodaja {
 				        int prow=1;
 
 				        for (int i = 0; i < ip.getTableIzvestajProdaje().getRowCount(); i++) {
-				            sum = sum + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i, 6).toString());
+				            sum = sum + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i, 8).toString());
 				            ip.getTextFieldNabavnaVrenostIzvestajNabavke().setText(Double.toString(sum));
 				        }
 				            	
 				            	 for (int i1 = 0; i1 < ip.getTableIzvestajProdaje().getRowCount(); i1++) {
-							            sum1 = sum1 + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i1, 10).toString());
+							            sum1 = sum1 + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i1, 12).toString());
 							            	ip.getTextFieldOsnovicaIzvestaj().setText(Double.toString(sum1));
 				            	 }
 
 				            	 for (int i2 = 0; i2 < ip.getTableIzvestajProdaje().getRowCount(); i2++) {
-							            sum2 = sum2 + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i2, 9).toString());
+							            sum2 = sum2 + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i2, 11).toString());
 							            	ip.getTxtProdajnavrednostIzvestajProdaje().setText(Double.toString(sum2));
 				            	 }
 				            	ip.getTextFieldRucIzvestajProdaje().setText(Double.toString(sum2-sum));
@@ -635,10 +640,78 @@ public class GlavniProzorVeleprodaja {
 		mnAnalizaProdajeAdmin.add(mntmProdajaPoArtikluAdmin);
 
 		JMenuItem mntmProdajaPoKupcimaAdmin = new JMenuItem("Prodaja po kupcima");
+		mntmProdajaPoKupcimaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JFrameIzvestajProdajeKupac pk = new JFrameIzvestajProdajeKupac();
+				pk.setVisible(true);
+				postaviModelIzvestajProdajePoKupcu(new ArrayList<>(), pk.getTableIzvestajKupac());
+				ArrayList lista;
+				
+				try {
+					lista = Kontroler.getInstance().getIzvestajProdajePoKupcu();
+					postaviModelIzvestajProdajePoKupcu(lista, pk.getTableIzvestajKupac());
+				double sum = 0;
+				double sum1 = 0;
+				double sum2 = 0;
+				
+				 for (int i = 0; i < pk.getTableIzvestajKupac().getRowCount(); i++) {
+			            sum = sum + Double.parseDouble(pk.getTableIzvestajKupac().getValueAt(i, 7).toString());
+			            pk.getTextFieldNabavnaVrenostIzvestajKupac().setText(Double.toString(sum));
+			        }
+				 for (int i1 = 0; i1 <  pk.getTableIzvestajKupac().getRowCount(); i1++) {
+			            sum1 = sum1 + Double.parseDouble( pk.getTableIzvestajKupac().getValueAt(i1, 11).toString());
+			            	pk.getTextFieldOsnovicaIzvestajKupac().setText(Double.toString(sum1));
+				 	}
+				 for (int i2 = 0; i2 < pk.getTableIzvestajKupac().getRowCount(); i2++) {
+			            sum2 = sum2 + Double.parseDouble(pk.getTableIzvestajKupac().getValueAt(i2, 10).toString());
+			            	pk.getTxtProdajnavrednostIzvestajProdajeKupac().setText(Double.toString(sum2));
+         	 }
+         	pk.getTextFieldRucIzvestajProdajeKupac().setText(Double.toString(sum2-sum));
+				
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		});
 		mntmProdajaPoKupcimaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmProdajaPoKupcimaAdmin);
 
-		JMenuItem mntmSumarniPregledDokumenataAdmin = new JMenuItem("Sumarni pregled dokumenata");
+		JMenuItem mntmSumarniPregledDokumenataAdmin = new JMenuItem("Prodaja po zaposlenom");
+		mntmSumarniPregledDokumenataAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JFrameIzvestajProdajeZaposleni pz = new JFrameIzvestajProdajeZaposleni();
+				pz.setVisible(true);
+				postaviModelProdajaPoZaposlenom(new ArrayList<>(), pz.getTableIzvestajProdajeZaposlenog());
+				ArrayList lista;
+				try {
+					lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom();
+					postaviModelProdajaPoZaposlenom(lista, pz.getTableIzvestajProdajeZaposlenog());
+				double sum = 0;
+				double sum1 = 0;
+				double sum2 = 0;
+				
+				 for (int i = 0; i < pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i++) {
+			            sum = sum + Double.parseDouble(pz.getTableIzvestajProdajeZaposlenog().getValueAt(i, 11).toString());
+			            pz.getTextFieldNabavnaVrenostIzvestajZaposleni().setText(Double.toString(sum));
+			        }
+				 for (int i1 = 0; i1 <  pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i1++) {
+			            sum1 = sum1 + Double.parseDouble( pz.getTableIzvestajProdajeZaposlenog().getValueAt(i1, 15).toString());
+			            	pz.getTextFieldOsnovicaIzvestajZaposleni().setText(Double.toString(sum1));
+				 	}
+				 for (int i2 = 0; i2 < pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i2++) {
+			            sum2 = sum2 + Double.parseDouble(pz.getTableIzvestajProdajeZaposlenog().getValueAt(i2, 14).toString());
+			            	pz.getTextProdajnavrednostIzvestajProdajeZaposleni().setText(Double.toString(sum2));
+         	 }
+         	pz.getTextFieldRucIzvestajProdajeZaposleni().setText(Double.toString(sum2-sum));
+				
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		});
+		
 		mntmSumarniPregledDokumenataAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmSumarniPregledDokumenataAdmin);
 
@@ -1501,8 +1574,16 @@ public class GlavniProzorVeleprodaja {
 		t.setModel(model);
 	}
 	private void postaviModelIzvestajProdajePoArtiklu (ArrayList lista, JTable t){
-		JTableModelProdajaPoArtiklu model = new JTableModelProdajaPoArtiklu(lista);
+		JTableModelProdajaPoFilijali model = new JTableModelProdajaPoFilijali(lista);
 		t.setModel(model);
 	}
-	
+	private void postaviModelIzvestajProdajePoKupcu (ArrayList lista, JTable t){
+		JTableModelProdajaPoKupacu model = new JTableModelProdajaPoKupacu(lista);
+		t.setModel(model);
+	}
+	private void postaviModelProdajaPoZaposlenom(ArrayList<Izvestaj> lista, JTable t){
+		 JTableModelProdajaPoZaposlenom model = new  JTableModelProdajaPoZaposlenom(lista);
+		t.setModel(model);
+	}
+
 }
