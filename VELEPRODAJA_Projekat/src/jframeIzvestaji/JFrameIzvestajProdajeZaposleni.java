@@ -2,6 +2,8 @@ package jframeIzvestaji;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,6 +16,8 @@ import javax.swing.border.TitledBorder;
 import com.toedter.calendar.JDateChooser;
 
 import kontroler.Kontroler;
+import model.Artikli;
+import model.GrupaArtikala;
 import model.Izvestaj;
 import model.Kupac;
 import model.Zaposleni;
@@ -23,6 +27,7 @@ import table.JTableModelProdajaPoZaposlenom;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import java.awt.Font;
 
 public class JFrameIzvestajProdajeZaposleni extends JFrame {
 
@@ -32,6 +37,7 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 	private JTextField textFieldOsnovicaIzvestajZaposleni;
 	private JTextField textProdajnavrednostIzvestajProdajeZaposleni;
 	private JTextField textFieldRucIzvestajProdajeZaposleni;
+	private JComboBox comboBoxIzvestakZaposlenihArikal;
 	
 	
 
@@ -97,46 +103,76 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameIzvestajProdajeZaposleni() {
+		setTitle("IZVE\u0160TAJ PRODAJE PO ZAPOSLENIMA");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 825, 487);
+		setBounds(100, 100, 1300, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblZaposleni = new JLabel("Zaposleni : ");
-		lblZaposleni.setBounds(10, 11, 166, 14);
+		lblZaposleni.setFont(new Font("Arial", Font.BOLD, 14));
+		lblZaposleni.setBounds(30, 20, 170, 20);
 		contentPane.add(lblZaposleni);
 		
 		JComboBox comboBoxZaposleniIzvestaj = new JComboBox();
-		comboBoxZaposleniIzvestaj.setBounds(10, 31, 166, 20);
+		comboBoxZaposleniIzvestaj.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxZaposleniIzvestaj.setBounds(30, 60, 200, 20);
 		contentPane.add(comboBoxZaposleniIzvestaj);
 		popuniComboBoxIzvestajZaposleni(comboBoxZaposleniIzvestaj);
+		comboBoxZaposleniIzvestaj.setSelectedItem(null);
+		
+		comboBoxZaposleniIzvestaj.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				postaviModelProdajaPoZaposlenom(new ArrayList<Zaposleni>(), tableIzvestajProdajeZaposlenog);
+				ArrayList lista;
+				try {
+					
+						lista = Kontroler.getInstance().getIzvestajProdajePoKupcu(((Zaposleni) 
+									comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog());
+						
+						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
+
+						
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}	
+				
+			}
+		});
 		
 		JPanel panelPodaciZaPeriodIzvestajZaposleni = new JPanel();
-		panelPodaciZaPeriodIzvestajZaposleni.setBounds(205, 11, 365, 56);
+		panelPodaciZaPeriodIzvestajZaposleni.setBounds(350, 20, 470, 60);
 		panelPodaciZaPeriodIzvestajZaposleni.setLayout(null);
 		panelPodaciZaPeriodIzvestajZaposleni.setBorder(new TitledBorder(null, "Podaci za period", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panelPodaciZaPeriodIzvestajZaposleni);
 		
 		JLabel label = new JLabel("DO :");
-		label.setBounds(178, 28, 31, 20);
+		label.setFont(new Font("Arial", Font.BOLD, 14));
+		label.setBounds(260, 30, 30, 20);
 		panelPodaciZaPeriodIzvestajZaposleni.add(label);
 		
 		JLabel label_1 = new JLabel("OD :");
-		label_1.setBounds(10, 28, 46, 20);
+		label_1.setFont(new Font("Arial", Font.BOLD, 14));
+		label_1.setBounds(10, 30, 30, 20);
 		panelPodaciZaPeriodIzvestajZaposleni.add(label_1);
 		
 		JDateChooser dateChooserDoIzvestajZaposlenog = new JDateChooser();
-		dateChooserDoIzvestajZaposlenog.setBounds(219, 28, 136, 20);
+		dateChooserDoIzvestajZaposlenog.setBounds(310, 30, 150, 20);
 		panelPodaciZaPeriodIzvestajZaposleni.add(dateChooserDoIzvestajZaposlenog);
 		
 		JDateChooser dateChooserOdIzvestajZaposlenog = new JDateChooser();
-		dateChooserOdIzvestajZaposlenog.setBounds(32, 28, 136, 20);
+		dateChooserOdIzvestajZaposlenog.setBounds(60, 30, 150, 20);
 		panelPodaciZaPeriodIzvestajZaposleni.add(dateChooserOdIzvestajZaposlenog);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 110, 702, 243);
+		scrollPane.setBounds(30, 200, 1220, 230);
 		contentPane.add(scrollPane);
 		
 		tableIzvestajProdajeZaposlenog = new JTable();
@@ -145,71 +181,200 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 		
 		
 		JPanel panelFilterIzvestaZaposleni = new JPanel();
+		panelFilterIzvestaZaposleni.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelFilterIzvestaZaposleni.setLayout(null);
-		panelFilterIzvestaZaposleni.setBounds(10, 65, 534, 34);
+		panelFilterIzvestaZaposleni.setBounds(30, 120, 710, 50);
 		contentPane.add(panelFilterIzvestaZaposleni);
 		
 		JLabel label_2 = new JLabel("Grupa artikla :");
-		label_2.setBounds(0, 11, 92, 14);
+		label_2.setFont(new Font("Arial", Font.BOLD, 14));
+		label_2.setBounds(10, 20, 110, 20);
 		panelFilterIzvestaZaposleni.add(label_2);
 		
 		JComboBox comboBoxIzvestajZaposleniGrupaArtikla = new JComboBox();
-		comboBoxIzvestajZaposleniGrupaArtikla.setBounds(78, 8, 80, 20);
+		comboBoxIzvestajZaposleniGrupaArtikla.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxIzvestajZaposleniGrupaArtikla.setBounds(150, 20, 210, 20);
 		panelFilterIzvestaZaposleni.add(comboBoxIzvestajZaposleniGrupaArtikla);
+		popuniComboBoxGrupaArtikala(comboBoxIzvestajZaposleniGrupaArtikla);
+		comboBoxIzvestajZaposleniGrupaArtikla.setSelectedItem(null);
+		
+		comboBoxIzvestajZaposleniGrupaArtikla.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				postaviModelProdajaPoZaposlenom(new ArrayList<GrupaArtikala>(), tableIzvestajProdajeZaposlenog);
+				ArrayList lista;
+				try {
+					
+						lista = Kontroler.getInstance().getIzvestajProdajePoZposlenomPoGrupi(((Zaposleni) 
+								comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog(),((GrupaArtikala) 
+										comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala());
+						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
+					
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				
+			}
+		});
+		
+		comboBoxIzvestajZaposleniGrupaArtikla.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				if (comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem() != null) {
+					
+					//pamcenje i skidanje actionlistener-a
+					ActionListener al = comboBoxIzvestakZaposlenihArikal.getActionListeners()[0];
+					comboBoxIzvestakZaposlenihArikal.removeActionListener(al);
+					
+					popuniComboBoxArtikli(comboBoxIzvestakZaposlenihArikal,
+							((GrupaArtikala) comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala());
+					comboBoxIzvestakZaposlenihArikal.setSelectedItem(null);
+					
+					//vracanje zapamcenog actionlistener-a
+					comboBoxIzvestakZaposlenihArikal.addActionListener(al);
+				}
+				else
+				{
+					comboBoxIzvestakZaposlenihArikal.removeAllItems();
+					comboBoxIzvestakZaposlenihArikal.setSelectedItem(null);
+				}
+				
+			}
+		});
+		
+		
 		
 		JLabel label_3 = new JLabel("Artikal :");
-		label_3.setBounds(184, 11, 46, 14);
+		label_3.setFont(new Font("Arial", Font.BOLD, 14));
+		label_3.setBounds(400, 20, 70, 20);
 		panelFilterIzvestaZaposleni.add(label_3);
 		
-		JComboBox comboBoxIzvestakZaposlenihArikal = new JComboBox();
-		comboBoxIzvestakZaposlenihArikal.setBounds(240, 8, 133, 20);
+		comboBoxIzvestakZaposlenihArikal = new JComboBox();
+		comboBoxIzvestakZaposlenihArikal.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxIzvestakZaposlenihArikal.setBounds(490, 20, 200, 20);
 		panelFilterIzvestaZaposleni.add(comboBoxIzvestakZaposlenihArikal);
+		
+		comboBoxIzvestakZaposlenihArikal.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				postaviModelProdajaPoZaposlenom(new ArrayList<Zaposleni>(), tableIzvestajProdajeZaposlenog);
+				ArrayList lista;
+				try {
+					
+						lista = Kontroler.getInstance().getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(((Zaposleni) 
+								comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog(),((GrupaArtikala) 
+								comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala(),
+								((Artikli)comboBoxIzvestakZaposlenihArikal.getSelectedItem()).getIdArtikla());
+						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
+					
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				
+			}
+		});
 		
 		JPanel panelIzvestajZaposleni = new JPanel();
 		panelIzvestajZaposleni.setLayout(null);
-		panelIzvestajZaposleni.setBounds(10, 377, 767, 43);
+		panelIzvestajZaposleni.setBounds(30, 500, 1100, 50);
 		contentPane.add(panelIzvestajZaposleni);
 		
 		JLabel label_4 = new JLabel("Nabavna vrenost :");
-		label_4.setBounds(10, 11, 46, 14);
+		label_4.setFont(new Font("Arial", Font.BOLD, 14));
+		label_4.setBounds(10, 20, 130, 20);
 		panelIzvestajZaposleni.add(label_4);
 		
 		textFieldNabavnaVrenostIzvestajZaposleni = new JTextField();
+		textFieldNabavnaVrenostIzvestajZaposleni.setFont(new Font("Arial", Font.PLAIN, 13));
 		textFieldNabavnaVrenostIzvestajZaposleni.setColumns(10);
-		textFieldNabavnaVrenostIzvestajZaposleni.setBounds(91, 8, 86, 20);
+		textFieldNabavnaVrenostIzvestajZaposleni.setBounds(160, 20, 120, 20);
 		panelIzvestajZaposleni.add(textFieldNabavnaVrenostIzvestajZaposleni);
 		
 		JLabel label_5 = new JLabel("Osnovica :");
-		label_5.setBounds(201, 11, 46, 14);
+		label_5.setFont(new Font("Arial", Font.BOLD, 14));
+		label_5.setBounds(320, 20, 80, 20);
 		panelIzvestajZaposleni.add(label_5);
 		
 		textFieldOsnovicaIzvestajZaposleni = new JTextField();
+		textFieldOsnovicaIzvestajZaposleni.setFont(new Font("Arial", Font.PLAIN, 13));
 		textFieldOsnovicaIzvestajZaposleni.setColumns(10);
-		textFieldOsnovicaIzvestajZaposleni.setBounds(273, 8, 86, 20);
+		textFieldOsnovicaIzvestajZaposleni.setBounds(420, 20, 120, 20);
 		panelIzvestajZaposleni.add(textFieldOsnovicaIzvestajZaposleni);
 		
 		JLabel label_6 = new JLabel("Prodajna vrednost :");
-		label_6.setBounds(394, 11, 46, 14);
+		label_6.setFont(new Font("Arial", Font.BOLD, 14));
+		label_6.setBounds(580, 20, 140, 20);
 		panelIzvestajZaposleni.add(label_6);
 		
 		textProdajnavrednostIzvestajProdajeZaposleni = new JTextField();
+		textProdajnavrednostIzvestajProdajeZaposleni.setFont(new Font("Arial", Font.PLAIN, 13));
 		textProdajnavrednostIzvestajProdajeZaposleni.setColumns(10);
-		textProdajnavrednostIzvestajProdajeZaposleni.setBounds(450, 8, 86, 20);
+		textProdajnavrednostIzvestajProdajeZaposleni.setBounds(740, 20, 120, 20);
 		panelIzvestajZaposleni.add(textProdajnavrednostIzvestajProdajeZaposleni);
 		
 		JLabel label_7 = new JLabel("RUC :");
-		label_7.setBounds(562, 11, 46, 14);
+		label_7.setFont(new Font("Arial", Font.BOLD, 14));
+		label_7.setBounds(900, 20, 50, 20);
 		panelIzvestajZaposleni.add(label_7);
 		
 		textFieldRucIzvestajProdajeZaposleni = new JTextField();
+		textFieldRucIzvestajProdajeZaposleni.setFont(new Font("Arial", Font.PLAIN, 13));
 		textFieldRucIzvestajProdajeZaposleni.setColumns(10);
-		textFieldRucIzvestajProdajeZaposleni.setBounds(635, 8, 86, 20);
+		textFieldRucIzvestajProdajeZaposleni.setBounds(970, 20, 120, 20);
 		panelIzvestajZaposleni.add(textFieldRucIzvestajProdajeZaposleni);
 	}
 	
-	private void postaviModelProdajaPoZaposlenom(ArrayList<Izvestaj> lista, JTable t){
+	private void postaviModelProdajaPoZaposlenom(ArrayList lista, JTable t){
 		 JTableModelProdajaPoZaposlenom model = new  JTableModelProdajaPoZaposlenom(lista);
 		t.setModel(model);
+	}
+	
+	private  void popuniComboBoxGrupaArtikala(JComboBox<GrupaArtikala> comboBox) {
+		try {
+			ArrayList<GrupaArtikala> lista = Kontroler.getInstance().getGrupaArtikala();
+
+			for (GrupaArtikala ga : lista) {
+				comboBox.addItem(ga);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private  void popuniComboBoxArtikli(JComboBox<Artikli> comboBox, Integer id_grupe_artikala) {
+		
+
+		try {
+			comboBox.removeAllItems();
+			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikli(id_grupe_artikala);
+
+			// for (GlavnaGrupa gg : lista) {
+			for (Artikli a : lista1) {
+				comboBox.addItem(a);		
+
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 		
 	private void popuniComboBoxIzvestajZaposleni(JComboBox<Zaposleni> comboBox) {

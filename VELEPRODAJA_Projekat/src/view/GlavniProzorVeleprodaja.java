@@ -646,7 +646,7 @@ public class GlavniProzorVeleprodaja {
 				ArrayList lista;
 				
 				try {
-					lista = Kontroler.getInstance().getIzvestajProdajePoKupcu();
+					lista = Kontroler.getInstance().getIzvestajProdajePoKupcu(0);
 					postaviModelIzvestajProdajePoKupcu(lista, pk.getTableIzvestajKupac());
 				double sum = 0;
 				double sum1 = 0;
@@ -683,7 +683,7 @@ public class GlavniProzorVeleprodaja {
 				postaviModelProdajaPoZaposlenom(new ArrayList<>(), pz.getTableIzvestajProdajeZaposlenog());
 				ArrayList lista;
 				try {
-					lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom();
+					lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom(0);
 					postaviModelProdajaPoZaposlenom(lista, pz.getTableIzvestajProdajeZaposlenog());
 				double sum = 0;
 				double sum1 = 0;
@@ -834,7 +834,7 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnFilijalaAdmin.add(mntmPregledFilijalaAdmin);
 
-		JMenuItem mntmDodavanjeFilijaleAdmin = new JMenuItem("Dodavanje filijale");
+		JMenuItem mntmDodavanjeFilijaleAdmin = new JMenuItem("Dodaj filijalu");
 		mntmDodavanjeFilijaleAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmDodavanjeFilijaleAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -16,6 +16,7 @@ import kontroler.Kontroler;
 import model.Artikli;
 import model.Filijala;
 import model.GrupaArtikala;
+import model.Zaposleni;
 import table.JTableModelCenaArtikla;
 import table.JTableModelProdajaPoFilijali;
 
@@ -25,6 +26,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.table.DefaultTableModel;
 
 public class JFrameIzvestajProdajeFilijala extends JFrame {
 
@@ -34,6 +37,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 	private JTextField txtProdajnavrednostIzvestajProdajeFilijala;
 	private JTextField textFieldRucIzvestajProdajeFiljala;
 	private JTable tableIzvestajProdaje;
+	private JComboBox comboBoxArtikalIzvestajProdaje;
 	
 
 	public JPanel getContentPane() {
@@ -80,15 +84,17 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameIzvestajProdajeFilijala() {
+		setTitle("IZVE\u0160TAJ PRODAJE PO FILIJALAMA");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 836, 522);
+		setBounds(100, 100, 1300, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblFilijal = new JLabel("Filijal : ");
-		lblFilijal.setBounds(30, 11, 166, 14);
+		JLabel lblFilijal = new JLabel("Filijala : ");
+		lblFilijal.setFont(new Font("Arial", Font.BOLD, 14));
+		lblFilijal.setBounds(30, 20, 170, 20);
 		contentPane.add(lblFilijal);
 		
 		
@@ -96,49 +102,58 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Podaci za period", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(206, 11, 365, 56);
+		panel.setBounds(350, 20, 470, 60);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel labelOdIzvestajProdaje = new JLabel("DO :");
-		labelOdIzvestajProdaje.setBounds(178, 28, 31, 20);
+		labelOdIzvestajProdaje.setFont(new Font("Arial", Font.BOLD, 14));
+		labelOdIzvestajProdaje.setBounds(260, 30, 30, 20);
 		panel.add(labelOdIzvestajProdaje);
 		
 		JLabel lblDoizvestajprodaje = new JLabel("OD :");
-		lblDoizvestajprodaje.setBounds(10, 28, 46, 20);
+		lblDoizvestajprodaje.setFont(new Font("Arial", Font.BOLD, 14));
+		lblDoizvestajprodaje.setBounds(10, 30, 30, 20);
 		panel.add(lblDoizvestajprodaje);
 		
 		JDateChooser dateChooserrDoIzvestajProdaje = new JDateChooser();
-		dateChooserrDoIzvestajProdaje.setBounds(219, 28, 136, 20);
+		dateChooserrDoIzvestajProdaje.setBounds(310, 30, 150, 20);
 		panel.add(dateChooserrDoIzvestajProdaje);
 		
 		JDateChooser dateChooserOdIzvestajProdaje = new JDateChooser();
-		dateChooserOdIzvestajProdaje.setBounds(32, 28, 136, 20);
+		dateChooserOdIzvestajProdaje.setBounds(60, 30, 150, 20);
 		panel.add(dateChooserOdIzvestajProdaje);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 118, 534, 34);
+		panel_1.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(30, 120, 710, 50);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblGrupaArtiklaIzvestajProdaje = new JLabel("Grupa artikla :");
-		lblGrupaArtiklaIzvestajProdaje.setBounds(0, 11, 92, 14);
+		JLabel lblGrupaArtiklaIzvestajProdaje = new JLabel("Grupa artikala :");
+		lblGrupaArtiklaIzvestajProdaje.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGrupaArtiklaIzvestajProdaje.setBounds(10, 20, 110, 20);
 		panel_1.add(lblGrupaArtiklaIzvestajProdaje);
 		
 		JComboBox comboBoxFilijalaIzvestajProdaje = new JComboBox();
-		comboBoxFilijalaIzvestajProdaje.setBounds(30, 47, 166, 20);
+		comboBoxFilijalaIzvestajProdaje.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxFilijalaIzvestajProdaje.setBounds(30, 60, 200, 20);
 		contentPane.add(comboBoxFilijalaIzvestajProdaje);
 		popuniComboBoxFilijala(comboBoxFilijalaIzvestajProdaje);
 		comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+		
 		comboBoxFilijalaIzvestajProdaje.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
 				
 				postaviModelProdajaPoArtiklu(new ArrayList<Filijala>(), tableIzvestajProdaje);
 				ArrayList lista;
 				try {
 					
 						lista = Kontroler.getInstance().getIzvestajProdajePoFilijali(((Filijala) 
-									comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(), 0, 0);
+									comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale());
 						
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
 
@@ -146,14 +161,18 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
-					}			
+					}	
 				
 			}
 		});
 		
 		
+		
+		
+		
 		JComboBox comboBoxGrupaArtikalaIzvestajProdaje = new JComboBox();
-		comboBoxGrupaArtikalaIzvestajProdaje.setBounds(78, 8, 80, 20);
+		comboBoxGrupaArtikalaIzvestajProdaje.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxGrupaArtikalaIzvestajProdaje.setBounds(150, 20, 200, 20);
 		panel_1.add(comboBoxGrupaArtikalaIzvestajProdaje);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaIzvestajProdaje);
 		comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
@@ -178,61 +197,130 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 			}
 		});
 		
+		comboBoxGrupaArtikalaIzvestajProdaje.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e1) {
+				//JOptionPane.showMessageDialog(null, "COMBOBOX ACTION");
+				if (comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem() != null) {
+					
+					//pamcenje i skidanje actionlistener-a
+					ActionListener al = comboBoxArtikalIzvestajProdaje.getActionListeners()[0];
+					comboBoxArtikalIzvestajProdaje.removeActionListener(al);
+					
+					popuniComboBoxArtikli(comboBoxArtikalIzvestajProdaje,
+							((GrupaArtikala) comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala());
+					comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+					
+					//vracanje zapamcenog actionlistener-a
+					comboBoxArtikalIzvestajProdaje.addActionListener(al);
+				}
+				else
+				{
+					comboBoxArtikalIzvestajProdaje.removeAllItems();
+					comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+				}
+			}
+			
+		});
+		
+		
+		
 		JLabel lblArtikalIzvestajProdaje = new JLabel("Artikal :");
-		lblArtikalIzvestajProdaje.setBounds(184, 11, 46, 14);
+		lblArtikalIzvestajProdaje.setFont(new Font("Arial", Font.BOLD, 14));
+		lblArtikalIzvestajProdaje.setBounds(400, 20, 70, 20);
 		panel_1.add(lblArtikalIzvestajProdaje);
 		
-		JComboBox comboBoxArtikalIzvestajProdaje = new JComboBox();
-		comboBoxArtikalIzvestajProdaje.setBounds(240, 8, 133, 20);
-		panel_1.add(comboBoxArtikalIzvestajProdaje);
+		comboBoxArtikalIzvestajProdaje = new JComboBox();
+		comboBoxArtikalIzvestajProdaje.setBounds(490, 20, 200, 20);
+		panel_1.add(comboBoxArtikalIzvestajProdaje);		
+		//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+		
+		comboBoxArtikalIzvestajProdaje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				postaviModelProdajaPoArtiklu(new ArrayList<Artikli>(), tableIzvestajProdaje);
+				ArrayList lista;
+				try {
+					
+						lista = Kontroler.getInstance().getIzvestajProdajePoFilijaliPoGrupiPoArtiklu(((Filijala) 
+								comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(),((GrupaArtikala) 
+								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala(),
+								((Artikli)comboBoxArtikalIzvestajProdaje.getSelectedItem()).getIdArtikla());
+						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
+					
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				
+			}
+		});
+		
+		
+		
+		
+		
+		
 		
 		JScrollPane scrollPaneIzvestajProdaje = new JScrollPane();
-		scrollPaneIzvestajProdaje.setBounds(20, 163, 777, 231);
+		scrollPaneIzvestajProdaje.setBounds(30, 200, 1220, 230);
 		contentPane.add(scrollPaneIzvestajProdaje);
 		
 		tableIzvestajProdaje = new JTable();
+		tableIzvestajProdaje.setFont(new Font("Arial", Font.PLAIN, 13));
 		postaviModelProdajaPoArtiklu(new ArrayList<>(), tableIzvestajProdaje);
 		ArrayList lista;
 		scrollPaneIzvestajProdaje.setViewportView(tableIzvestajProdaje);
 		
 		JPanel panelIzvestajFilijala = new JPanel();
-		panelIzvestajFilijala.setBounds(30, 422, 767, 43);
+		panelIzvestajFilijala.setBounds(30, 500, 1100, 50);
 		contentPane.add(panelIzvestajFilijala);
 		panelIzvestajFilijala.setLayout(null);
 		
 		JLabel lblNabavnaVrenostFilijala = new JLabel("Nabavna vrenost :");
-		lblNabavnaVrenostFilijala.setBounds(10, 11, 46, 14);
+		lblNabavnaVrenostFilijala.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNabavnaVrenostFilijala.setBounds(10, 20, 130, 20);
 		panelIzvestajFilijala.add(lblNabavnaVrenostFilijala);
 		
 		textFieldNabavnaVrenostIzvestajFilijala = new JTextField();
-		textFieldNabavnaVrenostIzvestajFilijala.setBounds(91, 8, 86, 20);
+		textFieldNabavnaVrenostIzvestajFilijala.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldNabavnaVrenostIzvestajFilijala.setBounds(160, 20, 120, 20);
 		panelIzvestajFilijala.add(textFieldNabavnaVrenostIzvestajFilijala);
 		textFieldNabavnaVrenostIzvestajFilijala.setColumns(10);
 		
 		JLabel lblOsnovica = new JLabel("Osnovica :");
-		lblOsnovica.setBounds(201, 11, 46, 14);
+		lblOsnovica.setFont(new Font("Arial", Font.BOLD, 14));
+		lblOsnovica.setBounds(320, 20, 80, 20);
 		panelIzvestajFilijala.add(lblOsnovica);
 		
 		textFieldOsnovicaIzvestajFilijala = new JTextField();
-		textFieldOsnovicaIzvestajFilijala.setBounds(273, 8, 86, 20);
+		textFieldOsnovicaIzvestajFilijala.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldOsnovicaIzvestajFilijala.setBounds(420, 20, 120, 20);
 		panelIzvestajFilijala.add(textFieldOsnovicaIzvestajFilijala);
 		textFieldOsnovicaIzvestajFilijala.setColumns(10);
 		
 		JLabel lblProdajnaVrednost = new JLabel("Prodajna vrednost :");
-		lblProdajnaVrednost.setBounds(394, 11, 46, 14);
+		lblProdajnaVrednost.setFont(new Font("Arial", Font.BOLD, 14));
+		lblProdajnaVrednost.setBounds(580, 20, 140, 20);
 		panelIzvestajFilijala.add(lblProdajnaVrednost);
 		
 		txtProdajnavrednostIzvestajProdajeFilijala = new JTextField();
-		txtProdajnavrednostIzvestajProdajeFilijala.setBounds(450, 8, 86, 20);
+		txtProdajnavrednostIzvestajProdajeFilijala.setFont(new Font("Arial", Font.PLAIN, 13));
+		txtProdajnavrednostIzvestajProdajeFilijala.setBounds(740, 20, 120, 20);
 		panelIzvestajFilijala.add(txtProdajnavrednostIzvestajProdajeFilijala);
 		txtProdajnavrednostIzvestajProdajeFilijala.setColumns(10);
 		
 		JLabel lblRuc = new JLabel("RUC :");
-		lblRuc.setBounds(562, 11, 46, 14);
+		lblRuc.setFont(new Font("Arial", Font.BOLD, 14));
+		lblRuc.setBounds(900, 20, 50, 20);
 		panelIzvestajFilijala.add(lblRuc);
 		
 		textFieldRucIzvestajProdajeFiljala = new JTextField();
-		textFieldRucIzvestajProdajeFiljala.setBounds(635, 8, 86, 20);
+		textFieldRucIzvestajProdajeFiljala.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldRucIzvestajProdajeFiljala.setBounds(970, 20, 120, 20);
 		panelIzvestajFilijala.add(textFieldRucIzvestajProdajeFiljala);
 		textFieldRucIzvestajProdajeFiljala.setColumns(10);
 		
@@ -240,7 +328,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 	}
 	private void postaviModelProdajaPoArtiklu(ArrayList lista, JTable t){
 		 JTableModelProdajaPoFilijali model = new  JTableModelProdajaPoFilijali(lista);
-		t.setModel(model);
+		t.setModel(model);		
 	}
 	
 	private  void popuniComboBoxGrupaArtikala(JComboBox<GrupaArtikala> comboBox) {

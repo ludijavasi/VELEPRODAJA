@@ -210,22 +210,50 @@ public class Kontroler {
 		DAORacunOtpremnica ro = new DAORacunOtpremnica();
 		ro.updateRacun(idr, poreska_osnovica_racuna, ukupan_iznos_obracunatog_pdv_a_racuna, ukupna_vrednost_racuna);
 	}
-	public ArrayList<Izvestaj> getIzvestajProdajePoFilijali(int id_filijale, int id_grupe_artikala, int id_artikla) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoFilijali(int id_filijale) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();
-		return di.getIzvestajProdajePoFilijali(id_filijale, id_grupe_artikala, id_artikla);
+		return di.getIzvestajProdajePoFilijali(id_filijale);
 	}
-	public ArrayList<Izvestaj> getIzvestajProdajePoKupcu() throws ClassNotFoundException, SQLException {
-		DAOIzvestaj di = new DAOIzvestaj();
-	    return di.getIzvestajProdajePoKupcu();
-	}
-	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenom() throws ClassNotFoundException, SQLException {
-		DAOIzvestaj di = new DAOIzvestaj();
-		return di.getIzvestajProdajePoZposlenom();
-	}
+	
 	public ArrayList<Izvestaj> getIzvestajProdajePoFilijaliPoGrupi(Integer id_filijale, Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();
 		return di.getIzvestajProdajePoFilijaliPoGrupi(id_filijale, id_grupe_artikala);
 	}
-
+	
+	public ArrayList<Izvestaj> getIzvestajProdajePoFilijaliPoGrupiPoArtiklu(Integer id_filijale, Integer id_grupe_artikala, Integer id_artikla) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+		return di.getIzvestajProdajePoFilijaliPoGrupiPoArtiklu(id_filijale, id_grupe_artikala, id_artikla);
+	}	
+	
+	
+	public ArrayList<Izvestaj> getIzvestajProdajePoKupcu(Integer id_kupca) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+	    return di.getIzvestajProdajePoKupcu(id_kupca);
+	}
+	
+	public ArrayList<Izvestaj> getIzvestajProdajePoKupcuPoGrupi(Integer id_kupca, Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+	    return di.getIzvestajProdajePoKupcuPoGrupi(id_kupca, id_grupe_artikala);
+	}
+	
+	public ArrayList<Izvestaj> getIzvestajProdajePoKupcuPoGrupiPoArtiklu(Integer id_kupca, Integer id_grupe_artikala, Integer id_artikla) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+	    return di.getIzvestajProdajePoKupcuPoGrupiPoArtiklu(id_kupca, id_grupe_artikala, id_artikla);
+	}
+	
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenom(Integer id_zaposlenog) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+		return di.getIzvestajProdajePoZposlenom(id_zaposlenog);
+	}
+	
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupi(Integer id_zaposlenog, Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+		return di.getIzvestajProdajePoZposlenomPoGrupi(id_zaposlenog, id_grupe_artikala);
+	}
+	
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(Integer id_zaposlenog, Integer id_grupe_artikala, Integer id_artikla) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+		return di.getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(id_zaposlenog, id_grupe_artikala, id_artikla);
+	}
 
 }
