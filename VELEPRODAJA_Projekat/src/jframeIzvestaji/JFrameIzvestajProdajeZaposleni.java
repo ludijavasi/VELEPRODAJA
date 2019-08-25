@@ -38,6 +38,9 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 	private JTextField textProdajnavrednostIzvestajProdajeZaposleni;
 	private JTextField textFieldRucIzvestajProdajeZaposleni;
 	private JComboBox comboBoxIzvestakZaposlenihArikal;
+	private JComboBox comboBoxZaposleniIzvestaj;
+	private JComboBox comboBoxIzvestajZaposleniGrupaArtikla;
+	
 	
 	
 
@@ -116,7 +119,7 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 		lblZaposleni.setBounds(30, 20, 170, 20);
 		contentPane.add(lblZaposleni);
 		
-		JComboBox comboBoxZaposleniIzvestaj = new JComboBox();
+		comboBoxZaposleniIzvestaj = new JComboBox();
 		comboBoxZaposleniIzvestaj.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxZaposleniIzvestaj.setBounds(30, 60, 200, 20);
 		contentPane.add(comboBoxZaposleniIzvestaj);
@@ -133,11 +136,11 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 				ArrayList lista;
 				try {
 					
-						lista = Kontroler.getInstance().getIzvestajProdajePoKupcu(((Zaposleni) 
+						lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom(((Zaposleni) 
 									comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog());
 						
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
-
+						suma(tableIzvestajProdajeZaposlenog);
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -191,7 +194,7 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 		label_2.setBounds(10, 20, 110, 20);
 		panelFilterIzvestaZaposleni.add(label_2);
 		
-		JComboBox comboBoxIzvestajZaposleniGrupaArtikla = new JComboBox();
+		comboBoxIzvestajZaposleniGrupaArtikla = new JComboBox();
 		comboBoxIzvestajZaposleniGrupaArtikla.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxIzvestajZaposleniGrupaArtikla.setBounds(150, 20, 210, 20);
 		panelFilterIzvestaZaposleni.add(comboBoxIzvestajZaposleniGrupaArtikla);
@@ -212,6 +215,8 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 								comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog(),((GrupaArtikala) 
 										comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala());
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
+						suma(tableIzvestajProdajeZaposlenog);
+						
 					
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -221,7 +226,20 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 			}
 		});
 		
-		comboBoxIzvestajZaposleniGrupaArtikla.addActionListener(new ActionListener() {
+		
+		
+		
+		JLabel label_3 = new JLabel("Artikal :");
+		label_3.setFont(new Font("Arial", Font.BOLD, 14));
+		label_3.setBounds(400, 20, 70, 20);
+		panelFilterIzvestaZaposleni.add(label_3);
+		
+		comboBoxIzvestakZaposlenihArikal = new JComboBox();
+		comboBoxIzvestakZaposlenihArikal.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxIzvestakZaposlenihArikal.setBounds(490, 20, 200, 20);
+		panelFilterIzvestaZaposleni.add(comboBoxIzvestakZaposlenihArikal);
+		
+comboBoxIzvestajZaposleniGrupaArtikla.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -250,17 +268,6 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 		});
 		
 		
-		
-		JLabel label_3 = new JLabel("Artikal :");
-		label_3.setFont(new Font("Arial", Font.BOLD, 14));
-		label_3.setBounds(400, 20, 70, 20);
-		panelFilterIzvestaZaposleni.add(label_3);
-		
-		comboBoxIzvestakZaposlenihArikal = new JComboBox();
-		comboBoxIzvestakZaposlenihArikal.setFont(new Font("Arial", Font.PLAIN, 13));
-		comboBoxIzvestakZaposlenihArikal.setBounds(490, 20, 200, 20);
-		panelFilterIzvestaZaposleni.add(comboBoxIzvestakZaposlenihArikal);
-		
 		comboBoxIzvestakZaposlenihArikal.addActionListener(new ActionListener() {
 			
 			@Override
@@ -276,7 +283,7 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 								comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala(),
 								((Artikli)comboBoxIzvestakZaposlenihArikal.getSelectedItem()).getIdArtikla());
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
-					
+						suma(tableIzvestajProdajeZaposlenog);
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -390,4 +397,24 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	private void suma (JTable t) {
+		double sum = 0; double sum1 = 0; double sum2 = 0;
+		
+		for (int i = 0; i < tableIzvestajProdajeZaposlenog.getRowCount(); i++) { 
+			sum = sum + Double.parseDouble(tableIzvestajProdajeZaposlenog.getValueAt(i,11).toString());
+				
+		}
+		for (int i1 = 0; i1 < tableIzvestajProdajeZaposlenog.getRowCount(); i1++) {
+			sum1 = sum1 + Double.parseDouble(tableIzvestajProdajeZaposlenog.getValueAt(i1,15).toString());
+		 		
+		 		}
+		for (int i2 = 0; i2 < tableIzvestajProdajeZaposlenog.getRowCount(); i2++) {
+			sum2 = sum2 + Double.parseDouble(tableIzvestajProdajeZaposlenog.getValueAt(i2,14).toString());
+			
+			}
+				textFieldNabavnaVrenostIzvestajZaposleni.setText(Double.toString(sum));
+				textFieldRucIzvestajProdajeZaposleni.setText(Double.toString(sum2-sum));
+				textFieldOsnovicaIzvestajZaposleni.setText(Double.toString(sum1));
+				textProdajnavrednostIzvestajProdajeZaposleni.setText(Double.toString(sum2)); 
+		  }
 }

@@ -528,11 +528,11 @@ public class Izvestaj {
 			this.marza_artikla = marza_artikla;
 			this.stopa_PDV = stopa_pdv_a;
 	}
-	public Izvestaj(int idZaposlenog,String imeZaposlenog,String prezimeZaposlenog, int idRAcuna2, Date datum_racuna,int IdFirme, String naziv_firme_kupca, String username_zaposlenog,
+	public Izvestaj(/*int idZaposlenog,*/String imeZaposlenog,String prezimeZaposlenog, int idRAcuna2, Date datum_racuna,int IdFirme, String naziv_firme_kupca, String username_zaposlenog,
 			String naziv_filijale, String grupa_artikala, int idArtikla2, String naziv_artikla2,
 			int koicina_prodaje, double neto_cena_artikla, double marza_artikla, double stopa_pdv_a) {
 			
-			this.idZaposlenog = idZaposlenog;
+		/*	this.idZaposlenog = idZaposlenog;*/
 			this.imeZaposlenog = imeZaposlenog;
 			this.prezimeZaposlenog = prezimeZaposlenog;
 		    this.idRacuna = idRAcuna2;

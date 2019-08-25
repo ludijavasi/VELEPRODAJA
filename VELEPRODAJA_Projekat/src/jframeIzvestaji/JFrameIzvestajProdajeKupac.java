@@ -11,17 +11,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
-import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardUpLeftHandler;
+
 
 import com.toedter.calendar.JDateChooser;
 
 import kontroler.Kontroler;
 import model.Artikli;
-import model.Filijala;
 import model.GrupaArtikala;
 import model.Izvestaj;
 import model.Kupac;
-import table.JTableModelProdajaPoFilijali;
 import table.JTableModelProdajaPoKupacu;
 
 import javax.swing.JScrollPane;
@@ -41,12 +39,9 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 	private JTextField textFieldRucIzvestajProdajeKupac;
 	private JComboBox <Kupac> comboBoxIzvestajKupac;
 	private JComboBox comboBoxArtikalIzvestajKupac;
+	private JComboBox comboBoxGrupaArtikalaIzvestajKupac;
 	
 	
-	
-	
-	
-
 	public JComboBox getComboBoxIzvestajKupac() {
 		return comboBoxIzvestajKupac;
 	}
@@ -143,7 +138,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 									comboBoxIzvestajKupac.getSelectedItem()).getIdKupca());
 						
 						postaviModelProdajaPoKupcu(lista, tableIzvestajKupac);
-
+						suma(tableIzvestajKupac);
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -188,7 +183,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 		label_2.setBounds(10, 20, 110, 20);
 		panelFilterKupac.add(label_2);
 		
-		JComboBox comboBoxGrupaArtikalaIzvestajKupac = new JComboBox();
+		comboBoxGrupaArtikalaIzvestajKupac = new JComboBox();
 		comboBoxGrupaArtikalaIzvestajKupac.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxGrupaArtikalaIzvestajKupac.setBounds(150, 20, 200, 20);
 		panelFilterKupac.add(comboBoxGrupaArtikalaIzvestajKupac);
@@ -209,7 +204,8 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 								comboBoxIzvestajKupac.getSelectedItem()).getIdKupca(),((GrupaArtikala) 
 										comboBoxGrupaArtikalaIzvestajKupac.getSelectedItem()).getIdGrupeArtikala());
 						postaviModelProdajaPoKupcu(lista, tableIzvestajKupac);
-					
+						suma(tableIzvestajKupac);
+						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -263,6 +259,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+	
 				// TODO Auto-generated method stub
 				postaviModelProdajaPoKupcu(new ArrayList<Artikli>(), tableIzvestajKupac);
 				ArrayList lista;
@@ -273,7 +270,8 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 								comboBoxGrupaArtikalaIzvestajKupac.getSelectedItem()).getIdGrupeArtikala(),
 								((Artikli)comboBoxArtikalIzvestajKupac.getSelectedItem()).getIdArtikla());
 						postaviModelProdajaPoKupcu(lista, tableIzvestajKupac);
-					
+						suma(tableIzvestajKupac);
+						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -397,4 +395,24 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 			e.printStackTrace();
 		}
 	}
-}
+	private void suma (JTable t) {
+		double sum = 0; double sum1 = 0; double sum2 = 0;
+		
+		for (int i = 0; i < tableIzvestajKupac.getRowCount(); i++) { 
+			sum = sum + Double.parseDouble(tableIzvestajKupac.getValueAt(i,7).toString());
+				
+		}
+		for (int i1 = 0; i1 < tableIzvestajKupac.getRowCount(); i1++) {
+			sum1 = sum1 + Double.parseDouble(tableIzvestajKupac.getValueAt(i1,11).toString());
+		 		
+		 		}
+		for (int i2 = 0; i2 < tableIzvestajKupac.getRowCount(); i2++) {
+			sum2 = sum2 + Double.parseDouble(tableIzvestajKupac.getValueAt(i2,10).toString());
+			
+			}
+				textFieldNabavnaVrenostIzvestajKupac.setText(Double.toString(sum));
+				textFieldRucIzvestajProdajeKupac.setText(Double.toString(sum2-sum));
+				textFieldOsnovicaIzvestajKupac.setText(Double.toString(sum1));
+				textProdajnavrednostIzvestajProdajeKupac.setText(Double.toString(sum2)); 
+		  }
+	}

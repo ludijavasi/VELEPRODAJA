@@ -262,7 +262,6 @@ public class GlavniProzorVeleprodaja {
 				jfzo.getBtnDodajZaposlenog().setVisible(false);				
 				jfzo.getBtnAzurirajZaposlenog().setVisible(false);
 				jfzo.getBtnPonistiAkciju().setVisible(true);
-				//jfzo.getBtnPonistiAkciju().setBounds(570, 420, 99, 23);
 				
 				jfzo.setVisible(true);				
 				
@@ -339,8 +338,7 @@ public class GlavniProzorVeleprodaja {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						ro.setVisible(false);
-						
+						ro.setVisible(false);	
 					}
 				});
 				
@@ -602,35 +600,6 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameIzvestajProdajeFilijala ip = new JFrameIzvestajProdajeFilijala();
 				ip.setVisible(true);
-				/*
-				 * postaviModelIzvestajProdajePoArtiklu(new ArrayList<>(),
-				 * ip.getTableIzvestajProdaje()); ArrayList lista; try { lista =
-				 * Kontroler.getInstance().getIzvestajProdajePoFilijali();
-				 * postaviModelIzvestajProdajePoArtiklu(lista, ip.getTableIzvestajProdaje());
-				 * double sum = 0; double sum1 = 0; double sum2 = 0; int prow=1;
-				 * 
-				 * for (int i = 0; i < ip.getTableIzvestajProdaje().getRowCount(); i++) { sum =
-				 * sum + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i,
-				 * 8).toString());
-				 * ip.getTextFieldNabavnaVrenostIzvestajNabavke().setText(Double.toString(sum));
-				 * }
-				 * 
-				 * for (int i1 = 0; i1 < ip.getTableIzvestajProdaje().getRowCount(); i1++) {
-				 * sum1 = sum1 + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i1,
-				 * 12).toString());
-				 * ip.getTextFieldOsnovicaIzvestaj().setText(Double.toString(sum1)); }
-				 * 
-				 * for (int i2 = 0; i2 < ip.getTableIzvestajProdaje().getRowCount(); i2++) {
-				 * sum2 = sum2 + Double.parseDouble(ip.getTableIzvestajProdaje().getValueAt(i2,
-				 * 11).toString());
-				 * ip.getTxtProdajnavrednostIzvestajProdaje().setText(Double.toString(sum2)); }
-				 * ip.getTextFieldRucIzvestajProdaje().setText(Double.toString(sum2-sum));
-				 * 
-				 * } catch (ClassNotFoundException | SQLException e1) { // TODO Auto-generated
-				 * catch block e1.printStackTrace(); }
-				 */
-					 
-				
 			}
 		});
 		mntmProdajaPoArtikluAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -1402,56 +1371,46 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent e) {
 				
 				JFramePromenaLozinke proloz = new JFramePromenaLozinke();
-				
-				
-				panelAdmin.setVisible(false);
+			
 				proloz.setVisible(true);
 				
 				proloz.getBtnUReduPromenaLozinke().addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						if((proloz.getTextFieldUsername().getText().toString()).equals(logedIn.getUsernameZaposlenog()) && (proloz.getTextFieldPassword().getText().toString()).equals(logedIn.getPasswordZaposlenog())) {
+						if((proloz.getTextFieldUsername().getText().toString()).equals(logedIn.getUsernameZaposlenog()) 
+							&& (proloz.getTextFieldPassword().getText().toString()).equals(logedIn.getPasswordZaposlenog())) {
 							JOptionPane.showMessageDialog(null, "Unesite novu lozinku!");
-						}else
-						{
+						}else{
 							JOptionPane.showMessageDialog(null, "Uneli ste pogresne podatke!");
 						}
 						
 						proloz.getTextFieldNewPassword().requestFocus();
-						
-						//proloz.getTextFieldNewPassword().getText();
-						//proloz.getTextFieldConfirmPassword().getText();
-						
-						//if((proloz.getTextFieldNewPassword().getText().toString()).equals(proloz.getTextFieldConfirmPassword().getText().toString())) {
 							
-							proloz.getBtnChangePassword().addActionListener(new ActionListener() {
+						proloz.getBtnChangePassword().addActionListener(new ActionListener() {
 								
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									try {
-										if((proloz.getTextFieldNewPassword().getText().toString()).equals(proloz.getTextFieldConfirmPassword().getText().toString())) {
+										if((proloz.getTextFieldNewPassword().getText().toString()).equals(
+											proloz.getTextFieldConfirmPassword().getText().toString())) {
 										logedIn.setPasswordZaposlenog(proloz.getTextFieldNewPassword().getText());	
 										Kontroler.getInstance().updateZaposleni(logedIn);
 										JOptionPane.showMessageDialog(null, "Uspesno ste promenili lozinku!");
 										proloz.setVisible(false);
-										
 										}
+										
 									} catch (ClassNotFoundException e1) {
-										// TODO Auto-generated catch block
+										
 										e1.printStackTrace();
 									} catch (SQLException e1) {
-										// TODO Auto-generated catch block
+										
 										e1.printStackTrace();
 									}
 									
-									
 								}
 							});
-							
-							//panelAdmin.setVisible(true);
-							//Kontroler.getInstance().updateZaposleni(logedIn);
-							//JOptionPane.showMessageDialog(null, "Uspesno ste promenili lozinku!");
+		
 						} 
 						
 					}

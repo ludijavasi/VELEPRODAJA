@@ -265,7 +265,7 @@ public class DAOIzvestaj {
 				+ "stavke_prodaje.id_artikla = artikal.id_artikla join "
 				+ "grupa_artikala on artikal.id_grupe_artikala = "
 				+ "grupa_artikala.id_grupe_artikala "
-				+ "WHERE racun_otpremnica.id_kupca = kupac.id_kupca = ? "
+				+ "WHERE kupac.id_kupca = ? "
 				+ "group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
 		
 		
@@ -314,7 +314,7 @@ public class DAOIzvestaj {
 					+ "stavke_prodaje.id_artikla = artikal.id_artikla join "
 					+ "grupa_artikala on artikal.id_grupe_artikala = "
 					+ "grupa_artikala.id_grupe_artikala "
-					+ "WHERE racun_otpremnica.id_kupca = kupac.id_kupca = ? and grupa_artikala.id_grupe_artikala = ? "
+					+ "WHERE kupac.id_kupca = ? and grupa_artikala.id_grupe_artikala = ? "
 					+ "group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
 			
 			
@@ -355,18 +355,20 @@ public class DAOIzvestaj {
 			ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 			
 			connect();
-			preparedStatement = konekcija.prepareStatement("SELECT racun_otpremnica.id_racuna, datum_racuna,kupac.id_kupca, naziv_firme_kupca,"
-					+ "username_zaposlenog , naziv_filijale, grupa_artikala.naziv_grupe_artikala,artikal.id_artikla, naziv_artikla,"
-					+ " artikal.neto_cena_artikla, artikal.marza_artikla, artikal.stopa_pdv_a, SUM(kolicina_prodaje)"
-					+ "FROM racun_otpremnica join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
-					+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca join zaposleni on "
-					+ "racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog join filijala on "
-					+ "zaposleni.id_filijale = filijala.id_filijale join artikal on "
-					+ "stavke_prodaje.id_artikla = artikal.id_artikla join "
-					+ "grupa_artikala on artikal.id_grupe_artikala = "
-					+ "grupa_artikala.id_grupe_artikala "
-					+ "WHERE racun_otpremnica.id_kupca = kupac.id_kupca = ? and grupa_artikala.id_grupe_artikala = ? and artikal.id_artikla = ?"
-					+ "group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
+			preparedStatement = konekcija.prepareStatement("SELECT filijala.id_filijale,"
+					+ " racun_otpremnica.id_racuna,datum_racuna,kupac.id_kupca,naziv_firme_kupca,"
+					+ "username_zaposlenog, naziv_filijale,grupa_artikala.id_grupe_artikala,"
+					+ "grupa_artikala.naziv_grupe_artikala,artikal.id_artikla,naziv_artikla, "
+					+ "artikal.neto_cena_artikla, artikal.marza_artikla, artikal.stopa_pdv_a, "
+					+ "SUM(kolicina_prodaje) FROM racun_otpremnica "
+					+ "join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
+					+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca "
+					+ "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
+					+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
+					+ "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
+					+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala "
+					+ "WHERE kupac.id_kupca = ? and grupa_artikala.id_grupe_artikala = ? and artikal.id_artikla = ? "
+					+ "group by stavke_prodaje.id_artikla=artikal.id_artikla, datum_racuna");
 			
 			
 			preparedStatement.setInt(1,id_kupca);
@@ -408,21 +410,14 @@ public class DAOIzvestaj {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
-		preparedStatement = konekcija.prepareStatement("SELECT zaposleni.id_zaposlenog, "
-				+ "zaposleni.ime_zaposlenog, zaposleni.prezime_zaposlenog,zaposleni.username_zaposlenog, "
-				+ "racun_otpremnica.id_racuna, datum_racuna,kupac.id_kupca, naziv_firme_kupca, "
-				+ "naziv_filijale,grupa_artikala.id_grupe_artikala, grupa_artikala.naziv_grupe_artikala,artikal.id_artikla,"
-				+ " naziv_artikla, artikal.neto_cena_artikla, artikal.marza_artikla, artikal.stopa_pdv_a, "
-				+ "SUM(kolicina_prodaje) FROM racun_otpremnica "
-				+ "join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
-				+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca "
-				+ "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
-				+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
-				+ "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
-				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala"
-				+ " WHERE racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog = ?"
-				+ "group by stavke_prodaje.id_artikla, "
-				+ "datum_racuna");
+		preparedStatement = konekcija.prepareStatement("SELECT racun_otpremnica.id_racuna, datum_racuna,kupac.id_kupca,naziv_firme_kupca,zaposleni.ime_zaposlenog,"
+				+ " zaposleni.prezime_zaposlenog, username_zaposlenog , naziv_filijale, grupa_artikala.naziv_grupe_artikala,artikal.id_artikla,"
+				+ " naziv_artikla,artikal.neto_cena_artikla, artikal.marza_artikla,artikal.stopa_pdv_a, SUM(kolicina_prodaje)"
+				+ "FROM racun_otpremnica join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
+				+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
+				+ "join filijala on zaposleni.id_filijale = filijala.id_filijale join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
+				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala WHERE zaposleni.id_zaposlenog = ? "
+				+ "group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
 		
 		preparedStatement.setInt(1, id_zaposlenog);
 		
@@ -432,14 +427,14 @@ public class DAOIzvestaj {
 
 		while (rs.next()) {
 			
-			int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
+			//int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
 			String imeZaposlenog = rs.getString("zaposleni.ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("zaposleni.prezime_zaposlenog");
+			String username_zaposlenog = rs.getString("username_zaposlenog");
 			int idRacuna = rs.getInt ("racun_otpremnica.id_racuna");
 			Date datum_racuna = rs.getDate("datum_racuna");	
 			int IdFirme = rs.getInt("kupac.id_kupca");
 			String naziv_firme_kupca = rs.getString("naziv_firme_kupca");
-			String username_zaposlenog = rs.getString("username_zaposlenog");
 			String naziv_filijale = rs.getString("naziv_filijale");
 			String grupa_artikala = rs.getString("grupa_artikala.naziv_grupe_artikala");
 			int idArtikla = rs.getInt("artikal.id_artikla");
@@ -449,7 +444,7 @@ public class DAOIzvestaj {
 			double marza_artikla = rs.getDouble("marza_artikla");
 			double stopa_pdv_a = rs.getDouble("artikal.stopa_pdv_a");
 			
-			Izvestaj ga = new Izvestaj(idZaposlenog, imeZaposlenog, prezimeZaposlenog, 
+			Izvestaj ga = new Izvestaj(/*idZaposlenog,*/ imeZaposlenog, prezimeZaposlenog, 
 					idRacuna, datum_racuna, IdFirme, naziv_firme_kupca, username_zaposlenog, 
 					naziv_filijale, grupa_artikala, idArtikla, naziv_artikla, koicina_prodaje, 
 					neto_cena_artikla, marza_artikla, stopa_pdv_a);
@@ -465,21 +460,15 @@ public class DAOIzvestaj {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
-		preparedStatement = konekcija.prepareStatement("SELECT zaposleni.id_zaposlenog, "
-				+ "zaposleni.ime_zaposlenog, zaposleni.prezime_zaposlenog,zaposleni.username_zaposlenog, "
-				+ "racun_otpremnica.id_racuna, datum_racuna,kupac.id_kupca, naziv_firme_kupca, "
-				+ "naziv_filijale,grupa_artikala.id_grupe_artikala, grupa_artikala.naziv_grupe_artikala,artikal.id_artikla,"
-				+ " naziv_artikla, artikal.neto_cena_artikla, artikal.marza_artikla, artikal.stopa_pdv_a, "
-				+ "SUM(kolicina_prodaje) FROM racun_otpremnica "
-				+ "join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
-				+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca "
-				+ "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
-				+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
-				+ "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
-				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala"
-				+ " WHERE racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog = ? and grupa_artikala.id_grupe_artikala = ?"
-				+ "group by stavke_prodaje.id_artikla, "
-				+ "datum_racuna");
+		preparedStatement = konekcija.prepareStatement("SELECT racun_otpremnica.id_racuna, datum_racuna,kupac.id_kupca,naziv_firme_kupca,zaposleni.ime_zaposlenog,"
+				+ " zaposleni.prezime_zaposlenog, username_zaposlenog , naziv_filijale, grupa_artikala.naziv_grupe_artikala,artikal.id_artikla,"
+				+ " naziv_artikla,artikal.neto_cena_artikla, artikal.marza_artikla,artikal.stopa_pdv_a, SUM(kolicina_prodaje)"
+				+ "FROM racun_otpremnica join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
+				+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
+				+ "join filijala on zaposleni.id_filijale = filijala.id_filijale join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
+				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala WHERE zaposleni.id_zaposlenog = ? "
+				+ "and grupa_artikala.id_grupe_artikala = ?  "
+				+ "group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
 		
 		preparedStatement.setInt(1, id_zaposlenog);
 		
@@ -491,7 +480,7 @@ public class DAOIzvestaj {
 
 		while (rs.next()) {
 			
-			int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
+			//int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
 			String imeZaposlenog = rs.getString("zaposleni.ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("zaposleni.prezime_zaposlenog");
 			int idRacuna = rs.getInt ("racun_otpremnica.id_racuna");
@@ -508,7 +497,7 @@ public class DAOIzvestaj {
 			double marza_artikla = rs.getDouble("marza_artikla");
 			double stopa_pdv_a = rs.getDouble("artikal.stopa_pdv_a");
 			
-			Izvestaj ga = new Izvestaj(idZaposlenog, imeZaposlenog, prezimeZaposlenog, 
+			Izvestaj ga = new Izvestaj(/*idZaposlenog*/ imeZaposlenog, prezimeZaposlenog, 
 					idRacuna, datum_racuna, IdFirme, naziv_firme_kupca, username_zaposlenog, 
 					naziv_filijale, grupa_artikala, idArtikla, naziv_artikla, koicina_prodaje, 
 					neto_cena_artikla, marza_artikla, stopa_pdv_a);
@@ -524,21 +513,14 @@ public class DAOIzvestaj {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
-		preparedStatement = konekcija.prepareStatement("SELECT zaposleni.id_zaposlenog, "
-				+ "zaposleni.ime_zaposlenog, zaposleni.prezime_zaposlenog,zaposleni.username_zaposlenog, "
-				+ "racun_otpremnica.id_racuna, datum_racuna,kupac.id_kupca, naziv_firme_kupca, "
-				+ "naziv_filijale,grupa_artikala.id_grupe_artikala, grupa_artikala.naziv_grupe_artikala,artikal.id_artikla,"
-				+ " naziv_artikla, artikal.neto_cena_artikla, artikal.marza_artikla, artikal.stopa_pdv_a, "
-				+ "SUM(kolicina_prodaje) FROM racun_otpremnica "
-				+ "join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
-				+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca "
-				+ "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
-				+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
-				+ "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
-				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala"
-				+ " WHERE racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog = ? and grupa_artikala.id_grupe_artikala = ? and artikal.id_artikla = ?"
-				+ "group by stavke_prodaje.id_artikla, "
-				+ "datum_racuna");
+		preparedStatement = konekcija.prepareStatement("SELECT racun_otpremnica.id_racuna, datum_racuna,kupac.id_kupca,naziv_firme_kupca,zaposleni.ime_zaposlenog,"
+				+ " zaposleni.prezime_zaposlenog, username_zaposlenog , naziv_filijale, grupa_artikala.naziv_grupe_artikala,artikal.id_artikla,"
+				+ " naziv_artikla,artikal.neto_cena_artikla, artikal.marza_artikla,artikal.stopa_pdv_a, SUM(kolicina_prodaje)FROM racun_otpremnica"
+				+ " join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna join kupac on racun_otpremnica.id_kupca = kupac.id_kupca"
+				+ " join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog join filijala on zaposleni.id_filijale = filijala.id_filijale"
+				+ " join artikal on stavke_prodaje.id_artikla = artikal.id_artikla join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala"
+				+ " WHERE zaposleni.id_zaposlenog = ? and grupa_artikala.id_grupe_artikala = ? and artikal.id_artikla = ?  "
+				+ " group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
 		
 		preparedStatement.setInt(1, id_zaposlenog);
 		
@@ -552,7 +534,7 @@ public class DAOIzvestaj {
 
 		while (rs.next()) {
 			
-			int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
+		//	int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
 			String imeZaposlenog = rs.getString("zaposleni.ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("zaposleni.prezime_zaposlenog");
 			int idRacuna = rs.getInt ("racun_otpremnica.id_racuna");
@@ -569,7 +551,7 @@ public class DAOIzvestaj {
 			double marza_artikla = rs.getDouble("marza_artikla");
 			double stopa_pdv_a = rs.getDouble("artikal.stopa_pdv_a");
 			
-			Izvestaj ga = new Izvestaj(idZaposlenog, imeZaposlenog, prezimeZaposlenog, 
+			Izvestaj ga = new Izvestaj(/*idZaposlenog, */imeZaposlenog, prezimeZaposlenog, 
 					idRacuna, datum_racuna, IdFirme, naziv_firme_kupca, username_zaposlenog, 
 					naziv_filijale, grupa_artikala, idArtikla, naziv_artikla, koicina_prodaje, 
 					neto_cena_artikla, marza_artikla, stopa_pdv_a);

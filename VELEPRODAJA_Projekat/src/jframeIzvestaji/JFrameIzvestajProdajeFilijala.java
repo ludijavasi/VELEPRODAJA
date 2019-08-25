@@ -156,7 +156,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 									comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale());
 						
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
-
+						suma(tableIzvestajProdaje);
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -188,7 +188,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 								comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(),((GrupaArtikala) 
 								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala());
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
-					
+						suma(tableIzvestajProdaje);
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -250,7 +250,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala(),
 								((Artikli)comboBoxArtikalIzvestajProdaje.getSelectedItem()).getIdArtikla());
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
-					
+						suma(tableIzvestajProdaje);
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -381,4 +381,26 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 			e.printStackTrace();
 		}
 	}
-}
+	
+	
+	private void suma (JTable t) {
+		double sum = 0; double sum1 = 0; double sum2 = 0;
+		
+		for (int i = 0; i < tableIzvestajProdaje.getRowCount(); i++) { 
+			sum = sum + Double.parseDouble(tableIzvestajProdaje.getValueAt(i,8).toString());
+				
+		}
+		for (int i1 = 0; i1 < tableIzvestajProdaje.getRowCount(); i1++) {
+			sum1 = sum1 + Double.parseDouble(tableIzvestajProdaje.getValueAt(i1,12).toString());
+		 		
+		 		}
+		for (int i2 = 0; i2 < tableIzvestajProdaje.getRowCount(); i2++) {
+			sum2 = sum2 + Double.parseDouble(tableIzvestajProdaje.getValueAt(i2,11).toString());
+			
+			}
+				textFieldNabavnaVrenostIzvestajFilijala.setText(Double.toString(sum));
+				textFieldRucIzvestajProdajeFiljala.setText(Double.toString(sum2-sum));
+				textFieldOsnovicaIzvestajFilijala.setText(Double.toString(sum1));
+				txtProdajnavrednostIzvestajProdajeFilijala.setText(Double.toString(sum2)); 
+		  }
+	}
