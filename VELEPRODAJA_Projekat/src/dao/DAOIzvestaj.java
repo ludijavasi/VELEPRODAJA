@@ -52,7 +52,7 @@ public class DAOIzvestaj {
 		konekcija.close();
 		return lista;
 	}
-	public ArrayList<Izvestaj> getIzvestajProdajePoFilijali(Integer id_filijale) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoFilijali(Integer id_filijale, String d, String d1) throws ClassNotFoundException, SQLException {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
@@ -66,44 +66,14 @@ public class DAOIzvestaj {
 				+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
 				+ "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
 				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala"
-				+ " WHERE filijala.id_filijale = ? "
-				+ "group by stavke_prodaje.id_artikla, datum_racuna");
+				+ " WHERE datum_racuna BETWEEN ? and ? and filijala.id_filijale = ? "
+				+ "group by stavke_prodaje.id_artikla");
 				
 		
-		// if(id_filijale > 0) { select+=" where id_filijale=" + Integer.parseInt(id_filijale.toString());
-	//	 }
-
-		/*
-		 * else if(id_grupe_artikala > 0) { select+=" where id_grupe_artikala=" +
-		 * id_grupe_artikala.toString(); } else if(id_artikla > 0) {
-		 * select+=" where id_artikla=" + id_artikla.toString(); }
-		 */
+		preparedStatement.setString(1, d);
+		preparedStatement.setString(2, d1);
+		preparedStatement.setInt(3,id_filijale);
 		
-		
-		/*
-		 * preparedStatement = konekcija.
-		 * prepareStatement("SELECT filijala.id_filijale, racun_otpremnica.id_racuna, "
-		 * + "datum_racuna,kupac.id_kupca, naziv_firme_kupca,username_zaposlenog, " +
-		 * "naziv_filijale,grupa_artikala.id_grupe_artikala, " +
-		 * "grupa_artikala.naziv_grupe_artikala,artikal.id_artikla, " +
-		 * "naziv_artikla, artikal.neto_cena_artikla, artikal.marza_artikla, " +
-		 * "artikal.stopa_pdv_a, SUM(kolicina_prodaje) FROM racun_otpremnica " +
-		 * "join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
-		 * + "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca " +
-		 * "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
-		 * + "join filijala on zaposleni.id_filijale = filijala.id_filijale " +
-		 * "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla " +
-		 * "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala "
-		 * + "WHERE zaposleni.id_filijale = filijala.id_filijale " +
-		 * "group by stavke_prodaje.id_artikla, datum_racuna");
-		 */
-	//	preparedStatement = konekcija.prepareStatement(1,id_filijale);
-		
-		preparedStatement.setInt(1,id_filijale);
-		
-
-		
-		//preparedStatement.setInt(3,id_artikla);
 		
 		preparedStatement.execute();
 

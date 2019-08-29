@@ -210,9 +210,9 @@ public class Kontroler {
 		DAORacunOtpremnica ro = new DAORacunOtpremnica();
 		ro.updateRacun(idr, poreska_osnovica_racuna, ukupan_iznos_obracunatog_pdv_a_racuna, ukupna_vrednost_racuna);
 	}
-	public ArrayList<Izvestaj> getIzvestajProdajePoFilijali(int id_filijale) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoFilijali(int id_filijale, String d, String d1) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();
-		return di.getIzvestajProdajePoFilijali(id_filijale);
+		return di.getIzvestajProdajePoFilijali(id_filijale,d,d1);
 	}
 	
 	public ArrayList<Izvestaj> getIzvestajProdajePoFilijaliPoGrupi(Integer id_filijale, Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
