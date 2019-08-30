@@ -7,14 +7,15 @@ public class StavkeRacunaOtpremnice {
 	private double kolicinaProdaje;
 	private double rabatProdaje;
 	
-	public StavkeRacunaOtpremnice(int idracunOtpremnica, Artikli artikal,
-			double kolicinaProdaje, double rabatProdaje) {
+	public StavkeRacunaOtpremnice(int idracunOtpremnica, Artikli artikal, double kolicinaProdaje, double rabatProdaje) {
 		super();
 		this.idracunOtpremnica= idracunOtpremnica;
 		this.artikal = artikal;
 		this.kolicinaProdaje = kolicinaProdaje;
 		this.rabatProdaje = rabatProdaje;
 	}
+	
+	
 
 	public StavkeRacunaOtpremnice() {
 		super();

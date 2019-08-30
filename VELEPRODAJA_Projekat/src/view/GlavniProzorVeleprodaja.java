@@ -19,6 +19,7 @@ import jframe.JFrameZaposleni;
 import jframeIzvestaji.JFrameCenaArtikla;
 import jframeIzvestaji.JFrameIzvestajProdajeFilijala;
 import jframeIzvestaji.JFrameIzvestajProdajeKupac;
+import jframeIzvestaji.JFrameIzvestajProdajeRacun;
 import jframeIzvestaji.JFrameIzvestajProdajeZaposleni;
 import jframeObrisi.JFrameObrisiArtikal;
 import jframeObrisi.JFrameObrisiFilijalu;
@@ -364,6 +365,12 @@ public class GlavniProzorVeleprodaja {
 							RacunOtpremnica ro = new RacunOtpremnica(idzaposlenog,idkupca,datumRacuna,datumNaplateRacuna);
 							generatedID = Kontroler.getInstance().insertRacunOtpremnicu(ro);
 							
+							/*Date today = Calendar.getInstance().getTime();
+							if(datumRacuna.before(today) || datumRacuna.after(datumNaplateRacuna)) {
+								JOptionPane.showMessageDialog(null, "Uneli ste pogresan datum u polje! \n(datum racun < datum naplate racuna)\n(datum racun > danasnji datum)");
+								return;
+							}*/	
+							
 							
 							JOptionPane.showMessageDialog(null, "Kreirali ste racun!");
 							
@@ -388,6 +395,11 @@ public class GlavniProzorVeleprodaja {
 								double rabatProdaje = Double.parseDouble(fsrp.getTextFieldRabat().getText().trim());
 
 								StavkeRacunaOtpremnice sro = new StavkeRacunaOtpremnice(idracuna, artikal, kolicinaProdaje, rabatProdaje);
+								
+								
+								
+								
+								
 
 								Kontroler.getInstance().insertStavkaRacuna(sro);
 								
@@ -680,6 +692,19 @@ public class GlavniProzorVeleprodaja {
 		
 		mntmSumarniPregledDokumenataAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmSumarniPregledDokumenataAdmin);
+		
+		JMenuItem mntmProdajaPoRaunima = new JMenuItem("Prodaja po ra\u010Dunima");
+		mntmProdajaPoRaunima.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrameIzvestajProdajeRacun izpr = new JFrameIzvestajProdajeRacun();
+				
+				panelAdmin.setVisible(false);
+				izpr.setVisible(true);
+			}
+		});
+		mntmProdajaPoRaunima.setFont(new Font("Arial", Font.PLAIN, 13));
+		mnAnalizaProdajeAdmin.add(mntmProdajaPoRaunima);
 
 		JMenu mnSkladisteAdmin = new JMenu("    Skladi\u0161te");
 		mnSkladisteAdmin.setFont(new Font("Arial", Font.BOLD, 14));
@@ -1541,5 +1566,4 @@ public class GlavniProzorVeleprodaja {
 		 JTableModelProdajaPoZaposlenom model = new  JTableModelProdajaPoZaposlenom(lista);
 		t.setModel(model);
 	}
-
 }
