@@ -34,6 +34,7 @@ import jframeObrisi.JFrameObrisiKupca;
 import jframeObrisi.JFrameObrisiMagacin;
 import jframeObrisi.JFrameObrisiZaposlenog;
 import jframePregled.JFrameKontrolaZalihaPregled;
+import jframePregled.JFramePregleRacuna;
 import jframePregled.JFramePregledArtikala;
 import jframePregled.JFramePregledFilijale;
 import jframePregled.JFramePregledGrupeArtikala;
@@ -566,6 +567,12 @@ public class GlavniProzorVeleprodaja {
 		mnProdajaAdmin.add(mntmStorniranjeRacunaAdmin);
 
 		JMenuItem mntmPregledRacunaAdmin = new JMenuItem("Pregled ra\u010Duna");
+		mntmPregledRacunaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFramePregleRacuna pr = new JFramePregleRacuna();
+				pr.setVisible(true);
+			}
+		});
 		mntmPregledRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));	
 		mnProdajaAdmin.add(mntmPregledRacunaAdmin);
 

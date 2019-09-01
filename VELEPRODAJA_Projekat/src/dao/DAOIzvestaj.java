@@ -30,6 +30,7 @@ public class DAOIzvestaj {
 		preparedStatement = konekcija.prepareStatement("SELECT naziv_artikla,kolicina_prodaje,jedinica_mere,neto_cena_artikla, "
 				+ "rabat_prodaje, stopa_pdv_a FROM stavke_prodaje "
 				+ "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla WHERE id_racuna = ?");
+		
 		preparedStatement.setInt(1, id_racuna);
 		preparedStatement.execute();
 
@@ -698,7 +699,14 @@ public class DAOIzvestaj {
 			ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 
 			connect();
-			preparedStatement = konekcija.prepareStatement("SELECT kupac.naziv_firme_kupca,filijala.naziv_filijale, racun_otpremnica.id_racuna,datum_racuna, racun_otpremnica.poreska_osnovica_racuna,racun_otpremnica.ukupan_iznos_obracunatog_pdv_a_racuna, racun_otpremnica.ukupna_vrednost_racuna FROM racun_otpremnica join kupac on racun_otpremnica.id_kupca = kupac.id_kupca join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog join filijala on zaposleni.id_filijale = filijala.id_filijale WHERE racun_otpremnica.datum_racuna BETWEEN ? and ? and racun_otpremnica.status_racuna = \"Aktivan\"");
+			preparedStatement = konekcija.prepareStatement("SELECT kupac.naziv_firme_kupca,filijala.naziv_filijale,"
+					+ " racun_otpremnica.id_racuna,datum_racuna,"
+					+ " racun_otpremnica.poreska_osnovica_racuna,racun_otpremnica.ukupan_iznos_obracunatog_pdv_a_racuna,"
+					+ " racun_otpremnica.ukupna_vrednost_racuna FROM racun_otpremnica"
+					+ " join kupac on racun_otpremnica.id_kupca = kupac.id_kupca "
+					+ "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
+					+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
+					+ "WHERE racun_otpremnica.datum_racuna BETWEEN ? and ? and racun_otpremnica.status_racuna = \"Aktivan\"");
 			
 			preparedStatement.setString(1, d);
 			preparedStatement.setString(2, d1);
