@@ -306,10 +306,13 @@ public class GlavniProzorVeleprodaja {
 					jfzo.getTextTelefon().setEditable(false);
 					jfzo.getTextEMail().setEditable(false);					
 					jfzo.getTextPlata().setEditable(false);
-					jfzo.getComboBoxTipZaposlenja().setEditable(false);					
-					jfzo.getComboBoxStrucnaSprema().setEditable(false);					
+					jfzo.getComboBoxTipZaposlenja().setEnabled(false);					
+					jfzo.getComboBoxStrucnaSprema().setEnabled(false);					
 					jfzo.getTextUsername().setEditable(false);
 					jfzo.getTextPassword().setEditable(false);
+					jfzo.getDateChooserDatumZaposlenja().setEnabled(false);
+					jfzo.getDateChooserPrestankaZaposlenja().setEnabled(false);
+					jfzo.getComboBoxFilijalaPosla().setEnabled(false);
 					
 					
 				} catch (ClassNotFoundException e2) {
