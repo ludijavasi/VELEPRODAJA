@@ -527,37 +527,7 @@ public class GlavniProzorVeleprodaja {
 		mnProdajaAdmin.add(mntmStorniranjeRacunaAdmin);
 
 		JMenuItem mntmPregledRacunaAdmin = new JMenuItem("Pregled ra\u010Duna");
-		mntmPregledRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mntmPregledRacunaAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				JFrameStavkeRacunaPregled racun = new JFrameStavkeRacunaPregled();
-				panelAdmin.setVisible(false);
-				racun.setVisible(true);
-				
-				ArrayList lista;
-				postaviModelRacunOtpremnica(new ArrayList<>(), racun.getTableRacunOtpremnica());
-				
-				
-				try {
-					lista = Kontroler.getInstance().getRacun();
-					postaviModelRacunOtpremnica(lista, racun.getTableRacunOtpremnica());
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-                  racun.getBtnPrekidStavkeRacuna().addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						racun.setVisible(false);
-						
-					}
-				});
-				panelAdmin.setVisible(true);
-			}
-		});
-			
+		mntmPregledRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));	
 		mnProdajaAdmin.add(mntmPregledRacunaAdmin);
 
 		JMenu mnAnalizaProdajeAdmin = new JMenu("Analiza prodaje");
@@ -611,33 +581,7 @@ public class GlavniProzorVeleprodaja {
 				
 				JFrameIzvestajProdajeKupac pk = new JFrameIzvestajProdajeKupac();
 				pk.setVisible(true);
-				postaviModelIzvestajProdajePoKupcu(new ArrayList<>(), pk.getTableIzvestajKupac());
-				ArrayList lista;
-				
-				try {
-					lista = Kontroler.getInstance().getIzvestajProdajePoKupcu(0);
-					postaviModelIzvestajProdajePoKupcu(lista, pk.getTableIzvestajKupac());
-				double sum = 0;
-				double sum1 = 0;
-				double sum2 = 0;
-				
-				 for (int i = 0; i < pk.getTableIzvestajKupac().getRowCount(); i++) {
-			            sum = sum + Double.parseDouble(pk.getTableIzvestajKupac().getValueAt(i, 7).toString());
-			            pk.getTextFieldNabavnaVrenostIzvestajKupac().setText(Double.toString(sum));
-			        }
-				 for (int i1 = 0; i1 <  pk.getTableIzvestajKupac().getRowCount(); i1++) {
-			            sum1 = sum1 + Double.parseDouble( pk.getTableIzvestajKupac().getValueAt(i1, 11).toString());
-			            	pk.getTextFieldOsnovicaIzvestajKupac().setText(Double.toString(sum1));
-				 	}
-				 for (int i2 = 0; i2 < pk.getTableIzvestajKupac().getRowCount(); i2++) {
-			            sum2 = sum2 + Double.parseDouble(pk.getTableIzvestajKupac().getValueAt(i2, 10).toString());
-			            	pk.getTxtProdajnavrednostIzvestajProdajeKupac().setText(Double.toString(sum2));
-         	 }
-         	pk.getTextFieldRucIzvestajProdajeKupac().setText(Double.toString(sum2-sum));
-				
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
+			
 			}
 		});
 		mntmProdajaPoKupcimaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));

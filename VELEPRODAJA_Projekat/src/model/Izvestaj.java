@@ -569,6 +569,16 @@ public class Izvestaj {
 		this.stopa_PDV = stopa_pdv_a;
 		
 	}
+	public Izvestaj(String naziv_firme_kupca, String naziv_filijale, Date datumRacuna, int idRacuna,
+			double poreska_osnovica_racuna, double ukupan_iznos_obracunatog_pdv_a_racuna, double ukupna_vrednost_racuna) {
+		this.idRacuna = idRacuna;
+		this.datumRacuna = datumRacuna;
+		this.nazivFirmeKupca = naziv_firme_kupca;
+		this.nazivFilijale = naziv_filijale;
+		this.poreskaOsnovicaRacuna = poreska_osnovica_racuna;
+		this.ukupanIznosObracunatogPdvaRacuna = ukupan_iznos_obracunatog_pdv_a_racuna;
+		this.ukupnaVrednostRacuna = ukupna_vrednost_racuna;
+	}
 	
 	
 	

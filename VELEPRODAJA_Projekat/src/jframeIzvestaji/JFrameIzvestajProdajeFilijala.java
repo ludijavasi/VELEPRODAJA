@@ -189,9 +189,13 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				ArrayList lista;
 				try {
 					
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
+						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
+					
 						lista = Kontroler.getInstance().getIzvestajProdajePoFilijaliPoGrupi(((Filijala) 
 								comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(),((GrupaArtikala) 
-								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala());
+								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala(),sd,sd1);
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
 						suma(tableIzvestajProdaje);
 					} catch (ClassNotFoundException | SQLException e2) {
@@ -249,11 +253,15 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				postaviModelProdajaPoArtiklu(new ArrayList<Artikli>(), tableIzvestajProdaje);
 				ArrayList lista;
 				try {
-					
+						
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
+						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
+
 						lista = Kontroler.getInstance().getIzvestajProdajePoFilijaliPoGrupiPoArtiklu(((Filijala) 
 								comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(),((GrupaArtikala) 
 								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala(),
-								((Artikli)comboBoxArtikalIzvestajProdaje.getSelectedItem()).getIdArtikla());
+								((Artikli)comboBoxArtikalIzvestajProdaje.getSelectedItem()).getIdArtikla(),sd,sd1);
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
 						suma(tableIzvestajProdaje);
 					} catch (ClassNotFoundException | SQLException e2) {
