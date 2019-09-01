@@ -1,4 +1,4 @@
-package jframeObrisi;
+package jframeAzuriraj;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -9,11 +9,15 @@ import javax.swing.border.EmptyBorder;
 
 import jframe.JFrameZaposleni;
 import kontroler.Kontroler;
+import model.Filijala;
 import model.Magacin;
 import model.Zaposleni;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -26,16 +30,16 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
-public class JFrameObrisiZaposlenog extends JFrame {
+public class JFrameAzurirajZaposlenog extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldIdZaposlenog;
-	private JButton btnNazadObrisiZaposlenog;
-	
-	public JButton getBtnNazadObrisiZaposlenog() {
-		return btnNazadObrisiZaposlenog;
+	private JButton btnNazadAzurirajZaposlenog;	
+	private Zaposleni z;
+
+	public JButton getBtnNazadAzurirajZaposlenog() {
+		return btnNazadAzurirajZaposlenog;
 	}
-	
 
 	/**
 	 * Launch the application.
@@ -44,7 +48,7 @@ public class JFrameObrisiZaposlenog extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFrameObrisiZaposlenog frame = new JFrameObrisiZaposlenog();
+					JFrameAzurirajZaposlenog frame = new JFrameAzurirajZaposlenog();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,8 +60,8 @@ public class JFrameObrisiZaposlenog extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFrameObrisiZaposlenog() {
-		setTitle("OBRI\u0160I ZAPOSLENOG");
+	public JFrameAzurirajZaposlenog() {
+		setTitle("A\u017DURIRAJ ZAPOSLENOG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
@@ -77,12 +81,13 @@ public class JFrameObrisiZaposlenog extends JFrame {
 				JFrameZaposleni jfzo = new JFrameZaposleni();
 				
 				jfzo.getBtnDodajZaposlenog().setVisible(false);
-				jfzo.getBtnAzurirajZaposlenog().setVisible(false);
+				jfzo.getBtnObrisiZaposlenog().setVisible(false);
+				jfzo.getTextIDZaposlenog().setEditable(false);
 				//jfzo.getBtnDodajZaposlenog().setVisible(false);
 				int idz = Integer.parseInt(textFieldIdZaposlenog.getText().trim());
 				
 			    try {
-					Zaposleni z = Kontroler.getInstance().getDetaljiZaposleni(idz);
+					z = Kontroler.getInstance().getDetaljiZaposleni(idz);
 					
 					jfzo.getTextIDZaposlenog().setText(Integer.toString(z.getIdZaposlenog()));
 					jfzo.getTextIme().setText(z.getImeZaposlenog());
@@ -93,7 +98,6 @@ public class JFrameObrisiZaposlenog extends JFrame {
 					jfzo.getTextTelefon().setText(z.getTelefonZaposlenog());
 					jfzo.getTextEMail().setText(z.getEmailZaposlenog());					
 					
-					//jfzo.getComboBoxFilijalaPosla().setSelectedItem(Kontroler.getInstance().getDetaljiFilijale(z.getIdFilijale()).toString());
 					jfzo.getComboBoxFilijalaPosla().getModel().setSelectedItem(Kontroler.getInstance().getDetaljiFilijale(z.getIdFilijale()));
 					jfzo.getTextPlata().setText(Double.toString(z.getPlataZaposlenog()));
 					jfzo.getComboBoxTipZaposlenja().setSelectedItem(z.getTipZaposlenja());
@@ -114,15 +118,48 @@ public class JFrameObrisiZaposlenog extends JFrame {
 					e2.printStackTrace();
 				}
 			    
-			    jfzo.getBtnObrisiZaposlenog().addActionListener(new ActionListener() {
+			    jfzo.getBtnAzurirajZaposlenog().addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						int idz = Integer.parseInt(jfzo.getTextIDZaposlenog().getText().trim());
+						//int idz = Integer.parseInt(jfzo.getTextIDZaposlenog().getText().trim());
+						
 						
 						try {
-							Kontroler.getInstance().deleteZaposleni(idz);
-							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali zaposlenog!");
+							z.setImeZaposlenog(jfzo.getTextIme().getText());
+							z.setPrezimeZaposlenog(jfzo.getTextPrezime().getText());
+							z.setJmbgZaposlenog(jfzo.getTextJMBG().getText());
+							z.setAdresaZaposlenog(jfzo.getTextAdresa().getText());
+							z.setGradOpstinaZaposlenog(jfzo.getTextGrad_Ostina().getText());
+							z.setTelefonZaposlenog(jfzo.getTextTelefon().getText());
+							z.setEmailZaposlenog(jfzo.getTextEMail().getText());
+							z.setUsernameZaposlenog(jfzo.getTextUsername().getText());
+							z.setPasswordZaposlenog(jfzo.getTextPassword().getText());
+							z.setStrucnaSpremaZaposlenog(jfzo.getComboBoxStrucnaSprema().getSelectedItem().toString());							
+							z.setDatumPocetkaZaposlenja(jfzo.getDateChooserDatumZaposlenja().getDate());
+							z.setDatumZavrsetkaZaposlenja(jfzo.getDateChooserPrestankaZaposlenja().getDate());
+							z.setIdFilijale(((Filijala)jfzo.getComboBoxFilijalaPosla().getSelectedItem()).getIdFilijale());
+							z.setPlataZaposlenog(Double.parseDouble(jfzo.getTextPlata().getText()));
+							z.setTipZaposlenja(jfzo.getComboBoxTipZaposlenja().getSelectedItem().toString());			
+
+						
+
+							
+							
+
+							// boolean datum_prest = chckbxDatumPrestankaPoslaNeodredjeno.isSelected();
+
+						    
+
+							//Zaposleni z = new Zaposleni(idfilijale, ime, prezime, jmbg, adresa, grad, tel, email, struc_sprema, datum_poc, datum_zav, plata, tip_zaposlenja, username, password);
+							
+							
+							
+							
+							
+							
+							Kontroler.getInstance().updateZaposleni(z);
+							JOptionPane.showMessageDialog(null, "Uspesno ste ažurirali zaposlenog!");
 							jfzo.setVisible(false);
 							
 							
@@ -177,10 +214,10 @@ public class JFrameObrisiZaposlenog extends JFrame {
 		popuniComboBoxZaposleni(comboBoxIzaberiteZaposlenog);
 		comboBoxIzaberiteZaposlenog.setSelectedItem(null);
 		
-		btnNazadObrisiZaposlenog = new JButton("Nazad");
-		btnNazadObrisiZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNazadObrisiZaposlenog.setBounds(260, 140, 100, 25);
-		contentPane.add(btnNazadObrisiZaposlenog);
+		btnNazadAzurirajZaposlenog = new JButton("Nazad");
+		btnNazadAzurirajZaposlenog.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadAzurirajZaposlenog.setBounds(260, 140, 100, 25);
+		contentPane.add(btnNazadAzurirajZaposlenog);
 		comboBoxIzaberiteZaposlenog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Zaposleni z = (Zaposleni) comboBoxIzaberiteZaposlenog.getSelectedItem();

@@ -144,11 +144,36 @@ public class DAOZaposleni {
 	
 	public void updateZaposleni(Zaposleni z) throws SQLException, ClassNotFoundException {
 		connect();
-		preparedStatement = konekcija.prepareStatement("UPDATE zaposleni SET password_zaposlenog = ? WHERE id_zaposlenog = ?");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+
+		String datum_poc = sdf.format(z.getDatumPocetkaZaposlenja());
+		String datum_zav = sdf.format(z.getDatumZavrsetkaZaposlenja());
+		
+		preparedStatement = konekcija.prepareStatement("UPDATE zaposleni SET id_filijale = ?, ime_zaposlenog = ?, prezime_zaposlenog = ?, "
+			                                        	+ "jmbg_zaposlenog = ?, adresa_zaposlenog = ?, "
+                                                       +" grad_opstina_zaposlenog = ?, telefon_zaposlenog = ?, e_mail_zaposlenog = ?,"
+		                                               +" strucna_sprema_zaposlenog = ?, datum_pocetka_zaposlenja = ?, datum_zavrsetka_zaposlenja = ?, "
+                                                       +" plata_zaposlenog = ?, tip_zaposlenja = ?, username_zaposlenog = ?, password_zaposlenog = ?"
+		                                               +" WHERE id_zaposlenog = ?");
 
 		
-		preparedStatement.setString(1, z.getPasswordZaposlenog());
-		preparedStatement.setInt(2, z.getIdZaposlenog());
+		preparedStatement.setInt(1, z.getIdFilijale());
+		preparedStatement.setString(2, z.getImeZaposlenog());
+		preparedStatement.setString(3, z.getPrezimeZaposlenog());
+		preparedStatement.setString(4, z.getJmbgZaposlenog());
+		preparedStatement.setString(5, z.getAdresaZaposlenog());
+		preparedStatement.setString(6, z.getGradOpstinaZaposlenog());		
+		preparedStatement.setString(7, z.getTelefonZaposlenog());
+		preparedStatement.setString(8, z.getEmailZaposlenog());		
+		preparedStatement.setString(9, z.getStrucnaSpremaZaposlenog());
+		preparedStatement.setString(10, datum_poc);
+		preparedStatement.setString(11, datum_zav);
+		preparedStatement.setDouble(12, z.getPlataZaposlenog());
+		preparedStatement.setString(13, z.getTipZaposlenja());
+		preparedStatement.setString(14, z.getUsernameZaposlenog());
+		preparedStatement.setString(15, z.getPasswordZaposlenog());
+		preparedStatement.setInt(16, z.getIdZaposlenog());
 		
 				
 		preparedStatement.execute();

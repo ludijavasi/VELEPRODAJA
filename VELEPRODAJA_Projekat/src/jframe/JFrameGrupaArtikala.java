@@ -30,12 +30,11 @@ public class JFrameGrupaArtikala extends JFrame {
 	private JTextField textFieldIdGrupeArtikala;	
 	private JButton btnObrisiGrupuArtikala;
 	private JButton btnPonistiAkcijuDodajGrupuArtikala;
-	private JButton btnAzurirajDodajGrupuArtikala;	
+	private JButton btnAzurirajGrupuArtikala;	
 	private JLabel lblIdGrupeArtikala;
 	
-
-	public JButton getBtnAzurirajDodajGrupuArtikala() {
-		return btnAzurirajDodajGrupuArtikala;
+	public JButton getBtnAzurirajGrupuArtikala() {
+		return btnAzurirajGrupuArtikala;
 	}
 
 	public JButton getBtnObrisiGrupuArtikala() {
@@ -177,10 +176,10 @@ public class JFrameGrupaArtikala extends JFrame {
 		btnObrisiGrupuArtikala.setBounds(280, 180, 180, 25);
 		contentPane.add(btnObrisiGrupuArtikala);
 		
-		btnAzurirajDodajGrupuArtikala = new JButton("A\u017Euriraj");
-		btnAzurirajDodajGrupuArtikala.setFont(new Font("Arial", Font.BOLD, 14));
-		btnAzurirajDodajGrupuArtikala.setBounds(30, 227, 180, 25);
-		contentPane.add(btnAzurirajDodajGrupuArtikala);
+		btnAzurirajGrupuArtikala = new JButton("A\u017Euriraj");
+		btnAzurirajGrupuArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAzurirajGrupuArtikala.setBounds(30, 227, 180, 25);
+		contentPane.add(btnAzurirajGrupuArtikala);
 		
 		btnPonistiAkcijuDodajGrupuArtikala = new JButton("Poni\u0161ti akciju");
 		btnPonistiAkcijuDodajGrupuArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));

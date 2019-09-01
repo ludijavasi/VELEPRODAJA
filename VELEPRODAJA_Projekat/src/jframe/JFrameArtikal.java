@@ -46,6 +46,14 @@ public class JFrameArtikal extends JFrame {
 	private JLabel lblIdArtikla;
 	
 
+	public JTextField getTextFieldNazivGrupeArtikala() {
+		return textFieldNazivGrupeArtikala;
+	}
+
+	public void setTextFieldNazivGrupeArtikala(JTextField textFieldNazivGrupeArtikala) {
+		this.textFieldNazivGrupeArtikala = textFieldNazivGrupeArtikala;
+	}
+
 	public JButton getBtnDodajArtikal() {
 		return btnDodajArtikal;
 	}

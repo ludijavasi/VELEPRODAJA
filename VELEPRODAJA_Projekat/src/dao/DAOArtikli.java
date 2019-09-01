@@ -192,5 +192,28 @@ public class DAOArtikli {
 
 		konekcija.close();
 	}
+	
+	public void updateArtikli(Artikli a) throws SQLException, ClassNotFoundException {
+		connect();
+
+		preparedStatement = konekcija
+				.prepareStatement("UPDATE artikal SET id_grupe_artikala = ?, naziv_grupe_artikala = ?, naziv_artikla = ?, "
+						+ "jedinica_mere = ?, neto_cena_artikla = ?,"
+						+ " stopa_pdv_a = ?, marza_artikla = ?  WHERE id_artikla = ?");
+		
+		preparedStatement.setInt(1, a.getIdgrupaArtikla());
+		preparedStatement.setString(2, a.getNaziv_grupe_artikala());
+		preparedStatement.setString(3, a.getNaziv_artikla());
+		preparedStatement.setString(4, a.getJedinica_mere());
+		preparedStatement.setDouble(5, a.getNeto_cena_artikla());
+		preparedStatement.setInt(6, a.getStopa_PDV());
+		preparedStatement.setDouble(7, a.getMarza_artikla());
+		preparedStatement.setInt(8, a.getIdArtikla());
+
+		preparedStatement.execute();		
+
+		konekcija.close();
+		
+	}
 
 }
