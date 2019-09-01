@@ -98,5 +98,23 @@ public class DAOMagacin {
 		konekcija.close();
 		return m;
 	}
+	
+	public void updateMagacin(Magacin m) throws SQLException, ClassNotFoundException {
+		connect();
+
+		preparedStatement = konekcija.prepareStatement(
+				"UPDATE magacin SET naziv_magacina = ?, adresa_magacina = ?, grad_opstina_magacina = ?, "
+				+ "telefon_magacina = ?, e_mail_magacina = ?  WHERE id_magacina = ?");
+
+		preparedStatement.setString(1, m.getNazivMagacina());
+		preparedStatement.setString(2, m.getAdresaMagacina());
+		preparedStatement.setString(3, m.getGradOpstinaMagacina());
+		preparedStatement.setString(4, m.getTelefonMagacina());
+		preparedStatement.setString(5, m.getEmailMagacina());
+		preparedStatement.setInt(6, m.getIdMagacina());
+
+		preparedStatement.execute();
+
+	}
 
 }

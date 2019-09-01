@@ -112,6 +112,29 @@ public class DAOFilijala {
 		konekcija.close();
 		return f;
 	}
+	
+	public void updateFilijala(Filijala f) throws SQLException, ClassNotFoundException {
+		connect();
+		
+		preparedStatement = konekcija
+				.prepareStatement("UPDATE filijala SET naziv_filijale = ?, adresa_filijale = ?, grad_opstina_filijale = ?, telefon_filijale = ?, "
+		                           +" e_mail_filijale = ?, pib_filijale = ?, tekuci_racun_filijale = ?, status_filijale = ?"
+						           +" WHERE id_filijale = ?");
+		
+		preparedStatement.setString(1, f.getNazivFilijale());
+		preparedStatement.setString(2, f.getAdresaFilijale());
+		preparedStatement.setString(3, f.getGradOpstinaFilijale());
+		preparedStatement.setString(4, f.getTelefonFilijale());
+		preparedStatement.setString(5, f.getEmailFilijale());
+		preparedStatement.setInt(6, f.getPibFilijale());
+		preparedStatement.setString(7, f.getTekuciRacunFilijale());
+		preparedStatement.setString(8, f.getStatus());
+		preparedStatement.setInt(9, f.getIdFilijale());
+		
+		preparedStatement.execute();
+
+		konekcija.close();		
+	}
 
 
 }

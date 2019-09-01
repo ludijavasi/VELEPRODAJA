@@ -1,4 +1,4 @@
-package jframeObrisi;
+package jframeAzuriraj;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -26,14 +26,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
-public class JFrameObrisiKupca extends JFrame {
+public class JFrameAzurirajKupca extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldIdKupcaObrisiKupca;
-	private JButton btnNazadObrisiKupca;
+	private JTextField textFieldIdKupcaAzurirajKupca;
+	private JButton btnNazadAzurirajKupca;	
+	private Kupac k;
 
-	public JButton getBtnNazadObrisiKupca() {
-		return btnNazadObrisiKupca;
+	public JButton getBtnNazadAzurirajKupca() {
+		return btnNazadAzurirajKupca;
 	}
 
 	/**
@@ -43,7 +44,7 @@ public class JFrameObrisiKupca extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFrameObrisiKupca frame = new JFrameObrisiKupca();
+					JFrameAzurirajKupca frame = new JFrameAzurirajKupca();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,8 +56,8 @@ public class JFrameObrisiKupca extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFrameObrisiKupca() {
-		setTitle("OBRI\u0160I KUPCA");
+	public JFrameAzurirajKupca() {
+		setTitle("A\u017DURIRAJ KUPCA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
@@ -69,27 +70,28 @@ public class JFrameObrisiKupca extends JFrame {
 		lblIzaberiteKupca.setBounds(60, 20, 250, 20);
 		contentPane.add(lblIzaberiteKupca);
 		
-		textFieldIdKupcaObrisiKupca = new JTextField();
-		textFieldIdKupcaObrisiKupca.setFont(new Font("Arial", Font.PLAIN, 13));
-		textFieldIdKupcaObrisiKupca.setBounds(170, 100, 70, 20);
-		contentPane.add(textFieldIdKupcaObrisiKupca);
-		textFieldIdKupcaObrisiKupca.setColumns(10);
+		textFieldIdKupcaAzurirajKupca = new JTextField();
+		textFieldIdKupcaAzurirajKupca.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdKupcaAzurirajKupca.setBounds(170, 100, 70, 20);
+		contentPane.add(textFieldIdKupcaAzurirajKupca);
+		textFieldIdKupcaAzurirajKupca.setColumns(10);
 		
-		btnNazadObrisiKupca = new JButton("Nazad");
-		btnNazadObrisiKupca.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNazadObrisiKupca.setBounds(260, 140, 100, 25);
-		contentPane.add(btnNazadObrisiKupca);
+		btnNazadAzurirajKupca = new JButton("Nazad");
+		btnNazadAzurirajKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadAzurirajKupca.setBounds(260, 140, 100, 25);
+		contentPane.add(btnNazadAzurirajKupca);
 		
-		JButton btnOtvoriKupcaObrisiKupca = new JButton("Otvorite kupca");
-		btnOtvoriKupcaObrisiKupca.addActionListener(new ActionListener() {
+		JButton btnOtvoriKupcaAzurirajKupca = new JButton("Otvorite kupca");
+		btnOtvoriKupcaAzurirajKupca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameKupac jfk = new JFrameKupac();
 				jfk.getBtnDodajKupca().setVisible(false);
-				jfk.getBtnAzurirajKupca().setVisible(false);
-				int idk = Integer.parseInt(textFieldIdKupcaObrisiKupca.getText().trim());
+				jfk.getBtnObrisiKupca().setVisible(false);
+				jfk.getTextFieldIdKupca().setEditable(false);
+				int idk = Integer.parseInt(textFieldIdKupcaAzurirajKupca.getText().trim());
 				
 				try {
-					Kupac k = Kontroler.getInstance().getDetaljiKupca(idk);
+					k = Kontroler.getInstance().getDetaljiKupca(idk);
 
 					jfk.getTextFieldIdKupca().setText(Integer.toString(k.getIdKupca()));
 					jfk.getTextNazivFirme().setText(k.getNazivFirmeKupca());
@@ -108,22 +110,6 @@ public class JFrameObrisiKupca extends JFrame {
 						jfk.getRdbtnNeaktivan().setSelected(true);
 					
 					
-					
-					
-					
-					jfk.getTextFieldIdKupca().setEditable(false);
-					jfk.getTextNazivFirme().setEditable(false);
-					jfk.getTextAdresaFirme().setEditable(false);
-					jfk.getTextGradOpstinaFirme().setEditable(false);
-					jfk.getTextTelefonFirme().setEditable(false);
-					jfk.getTextEMailKipca().setEditable(false);
-					jfk.getTextFieldKontakOsobaKupca().setEditable(false);
-					jfk.getTextPibKupca().setEditable(false);
-					jfk.getTextTekuciRacunKupca().setEditable(false);
-					jfk.getComboBoxValutaPlacanja().setEditable(false);
-					jfk.getRdbtnAktivan().setFocusable(false);
-					jfk.getRdbtnNeaktivan().setFocusable(false);
-					
 										
 					jfk.setVisible(true);
 					
@@ -134,12 +120,31 @@ public class JFrameObrisiKupca extends JFrame {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-				jfk.getBtnObrisiKupca().addActionListener(new ActionListener() {
+				jfk.getBtnAzurirajKupca().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						int rbk = Integer.parseInt(jfk.getTextFieldIdKupca().getText().trim());
+						//int rbk = Integer.parseInt(jfk.getTextFieldIdKupca().getText().trim());
+						
 						try {
-							Kontroler.getInstance().obrisiKupca(rbk);;
-							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali kupca!");
+						k.setNazivFirmeKupca(jfk.getTextNazivFirme().getText());
+						k.setAdresaKupca(jfk.getTextAdresaFirme().getText());
+						k.setGradOpstinaKupca(jfk.getTextGradOpstinaFirme().getText());
+						k.setTelefonKupca(jfk.getTextTelefonFirme().getText());
+						k.setEmailKupca(jfk.getTextEMailKipca().getText());
+						k.setKontaktOsobaKupca(jfk.getTextFieldKontakOsobaKupca().getText());
+						k.setPibKupca(Integer.parseInt(jfk.getTextPibKupca().getText()));
+						k.setTekuciRacunKupca(jfk.getTextTekuciRacunKupca().getText());
+						k.setValutaPlacanjaKupca(Integer.parseInt(jfk.getComboBoxValutaPlacanja().getSelectedItem().toString()));
+						
+						if(jfk.getRdbtnAktivan().isSelected()) {
+							k.setStatusKupca("Aktivan");							
+						}else if(jfk.getRdbtnNeaktivan().isSelected()) {
+							k.setStatusKupca("Neaktivan");
+						}					
+						
+						
+						
+							Kontroler.getInstance().updateKupac(k);
+							JOptionPane.showMessageDialog(null, "Uspesno ste ažurirali kupca!");
 							jfk.setVisible(false);
 							
 
@@ -159,20 +164,20 @@ public class JFrameObrisiKupca extends JFrame {
 				
 			}
 		});
-		btnOtvoriKupcaObrisiKupca.setFont(new Font("Arial", Font.BOLD, 14));
-		btnOtvoriKupcaObrisiKupca.setBounds(60, 140, 180, 25);
-		contentPane.add(btnOtvoriKupcaObrisiKupca);
+		btnOtvoriKupcaAzurirajKupca.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOtvoriKupcaAzurirajKupca.setBounds(60, 140, 180, 25);
+		contentPane.add(btnOtvoriKupcaAzurirajKupca);
 		
-		JComboBox comboBoxObrisiKupca = new JComboBox();
-		comboBoxObrisiKupca.setFont(new Font("Arial", Font.PLAIN, 13));
-		comboBoxObrisiKupca.setBounds(60, 60, 300, 20);
-		contentPane.add(comboBoxObrisiKupca);
-		popuniComboBoxKupca(comboBoxObrisiKupca);
-		comboBoxObrisiKupca.setSelectedItem(null);
-		comboBoxObrisiKupca.addActionListener(new ActionListener() {
+		JComboBox comboBoxAzurirajKupca = new JComboBox();
+		comboBoxAzurirajKupca.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxAzurirajKupca.setBounds(60, 60, 300, 20);
+		contentPane.add(comboBoxAzurirajKupca);
+		popuniComboBoxKupca(comboBoxAzurirajKupca);
+		comboBoxAzurirajKupca.setSelectedItem(null);
+		comboBoxAzurirajKupca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Kupac k = (Kupac) comboBoxObrisiKupca.getSelectedItem();
-				textFieldIdKupcaObrisiKupca.setText(Integer.toString(k.getIdKupca()));
+				Kupac k = (Kupac) comboBoxAzurirajKupca.getSelectedItem();
+				textFieldIdKupcaAzurirajKupca.setText(Integer.toString(k.getIdKupca()));
 			}
 		});
 		

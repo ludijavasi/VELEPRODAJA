@@ -1,4 +1,4 @@
-package jframeObrisi;
+package jframeAzuriraj;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -27,15 +27,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class JFrameObrisiGrupuArtikala extends JFrame {
+public class JFrameAzurirajGrupuArtikala extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldIdGrupeArtikalaObrisiGA;
-	private JComboBox comboBoxObrisiGrupuArtikala;
-	private JButton btnNazadObrisiGA;	
-
-	public JButton getBtnNazadObrisiGA() {
-		return btnNazadObrisiGA;
+	private JTextField textFieldIdGrupeArtikalaAzurirajGA;
+	private JComboBox comboBoxAzurirajGrupuArtikala;
+	private JButton btnNazadAzurirajGA;	
+	private GrupaArtikala ga;
+	
+	public JButton getBtnNazadAzurirajGA() {
+		return btnNazadAzurirajGA;
 	}
 
 	/**
@@ -45,7 +46,7 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFrameObrisiGrupuArtikala frame = new JFrameObrisiGrupuArtikala();
+					JFrameAzurirajGrupuArtikala frame = new JFrameAzurirajGrupuArtikala();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,8 +58,8 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFrameObrisiGrupuArtikala() {
-		setTitle("OBRI\u0160I GRUPU ARTIKALA");
+	public JFrameAzurirajGrupuArtikala() {
+		setTitle("A\u017DURIRAJ GRUPU ARTIKALA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
@@ -71,42 +72,45 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 		lblUnesiteGrupuArtikala.setBounds(60, 20, 250, 20);
 		contentPane.add(lblUnesiteGrupuArtikala);
 		
-		comboBoxObrisiGrupuArtikala = new JComboBox();
-		comboBoxObrisiGrupuArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
-		comboBoxObrisiGrupuArtikala.setBounds(60, 60, 300, 20);
-		contentPane.add(comboBoxObrisiGrupuArtikala);
-		popuniComboBoxGrupaArtikala(comboBoxObrisiGrupuArtikala);
-		comboBoxObrisiGrupuArtikala.setSelectedItem(null);
-		comboBoxObrisiGrupuArtikala.addActionListener(new ActionListener() {
+		comboBoxAzurirajGrupuArtikala = new JComboBox();
+		comboBoxAzurirajGrupuArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxAzurirajGrupuArtikala.setBounds(60, 60, 300, 20);
+		contentPane.add(comboBoxAzurirajGrupuArtikala);
+		popuniComboBoxGrupaArtikala(comboBoxAzurirajGrupuArtikala);
+		comboBoxAzurirajGrupuArtikala.setSelectedItem(null);
+		comboBoxAzurirajGrupuArtikala.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			GrupaArtikala ga = (GrupaArtikala) comboBoxObrisiGrupuArtikala.getSelectedItem();
-			textFieldIdGrupeArtikalaObrisiGA.setText(Integer.toString(ga.getIdGrupeArtikala()));		
+			GrupaArtikala ga = (GrupaArtikala) comboBoxAzurirajGrupuArtikala.getSelectedItem();
+			textFieldIdGrupeArtikalaAzurirajGA.setText(Integer.toString(ga.getIdGrupeArtikala()));		
 		}
 	});
 		
-		JLabel lblIdGrupeArtikalaObrisiGA = new JLabel("ID grupe artikala :");
-		lblIdGrupeArtikalaObrisiGA.setFont(new Font("Arial", Font.BOLD, 14));
-		lblIdGrupeArtikalaObrisiGA.setBounds(60, 100, 150, 20);
-		contentPane.add(lblIdGrupeArtikalaObrisiGA);
+		JLabel lblIdGrupeArtikalaAzurirajGA = new JLabel("ID grupe artikala :");
+		lblIdGrupeArtikalaAzurirajGA.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdGrupeArtikalaAzurirajGA.setBounds(60, 100, 150, 20);
+		contentPane.add(lblIdGrupeArtikalaAzurirajGA);
 		
-		textFieldIdGrupeArtikalaObrisiGA = new JTextField();
-		textFieldIdGrupeArtikalaObrisiGA.setFont(new Font("Arial", Font.PLAIN, 13));
-		textFieldIdGrupeArtikalaObrisiGA.setBounds(190, 100, 70, 20);
-		contentPane.add(textFieldIdGrupeArtikalaObrisiGA);
-		textFieldIdGrupeArtikalaObrisiGA.setColumns(10);
+		textFieldIdGrupeArtikalaAzurirajGA = new JTextField();
+		textFieldIdGrupeArtikalaAzurirajGA.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldIdGrupeArtikalaAzurirajGA.setBounds(220, 100, 70, 20);
+		contentPane.add(textFieldIdGrupeArtikalaAzurirajGA);
+		textFieldIdGrupeArtikalaAzurirajGA.setColumns(10);
 		
-		JButton btnOtvoriteGrupuArtikalaObrisiGA = new JButton("Otvorite grupu artikala ");
-		btnOtvoriteGrupuArtikalaObrisiGA.addActionListener(new ActionListener() {
+		JButton btnOtvoriteGrupuArtikalaAzurirajGA = new JButton("Otvorite grupu artikala ");
+		btnOtvoriteGrupuArtikalaAzurirajGA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				JFrameGrupaArtikala jfoga = new JFrameGrupaArtikala();
-				jfoga.getBtnAzurirajGrupuArtikala().setVisible(false);
-				jfoga.getBtnDodajGrupuArtikala().setVisible(false);
+				jfoga.getBtnObrisiGrupuArtikala().setVisible(false);
+				jfoga.getBtnDodajGrupuArtikala().setVisible(false);			
 				
-				int idga = Integer.parseInt(textFieldIdGrupeArtikalaObrisiGA.getText().trim());
+				jfoga.getTextFieldIdGrupeArtikala().setEditable(false);
+				
+				
+				int idga = Integer.parseInt(textFieldIdGrupeArtikalaAzurirajGA.getText().trim());
 				
 				try {
-					GrupaArtikala ga = Kontroler.getInstance().getDetaljiGrupaArtikala(idga);
+					ga = Kontroler.getInstance().getDetaljiGrupaArtikala(idga);
 					
 					jfoga.getTextFieldGrupaArtikala().setText(ga.getNazivGrupeArtikala());
 					jfoga.getTextFieldIdGrupeArtikala().setText(Integer.toString(ga.getIdGrupeArtikala()));
@@ -120,15 +124,18 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 					e1.printStackTrace();
 				}
 				
-				jfoga.getBtnObrisiGrupuArtikala().addActionListener(new ActionListener() {
+				jfoga.getBtnAzurirajGrupuArtikala().addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						int idga = Integer.parseInt(jfoga.getTextFieldIdGrupeArtikala().getText().trim());
+						//int idga = Integer.parseInt(jfoga.getTextFieldIdGrupeArtikala().getText().trim());
 						
 						try {
-							Kontroler.getInstance().deleteGrupaArtikala(idga);
-							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali grupu artikala!");
+							
+							ga.setNazivGrupeArtikala(jfoga.getTextFieldGrupaArtikala().getText());							
+							
+							Kontroler.getInstance().updateGrupaArtikala(ga);
+							JOptionPane.showMessageDialog(null, "Uspesno ste ažurirali grupu artikala!");
 							//textFieldIdGrupeArtikalaObrisiGA.setText("");
 							
 							jfoga.setVisible(false);
@@ -158,14 +165,14 @@ public class JFrameObrisiGrupuArtikala extends JFrame {
 				
 			}
 		});
-		btnOtvoriteGrupuArtikalaObrisiGA.setFont(new Font("Arial", Font.BOLD, 14));
-		btnOtvoriteGrupuArtikalaObrisiGA.setBounds(60, 140, 200, 25);
-		contentPane.add(btnOtvoriteGrupuArtikalaObrisiGA);
+		btnOtvoriteGrupuArtikalaAzurirajGA.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOtvoriteGrupuArtikalaAzurirajGA.setBounds(60, 140, 200, 25);
+		contentPane.add(btnOtvoriteGrupuArtikalaAzurirajGA);
 		
-		btnNazadObrisiGA = new JButton("Nazad");
-		btnNazadObrisiGA.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNazadObrisiGA.setBounds(270, 140, 90, 25);
-		contentPane.add(btnNazadObrisiGA);
+		btnNazadAzurirajGA = new JButton("Nazad");
+		btnNazadAzurirajGA.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadAzurirajGA.setBounds(270, 140, 90, 25);
+		contentPane.add(btnNazadAzurirajGA);
 	}
 	
 	private void popuniComboBoxGrupaArtikala(JComboBox<GrupaArtikala> comboBox) {

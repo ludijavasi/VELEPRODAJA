@@ -16,9 +16,16 @@ import jframe.JFrameMagacin;
 import jframe.JFramePromenaLozinke;
 import jframe.JFrameRacun_otpreminica;
 import jframe.JFrameZaposleni;
+import jframeAzuriraj.JFrameAzurirajArtikal;
+import jframeAzuriraj.JFrameAzurirajFilijalu;
+import jframeAzuriraj.JFrameAzurirajGrupuArtikala;
+import jframeAzuriraj.JFrameAzurirajKupca;
+import jframeAzuriraj.JFrameAzurirajMagacin;
+import jframeAzuriraj.JFrameAzurirajZaposlenog;
 import jframeIzvestaji.JFrameCenaArtikla;
 import jframeIzvestaji.JFrameIzvestajProdajeFilijala;
 import jframeIzvestaji.JFrameIzvestajProdajeKupac;
+import jframeIzvestaji.JFrameIzvestajProdajeRacun;
 import jframeIzvestaji.JFrameIzvestajProdajeZaposleni;
 import jframeObrisi.JFrameObrisiArtikal;
 import jframeObrisi.JFrameObrisiFilijalu;
@@ -219,6 +226,8 @@ public class GlavniProzorVeleprodaja {
 		btnLogin.setBounds(150, 150, 100, 25);
 		panelLogovanja.add(btnLogin);		
 		
+		frmVeleprodaja.getRootPane().setDefaultButton(btnLogin);//default dugme
+		
 		passwordFieldPassword = new JPasswordField();
 		passwordFieldPassword.setFont(new Font("Arial", Font.PLAIN, 13));
 		passwordFieldPassword.setBounds(150, 86, 220, 20);
@@ -285,7 +294,23 @@ public class GlavniProzorVeleprodaja {
 					jfzo.getDateChooserPrestankaZaposlenja().setDate(z.getDatumZavrsetkaZaposlenja());
 					
 					jfzo.getTextUsername().setText(z.getUsernameZaposlenog());
-					jfzo.getTextPassword().setText(z.getPasswordZaposlenog());					
+					jfzo.getTextPassword().setText(z.getPasswordZaposlenog());	
+					
+					
+					jfzo.getTextIDZaposlenog().setEditable(false);
+					jfzo.getTextIme().setEditable(false);
+					jfzo.getTextPrezime().setEditable(false);
+					jfzo.getTextAdresa().setEditable(false);
+					jfzo.getTextJMBG().setEditable(false);
+					jfzo.getTextGrad_Ostina().setEditable(false);
+					jfzo.getTextTelefon().setEditable(false);
+					jfzo.getTextEMail().setEditable(false);					
+					jfzo.getTextPlata().setEditable(false);
+					jfzo.getComboBoxTipZaposlenja().setEditable(false);					
+					jfzo.getComboBoxStrucnaSprema().setEditable(false);					
+					jfzo.getTextUsername().setEditable(false);
+					jfzo.getTextPassword().setEditable(false);
+					
 					
 				} catch (ClassNotFoundException e2) {
 					// TODO Auto-generated catch block
@@ -364,6 +389,12 @@ public class GlavniProzorVeleprodaja {
 							RacunOtpremnica ro = new RacunOtpremnica(idzaposlenog,idkupca,datumRacuna,datumNaplateRacuna);
 							generatedID = Kontroler.getInstance().insertRacunOtpremnicu(ro);
 							
+							/*Date today = Calendar.getInstance().getTime();
+							if(datumRacuna.before(today) || datumRacuna.after(datumNaplateRacuna)) {
+								JOptionPane.showMessageDialog(null, "Uneli ste pogresan datum u polje! \n(datum racun < datum naplate racuna)\n(datum racun > danasnji datum)");
+								return;
+							}*/	
+							
 							
 							JOptionPane.showMessageDialog(null, "Kreirali ste racun!");
 							
@@ -388,6 +419,11 @@ public class GlavniProzorVeleprodaja {
 								double rabatProdaje = Double.parseDouble(fsrp.getTextFieldRabat().getText().trim());
 
 								StavkeRacunaOtpremnice sro = new StavkeRacunaOtpremnice(idracuna, artikal, kolicinaProdaje, rabatProdaje);
+								
+								
+								
+								
+								
 
 								Kontroler.getInstance().insertStavkaRacuna(sro);
 								
@@ -624,6 +660,19 @@ public class GlavniProzorVeleprodaja {
 		
 		mntmSumarniPregledDokumenataAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmSumarniPregledDokumenataAdmin);
+		
+		JMenuItem mntmProdajaPoRaunima = new JMenuItem("Prodaja po ra\u010Dunima");
+		mntmProdajaPoRaunima.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrameIzvestajProdajeRacun izpr = new JFrameIzvestajProdajeRacun();
+				
+				panelAdmin.setVisible(false);
+				izpr.setVisible(true);
+			}
+		});
+		mntmProdajaPoRaunima.setFont(new Font("Arial", Font.PLAIN, 13));
+		mnAnalizaProdajeAdmin.add(mntmProdajaPoRaunima);
 
 		JMenu mnSkladisteAdmin = new JMenu("    Skladi\u0161te");
 		mnSkladisteAdmin.setFont(new Font("Arial", Font.BOLD, 14));
@@ -800,6 +849,25 @@ public class GlavniProzorVeleprodaja {
 		mnFilijalaAdmin.add(mntmBrisanjeFilijaleAdmin);
 
 		JMenuItem mntmAzuriranjeFilijaleAdmin = new JMenuItem("A\u017Euriranje");
+		mntmAzuriranjeFilijaleAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrameAzurirajFilijalu jfaf = new JFrameAzurirajFilijalu();
+				
+				panelAdmin.setVisible(false);
+				jfaf.setVisible(true);
+				
+				jfaf.getBtnNazadAzurirajFilijali().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+					
+						jfaf.setVisible(false);
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mntmAzuriranjeFilijaleAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnFilijalaAdmin.add(mntmAzuriranjeFilijaleAdmin);
 
@@ -895,6 +963,21 @@ public class GlavniProzorVeleprodaja {
 		mntmAzurirajZaposlenogAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mntmAzurirajZaposlenogAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				JFrameAzurirajZaposlenog jfaz = new JFrameAzurirajZaposlenog();
+				
+				panelAdmin.setVisible(false);
+				jfaz.setVisible(true);
+				
+				jfaz.getBtnNazadAzurirajZaposlenog().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jfaz.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
 			}
 		});
 		mnZaposleniMatPodaciAdmin.add(mntmAzurirajZaposlenogAdmin);
@@ -984,6 +1067,25 @@ public class GlavniProzorVeleprodaja {
 		mnSkladistaAdmin.add(mntmObrisiSkladisteAdmin);
 
 		JMenuItem mntmAzurirajSkladistaAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajSkladistaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrameAzurirajMagacin jfam = new JFrameAzurirajMagacin();
+				
+				panelAdmin.setVisible(false);
+				jfam.setVisible(true);
+				
+				jfam.getBtnNazadAzurirajMagacin().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jfam.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mntmAzurirajSkladistaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnSkladistaAdmin.add(mntmAzurirajSkladistaAdmin);
 
@@ -1073,6 +1175,25 @@ public class GlavniProzorVeleprodaja {
 		mnKupciAdmin.add(mntmObrisiKupcaAdmin);
 
 		JMenuItem mntmAzurirajKupcaAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajKupcaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JFrameAzurirajKupca jfak = new JFrameAzurirajKupca();
+				
+				panelAdmin.setVisible(false);
+				jfak.setVisible(true);
+				
+				jfak.getBtnNazadAzurirajKupca().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jfak.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mntmAzurirajKupcaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnKupciAdmin.add(mntmAzurirajKupcaAdmin);
 
@@ -1163,6 +1284,25 @@ public class GlavniProzorVeleprodaja {
 		mnArtikliAdmin.add(mntmObrisiArtikalAdmin);
 
 		JMenuItem mntmAzurirajArtikleAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajArtikleAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JFrameAzurirajArtikal jfaa = new JFrameAzurirajArtikal();
+				
+				panelAdmin.setVisible(false);
+				jfaa.setVisible(true);
+				
+				jfaa.getBtnNazadAzurirajArtikal().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jfaa.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mntmAzurirajArtikleAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnArtikliAdmin.add(mntmAzurirajArtikleAdmin);
 
@@ -1215,7 +1355,7 @@ public class GlavniProzorVeleprodaja {
 				
 				JFrameGrupaArtikala jfga = new JFrameGrupaArtikala();
 				
-				jfga.getBtnAzurirajDodajGrupuArtikala().setVisible(false);
+				jfga.getBtnAzurirajGrupuArtikala().setVisible(false);
 				jfga.getBtnObrisiGrupuArtikala().setVisible(false);
 				jfga.getBtnDodajGrupuArtikala().setBounds(280, 180, 180, 25);
 				
@@ -1263,6 +1403,25 @@ public class GlavniProzorVeleprodaja {
 		mnGrupeArtikalaAdmin.add(mntmObrisiGrupuArtikalaAdmin);
 
 		JMenuItem mntmAzurirajGrupuArtikalaAdmin = new JMenuItem("A\u017Euriraj");
+		mntmAzurirajGrupuArtikalaAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrameAzurirajGrupuArtikala jfaga = new JFrameAzurirajGrupuArtikala();
+				
+				panelAdmin.setVisible(false);
+				jfaga.setVisible(true);
+				
+				jfaga.getBtnNazadAzurirajGA().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jfaga.setVisible(false);
+						
+					}
+				});
+				panelAdmin.setVisible(true);
+			}
+		});
 		mntmAzurirajGrupuArtikalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnGrupeArtikalaAdmin.add(mntmAzurirajGrupuArtikalaAdmin);
 
@@ -1485,5 +1644,4 @@ public class GlavniProzorVeleprodaja {
 		 JTableModelProdajaPoZaposlenom model = new  JTableModelProdajaPoZaposlenom(lista);
 		t.setModel(model);
 	}
-
 }

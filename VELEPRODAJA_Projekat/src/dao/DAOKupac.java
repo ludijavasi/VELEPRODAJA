@@ -120,5 +120,33 @@ public class DAOKupac {
 		konekcija.close();
 		return k;
 	}
+	
+	public void updateKupac(Kupac k) throws SQLException, ClassNotFoundException {
+		connect();		
+
+		preparedStatement = konekcija
+				.prepareStatement("UPDATE kupac SET naziv_firme_kupca = ?, adresa_kupca = ?, grad_opstina_kupca = ?, "
+		                           +" telefon_kupca = ?, e_mail_kupca = ?, "
+						           +" kontakt_osoba_kupca = ?, pib_kupca = ?, tekuci_racun_kupca = ?, "
+		                           +" valuta_placanja_kupca = ?, status_kupca = ?"
+						           +" WHERE id_Kupca = ?");
+
+		preparedStatement.setString(1, k.getNazivFirmeKupca());
+		preparedStatement.setString(2, k.getAdresaKupca());
+		preparedStatement.setString(3, k.getGradOpstinaKupca());
+		preparedStatement.setString(4, k.getTelefonKupca());
+		preparedStatement.setString(5, k.getEmailKupca());
+		preparedStatement.setString(6, k.getKontaktOsobaKupca());
+		preparedStatement.setInt(7, k.getPibKupca());
+		preparedStatement.setString(8, k.getTekuciRacunKupca());
+		preparedStatement.setInt(9, k.getValutaPlacanjaKupca());
+		preparedStatement.setString(10, k.getStatusKupca());
+		preparedStatement.setInt(11, k.getIdKupca());
+
+		preparedStatement.execute();
+
+		konekcija.close();
+		
+	}
 
 }

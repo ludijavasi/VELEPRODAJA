@@ -71,6 +71,11 @@ public class Kontroler {
 		da.deleteArtikal(rba);
 	}
 	
+	public void updateArtikli(Artikli a) throws SQLException, ClassNotFoundException {
+		DAOArtikli da = new DAOArtikli();
+		da.updateArtikli(a);
+	}	
+	
 	public ArrayList<Zaposleni> getZaposleni() throws ClassNotFoundException, SQLException {
 		DAOZaposleni dz = new DAOZaposleni();
 		ArrayList<Zaposleni> lista = dz.getZaposleni();
@@ -118,6 +123,11 @@ public class Kontroler {
 		return df.getDetaljiFilijale(idf);
 	}	
 	
+	public void updateFilijala(Filijala f) throws SQLException, ClassNotFoundException {
+		DAOFilijala df = new DAOFilijala();
+		df.updateFilijala(f);
+	}
+	
 	public ArrayList<Kupac> getKupac() throws ClassNotFoundException, SQLException {
 		DAOKupac dk = new DAOKupac();
 		ArrayList<Kupac> lista = dk.getKupac();
@@ -140,6 +150,11 @@ public class Kontroler {
 		
 	}
 	
+	public void updateKupac(Kupac k) throws SQLException, ClassNotFoundException {
+		DAOKupac dk = new DAOKupac();
+		dk.updateKupac(k);
+	}	
+	
 	public ArrayList<Magacin> getMagacin() throws ClassNotFoundException, SQLException {
 		DAOMagacin dm = new DAOMagacin();
 		ArrayList<Magacin> lista = dm.getMagacin();
@@ -155,11 +170,16 @@ public class Kontroler {
 		DAOMagacin dm = new DAOMagacin();
 		dm.obrisiMagacin(rbn);
 	}
+	
 	public  Magacin getDetaljiMagacina(int idm) throws ClassNotFoundException, SQLException {
 		DAOMagacin mg = new DAOMagacin();
 		return mg.getDetaljiMagacina(idm);
-	}		
+	}
 	
+	public void updateMagacin(Magacin m) throws SQLException, ClassNotFoundException {
+		DAOMagacin dm = new DAOMagacin();
+		dm.updateMagacin(m);
+	}	
 	
 	public ArrayList<GrupaArtikala> getGrupaArtikala() throws ClassNotFoundException, SQLException {
 		DAOGrupaArtikala dga = new DAOGrupaArtikala();
@@ -186,6 +206,11 @@ public class Kontroler {
 	public void deleteGrupaArtikala(int idga) throws ClassNotFoundException, SQLException{
 		DAOGrupaArtikala dga = new DAOGrupaArtikala();		
 		dga.deleteGrupaArtikala(idga);
+	}
+	
+	public void updateGrupaArtikala(GrupaArtikala ga) throws SQLException, ClassNotFoundException {
+		DAOGrupaArtikala dga = new DAOGrupaArtikala();
+		dga.updateGrupaArtikala(ga);
 	}
 	
 	public ArrayList<RacunOtpremnica> getRacun() throws ClassNotFoundException, SQLException {

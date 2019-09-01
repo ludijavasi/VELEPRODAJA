@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.JCheckBox;
@@ -22,6 +23,7 @@ import kontroler.Kontroler;
 import model.Filijala;
 import model.Magacin;
 import model.Zaposleni;
+import verifier.SrpskaSlovaVerifier;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -29,8 +31,12 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.InputVerifier;
+
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -275,30 +281,31 @@ public class JFrameZaposleni extends JFrame {
 		JLabel lblIme = new JLabel("Ime :");
 		lblIme.setFont(new Font("Arial", Font.BOLD, 14));
 		lblIme.setBounds(10, 20, 100, 20);
-		panelLicnipodaci.add(lblIme);
-
+		panelLicnipodaci.add(lblIme);		
+		
 		textIme = new JTextField();
-		textIme.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				
-                Character c = e.getKeyChar();				
-				
-				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {					
-							
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "U polje morate uneti slovo!");
-					textIme.setText("");
-				}		
-				
-			}
-		});
+//		textIme.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyPressed(KeyEvent e) {
+//				
+//                Character c = e.getKeyChar();				
+//				
+//				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {					
+//							
+//				}
+//				else
+//				{
+//					JOptionPane.showMessageDialog(null, "U polje morate uneti slovo!");
+//					textIme.setText("");
+//				}		
+//				
+//			}
+//		});
 		textIme.setFont(new Font("Arial", Font.PLAIN, 13));
 		textIme.setBounds(150, 20, 220, 20);
 		panelLicnipodaci.add(textIme);
 		textIme.setColumns(10);
+		textIme.setInputVerifier(new SrpskaSlovaVerifier());
 
 		lblPrezime = new JLabel("Prezime :");
 		lblPrezime.setFont(new Font("Arial", Font.BOLD, 14));
@@ -306,26 +313,24 @@ public class JFrameZaposleni extends JFrame {
 		panelLicnipodaci.add(lblPrezime);
 
 		textPrezime = new JTextField();
-		textPrezime.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				
-				    Character c = e.getKeyChar();				
-					
-					if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {					
-								
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "U polje morate uneti slovo!");
-						textPrezime.setText("");
-					}	
-			}
-		});
+		/*
+		 * textPrezime.addKeyListener(new KeyAdapter() {
+		 * 
+		 * @Override public void keyPressed(KeyEvent e) {
+		 * 
+		 * Character c = e.getKeyChar();
+		 * 
+		 * if(Character.isLetter(c) || Character.isWhitespace(c) ||
+		 * Character.isISOControl(c)) {
+		 * 
+		 * } else { JOptionPane.showMessageDialog(null, "U polje morate uneti slovo!");
+		 * textPrezime.setText(""); } } });
+		 */
 		textPrezime.setFont(new Font("Arial", Font.PLAIN, 13));
 		textPrezime.setBounds(150, 60, 220, 20);
 		panelLicnipodaci.add(textPrezime);
 		textPrezime.setColumns(10);
+		textPrezime.setInputVerifier(new SrpskaSlovaVerifier());
 
 		lblAdresa = new JLabel("Adresa :");
 		lblAdresa.setFont(new Font("Arial", Font.BOLD, 14));
@@ -687,3 +692,5 @@ public class JFrameZaposleni extends JFrame {
 		
 	}
 }
+
+

@@ -99,6 +99,20 @@ public class DAOGrupaArtikala {
 		konekcija.close();
 		return ga;
 	}
+	
+	public void updateGrupaArtikala(GrupaArtikala ga) throws SQLException, ClassNotFoundException {
+		connect();
+		
+		preparedStatement = konekcija
+				.prepareStatement("UPDATE grupa_artikala SET naziv_grupe_artikala = ? WHERE id_grupe_artikala = ?");
+		
+		preparedStatement.setString(1, ga.getNazivGrupeArtikala());	
+		preparedStatement.setInt(2, ga.getIdGrupeArtikala());
+		
+		preparedStatement.execute();
+
+		konekcija.close();		
+	}
 
 
 }
