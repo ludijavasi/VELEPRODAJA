@@ -8,20 +8,28 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.toedter.calendar.JDateChooser;
 
+import jframe.JFrameRacun_otpreminica;
 import kontroler.Kontroler;
 import model.Kupac;
 import table.JTableModelPregledRacunaRacuna;
 import table.JTableModelProdajaPoFilijali;
+import table.JTableModelRacunOtpremnica;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
@@ -123,6 +131,69 @@ public class JFramePregleRacuna extends JFrame {
 		scrollPane.setViewportView(tablePregledRacuna);
 		postaviModelPregledRacuna(new ArrayList<>(), tablePregledRacuna);
 		
+		tablePregledRacuna.addMouseListener(new MouseListener() {		
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount()%2 == 0) {
+					String s = tablePregledRacuna.getModel().getValueAt(tablePregledRacuna.getSelectedRow(), 3).toString();
+					
+					JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
+					ro.getBtnKreirajRacun().setVisible(false);
+					ro.getBtnNovaPoyicijaRacun().setVisible(false);
+					ro.getBtnZapocniProdajuStavkeRacuna().setVisible(false);
+					ro.setVisible(true);
+					
+					ArrayList lista;
+					
+					try {
+						
+						int id_racuna = Integer.parseInt(s);
+						ro.getTextFieldRacunOtpremnicaRacun().setText(s);
+						//sro.getDateChooserNaplateracuna().setDate(Kontroler.getInstance().datumNaplateRacuna(id_racuna));
+						
+						
+						lista = Kontroler.getInstance().getStavkeRacunaOtpremniceIzvestaj(id_racuna);
+						postaviModelRAcunaOtpremnice(lista, ro.getTableStavkeRacuna());
+						
+						
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		JLabel lblUkupnoNeto = new JLabel("Ukupno neto :");
 		lblUkupnoNeto.setBounds(20, 391, 86, 14);
 		contentPane.add(lblUkupnoNeto);
@@ -154,6 +225,13 @@ public class JFramePregleRacuna extends JFrame {
 		 JTableModelPregledRacunaRacuna model = new  JTableModelPregledRacunaRacuna(lista);
 		t.setModel(model);		
 	}
+	
+	private void postaviModelRAcunaOtpremnice(ArrayList lista, JTable t){
+		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
+		t.setModel(model);
+	}
+	
+	
 	private void suma (JTable t) {
 		double sum = 0; double sum1 = 0; double sum2 = 0;
 		

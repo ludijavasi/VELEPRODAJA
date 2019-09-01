@@ -2,6 +2,7 @@ package kontroler;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.ComboBoxModel;
 
@@ -222,6 +223,13 @@ public class Kontroler {
 		DAORacunOtpremnica dro = new DAORacunOtpremnica();
 		return dro.insertRacunOtpremnicu(ro);
 	}
+	
+	/*public Date datumNaplateRacuna(int id_racuna) throws SQLException, ClassNotFoundException {
+		DAORacunOtpremnica dro = new DAORacunOtpremnica();
+		 return dro.datumNaplateRacuna(id_racuna);
+	}*/
+	
+	
 	public void insertStavkaRacuna(StavkeRacunaOtpremnice sro) throws SQLException, ClassNotFoundException {
 		DAOStavkeRacunaOtpremnice dsro = new DAOStavkeRacunaOtpremnice();
 		dsro.insertStavkaRacuna(sro);

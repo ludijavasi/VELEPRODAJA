@@ -103,6 +103,30 @@ public class DAORacunOtpremnica {
 
 		konekcija.close();
 	}
+	
+	/*public String datumNaplateRacuna(int id_racuna) throws SQLException, ClassNotFoundException {
+			String s;
+		connect();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy, MM, dd");
+
+		preparedStatement = konekcija
+				.prepareStatement("SELECT datum_naplate_racuna from racun_otpremnica WHERE id_racuna = ?");
+
+		preparedStatement.setInt(1, id_racuna);		
+
+		preparedStatement.execute();
+		rs = preparedStatement.getResultSet();
+		while (rs.next()) {
+			Date datumNaplateRacuna= rs.getDate("datum_naplate_racuna");
+			String a = sdf.format(datumNaplateRacuna);
+			s=a;
+			
+		}
+		konekcija.close();
+		return s;
+		
+	}*/
 
 
 }

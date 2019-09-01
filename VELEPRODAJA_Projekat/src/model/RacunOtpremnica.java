@@ -14,8 +14,14 @@ public class RacunOtpremnica {
 	private Date datumNaplateRacuna;
 	private double poreskaOsnovicaRacuna;
 	private double ukupanIznosObracunatogPdvaRacuna;
-	private double ukupnaVrednostRacuna;
+	private double ukupnaVrednostRacuna;	
 	
+	
+	public RacunOtpremnica() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public RacunOtpremnica(int idRacuna, int idZaposlenog, int idKupca, Date datumRacuna, Date datumNaplateRacuna,
 			double poreskaOsnovicaRacuna, double ukupanIznosObracunatogPdvaRacuna, double ukupnaVrednostRacuna) {
 		super();
@@ -55,6 +61,11 @@ public class RacunOtpremnica {
 		this.idKupca = idkupca;
 		this.datumRacuna = datumRacuna;
 		this.datumNaplateRacuna = datumNaplateRacuna;
+	}
+
+	public RacunOtpremnica(Date datumNaplateRacuna2) {
+		
+		this.datumNaplateRacuna = datumNaplateRacuna2;
 	}
 
 	public int getIdRacuna() {
