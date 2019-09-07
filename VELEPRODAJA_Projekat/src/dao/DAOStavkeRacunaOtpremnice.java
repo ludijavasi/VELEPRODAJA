@@ -40,4 +40,17 @@ public class DAOStavkeRacunaOtpremnice {
 
 		konekcija.close();
 	}
+	
+	public void deleteStavkeRacuna (int idArtikla) throws SQLException, ClassNotFoundException {
+		connect();
+		preparedStatement = konekcija.prepareStatement("delete from stavke_prodaje where stavke_prodaje.id_artikla = ? ");
+
+		//preparedStatement.setInt(1, idRacuna);
+		preparedStatement.setInt(1, idArtikla);
+		
+		preparedStatement.execute();
+		
+		konekcija.close();
+		
+	}
 }

@@ -1,11 +1,13 @@
 package table;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
+import kontroler.Kontroler;
 import model.Izvestaj;
 import model.RacunOtpremnica;
 
@@ -102,6 +104,19 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 		default:
 			return "Greska";
 		}		
+	}
+	
+	
+	
+	public void removeRow(int row){
+		try {
+			Kontroler.getInstance().deleteStavkeRacuna(lista.get(row).getIdArtikla());
+			lista.remove(row);
+			fireTableDataChanged();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void clear() {

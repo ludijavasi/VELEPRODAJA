@@ -234,6 +234,13 @@ public class Kontroler {
 		DAOStavkeRacunaOtpremnice dsro = new DAOStavkeRacunaOtpremnice();
 		dsro.insertStavkaRacuna(sro);
 	}
+	
+	public void deleteStavkeRacuna (int idArtikla) throws SQLException, ClassNotFoundException {
+		DAOStavkeRacunaOtpremnice dsro = new DAOStavkeRacunaOtpremnice();
+		dsro.deleteStavkeRacuna(idArtikla);
+	}
+	
+	
 	public ArrayList<Izvestaj> getStavkeRacunaOtpremniceIzvestaj(int id_racuna) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();
 		return di.getStavkeRacunaOtpremniceIzvestaj(id_racuna);

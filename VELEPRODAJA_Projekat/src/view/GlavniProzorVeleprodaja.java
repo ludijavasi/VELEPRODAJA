@@ -365,6 +365,24 @@ public class GlavniProzorVeleprodaja {
 				ro.getTextFieldBrutoRacun().setEditable(false);
 				ro.getTextFieldPDVRacun().setEditable(false);
 				ro.getBtnKreirajRacun().setVisible(false);
+				
+				
+				
+				ro.getBtnObrisiRacun().addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						JTableModelRacunOtpremnica model = (JTableModelRacunOtpremnica)
+								ro.getTableStavkeRacuna().getModel();
+						int selektovanRed = ro.getTableStavkeRacuna().getSelectedRow();
+						if (selektovanRed >=0) {
+							model.removeRow(selektovanRed);
+							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali red!");
+						}else{
+							JOptionPane.showMessageDialog(null, "Morate selektovati red u tabeli!");
+						}
+					}
+				});
+				
 				ro.getBtnZapocniProdajuStavkeRacuna().setBounds(780, 439, 89, 23);
 				ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
 					
