@@ -41,7 +41,6 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 	private JComboBox comboBoxGrupaArtikalaRacunStavke;
 	private JComboBox comboBoxArtikalRacunStavke;
 	private JTextField textFieldIdRacunStavkeRacuna;
-	private JTextField textFieldArtikalStavkeRacuna;
 	private int generatedID;
 	
 	
@@ -153,6 +152,8 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		textFieldDostupnaKolicina.setBounds(184, 97, 137, 20);
 		contentPane.add(textFieldDostupnaKolicina);
 		textFieldDostupnaKolicina.setColumns(10);
+		textFieldDostupnaKolicina.setText("*****");
+		textFieldDostupnaKolicina.setEditable(false);
 		
 		textFieldKolicina = new JTextField();
 		textFieldKolicina.setBounds(184, 122, 137, 20);
@@ -257,11 +258,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		textFieldIdRacunStavkeRacuna.setBounds(331, 22, 86, 20);
 		contentPane.add(textFieldIdRacunStavkeRacuna);
 		textFieldIdRacunStavkeRacuna.setColumns(10);
-		
-		textFieldArtikalStavkeRacuna = new JTextField();
-		textFieldArtikalStavkeRacuna.setBounds(331, 47, 86, 20);
-		contentPane.add(textFieldArtikalStavkeRacuna);
-		textFieldArtikalStavkeRacuna.setColumns(10);		
+		textFieldIdRacunStavkeRacuna.setVisible(false);
 
 	}
 	
