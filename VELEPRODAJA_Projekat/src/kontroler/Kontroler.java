@@ -306,5 +306,15 @@ public class Kontroler {
 		DAOIzvestaj di = new DAOIzvestaj();
 	    return di.getRacunPregledRacuna(d,d1);
 	}
+	public Date datumValuteRacuna(int id_racuna) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+		Date d = di.datumValuteRacuna( id_racuna) ;
+		return d;
+	}
+	public Date datumRacuna(int id_racuna) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+		Date d = di.datumRacuna( id_racuna) ;
+		return d;
+	}
 
 }

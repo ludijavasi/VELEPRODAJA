@@ -65,7 +65,7 @@ public class JFramePregleRacuna extends JFrame {
 	 * Create the frame.
 	 */
 	public JFramePregleRacuna() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 725, 478);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -139,6 +139,15 @@ public class JFramePregleRacuna extends JFrame {
 					String s = tablePregledRacuna.getModel().getValueAt(tablePregledRacuna.getSelectedRow(), 3).toString();
 					
 					JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
+					
+					ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							ro.setVisible(false);
+							
+						}
+					});
 					ro.getBtnKreirajRacun().setVisible(false);
 					ro.getBtnNovaPoyicijaRacun().setVisible(false);
 					ro.getBtnZapocniProdajuStavkeRacuna().setVisible(false);
@@ -147,14 +156,17 @@ public class JFramePregleRacuna extends JFrame {
 					ArrayList lista;
 					
 					try {
-						
+					
 						int id_racuna = Integer.parseInt(s);
 						ro.getTextFieldRacunOtpremnicaRacun().setText(s);
-						//sro.getDateChooserNaplateracuna().setDate(Kontroler.getInstance().datumNaplateRacuna(id_racuna));
+						Date d =Kontroler.getInstance().datumValuteRacuna(id_racuna);
+						ro.getDateChooserNaplateracuna().setDate(d);
+						ro.getDateChooserRacunOtpremnica().setDate(Kontroler.getInstance().datumRacuna(id_racuna));
 						
 						
 						lista = Kontroler.getInstance().getStavkeRacunaOtpremniceIzvestaj(id_racuna);
 						postaviModelRAcunaOtpremnice(lista, ro.getTableStavkeRacuna());
+						suma(tablePregledRacuna);
 						
 						
 					} catch (ClassNotFoundException e1) {

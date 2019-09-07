@@ -254,4 +254,24 @@ public class JFrameRacun_otpreminica extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	/*private void suma (JTable t) {
+		double sum = 0; double sum1 = 0; double sum2 = 0;
+		
+		for (int i = 0; i < tableStavkeRacuna.getRowCount(); i++) { 
+			sum = sum + Double.parseDouble(tableStavkeRacuna.getValueAt(i,4).toString());
+				
+		}
+		for (int i1 = 0; i1 < tableStavkeRacuna.getRowCount(); i1++) {
+			sum1 = sum1 + Double.parseDouble(tableStavkeRacuna.getValueAt(i1,6).toString());
+		 		
+		 		}
+		for (int i2 = 0; i2 < tableStavkeRacuna.getRowCount(); i2++) {
+			sum2 = sum2 + Double.parseDouble(tableStavkeRacuna.getValueAt(i2,5).toString());
+			
+			}
+				textFieldUkupnoNetoPregledRacuna.setText(Double.toString(sum));
+				textFieldUkupnoBrutoPregledRacuna.setText(Double.toString(sum1));
+				textFieldUkupnoPdvPregledRacuna.setText(Double.toString(sum2));
+			
+		  }*/
 }

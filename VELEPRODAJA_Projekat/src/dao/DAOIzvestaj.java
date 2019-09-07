@@ -729,6 +729,42 @@ public class DAOIzvestaj {
 			return lista;
 
 		}
+		public Date datumValuteRacuna(int id_racuna) throws ClassNotFoundException, SQLException {
+			Date d = new Date();
 
+			connect();
+			preparedStatement = konekcija.prepareStatement("select * from racun_otpremnica where id_racuna =?");
+			preparedStatement.setInt(1, id_racuna);
+			preparedStatement.execute();
 
+			rs = preparedStatement.getResultSet();
+
+			while (rs.next()) {
+				
+				Date datumNaplateRacuna = rs.getDate("datum_naplate_racuna");
+				
+				d= datumNaplateRacuna;
+			}
+			konekcija.close();
+			return d;
+		}
+		public Date datumRacuna(int id_racuna) throws ClassNotFoundException, SQLException {
+			Date d1 = new Date();
+
+			connect();
+			preparedStatement = konekcija.prepareStatement("select * from racun_otpremnica where id_racuna =?");
+			preparedStatement.setInt(1, id_racuna);
+			preparedStatement.execute();
+
+			rs = preparedStatement.getResultSet();
+
+			while (rs.next()) {
+				
+				Date datumRacuna = rs.getDate("datum_racuna");
+				
+				d1= datumRacuna;
+			}
+			konekcija.close();
+			return d1;
+		}
 }

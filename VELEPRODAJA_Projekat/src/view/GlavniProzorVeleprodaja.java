@@ -571,6 +571,7 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent arg0) {
 				JFramePregleRacuna pr = new JFramePregleRacuna();
 				pr.setVisible(true);
+				
 			}
 		});
 		mntmPregledRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));	
