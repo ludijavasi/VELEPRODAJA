@@ -65,8 +65,15 @@ public class Izvestaj {
 	private Artikli artikal;
 	private double kolicinaProdaje;
 	private double rabatProdaje;
+	private int idStavkeProdaje;	
 	
 	
+	public int getIdStavkeProdaje() {
+		return idStavkeProdaje;
+	}
+	public void setIdStavkeProdaje(int idStavkeProdaje) {
+		this.idStavkeProdaje = idStavkeProdaje;
+	}
 	public int getIdracunOtpremnica() {
 		return idracunOtpremnica;
 	}

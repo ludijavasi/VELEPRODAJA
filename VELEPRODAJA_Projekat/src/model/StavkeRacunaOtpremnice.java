@@ -6,6 +6,7 @@ public class StavkeRacunaOtpremnice {
 	private Artikli artikal;
 	private double kolicinaProdaje;
 	private double rabatProdaje;
+	private int idStavkeProdaje;
 	
 	public StavkeRacunaOtpremnice(int idracunOtpremnica, Artikli artikal, double kolicinaProdaje, double rabatProdaje) {
 		super();
@@ -15,7 +16,16 @@ public class StavkeRacunaOtpremnice {
 		this.rabatProdaje = rabatProdaje;
 	}
 	
-	
+
+	public StavkeRacunaOtpremnice(int idracunOtpremnica, Artikli artikal, double kolicinaProdaje, double rabatProdaje,
+			int idStavkeProdaje) {
+		super();
+		this.idracunOtpremnica = idracunOtpremnica;
+		this.artikal = artikal;
+		this.kolicinaProdaje = kolicinaProdaje;
+		this.rabatProdaje = rabatProdaje;
+		this.idStavkeProdaje = idStavkeProdaje;
+	}
 
 	public StavkeRacunaOtpremnice() {
 		super();
@@ -54,9 +64,16 @@ public class StavkeRacunaOtpremnice {
 	public void setRabatProdaje(double rabatProdaje) {
 		this.rabatProdaje = rabatProdaje;
 	}
-	
-	
-	
+
+
+	public int getIdStavkeProdaje() {
+		return idStavkeProdaje;
+	}
+
+
+	public void setIdStavkeProdaje(int idStavkeProdaje) {
+		this.idStavkeProdaje = idStavkeProdaje;
+	}
 	
 
 }

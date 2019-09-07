@@ -53,4 +53,20 @@ public class DAOStavkeRacunaOtpremnice {
 		konekcija.close();
 		
 	}
+	
+	public void updateStavkeRacun(Izvestaj i) throws SQLException, ClassNotFoundException {
+		connect();
+
+		preparedStatement = konekcija
+				.prepareStatement("UPDATE stavke_prodaje SET kolicina_prodaje = ?, rabat_prodaje = ? "
+						+ "WHERE id_stavke_prodaje = ? ");
+
+		preparedStatement.setDouble(1, i.getKolicinaProdaje());
+		preparedStatement.setDouble(2, i.getRabatProdaje());		
+		preparedStatement.setInt(3, i.getIdStavkeProdaje());
+
+		preparedStatement.execute();
+
+		konekcija.close();
+	}
 }

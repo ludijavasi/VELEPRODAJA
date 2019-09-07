@@ -3,6 +3,7 @@ package table;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
@@ -118,6 +119,44 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		if (columnIndex==3 || columnIndex==6) 
+			return true;
+		else
+				return false;
+		}
+	
+	@Override
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+		try {
+			Izvestaj i = lista.get(rowIndex);
+			switch (columnIndex) {
+			case 3:
+				i.setKolicinaProdaje(Double.parseDouble(aValue.toString()));
+				break;
+			case 6:
+				i.setRabatProdaje(Double.parseDouble(aValue.toString()));
+				break;			
+				
+			}			
+			
+				Kontroler.getInstance().updateStavkeRacun(i);
+				fireTableDataChanged();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+		}
+		
 	
 	public void clear() {
 		lista.clear();;
