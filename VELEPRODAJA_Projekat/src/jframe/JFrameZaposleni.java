@@ -80,9 +80,14 @@ public class JFrameZaposleni extends JFrame {
 	
 	private JButton btnDodajZaposlenog;
 	private JButton btnObrisiZaposlenog;
-	private JTextField textJMBG;
+	private JTextField textJMBG;	
 		
 	
+	public JLabel getLblPassword() {
+		return lblPassword;
+	}
+
+
 	public JButton getBtnAzurirajZaposlenog() {
 		return btnAzurirajZaposlenog;
 	}	

@@ -30,6 +30,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
 public class JFrameIzvestajProdajeFilijala extends JFrame {
 
@@ -40,7 +41,44 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 	private JTextField textFieldRucIzvestajProdajeFiljala;
 	private JTable tableIzvestajProdaje;
 	private JComboBox comboBoxArtikalIzvestajProdaje;
+	private JButton btnPoniti;
+	private JComboBox comboBoxFilijalaIzvestajProdaje;
+	private JDateChooser dateChooserrDoIzvestajProdaje;
+	private JDateChooser dateChooserOdIzvestajProdaje;
+	private JComboBox comboBoxGrupaArtikalaIzvestajProdaje;		
 	
+
+	public void setComboBoxArtikalIzvestajProdaje(JComboBox comboBoxArtikalIzvestajProdaje) {
+		this.comboBoxArtikalIzvestajProdaje = comboBoxArtikalIzvestajProdaje;
+	}
+
+	public void setComboBoxFilijalaIzvestajProdaje(JComboBox comboBoxFilijalaIzvestajProdaje) {
+		this.comboBoxFilijalaIzvestajProdaje = comboBoxFilijalaIzvestajProdaje;
+	}
+
+	public void setComboBoxGrupaArtikalaIzvestajProdaje(JComboBox comboBoxGrupaArtikalaIzvestajProdaje) {
+		this.comboBoxGrupaArtikalaIzvestajProdaje = comboBoxGrupaArtikalaIzvestajProdaje;
+	}
+
+	public JComboBox getComboBoxGrupaArtikalaIzvestajProdaje() {
+		return comboBoxGrupaArtikalaIzvestajProdaje;
+	}
+
+	public JComboBox getComboBoxArtikalIzvestajProdaje() {
+		return comboBoxArtikalIzvestajProdaje;
+	}
+
+	public JComboBox getComboBoxFilijalaIzvestajProdaje() {
+		return comboBoxFilijalaIzvestajProdaje;
+	}
+
+	public JDateChooser getDateChooserrDoIzvestajProdaje() {
+		return dateChooserrDoIzvestajProdaje;
+	}
+
+	public JDateChooser getDateChooserOdIzvestajProdaje() {
+		return dateChooserOdIzvestajProdaje;
+	}
 
 	public JPanel getContentPane() {
 		return contentPane;
@@ -118,13 +156,17 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		lblDoizvestajprodaje.setBounds(10, 30, 30, 20);
 		panel.add(lblDoizvestajprodaje);
 		
-		JDateChooser dateChooserrDoIzvestajProdaje = new JDateChooser();
+		dateChooserrDoIzvestajProdaje = new JDateChooser();
 		dateChooserrDoIzvestajProdaje.setBounds(310, 30, 150, 20);
 		panel.add(dateChooserrDoIzvestajProdaje);
 		
-		JDateChooser dateChooserOdIzvestajProdaje = new JDateChooser();
+		dateChooserOdIzvestajProdaje = new JDateChooser();
 		dateChooserOdIzvestajProdaje.setBounds(60, 30, 150, 20);
 		panel.add(dateChooserOdIzvestajProdaje);
+		
+		if(dateChooserOdIzvestajProdaje == null && dateChooserrDoIzvestajProdaje == null) {
+			comboBoxFilijalaIzvestajProdaje.setEditable(false);
+		}
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -137,7 +179,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		lblGrupaArtiklaIzvestajProdaje.setBounds(10, 20, 110, 20);
 		panel_1.add(lblGrupaArtiklaIzvestajProdaje);
 		
-		JComboBox comboBoxFilijalaIzvestajProdaje = new JComboBox();
+		comboBoxFilijalaIzvestajProdaje = new JComboBox();
 		comboBoxFilijalaIzvestajProdaje.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxFilijalaIzvestajProdaje.setBounds(30, 60, 200, 20);
 		contentPane.add(comboBoxFilijalaIzvestajProdaje);
@@ -175,7 +217,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		
 		
 		
-		JComboBox comboBoxGrupaArtikalaIzvestajProdaje = new JComboBox();
+		comboBoxGrupaArtikalaIzvestajProdaje = new JComboBox();
 		comboBoxGrupaArtikalaIzvestajProdaje.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxGrupaArtikalaIzvestajProdaje.setBounds(150, 20, 200, 20);
 		panel_1.add(comboBoxGrupaArtikalaIzvestajProdaje);
@@ -336,6 +378,49 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		textFieldRucIzvestajProdajeFiljala.setBounds(970, 20, 120, 20);
 		panelIzvestajFilijala.add(textFieldRucIzvestajProdajeFiljala);
 		textFieldRucIzvestajProdajeFiljala.setColumns(10);
+		
+		btnPoniti = new JButton("Poni\u0161ti");
+		btnPoniti.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPoniti.setBounds(850, 140, 90, 25);
+		contentPane.add(btnPoniti);
+		
+		btnPoniti.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					postaviModelProdajaPoArtiklu(new ArrayList<>(), tableIzvestajProdaje);
+					
+					
+					//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
+					//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+					//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+					
+					dateChooserOdIzvestajProdaje.setDate(null);
+					dateChooserrDoIzvestajProdaje.setDate(null);
+					
+					textFieldNabavnaVrenostIzvestajFilijala.setText("");
+					textFieldOsnovicaIzvestajFilijala.setText("");
+					textFieldRucIzvestajProdajeFiljala.setText("");
+					txtProdajnavrednostIzvestajProdajeFilijala.setText("");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}					
+				
+			}			
+			
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	}

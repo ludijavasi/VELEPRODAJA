@@ -168,11 +168,7 @@ public class Kupac {
 
 	@Override
 	public String toString() {
-		return "Kupac [idKupca=" + idKupca + ", nazivFirmeKupca=" + nazivFirmeKupca + ", adresaKupca=" + adresaKupca
-				+ ", gradOpstinaKupca=" + gradOpstinaKupca + ", telefonKupca=" + telefonKupca + ", emailKupca="
-				+ emailKupca + ", kontaktOsobaKupca=" + kontaktOsobaKupca + ", pibKupca=" + pibKupca
-				+ ", tekuciRacunKupca=" + tekuciRacunKupca + ", valutaPlacanjaKupca=" + valutaPlacanjaKupca
-				+ ", statusKupca=" + statusKupca + "]";
+		return nazivFirmeKupca + "   ID kupca :" + idKupca;
 	}	
 
 }
