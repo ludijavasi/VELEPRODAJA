@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import jframe.JFrameArtikal;
 import jframe.JFrameFilijala;
@@ -40,12 +42,10 @@ import jframePregled.JFramePregledFilijale;
 import jframePregled.JFramePregledGrupeArtikala;
 import jframePregled.JFramePregledKupca;
 import jframePregled.JFramePregledMagacina;
-import jframePregled.JFramePregledTrenutnoPrijavljeniNaMrezi;
 import jframePregled.JFramePregledZaposlenih;
 import jframePregled.JFrameStavkeRacunaPregled;
 import kontroler.Kontroler;
 import model.Artikli;
-import model.GrupaArtikala;
 import model.Izvestaj;
 import model.Kupac;
 import model.RacunOtpremnica;
@@ -55,7 +55,6 @@ import table.JTableModelRacunOtpremnica;
 import table.JTableModelStavkeRacunaOtpremnice;
 import table.JTabelModelZaposleni;
 import table.JTableModelArtikal;
-import table.JTableModelCenaArtikla;
 import table.JTableModelFilijala;
 import table.JTableModelGrupeArtikala;
 import table.JTableModelKupac;
@@ -71,15 +70,12 @@ import java.awt.HeadlessException;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -287,7 +283,7 @@ public class GlavniProzorVeleprodaja {
 					jfzo.getTextTelefon().setText(z.getTelefonZaposlenog());
 					jfzo.getTextEMail().setText(z.getEmailZaposlenog());					
 					
-					jfzo.getTextPlata().setText(Double.toString(z.getPlataZaposlenog()));
+					jfzo.getTextPlata().setText("************");
 					jfzo.getComboBoxTipZaposlenja().setSelectedItem(z.getTipZaposlenja());
 					
 					jfzo.getComboBoxStrucnaSprema().setSelectedItem(z.getStrucnaSpremaZaposlenog());
@@ -295,7 +291,7 @@ public class GlavniProzorVeleprodaja {
 					jfzo.getDateChooserPrestankaZaposlenja().setDate(z.getDatumZavrsetkaZaposlenja());
 					
 					jfzo.getTextUsername().setText(z.getUsernameZaposlenog());
-					jfzo.getTextPassword().setText(z.getPasswordZaposlenog());	
+					jfzo.getTextPassword().setText("**************");	
 					
 					
 					jfzo.getTextIDZaposlenog().setEditable(false);
@@ -363,6 +359,13 @@ public class GlavniProzorVeleprodaja {
 		mntmKreirajRacunOtpremnicuAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
+				ro.getTextFieldRacunOtpremnicaRacun().setEditable(false);
+				ro.getDateChooserNaplateracuna().setEnabled(false);
+				ro.getTextFieldNetoRacun().setEditable(false);
+				ro.getTextFieldBrutoRacun().setEditable(false);
+				ro.getTextFieldPDVRacun().setEditable(false);
+				ro.getBtnKreirajRacun().setVisible(false);
+				ro.getBtnZapocniProdajuStavkeRacuna().setBounds(780, 439, 89, 23);
 				ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
 					
 					@Override
@@ -374,6 +377,10 @@ public class GlavniProzorVeleprodaja {
 				ro.setVisible(true);
 				ro.getBtnZapocniProdajuStavkeRacuna().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						ro.getBtnPonistiAkcijuRacunOtpremnica().setVisible(false);
+						ro.getBtnZapocniProdajuStavkeRacuna().setVisible(false);
+						ro.getBtnKreirajRacun().setVisible(true);
+						ro.getBtnKreirajRacun().setBounds(780, 439, 89, 23);
 						Kupac k1 =(Kupac) ro.getComboBoxKupacRacun().getSelectedItem();
 						int ValutaKupca = k1.getValutaPlacanjaKupca();
 						Date d = ro.getDateChooserRacunOtpremnica().getDate();
@@ -386,19 +393,11 @@ public class GlavniProzorVeleprodaja {
 						try {
 							Date datumRacuna = ro.getDateChooserRacunOtpremnica().getDate();
 							Date datumNaplateRacuna = ro.getDateChooserNaplateracuna().getDate();
-							//proveri da nije iz proslosti
 							Kupac k =(Kupac) ro.getComboBoxKupacRacun().getSelectedItem();
 							int idkupca = k.getIdKupca();
 							int idzaposlenog = logedIn.getIdZaposlenog();
 							RacunOtpremnica ro = new RacunOtpremnica(idzaposlenog,idkupca,datumRacuna,datumNaplateRacuna);
 							generatedID = Kontroler.getInstance().insertRacunOtpremnicu(ro);
-							
-							/*Date today = Calendar.getInstance().getTime();
-							if(datumRacuna.before(today) || datumRacuna.after(datumNaplateRacuna)) {
-								JOptionPane.showMessageDialog(null, "Uneli ste pogresan datum u polje! \n(datum racun < datum naplate racuna)\n(datum racun > danasnji datum)");
-								return;
-							}*/	
-							
 							
 							JOptionPane.showMessageDialog(null, "Kreirali ste racun!");
 							
@@ -422,13 +421,9 @@ public class GlavniProzorVeleprodaja {
 								
 								double rabatProdaje = Double.parseDouble(fsrp.getTextFieldRabat().getText().trim());
 
-								StavkeRacunaOtpremnice sro = new StavkeRacunaOtpremnice(idracuna, artikal, kolicinaProdaje, rabatProdaje);
+								StavkeRacunaOtpremnice sro = new StavkeRacunaOtpremnice(idracuna, artikal,
+										kolicinaProdaje, rabatProdaje);
 								
-								
-								
-								
-								
-
 								Kontroler.getInstance().insertStavkaRacuna(sro);
 								
 								postaviModelStavkeProdaje(new ArrayList<>(), fsrp.getTableRacunOtpremnica());
@@ -1654,5 +1649,16 @@ public class GlavniProzorVeleprodaja {
 	private void postaviModelProdajaPoZaposlenom(ArrayList<Izvestaj> lista, JTable t){
 		 JTableModelProdajaPoZaposlenom model = new  JTableModelProdajaPoZaposlenom(lista);
 		t.setModel(model);
+	}
+	private  void removeSelectedFromTable(JTable from){
+        int[] rows = from.getSelectedRows();
+        TableModel tm = (DefaultTableModel) from.getModel();
+
+
+        for (int row : rows) {
+            ((DefaultTableModel) tm).removeRow(from.convertRowIndexToModel(row));
+        }
+
+        from.clearSelection();
 	}
 }

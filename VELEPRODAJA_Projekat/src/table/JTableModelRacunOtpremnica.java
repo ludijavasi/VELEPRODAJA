@@ -105,4 +105,5 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 		fireTableDataChanged();
 	}
 
+
 }
