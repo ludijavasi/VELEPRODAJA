@@ -110,13 +110,15 @@ public class Izvestaj {
 	}
 
 	public Izvestaj(String naziv, double kolicina_prodaje, String jedinica_mere2, double neto_cena_artikla2,
-			int stopa_PDV2, double rabat_prodaje) {
+			int stopa_PDV2, double rabat_prodaje,int Idartikla) {
+		
 		this.naziv_artikla = naziv;
 		this.kolicinaProdaje = kolicina_prodaje;
 		this.jedinica_mere = jedinica_mere2;
 		this.neto_cena_artikla = neto_cena_artikla2;
 		this.stopa_PDV = stopa_PDV2;
 		this.rabatProdaje = rabat_prodaje;
+		this.idArtikla=Idartikla;
 	}
 	//RACUN OTPREMNICA
 	private int idRacuna;
@@ -512,7 +514,7 @@ public class Izvestaj {
 	public Izvestaj(int idFilijale,int idRAcuna2, Date datum_racuna,int IdFirme, String naziv_firme_kupca, String username_zaposlenog,
 			String naziv_filijale, String grupa_artikala, int idArtikla2, String naziv_artikla2,
 			int koicina_prodaje, double neto_cena_artikla, double marza_artikla, double stopa_pdv_a) {
-			
+		
 			this.idFilijale = idFilijale;
 			this.idRacuna = idRAcuna2;
 			this.datumRacuna = datum_racuna;
@@ -571,6 +573,7 @@ public class Izvestaj {
 	}
 	public Izvestaj(String naziv_firme_kupca, String naziv_filijale, Date datumRacuna, int idRacuna,
 			double poreska_osnovica_racuna, double ukupan_iznos_obracunatog_pdv_a_racuna, double ukupna_vrednost_racuna) {
+		/*naziv, kolicina_prodaje, jedinica_mere, neto_cena_artikla, stopa_PDV, rabatProdaje*/
 		this.idRacuna = idRacuna;
 		this.datumRacuna = datumRacuna;
 		this.nazivFirmeKupca = naziv_firme_kupca;

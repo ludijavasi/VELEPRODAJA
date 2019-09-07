@@ -21,7 +21,7 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 	@Override
 	public int getColumnCount() {
 		
-		return 11;
+		return 12;
 	}
 
 	@Override
@@ -37,26 +37,28 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 		case 0:
 			return new Integer(r + 1);
 		case 1:
-			return ro.getNaziv_artikla();
+			return ro.getIdArtikla();
 		case 2:
-			return ro.getKolicinaProdaje();
+			return ro.getNaziv_artikla();
 		case 3:
-			return ro.getJedinica_mere();
+			return ro.getKolicinaProdaje();
 		case 4:
-			return ro.getNeto_cena_artikla();
+			return ro.getJedinica_mere();
 		case 5:
-			return ro.getRabatProdaje();
+			return ro.getNeto_cena_artikla();
 		case 6:
-			return ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100);
+			return ro.getRabatProdaje();
 		case 7:
-			return ro.getStopa_PDV();
+			return ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100);
 		case 8:
+			return ro.getStopa_PDV();
+		case 9:
 			return (ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
 					*ro.getKolicinaProdaje();
-		case 9:
+		case 10:
 			return ((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
 					*ro.getKolicinaProdaje())*ro.getStopa_PDV()/100;
-		case 10:
+		case 11:
 			return ((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
 					*ro.getKolicinaProdaje())+
 					(((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
@@ -75,24 +77,26 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 		case 0:
 			return "Redni broj";
 		case 1:
-			return "Naziv Artikla";
+			return "Sifra";
 		case 2:
-			return "Kolicin";
+			return "Naziv Artikla";
 		case 3:
-			return "Jedinica";
+			return "Kolicin";
 		case 4:
-			return "Cena/RSD";
+			return "Jedinica";
 		case 5:
-			return "Rabat";
+			return "Cena/RSD";
 		case 6:
-			return "Neto cena";
+			return "Rabat";
 		case 7:
-			return "PDV";
+			return "Neto cena";
 		case 8:
-			return "Neto ";
+			return "PDV";
 		case 9:
-			return "Vrednost PDV";
+			return "Neto ";
 		case 10:
+			return "Vrednost PDV";
+		case 11:
 			return "Bruto";
 
 		default:
