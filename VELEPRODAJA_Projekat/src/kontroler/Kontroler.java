@@ -319,6 +319,22 @@ public class Kontroler {
 		DAOIzvestaj di = new DAOIzvestaj();
 	    return di.getRacunPregledRacuna(d,d1);
 	}
+	
+	public ArrayList<Izvestaj> getRacunPregledRacunaPoStatusu(String d, String d1) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+	    return di.getRacunPregledRacunaPoStatusu(d,d1);
+	}
+	
+	public ArrayList<Izvestaj> getRacunPregledRacunaPoStatusuAktivan(String d, String d1) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+	    return di.getRacunPregledRacunaPoStatusuAktivan(d,d1);
+	}	
+	
+	public ArrayList<Izvestaj> getRacunPregledRacunaPoStatusuKreiran(String d, String d1) throws ClassNotFoundException, SQLException {
+		DAOIzvestaj di = new DAOIzvestaj();
+	    return di.getRacunPregledRacunaPoStatusuKreiran(d,d1);
+	}
+	
 	public Date datumValuteRacuna(int id_racuna) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();
 		Date d = di.datumValuteRacuna( id_racuna) ;

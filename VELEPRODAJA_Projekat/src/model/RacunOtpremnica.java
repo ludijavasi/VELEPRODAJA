@@ -14,7 +14,8 @@ public class RacunOtpremnica {
 	private Date datumNaplateRacuna;
 	private double poreskaOsnovicaRacuna;
 	private double ukupanIznosObracunatogPdvaRacuna;
-	private double ukupnaVrednostRacuna;	
+	private double ukupnaVrednostRacuna;
+	private String statusRacuna;
 	
 	
 	public RacunOtpremnica() {
@@ -50,6 +51,25 @@ public class RacunOtpremnica {
 		this.poreskaOsnovicaRacuna = poreskaOsnovicaRacuna;
 		this.ukupanIznosObracunatogPdvaRacuna = ukupanIznosObracunatogPdvaRacuna;
 		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
+	}	
+	
+
+	public RacunOtpremnica(int idRacuna, int idZaposlenog, int idKupca, Zaposleni zaposleni, Kupac kupac,
+			Artikli artikal, Date datumRacuna, Date datumNaplateRacuna, double poreskaOsnovicaRacuna,
+			double ukupanIznosObracunatogPdvaRacuna, double ukupnaVrednostRacuna, String statusRacuna) {
+		super();
+		this.idRacuna = idRacuna;
+		this.idZaposlenog = idZaposlenog;
+		this.idKupca = idKupca;
+		this.zaposleni = zaposleni;
+		this.kupac = kupac;
+		this.artikal = artikal;
+		this.datumRacuna = datumRacuna;
+		this.datumNaplateRacuna = datumNaplateRacuna;
+		this.poreskaOsnovicaRacuna = poreskaOsnovicaRacuna;
+		this.ukupanIznosObracunatogPdvaRacuna = ukupanIznosObracunatogPdvaRacuna;
+		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
+		this.statusRacuna = statusRacuna;
 	}
 
 	public RacunOtpremnica(int id, Date d, Date datumNaplateRacuna) {
@@ -155,6 +175,14 @@ public class RacunOtpremnica {
 	public void setUkupnaVrednostRacuna(double ukupnaVrednostRacuna) {
 		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
 	}
+
+	public String getStatusRacuna() {
+		return statusRacuna;
+	}
+
+	public void setStatusRacuna(String statusRacuna) {
+		this.statusRacuna = statusRacuna;
+	}	
 	
 
 }

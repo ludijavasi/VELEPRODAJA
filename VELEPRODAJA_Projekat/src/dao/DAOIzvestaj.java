@@ -730,6 +730,119 @@ public class DAOIzvestaj {
 			return lista;
 
 		}
+		
+		public ArrayList<Izvestaj> getRacunPregledRacunaPoStatusu(String d, String d1) throws ClassNotFoundException, SQLException {
+			ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
+
+			connect();
+			preparedStatement = konekcija.prepareStatement("SELECT kupac.naziv_firme_kupca,filijala.naziv_filijale,"
+					+ " racun_otpremnica.id_racuna,datum_racuna,"
+					+ " racun_otpremnica.poreska_osnovica_racuna,racun_otpremnica.ukupan_iznos_obracunatog_pdv_a_racuna,"
+					+ " racun_otpremnica.ukupna_vrednost_racuna, racun_otpremnica.status_racuna FROM racun_otpremnica"
+					+ " join kupac on racun_otpremnica.id_kupca = kupac.id_kupca "
+					+ "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
+					+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
+					+ "WHERE racun_otpremnica.datum_racuna BETWEEN ? and ?");
+			
+			preparedStatement.setString(1, d);
+			preparedStatement.setString(2, d1);
+			//preparedStatement.setString(3, statusRacuna);
+			preparedStatement.execute();
+
+			rs = preparedStatement.getResultSet();
+
+			while (rs.next()) {
+				int idRacuna = rs.getInt("id_racuna");
+				String naziv_firme_kupca = rs.getString("kupac.naziv_firme_kupca");
+				String naziv_filijale = rs.getString("filijala.naziv_filijale");
+				Date datumRacuna = rs.getDate("datum_racuna");
+				double poreska_osnovica_racuna = rs.getFloat("racun_otpremnica.poreska_osnovica_racuna");
+				double ukupan_iznos_obracunatog_pdv_a_racuna = rs.getDouble("racun_otpremnica.ukupan_iznos_obracunatog_pdv_a_racuna");
+				double ukupna_vrednost_racuna = rs.getFloat("racun_otpremnica.ukupna_vrednost_racuna");
+				String status_racuna = rs.getString("racun_otpremnica.status_racuna");
+				Izvestaj ro = new Izvestaj(naziv_firme_kupca, naziv_filijale, datumRacuna, idRacuna, poreska_osnovica_racuna, ukupan_iznos_obracunatog_pdv_a_racuna, ukupna_vrednost_racuna, status_racuna);
+				lista.add(ro);
+			}
+			konekcija.close();
+			return lista;
+
+		}
+		
+		public ArrayList<Izvestaj> getRacunPregledRacunaPoStatusuAktivan(String d, String d1) throws ClassNotFoundException, SQLException {
+			ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
+
+			connect();
+			preparedStatement = konekcija.prepareStatement("SELECT kupac.naziv_firme_kupca,filijala.naziv_filijale,"
+					+ " racun_otpremnica.id_racuna,datum_racuna,"
+					+ " racun_otpremnica.poreska_osnovica_racuna,racun_otpremnica.ukupan_iznos_obracunatog_pdv_a_racuna,"
+					+ " racun_otpremnica.ukupna_vrednost_racuna, racun_otpremnica.status_racuna FROM racun_otpremnica"
+					+ " join kupac on racun_otpremnica.id_kupca = kupac.id_kupca "
+					+ "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
+					+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
+					+ "WHERE racun_otpremnica.datum_racuna BETWEEN ? and ? and racun_otpremnica.status_racuna = \"Aktivan\"");
+			
+			preparedStatement.setString(1, d);
+			preparedStatement.setString(2, d1);
+			//preparedStatement.setString(3, statusRacuna);
+			preparedStatement.execute();
+
+			rs = preparedStatement.getResultSet();
+
+			while (rs.next()) {
+				int idRacuna = rs.getInt("id_racuna");
+				String naziv_firme_kupca = rs.getString("kupac.naziv_firme_kupca");
+				String naziv_filijale = rs.getString("filijala.naziv_filijale");
+				Date datumRacuna = rs.getDate("datum_racuna");
+				double poreska_osnovica_racuna = rs.getFloat("racun_otpremnica.poreska_osnovica_racuna");
+				double ukupan_iznos_obracunatog_pdv_a_racuna = rs.getDouble("racun_otpremnica.ukupan_iznos_obracunatog_pdv_a_racuna");
+				double ukupna_vrednost_racuna = rs.getFloat("racun_otpremnica.ukupna_vrednost_racuna");
+				String status_racuna = rs.getString("racun_otpremnica.status_racuna");
+				Izvestaj ro = new Izvestaj(naziv_firme_kupca, naziv_filijale, datumRacuna, idRacuna, poreska_osnovica_racuna, ukupan_iznos_obracunatog_pdv_a_racuna, ukupna_vrednost_racuna, status_racuna);
+				lista.add(ro);
+			}
+			konekcija.close();
+			return lista;
+
+		}
+		
+		public ArrayList<Izvestaj> getRacunPregledRacunaPoStatusuKreiran(String d, String d1) throws ClassNotFoundException, SQLException {
+			ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
+
+			connect();
+			preparedStatement = konekcija.prepareStatement("SELECT kupac.naziv_firme_kupca,filijala.naziv_filijale,"
+					+ " racun_otpremnica.id_racuna,datum_racuna,"
+					+ " racun_otpremnica.poreska_osnovica_racuna,racun_otpremnica.ukupan_iznos_obracunatog_pdv_a_racuna,"
+					+ " racun_otpremnica.ukupna_vrednost_racuna, racun_otpremnica.status_racuna FROM racun_otpremnica"
+					+ " join kupac on racun_otpremnica.id_kupca = kupac.id_kupca "
+					+ "join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
+					+ "join filijala on zaposleni.id_filijale = filijala.id_filijale "
+					+ "WHERE racun_otpremnica.datum_racuna BETWEEN ? and ? and racun_otpremnica.status_racuna = \"Kreiran\"");
+			
+			preparedStatement.setString(1, d);
+			preparedStatement.setString(2, d1);
+			//preparedStatement.setString(3, statusRacuna);
+			preparedStatement.execute();
+
+			rs = preparedStatement.getResultSet();
+
+			while (rs.next()) {
+				int idRacuna = rs.getInt("id_racuna");
+				String naziv_firme_kupca = rs.getString("kupac.naziv_firme_kupca");
+				String naziv_filijale = rs.getString("filijala.naziv_filijale");
+				Date datumRacuna = rs.getDate("datum_racuna");
+				double poreska_osnovica_racuna = rs.getFloat("racun_otpremnica.poreska_osnovica_racuna");
+				double ukupan_iznos_obracunatog_pdv_a_racuna = rs.getDouble("racun_otpremnica.ukupan_iznos_obracunatog_pdv_a_racuna");
+				double ukupna_vrednost_racuna = rs.getFloat("racun_otpremnica.ukupna_vrednost_racuna");
+				String status_racuna = rs.getString("racun_otpremnica.status_racuna");
+				Izvestaj ro = new Izvestaj(naziv_firme_kupca, naziv_filijale, datumRacuna, idRacuna, poreska_osnovica_racuna, ukupan_iznos_obracunatog_pdv_a_racuna, ukupna_vrednost_racuna, status_racuna);
+				lista.add(ro);
+			}
+			konekcija.close();
+			return lista;
+
+		}
+		
+		
 		public Date datumValuteRacuna(int id_racuna) throws ClassNotFoundException, SQLException {
 			Date d = new Date();
 

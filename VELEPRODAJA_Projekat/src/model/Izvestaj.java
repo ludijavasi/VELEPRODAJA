@@ -139,6 +139,9 @@ public class Izvestaj {
 	private double poreskaOsnovicaRacuna;
 	private double ukupanIznosObracunatogPdvaRacuna;
 	private double ukupnaVrednostRacuna;
+	private String statusRacuna;
+	
+	
 	public int getIdRacuna() {
 		return idRacuna;
 	}
@@ -204,7 +207,16 @@ public class Izvestaj {
 	}
 	public void setUkupnaVrednostRacuna(double ukupnaVrednostRacuna) {
 		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
+	}	
+	
+	public String getStatusRacuna() {
+		return statusRacuna;
 	}
+	public void setStatusRacuna(String statusRacuna) {
+		this.statusRacuna = statusRacuna;
+	}
+	
+	
 	public Izvestaj(int idArtikla, int idgrupaArtikla, String naziv_grupe_artikala, String naziv_artikla,
 			String jedinica_mere, double neto_cena_artikla, int stopa_PDV, double marza_artikla, int idracunOtpremnica,
 			Artikli artikal, double kolicinaProdaje, double rabatProdaje, int idRacuna, int idZaposlenog, int idKupca,
@@ -235,6 +247,42 @@ public class Izvestaj {
 		this.ukupanIznosObracunatogPdvaRacuna = ukupanIznosObracunatogPdvaRacuna;
 		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
 	}
+	
+	public Izvestaj(int idArtikla, int idgrupaArtikla, String naziv_grupe_artikala, String naziv_artikla,
+			String jedinica_mere, double neto_cena_artikla, int stopa_PDV, double marza_artikla, int idracunOtpremnica,
+			Artikli artikal, double kolicinaProdaje, double rabatProdaje, int idRacuna, int idZaposlenog, int idKupca,
+			Zaposleni zaposleni, Kupac kupac, Artikli artikalRacun, Date datumRacuna, Date datumNaplateRacuna,
+			double poreskaOsnovicaRacuna, double ukupanIznosObracunatogPdvaRacuna, double ukupnaVrednostRacuna, String statusRacuna) {
+		super();
+		this.idArtikla = idArtikla;
+		IdgrupaArtikla = idgrupaArtikla;
+		this.naziv_grupe_artikala = naziv_grupe_artikala;
+		this.naziv_artikla = naziv_artikla;
+		this.jedinica_mere = jedinica_mere;
+		this.neto_cena_artikla = neto_cena_artikla;
+		this.stopa_PDV = stopa_PDV;
+		this.marza_artikla = marza_artikla;
+		this.idracunOtpremnica = idracunOtpremnica;
+		this.artikal = artikal;
+		this.kolicinaProdaje = kolicinaProdaje;
+		this.rabatProdaje = rabatProdaje;
+		this.idRacuna = idRacuna;
+		this.idZaposlenog = idZaposlenog;
+		this.idKupca = idKupca;
+		this.zaposleni = zaposleni;
+		this.kupac = kupac;
+		this.artikalRacun = artikalRacun;
+		this.datumRacuna = datumRacuna;
+		this.datumNaplateRacuna = datumNaplateRacuna;
+		this.poreskaOsnovicaRacuna = poreskaOsnovicaRacuna;
+		this.ukupanIznosObracunatogPdvaRacuna = ukupanIznosObracunatogPdvaRacuna;
+		this.ukupnaVrednostRacuna = ukupnaVrednostRacuna;
+		this.statusRacuna = statusRacuna;
+	}
+	
+	
+	
+	
 	//FILIJALA
 	private int idFilijale;
 	private String nazivFilijale;
@@ -590,8 +638,21 @@ public class Izvestaj {
 		this.ukupnaVrednostRacuna = ukupna_vrednost_racuna;
 	}
 	
-	
-	
-	
+	public Izvestaj(String naziv_firme_kupca, String naziv_filijale, Date datumRacuna, int idRacuna,
+			double poreska_osnovica_racuna, double ukupan_iznos_obracunatog_pdv_a_racuna, double ukupna_vrednost_racuna, String statusRacuna) {
+		/*naziv, kolicina_prodaje, jedinica_mere, neto_cena_artikla, stopa_PDV, rabatProdaje*/
+		this.idRacuna = idRacuna;
+		this.datumRacuna = datumRacuna;
+		this.nazivFirmeKupca = naziv_firme_kupca;
+		this.nazivFilijale = naziv_filijale;
+		this.poreskaOsnovicaRacuna = poreska_osnovica_racuna;
+		this.ukupanIznosObracunatogPdvaRacuna = ukupan_iznos_obracunatog_pdv_a_racuna;
+		this.ukupnaVrednostRacuna = ukupna_vrednost_racuna;
+		this.statusRacuna = statusRacuna;
+	}
+	public Izvestaj() {
+		super();
+		// TODO Auto-generated constructor stub
+	}	
 	
 }

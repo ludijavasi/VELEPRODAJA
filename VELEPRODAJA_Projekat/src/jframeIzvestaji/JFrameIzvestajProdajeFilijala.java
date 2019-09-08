@@ -391,7 +391,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				
 				try {
 					postaviModelProdajaPoArtiklu(new ArrayList<>(), tableIzvestajProdaje);
-					
+					suma(tableIzvestajProdaje);
 					
 					//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
 					//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);

@@ -42,6 +42,7 @@ import jframePregled.JFramePregledFilijale;
 import jframePregled.JFramePregledGrupeArtikala;
 import jframePregled.JFramePregledKupca;
 import jframePregled.JFramePregledMagacina;
+import jframePregled.JFramePregledRacunaPoStatusu;
 import jframePregled.JFramePregledZaposlenih;
 import jframePregled.JFrameStavkeRacunaPregled;
 import kontroler.Kontroler;
@@ -589,6 +590,21 @@ public class GlavniProzorVeleprodaja {
 		});
 		mntmPregledRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));	
 		mnProdajaAdmin.add(mntmPregledRacunaAdmin);
+		
+		JMenuItem mntmPregledRaunaPo = new JMenuItem("Pregled ra\u010Duna po statusu");
+		mntmPregledRaunaPo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFramePregledRacunaPoStatusu rps = new JFramePregledRacunaPoStatusu();
+				rps.getRdbtnStorniran().setEnabled(false);
+				//panelAdmin.setVisible(false);
+				rps.setVisible(true);
+				
+				
+			}
+		});
+		mntmPregledRaunaPo.setFont(new Font("Arial", Font.PLAIN, 13));
+		mnProdajaAdmin.add(mntmPregledRaunaPo);
 
 		JMenu mnAnalizaProdajeAdmin = new JMenu("Analiza prodaje");
 		mnAnalizaProdajeAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
