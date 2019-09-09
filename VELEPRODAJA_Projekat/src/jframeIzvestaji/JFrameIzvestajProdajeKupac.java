@@ -5,11 +5,14 @@ import java.awt.EventQueue;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
 
@@ -29,6 +32,9 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.HeadlessException;
+
+import javax.swing.JButton;
 
 public class JFrameIzvestajProdajeKupac extends JFrame {
 
@@ -43,8 +49,26 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 	private JComboBox comboBoxGrupaArtikalaIzvestajKupac;
 	private JDateChooser dateChooserDoIzvestajKupac;
 	private JDateChooser dateOdKupacIzvestaj;
+	private JButton btnURedu;
+	private JButton btnPonisti;
 	
 	
+	public JComboBox getComboBoxArtikalIzvestajKupac() {
+		return comboBoxArtikalIzvestajKupac;
+	}
+
+	public void setComboBoxArtikalIzvestajKupac(JComboBox comboBoxArtikalIzvestajKupac) {
+		this.comboBoxArtikalIzvestajKupac = comboBoxArtikalIzvestajKupac;
+	}
+
+	public JComboBox getComboBoxGrupaArtikalaIzvestajKupac() {
+		return comboBoxGrupaArtikalaIzvestajKupac;
+	}
+
+	public void setComboBoxGrupaArtikalaIzvestajKupac(JComboBox comboBoxGrupaArtikalaIzvestajKupac) {
+		this.comboBoxGrupaArtikalaIzvestajKupac = comboBoxGrupaArtikalaIzvestajKupac;
+	}
+
 	public JComboBox getComboBoxIzvestajKupac() {
 		return comboBoxIzvestajKupac;
 	}
@@ -159,7 +183,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 		JPanel panelPodacizaPeriodKupac = new JPanel();
 		panelPodacizaPeriodKupac.setLayout(null);
 		panelPodacizaPeriodKupac.setBorder(new TitledBorder(null, "Podaci za period", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPodacizaPeriodKupac.setBounds(350, 20, 470, 60);
+		panelPodacizaPeriodKupac.setBounds(350, 20, 650, 60);
 		contentPane.add(panelPodacizaPeriodKupac);
 		
 		JLabel label = new JLabel("DO :");
@@ -179,6 +203,52 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 		dateOdKupacIzvestaj = new JDateChooser();
 		dateOdKupacIzvestaj.setBounds(60, 30, 150, 20);
 		panelPodacizaPeriodKupac.add(dateOdKupacIzvestaj);
+		
+		btnURedu = new JButton("U redu");
+		btnURedu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+try {
+					
+					if(dateOdKupacIzvestaj.getDate() == null || dateChooserDoIzvestajKupac.getDate() == null)
+					{
+						JOptionPane.showMessageDialog(btnURedu, "Unesite datume!");
+						return;
+					}					
+					
+					Date datumOD = dateOdKupacIzvestaj.getDate();
+					Date datumDO = dateChooserDoIzvestajKupac.getDate();
+					
+					Date today = Calendar.getInstance().getTime();
+					if(datumOD.after(datumDO)) {
+						JOptionPane.showMessageDialog(btnURedu, "Uneli ste pogresan datum u polje! \n(datum OD < datum DO)");
+						
+						return;
+						
+					}
+					//dateChooserOdIzvestajProdaje.setDate(null);
+					//dateChooserrDoIzvestajProdaje.setDate(null);
+					
+					
+					if(dateOdKupacIzvestaj.getDate() != null && dateChooserDoIzvestajKupac.getDate() != null) {
+						comboBoxIzvestajKupac.setEnabled(true);
+						comboBoxGrupaArtikalaIzvestajKupac.setEnabled(true);
+						comboBoxArtikalIzvestajKupac.setEnabled(true);
+						//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+						//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
+						//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+						
+					}
+					
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+		});
+		btnURedu.setFont(new Font("Arial", Font.BOLD, 14));
+		btnURedu.setBounds(500, 30, 100, 25);
+		panelPodacizaPeriodKupac.add(btnURedu);
 		
 		JPanel panelFilterKupac = new JPanel();
 		panelFilterKupac.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -353,6 +423,42 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 		textFieldRucIzvestajProdajeKupac.setColumns(10);
 		textFieldRucIzvestajProdajeKupac.setBounds(970, 20, 120, 20);
 		panelIzvestajKupac.add(textFieldRucIzvestajProdajeKupac);
+		
+		btnPonisti = new JButton("Poni\u0161ti");
+		btnPonisti.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonisti.setBounds(850, 140, 90, 25);
+		contentPane.add(btnPonisti);
+		
+		btnPonisti.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					postaviModelProdajaPoKupcu(new ArrayList<>(), tableIzvestajKupac);
+					suma(tableIzvestajKupac);
+					
+					//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
+					//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+					//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+					
+					dateOdKupacIzvestaj.setDate(null);
+					dateChooserDoIzvestajKupac.setDate(null);
+					
+					textFieldNabavnaVrenostIzvestajKupac.setText("");
+					textFieldOsnovicaIzvestajKupac.setText("");
+					textFieldRucIzvestajProdajeKupac.setText("");
+					textProdajnavrednostIzvestajProdajeKupac.setText("");
+					
+					comboBoxIzvestajKupac.setEnabled(false);
+					comboBoxGrupaArtikalaIzvestajKupac.setEnabled(false);
+					comboBoxArtikalIzvestajKupac.setEnabled(false);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 	}
 	
 	private void postaviModelProdajaPoKupcu(ArrayList lista, JTable t){

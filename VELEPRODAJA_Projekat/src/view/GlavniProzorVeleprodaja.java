@@ -666,6 +666,10 @@ public class GlavniProzorVeleprodaja {
 				
 				JFrameIzvestajProdajeKupac pk = new JFrameIzvestajProdajeKupac();
 				pk.setVisible(true);
+				
+				pk.getComboBoxIzvestajKupac().setEnabled(false);
+				pk.getComboBoxGrupaArtikalaIzvestajKupac().setEnabled(false);
+				pk.getComboBoxArtikalIzvestajKupac().setEnabled(false);
 			
 			}
 		});
@@ -678,6 +682,12 @@ public class GlavniProzorVeleprodaja {
 				
 				JFrameIzvestajProdajeZaposleni pz = new JFrameIzvestajProdajeZaposleni();
 				pz.setVisible(true);
+				
+				pz.getComboBoxZaposleniIzvestaj().setEnabled(false);
+				pz.getComboBoxIzvestajZaposleniGrupaArtikla().setEnabled(false);
+				pz.getComboBoxIzvestakZaposlenihArikal().setEnabled(false);
+				
+				
 				postaviModelProdajaPoZaposlenom(new ArrayList<>(), pz.getTableIzvestajProdajeZaposlenog());
 				ArrayList lista;
 				try {

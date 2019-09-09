@@ -6,11 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
 import com.toedter.calendar.JDateChooser;
@@ -28,6 +31,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.HeadlessException;
+
+import javax.swing.JButton;
 
 public class JFrameIzvestajProdajeZaposleni extends JFrame {
 
@@ -40,11 +46,50 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 	private JComboBox comboBoxIzvestakZaposlenihArikal;
 	private JComboBox comboBoxZaposleniIzvestaj;
 	private JComboBox comboBoxIzvestajZaposleniGrupaArtikla;
-	
-	
-	
+	private JDateChooser dateChooserDoIzvestajZaposlenog;
+	private JDateChooser dateChooserOdIzvestajZaposlenog;
+	private JButton btnURedu;
+	private JButton btnPonisti;
 
-	
+	public JComboBox getComboBoxIzvestakZaposlenihArikal() {
+		return comboBoxIzvestakZaposlenihArikal;
+	}
+
+	public void setComboBoxIzvestakZaposlenihArikal(JComboBox comboBoxIzvestakZaposlenihArikal) {
+		this.comboBoxIzvestakZaposlenihArikal = comboBoxIzvestakZaposlenihArikal;
+	}
+
+	public JComboBox getComboBoxZaposleniIzvestaj() {
+		return comboBoxZaposleniIzvestaj;
+	}
+
+	public void setComboBoxZaposleniIzvestaj(JComboBox comboBoxZaposleniIzvestaj) {
+		this.comboBoxZaposleniIzvestaj = comboBoxZaposleniIzvestaj;
+	}
+
+	public JComboBox getComboBoxIzvestajZaposleniGrupaArtikla() {
+		return comboBoxIzvestajZaposleniGrupaArtikla;
+	}
+
+	public void setComboBoxIzvestajZaposleniGrupaArtikla(JComboBox comboBoxIzvestajZaposleniGrupaArtikla) {
+		this.comboBoxIzvestajZaposleniGrupaArtikla = comboBoxIzvestajZaposleniGrupaArtikla;
+	}
+
+	public JDateChooser getDateChooserDoIzvestajZaposlenog() {
+		return dateChooserDoIzvestajZaposlenog;
+	}
+
+	public void setDateChooserDoIzvestajZaposlenog(JDateChooser dateChooserDoIzvestajZaposlenog) {
+		this.dateChooserDoIzvestajZaposlenog = dateChooserDoIzvestajZaposlenog;
+	}
+
+	public JDateChooser getDateChooserOdIzvestajZaposlenog() {
+		return dateChooserOdIzvestajZaposlenog;
+	}
+
+	public void setDateChooserOdIzvestajZaposlenog(JDateChooser dateChooserOdIzvestajZaposlenog) {
+		this.dateChooserOdIzvestajZaposlenog = dateChooserOdIzvestajZaposlenog;
+	}
 
 	public JTable getTableIzvestajProdajeZaposlenog() {
 		return tableIzvestajProdajeZaposlenog;
@@ -151,7 +196,7 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 		});
 		
 		JPanel panelPodaciZaPeriodIzvestajZaposleni = new JPanel();
-		panelPodaciZaPeriodIzvestajZaposleni.setBounds(350, 20, 470, 60);
+		panelPodaciZaPeriodIzvestajZaposleni.setBounds(350, 20, 620, 60);
 		panelPodaciZaPeriodIzvestajZaposleni.setLayout(null);
 		panelPodaciZaPeriodIzvestajZaposleni.setBorder(new TitledBorder(null, "Podaci za period", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panelPodaciZaPeriodIzvestajZaposleni);
@@ -166,13 +211,59 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 		label_1.setBounds(10, 30, 30, 20);
 		panelPodaciZaPeriodIzvestajZaposleni.add(label_1);
 		
-		JDateChooser dateChooserDoIzvestajZaposlenog = new JDateChooser();
+		dateChooserDoIzvestajZaposlenog = new JDateChooser();
 		dateChooserDoIzvestajZaposlenog.setBounds(310, 30, 150, 20);
 		panelPodaciZaPeriodIzvestajZaposleni.add(dateChooserDoIzvestajZaposlenog);
 		
-		JDateChooser dateChooserOdIzvestajZaposlenog = new JDateChooser();
+		dateChooserOdIzvestajZaposlenog = new JDateChooser();
 		dateChooserOdIzvestajZaposlenog.setBounds(60, 30, 150, 20);
 		panelPodaciZaPeriodIzvestajZaposleni.add(dateChooserOdIzvestajZaposlenog);
+		
+		btnURedu = new JButton("U redu");
+		btnURedu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+try {
+					
+					if(dateChooserOdIzvestajZaposlenog.getDate() == null || dateChooserDoIzvestajZaposlenog.getDate() == null)
+					{
+						JOptionPane.showMessageDialog(btnURedu, "Unesite datume!");
+						return;
+					}					
+					
+					Date datumOD = dateChooserOdIzvestajZaposlenog.getDate();
+					Date datumDO = dateChooserDoIzvestajZaposlenog.getDate();
+					
+					Date today = Calendar.getInstance().getTime();
+					if(datumOD.after(datumDO)) {
+						JOptionPane.showMessageDialog(btnURedu, "Uneli ste pogresan datum u polje! \n(datum OD < datum DO)");
+						
+						return;
+						
+					}
+					//dateChooserOdIzvestajProdaje.setDate(null);
+					//dateChooserrDoIzvestajProdaje.setDate(null);
+					
+					
+					if(dateChooserOdIzvestajZaposlenog.getDate() != null && dateChooserDoIzvestajZaposlenog.getDate() != null) {
+						comboBoxZaposleniIzvestaj.setEnabled(true);
+						comboBoxIzvestajZaposleniGrupaArtikla.setEnabled(true);
+						comboBoxIzvestakZaposlenihArikal.setEnabled(true);
+						//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+						//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
+						//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+						
+					}
+					
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+			}
+		});
+		btnURedu.setFont(new Font("Arial", Font.BOLD, 14));
+		btnURedu.setBounds(500, 30, 100, 25);
+		panelPodaciZaPeriodIzvestajZaposleni.add(btnURedu);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(30, 200, 1220, 230);
@@ -239,7 +330,7 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 		comboBoxIzvestakZaposlenihArikal.setBounds(490, 20, 200, 20);
 		panelFilterIzvestaZaposleni.add(comboBoxIzvestakZaposlenihArikal);
 		
-comboBoxIzvestajZaposleniGrupaArtikla.addActionListener(new ActionListener() {
+        comboBoxIzvestajZaposleniGrupaArtikla.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -340,6 +431,43 @@ comboBoxIzvestajZaposleniGrupaArtikla.addActionListener(new ActionListener() {
 		textFieldRucIzvestajProdajeZaposleni.setColumns(10);
 		textFieldRucIzvestajProdajeZaposleni.setBounds(970, 20, 120, 20);
 		panelIzvestajZaposleni.add(textFieldRucIzvestajProdajeZaposleni);
+		
+		btnPonisti = new JButton("Poni\u0161ti");
+		btnPonisti.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonisti.setBounds(850, 140, 90, 25);
+		contentPane.add(btnPonisti);
+		
+		btnPonisti.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					postaviModelProdajaPoZaposlenom(new ArrayList<>(), tableIzvestajProdajeZaposlenog);
+					suma(tableIzvestajProdajeZaposlenog);
+					
+					//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
+					//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+					//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+					
+					dateChooserOdIzvestajZaposlenog.setDate(null);
+					dateChooserDoIzvestajZaposlenog.setDate(null);
+					
+					textFieldNabavnaVrenostIzvestajZaposleni.setText("");
+					textFieldOsnovicaIzvestajZaposleni.setText("");
+					textFieldRucIzvestajProdajeZaposleni.setText("");
+					textProdajnavrednostIzvestajProdajeZaposleni.setText("");
+					
+					comboBoxZaposleniIzvestaj.setEnabled(false);
+					comboBoxIzvestajZaposleniGrupaArtikla.setEnabled(false);
+					comboBoxIzvestakZaposlenihArikal.setEnabled(false);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 	}
 	
 	private void postaviModelProdajaPoZaposlenom(ArrayList lista, JTable t){

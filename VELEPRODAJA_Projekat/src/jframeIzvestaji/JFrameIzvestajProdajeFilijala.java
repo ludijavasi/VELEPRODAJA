@@ -332,6 +332,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		panel_1.add(lblArtikalIzvestajProdaje);
 		
 		comboBoxArtikalIzvestajProdaje = new JComboBox();
+		comboBoxArtikalIzvestajProdaje.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxArtikalIzvestajProdaje.setBounds(490, 20, 200, 20);
 		panel_1.add(comboBoxArtikalIzvestajProdaje);		
 		//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
@@ -465,16 +466,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				
 			}			
 			
-		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		});		
 		
 		
 	}
