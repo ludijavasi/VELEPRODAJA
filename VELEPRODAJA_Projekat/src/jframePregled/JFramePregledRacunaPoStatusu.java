@@ -121,13 +121,18 @@ public class JFramePregledRacunaPoStatusu extends JFrame {
 				postaviModelPregledRacunaPoStatusu(new ArrayList<Kupac>(), tablePregledRacunaPoStatusu);
 				ArrayList lista;
 				try {
+					
+					if(dateChooserPregledRacunaOD.getDate() == null || dateChooserPregledRacunaDO.getDate() == null)
+					{
+						JOptionPane.showMessageDialog(btnPretraziPregledRAcuna, "Unesite datume!");
+						return;
+					}
+					
+					    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+					    String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
+					    String sd1 = sdf.format(dateChooserPregledRacunaDO.getDate());
 						
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-						String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
-						String sd1 = sdf.format(dateChooserPregledRacunaDO.getDate());
-						
-						//String status_racuna = 
-						
+												
 						Date datumOD = dateChooserPregledRacunaOD.getDate();
 						Date datumDO = dateChooserPregledRacunaDO.getDate();
 						
@@ -142,15 +147,10 @@ public class JFramePregledRacunaPoStatusu extends JFrame {
 						dateChooserPregledRacunaOD.setSelectableDateRange(null, null);
 						dateChooserPregledRacunaDO.setSelectableDateRange(null, null);
 						
-						if(dateChooserPregledRacunaOD == null || dateChooserPregledRacunaDO == null)
-						{
-							JOptionPane.showMessageDialog(btnPretraziPregledRAcuna, "Unesite datume!");
-							return;
-						}
-
-						//lista = Kontroler.getInstance().getRacunPregledRacuna(sd, sd1);
 						
-						//String statusRacuna = null;
+						
+						
+						
 						lista = Kontroler.getInstance().getRacunPregledRacunaPoStatusu(sd, sd1);
 						
 						postaviModelPregledRacunaPoStatusu(lista, tablePregledRacunaPoStatusu);

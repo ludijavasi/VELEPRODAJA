@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -646,7 +648,14 @@ public class GlavniProzorVeleprodaja {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameIzvestajProdajeFilijala ip = new JFrameIzvestajProdajeFilijala();
 				ip.setVisible(true);
-			}
+				
+				ip.getComboBoxFilijalaIzvestajProdaje().setEnabled(false);
+				ip.getComboBoxGrupaArtikalaIzvestajProdaje().setEnabled(false);
+				ip.getComboBoxArtikalIzvestajProdaje().setEnabled(false);
+				//ip.getDateChooserrDoIzvestajProdaje().setEnabled(false);				
+				
+			}			
+			
 		});
 		mntmProdajaPoArtikluAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmProdajaPoArtikluAdmin);

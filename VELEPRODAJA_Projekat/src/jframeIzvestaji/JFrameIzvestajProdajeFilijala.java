@@ -2,15 +2,17 @@ package jframeIzvestaji;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 
@@ -29,6 +31,8 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.HeadlessException;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
@@ -46,6 +50,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 	private JDateChooser dateChooserrDoIzvestajProdaje;
 	private JDateChooser dateChooserOdIzvestajProdaje;
 	private JComboBox comboBoxGrupaArtikalaIzvestajProdaje;		
+	private JButton btnURedu;
 	
 
 	public void setComboBoxArtikalIzvestajProdaje(JComboBox comboBoxArtikalIzvestajProdaje) {
@@ -142,7 +147,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Podaci za period", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(350, 20, 470, 60);
+		panel.setBounds(350, 20, 620, 60);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -164,9 +169,54 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		dateChooserOdIzvestajProdaje.setBounds(60, 30, 150, 20);
 		panel.add(dateChooserOdIzvestajProdaje);
 		
-		if(dateChooserOdIzvestajProdaje == null && dateChooserrDoIzvestajProdaje == null) {
-			comboBoxFilijalaIzvestajProdaje.setEditable(false);
-		}
+		btnURedu = new JButton("U redu");
+		btnURedu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					
+					if(dateChooserOdIzvestajProdaje.getDate() == null || dateChooserrDoIzvestajProdaje.getDate() == null)
+					{
+						JOptionPane.showMessageDialog(btnURedu, "Unesite datume!");
+						return;
+					}					
+					
+					Date datumOD = dateChooserOdIzvestajProdaje.getDate();
+					Date datumDO = dateChooserrDoIzvestajProdaje.getDate();
+					
+					Date today = Calendar.getInstance().getTime();
+					if(datumOD.after(datumDO)) {
+						JOptionPane.showMessageDialog(btnURedu, "Uneli ste pogresan datum u polje! \n(datum OD < datum DO)");
+						
+						return;
+						
+					}
+					//dateChooserOdIzvestajProdaje.setDate(null);
+					//dateChooserrDoIzvestajProdaje.setDate(null);
+					
+					
+					if(dateChooserOdIzvestajProdaje.getDate() != null && dateChooserrDoIzvestajProdaje.getDate() != null) {
+						comboBoxFilijalaIzvestajProdaje.setEnabled(true);
+						comboBoxGrupaArtikalaIzvestajProdaje.setEnabled(true);
+						comboBoxArtikalIzvestajProdaje.setEnabled(true);
+						//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+						//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
+						//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+						
+					}
+					
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+				
+			}
+		});
+		btnURedu.setFont(new Font("Arial", Font.BOLD, 14));
+		btnURedu.setBounds(500, 30, 100, 25);
+		panel.add(btnURedu);
+		
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -404,6 +454,10 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 					textFieldOsnovicaIzvestajFilijala.setText("");
 					textFieldRucIzvestajProdajeFiljala.setText("");
 					txtProdajnavrednostIzvestajProdajeFilijala.setText("");
+					
+					comboBoxFilijalaIzvestajProdaje.setEnabled(false);
+					comboBoxGrupaArtikalaIzvestajProdaje.setEnabled(false);
+					comboBoxArtikalIzvestajProdaje.setEnabled(false);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
