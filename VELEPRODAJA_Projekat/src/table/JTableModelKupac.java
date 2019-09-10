@@ -71,7 +71,7 @@ public class JTableModelKupac extends AbstractTableModel {
 		case 2:
 			return "ADRESA";
 		case 3:
-			return "GRAD/OPSTINA";
+			return "GRAD/OPŠTINA";
 		case 4:
 			return "TELEFON";
 		case 5:
@@ -81,7 +81,7 @@ public class JTableModelKupac extends AbstractTableModel {
 		case 7:
 			return "PIB";	
 		case 8:
-			return "TEKUCI RACUN";
+			return "TEKUĆI RAČUN";
 		case 9:
 			return "VALUTA";
 		case 10:

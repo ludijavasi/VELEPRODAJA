@@ -54,13 +54,13 @@ public class JTableModelCenaArtikla extends AbstractTableModel {
 		public String getColumnName(int c) {
 			switch (c) {
 			case 0:
-				return "NAZIV GRUPE ARTIKLA";
+				return "NAZIV GRUPE ARTIKALA";
 			case 1:
 				return "ID ARTIKLA";
 			case 2:
 				return "NAZIV ARTIKLA";
 			case 3:
-					return "MARZA";
+					return "MARŽA";
 			case 4:
 				return "PDV";
 			case 5:

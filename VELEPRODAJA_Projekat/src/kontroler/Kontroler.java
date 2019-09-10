@@ -287,19 +287,19 @@ public class Kontroler {
 	    return di.getIzvestajProdajePoKupcuPoGrupiPoArtiklu(id_kupca, id_grupe_artikala, id_artikla,d,d1);
 	}
 	
-	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenom(Integer id_zaposlenog) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenom(Integer id_zaposlenog, String d, String d1) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();
-		return di.getIzvestajProdajePoZposlenom(id_zaposlenog);
+		return di.getIzvestajProdajePoZposlenom(id_zaposlenog, d, d1);
 	}
 	
-	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupi(Integer id_zaposlenog, Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupi(Integer id_zaposlenog, Integer id_grupe_artikala, String d, String d1) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();
-		return di.getIzvestajProdajePoZposlenomPoGrupi(id_zaposlenog, id_grupe_artikala);
+		return di.getIzvestajProdajePoZposlenomPoGrupi(id_zaposlenog, id_grupe_artikala, d, d1);
 	}
 	
-	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(Integer id_zaposlenog, Integer id_grupe_artikala, Integer id_artikla) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(Integer id_zaposlenog, Integer id_grupe_artikala, Integer id_artikla, String d, String d1) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();
-		return di.getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(id_zaposlenog, id_grupe_artikala, id_artikla);
+		return di.getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(id_zaposlenog, id_grupe_artikala, id_artikla, d, d1);
 	}
 	public ArrayList<Izvestaj> getIzvestajProdajePoKupcuRacun(Integer id_kupca, String d, String d1) throws ClassNotFoundException, SQLException {
 		DAOIzvestaj di = new DAOIzvestaj();

@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class JFrameStavkeRacunaPregled extends JFrame {
 
@@ -111,62 +112,72 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameStavkeRacunaPregled() {
-		setTitle("RACUN / OTPREMNICA");
+		setTitle("STAVKE PRODAJE RA\u010CUNA / OTPREMNICE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 636, 449);
+		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblGrupaArtikala = new JLabel("Grupa artikala :");
-		lblGrupaArtikala.setBounds(10, 25, 114, 14);
+		lblGrupaArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGrupaArtikala.setBounds(10, 30, 150, 20);
 		contentPane.add(lblGrupaArtikala);
 		
 		JLabel lblArtikal = new JLabel("Artikal :");
-		lblArtikal.setBounds(10, 50, 77, 14);
+		lblArtikal.setFont(new Font("Arial", Font.BOLD, 14));
+		lblArtikal.setBounds(10, 60, 150, 20);
 		contentPane.add(lblArtikal);
 		
 		JLabel lblJedinicaMere = new JLabel("Jedinica mere :");
-		lblJedinicaMere.setBounds(10, 75, 98, 14);
+		lblJedinicaMere.setFont(new Font("Arial", Font.BOLD, 14));
+		lblJedinicaMere.setBounds(10, 90, 150, 20);
 		contentPane.add(lblJedinicaMere);
 		
-		JLabel lblDostupnaKolicina = new JLabel("Dostupna kolicina :");
-		lblDostupnaKolicina.setBounds(10, 100, 114, 14);
+		JLabel lblDostupnaKolicina = new JLabel("Dostupna koli\u010Dina :");
+		lblDostupnaKolicina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblDostupnaKolicina.setBounds(10, 120, 150, 20);
 		contentPane.add(lblDostupnaKolicina);
 		
-		JLabel lblKolicina = new JLabel("Kolicina :");
-		lblKolicina.setBounds(10, 125, 77, 14);
+		JLabel lblKolicina = new JLabel("Koli\u010Dina :");
+		lblKolicina.setFont(new Font("Arial", Font.BOLD, 14));
+		lblKolicina.setBounds(10, 150, 150, 20);
 		contentPane.add(lblKolicina);
 		
 		JLabel lblRabat = new JLabel("Rabat :");
-		lblRabat.setBounds(10, 150, 77, 14);
+		lblRabat.setFont(new Font("Arial", Font.BOLD, 14));
+		lblRabat.setBounds(10, 180, 150, 20);
 		contentPane.add(lblRabat);
 		
 		textFieldJedinicaMere = new JTextField();
-		textFieldJedinicaMere.setBounds(184, 72, 137, 20);
+		textFieldJedinicaMere.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldJedinicaMere.setBounds(180, 90, 160, 20);
 		contentPane.add(textFieldJedinicaMere);
 		textFieldJedinicaMere.setColumns(10);
 		
 		textFieldDostupnaKolicina = new JTextField();
-		textFieldDostupnaKolicina.setBounds(184, 97, 137, 20);
+		textFieldDostupnaKolicina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldDostupnaKolicina.setBounds(180, 120, 160, 20);
 		contentPane.add(textFieldDostupnaKolicina);
 		textFieldDostupnaKolicina.setColumns(10);
 		textFieldDostupnaKolicina.setText("*****");
 		textFieldDostupnaKolicina.setEditable(false);
 		
 		textFieldKolicina = new JTextField();
-		textFieldKolicina.setBounds(184, 122, 137, 20);
+		textFieldKolicina.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldKolicina.setBounds(180, 150, 160, 20);
 		contentPane.add(textFieldKolicina);
 		textFieldKolicina.setColumns(10);
 		
 		textFieldRabat = new JTextField();
-		textFieldRabat.setBounds(184, 147, 137, 20);
+		textFieldRabat.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldRabat.setBounds(180, 180, 160, 20);
 		contentPane.add(textFieldRabat);
 		textFieldRabat.setColumns(10);
 		
 		JScrollPane scrollPaneRacunOtpremnica = new JScrollPane();
-		scrollPaneRacunOtpremnica.setBounds(10, 191, 600, 151);
+		scrollPaneRacunOtpremnica.setBounds(10, 230, 664, 170);
 		contentPane.add(scrollPaneRacunOtpremnica);
 		
 		tableRacunOtpremnica = new JTable();
@@ -174,16 +185,19 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 		
 		
 				
-		btnSacuvajStavkeRacuna = new JButton("Sacuvaj");
-		btnSacuvajStavkeRacuna.setBounds(10, 376, 89, 23);
+		btnSacuvajStavkeRacuna = new JButton("Sa\u010Duvaj");
+		btnSacuvajStavkeRacuna.setFont(new Font("Arial", Font.BOLD, 14));
+		btnSacuvajStavkeRacuna.setBounds(10, 430, 150, 25);
 		contentPane.add(btnSacuvajStavkeRacuna);
 		
 		btnPrekidStavkeRacuna = new JButton("Prekid");
-		btnPrekidStavkeRacuna.setBounds(158, 376, 89, 23);
+		btnPrekidStavkeRacuna.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPrekidStavkeRacuna.setBounds(220, 430, 150, 25);
 		contentPane.add(btnPrekidStavkeRacuna);
 		
 		comboBoxGrupaArtikalaRacunStavke = new JComboBox();
-		comboBoxGrupaArtikalaRacunStavke.setBounds(184, 22, 137, 20);
+		comboBoxGrupaArtikalaRacunStavke.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxGrupaArtikalaRacunStavke.setBounds(180, 30, 160, 20);
 		contentPane.add(comboBoxGrupaArtikalaRacunStavke);		
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaRacunStavke);
 		comboBoxGrupaArtikalaRacunStavke.setSelectedItem(null);	
@@ -216,8 +230,9 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 	
 		
 		comboBoxArtikalRacunStavke = new JComboBox();
+		comboBoxArtikalRacunStavke.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxArtikalRacunStavke.setEditable(true);
-		comboBoxArtikalRacunStavke.setBounds(184, 47, 137, 20);
+		comboBoxArtikalRacunStavke.setBounds(180, 60, 160, 20);
 		popuniComboBoxArtikliTSVI(comboBoxArtikalRacunStavke);		
 		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalRacunStavke);
 		contentPane.add(comboBoxArtikalRacunStavke);
@@ -255,7 +270,7 @@ public class JFrameStavkeRacunaPregled extends JFrame {
 			
 		
 		textFieldIdRacunStavkeRacuna = new JTextField();
-		textFieldIdRacunStavkeRacuna.setBounds(331, 22, 86, 20);
+		textFieldIdRacunStavkeRacuna.setBounds(423, 23, 86, 20);
 		contentPane.add(textFieldIdRacunStavkeRacuna);
 		textFieldIdRacunStavkeRacuna.setColumns(10);
 		textFieldIdRacunStavkeRacuna.setVisible(false);

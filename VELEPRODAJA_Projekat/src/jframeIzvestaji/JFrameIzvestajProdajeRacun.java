@@ -7,12 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
@@ -24,6 +29,7 @@ import model.Filijala;
 import model.GrupaArtikala;
 import model.Izvestaj;
 import model.Kupac;
+import model.Zaposleni;
 import table.JTableModelPregledRacunaRacuna;
 import table.JTableModelProdajPoRacunu;
 import table.JTableModelProdajaPoFilijali;
@@ -32,6 +38,7 @@ import table.JTableModelProdajaPoKupacu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class JFrameIzvestajProdajeRacun extends JFrame {
 
@@ -45,8 +52,22 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 	private JTextField textFieldNbavnaVrednostRacun;
 	private JTextField textFieldOsnovicaRAcun;
 	private JTextField textFieldProdajnaVrednostRacun;
-	private JTextField textFieldRucRacun;
+	private JTextField textFieldRucRacun;	
+	private JButton btnPonisti;
+	private JButton btnURedu;
 	
+
+	public JComboBox getComboBoxKupacPregledRacuna() {
+		return comboBoxKupacPregledRacuna;
+	}
+
+	public JComboBox getComboBoxGrupaArtiklaPregledRacuna() {
+		return comboBoxGrupaArtiklaPregledRacuna;
+	}
+
+	public JComboBox getComboBoxArtikalPregledRAcuna() {
+		return comboBoxArtikalPregledRAcuna;
+	}
 
 	/**
 	 * Launch the application.
@@ -68,8 +89,9 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameIzvestajProdajeRacun() {
+		setTitle("IZVE\u0160TAJ PRODAJE PO RA\u010CUNIMA");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1170, 603);
+		setBounds(100, 100, 1300, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -77,12 +99,12 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 		
 		JLabel label = new JLabel("Kupac : ");
 		label.setFont(new Font("Arial", Font.BOLD, 14));
-		label.setBounds(10, 11, 170, 20);
+		label.setBounds(30, 20, 170, 20);
 		contentPane.add(label);
 		
 		comboBoxKupacPregledRacuna = new JComboBox();
 		comboBoxKupacPregledRacuna.setFont(new Font("Arial", Font.PLAIN, 13));
-		comboBoxKupacPregledRacuna.setBounds(10, 42, 200, 20);
+		comboBoxKupacPregledRacuna.setBounds(30, 60, 200, 20);
 		contentPane.add(comboBoxKupacPregledRacuna);
 		popuniComboBoxIzvestajKupac(comboBoxKupacPregledRacuna);
 		comboBoxKupacPregledRacuna.setSelectedItem(null);
@@ -92,7 +114,7 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 				
 				postaviModelProdajaPoRacunu(new ArrayList<Kupac>(), tablePregledRAcuna);
 				ArrayList lista;
-				try {
+				try { 			
 						
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
@@ -115,7 +137,7 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 		JPanel panelPodaciZaPeriodRacun = new JPanel();
 		panelPodaciZaPeriodRacun.setLayout(null);
 		panelPodaciZaPeriodRacun.setBorder(new TitledBorder(null, "Podaci za period", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPodaciZaPeriodRacun.setBounds(274, 11, 470, 60);
+		panelPodaciZaPeriodRacun.setBounds(350, 20, 650, 60);
 		contentPane.add(panelPodaciZaPeriodRacun);
 		
 		JLabel label_1 = new JLabel("DO :");
@@ -136,10 +158,56 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 		dateChooserPregledRacunaOD.setBounds(60, 30, 150, 20);
 		panelPodaciZaPeriodRacun.add(dateChooserPregledRacunaOD);
 		
+		btnURedu = new JButton("U redu");
+		btnURedu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+            try {
+					
+					if(dateChooserPregledRacunaOD.getDate() == null || dateChooserpregledRacunaDO.getDate() == null)
+					{
+						JOptionPane.showMessageDialog(btnURedu, "Unesite datume!");
+						return;
+					}					
+					
+					Date datumOD = dateChooserPregledRacunaOD.getDate();
+					Date datumDO = dateChooserpregledRacunaDO.getDate();
+					
+					Date today = Calendar.getInstance().getTime();
+					if(datumOD.after(datumDO)) {
+						JOptionPane.showMessageDialog(btnURedu, "Uneli ste pogresan datum u polje! \n(datum OD < datum DO)");
+						
+						return;
+						
+					}
+					//dateChooserOdIzvestajProdaje.setDate(null);
+					//dateChooserrDoIzvestajProdaje.setDate(null);
+					
+					
+					if(dateChooserPregledRacunaOD.getDate() != null && dateChooserpregledRacunaDO.getDate() != null) {
+						comboBoxKupacPregledRacuna.setEnabled(true);
+						comboBoxGrupaArtiklaPregledRacuna.setEnabled(true);
+						comboBoxArtikalPregledRAcuna.setEnabled(true);
+						//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+						//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
+						//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+						
+					}
+					
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+		});
+		btnURedu.setFont(new Font("Arial", Font.BOLD, 14));
+		btnURedu.setBounds(500, 30, 100, 25);
+		panelPodaciZaPeriodRacun.add(btnURedu);
+		
 		JPanel panelFilterPregledRacuna = new JPanel();
 		panelFilterPregledRacuna.setLayout(null);
 		panelFilterPregledRacuna.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelFilterPregledRacuna.setBounds(10, 92, 734, 50);
+		panelFilterPregledRacuna.setBounds(30, 120, 710, 50);
 		contentPane.add(panelFilterPregledRacuna);
 		
 		JLabel label_3 = new JLabel("Grupa artikla :");
@@ -151,6 +219,63 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 		comboBoxGrupaArtiklaPregledRacuna.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxGrupaArtiklaPregledRacuna.setBounds(150, 20, 200, 20);
 		panelFilterPregledRacuna.add(comboBoxGrupaArtiklaPregledRacuna);
+		popuniComboBoxGrupaArtikala(comboBoxGrupaArtiklaPregledRacuna);
+		comboBoxGrupaArtiklaPregledRacuna.setSelectedItem(null);
+		
+		comboBoxGrupaArtiklaPregledRacuna.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				postaviModelProdajaPoRacunu(new ArrayList<GrupaArtikala>(), tablePregledRAcuna);
+				ArrayList lista;
+				try { 
+					    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+					    String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
+					    String sd1 = sdf.format(dateChooserpregledRacunaDO.getDate());
+					
+						lista = Kontroler.getInstance().getIzvestajProdajePoKupcuPoGrupi(((Kupac) 
+								comboBoxKupacPregledRacuna.getSelectedItem()).getIdKupca(),((GrupaArtikala) 
+										comboBoxGrupaArtiklaPregledRacuna.getSelectedItem()).getIdGrupeArtikala(), sd, sd1);
+						postaviModelProdajaPoRacunu(lista, tablePregledRAcuna);
+						suma(tablePregledRAcuna);
+						
+					
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				
+			}
+		});		
+		
+		comboBoxGrupaArtiklaPregledRacuna.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				if (comboBoxGrupaArtiklaPregledRacuna.getSelectedItem() != null) {
+					
+					//pamcenje i skidanje actionlistener-a
+					ActionListener al = comboBoxArtikalPregledRAcuna.getActionListeners()[0];
+					comboBoxArtikalPregledRAcuna.removeActionListener(al);
+					
+					popuniComboBoxArtikli(comboBoxArtikalPregledRAcuna,
+							((GrupaArtikala) comboBoxGrupaArtiklaPregledRacuna.getSelectedItem()).getIdGrupeArtikala());
+					comboBoxArtikalPregledRAcuna.setSelectedItem(null);
+					
+					//vracanje zapamcenog actionlistener-a
+					comboBoxArtikalPregledRAcuna.addActionListener(al);
+				}
+				else
+				{
+					comboBoxArtikalPregledRAcuna.removeAllItems();
+					comboBoxArtikalPregledRAcuna.setSelectedItem(null);
+				}
+				
+			}
+		});
+		
 		
 		JLabel label_4 = new JLabel("Artikal :");
 		label_4.setFont(new Font("Arial", Font.BOLD, 14));
@@ -162,8 +287,35 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 		comboBoxArtikalPregledRAcuna.setBounds(490, 20, 200, 20);
 		panelFilterPregledRacuna.add(comboBoxArtikalPregledRAcuna);
 		
+		comboBoxArtikalPregledRAcuna.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				postaviModelProdajaPoRacunu(new ArrayList<Artikli>(), tablePregledRAcuna);
+				ArrayList lista;
+				try {
+						
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+						String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
+						String sd1 = sdf.format(dateChooserpregledRacunaDO.getDate());
+						lista = Kontroler.getInstance().getIzvestajProdajePoKupcuPoGrupiPoArtiklu(((Kupac) 
+								comboBoxKupacPregledRacuna.getSelectedItem()).getIdKupca(),((GrupaArtikala) 
+								comboBoxGrupaArtiklaPregledRacuna.getSelectedItem()).getIdGrupeArtikala(),
+								((Artikli)comboBoxArtikalPregledRAcuna.getSelectedItem()).getIdArtikla(),sd,sd1);
+						postaviModelProdajaPoRacunu(lista, tablePregledRAcuna);
+						suma(tablePregledRAcuna);
+					
+						
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				
+			}
+		});
+		
 		JScrollPane scrollPanePregledRAcuna = new JScrollPane();
-		scrollPanePregledRAcuna.setBounds(0, 192, 1110, 287);
+		scrollPanePregledRAcuna.setBounds(30, 200, 1220, 230);
 		contentPane.add(scrollPanePregledRAcuna);
 		
 		tablePregledRAcuna = new JTable();
@@ -172,7 +324,7 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(10, 490, 1100, 50);
+		panel.setBounds(30, 500, 1100, 50);
 		contentPane.add(panel);
 		
 		JLabel label_5 = new JLabel("Nabavna vrenost :");
@@ -218,6 +370,45 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 		textFieldRucRacun.setColumns(10);
 		textFieldRucRacun.setBounds(970, 20, 120, 20);
 		panel.add(textFieldRucRacun);
+		
+		btnPonisti = new JButton("Poni\u0161ti");
+		btnPonisti.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonisti.setBounds(850, 140, 90, 25);
+		contentPane.add(btnPonisti);
+		
+		btnPonisti.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					postaviModelProdajaPoRacunu(new ArrayList<>(), tablePregledRAcuna);
+					suma(tablePregledRAcuna);
+					
+					//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
+					//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+					//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
+					
+					dateChooserPregledRacunaOD.setDate(null);
+					dateChooserpregledRacunaDO.setDate(null);
+					
+					textFieldNbavnaVrednostRacun.setText("");
+					textFieldOsnovicaRAcun.setText("");
+					textFieldRucRacun.setText("");
+					textFieldProdajnaVrednostRacun.setText("");
+					
+					comboBoxKupacPregledRacuna.setEnabled(false);
+					comboBoxGrupaArtiklaPregledRacuna.setEnabled(false);
+					comboBoxArtikalPregledRAcuna.setEnabled(false);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		
+		
 	}
 	private void postaviModelProdajaPoRacunu(ArrayList lista, JTable t){
 		JTableModelProdajPoRacunu model = new  JTableModelProdajPoRacunu(lista);
@@ -296,5 +487,4 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 				textFieldOsnovicaRAcun.setText(Double.toString(sum1));
 				textFieldProdajnaVrednostRacun.setText(Double.toString(sum2)); 
 		  }
-
 }

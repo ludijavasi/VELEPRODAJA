@@ -73,6 +73,7 @@ import java.awt.HeadlessException;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -379,14 +380,14 @@ public class GlavniProzorVeleprodaja {
 						int selektovanRed = ro.getTableStavkeRacuna().getSelectedRow();
 						if (selektovanRed >=0) {
 							model.removeRow(selektovanRed);
-							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali red!");
+							JOptionPane.showMessageDialog(null, "Uspešno ste obrisali red!");
 						}else{
 							JOptionPane.showMessageDialog(null, "Morate selektovati red u tabeli!");
 						}
 					}
 				});
 				
-				ro.getBtnZapocniProdajuStavkeRacuna().setBounds(780, 439, 89, 23);
+				ro.getBtnZapocniProdajuStavkeRacuna().setBounds(1024, 500, 150, 25);
 				ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
 					
 					@Override
@@ -401,7 +402,7 @@ public class GlavniProzorVeleprodaja {
 						ro.getBtnPonistiAkcijuRacunOtpremnica().setVisible(false);
 						ro.getBtnZapocniProdajuStavkeRacuna().setVisible(false);
 						ro.getBtnKreirajRacun().setVisible(true);
-						ro.getBtnKreirajRacun().setBounds(780, 439, 89, 23);
+						ro.getBtnKreirajRacun().setBounds(1024, 500, 150, 25);
 						Kupac k1 =(Kupac) ro.getComboBoxKupacRacun().getSelectedItem();
 						int ValutaKupca = k1.getValutaPlacanjaKupca();
 						Date d = ro.getDateChooserRacunOtpremnica().getDate();
@@ -420,7 +421,7 @@ public class GlavniProzorVeleprodaja {
 							RacunOtpremnica ro = new RacunOtpremnica(idzaposlenog,idkupca,datumRacuna,datumNaplateRacuna);
 							generatedID = Kontroler.getInstance().insertRacunOtpremnicu(ro);
 							
-							JOptionPane.showMessageDialog(null, "Kreirali ste racun!");
+							JOptionPane.showMessageDialog(null, "Kreirali ste račun!");
 							
 						} catch (ClassNotFoundException | SQLException e) {
 							// TODO Auto-generated catch block
@@ -520,7 +521,7 @@ public class GlavniProzorVeleprodaja {
 									Kontroler.getInstance().updateRacun(idracuna, poreska_osnovica_racuna, ukupan_iznos_obracunatog_pdv_a_racuna, ukupna_vrednost_racuna);
 									
 									
-									JOptionPane.showMessageDialog(null, "Racun je uspesno zavrsen");
+									JOptionPane.showMessageDialog(null, "Račun je uspešno završen");
 									
 									ro.setVisible(false);									
 									
@@ -643,7 +644,7 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnAnalizaProdajeAdmin.add(mntmProdajnaCenaArtiklaAdmin);
 
-		JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po filijali");
+		JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po filijalama");
 		mntmProdajaPoArtikluAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrameIzvestajProdajeFilijala ip = new JFrameIzvestajProdajeFilijala();
@@ -676,7 +677,7 @@ public class GlavniProzorVeleprodaja {
 		mntmProdajaPoKupcimaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnAnalizaProdajeAdmin.add(mntmProdajaPoKupcimaAdmin);
 
-		JMenuItem mntmSumarniPregledDokumenataAdmin = new JMenuItem("Prodaja po zaposlenom");
+		JMenuItem mntmSumarniPregledDokumenataAdmin = new JMenuItem("Prodaja po zaposlenima");
 		mntmSumarniPregledDokumenataAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -691,7 +692,13 @@ public class GlavniProzorVeleprodaja {
 				postaviModelProdajaPoZaposlenom(new ArrayList<>(), pz.getTableIzvestajProdajeZaposlenog());
 				ArrayList lista;
 				try {
-					lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom(0);
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+			        String sd = sdf.format(pz.getDateChooserOdIzvestajZaposlenog().getDate());
+			        String sd1 = sdf.format(pz.getDateChooserDoIzvestajZaposlenog().getDate()); 
+					
+					
+					lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom(0, sd, sd1);
 					postaviModelProdajaPoZaposlenom(lista, pz.getTableIzvestajProdajeZaposlenog());
 				double sum = 0;
 				double sum1 = 0;
@@ -724,10 +731,13 @@ public class GlavniProzorVeleprodaja {
 		mntmProdajaPoRaunima.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				JFrameIzvestajProdajeRacun izpr = new JFrameIzvestajProdajeRacun();
+				JFrameIzvestajProdajeRacun izpr = new JFrameIzvestajProdajeRacun();				
 				
-				panelAdmin.setVisible(false);
 				izpr.setVisible(true);
+				
+				izpr.getComboBoxArtikalPregledRAcuna().setEnabled(false);
+				izpr.getComboBoxGrupaArtiklaPregledRacuna().setEnabled(false);
+				izpr.getComboBoxKupacPregledRacuna().setEnabled(false);
 			}
 		});
 		mntmProdajaPoRaunima.setFont(new Font("Arial", Font.PLAIN, 13));

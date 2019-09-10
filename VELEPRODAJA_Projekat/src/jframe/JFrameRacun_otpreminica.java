@@ -32,6 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class JFrameRacun_otpreminica extends JFrame {
 
@@ -130,33 +131,37 @@ public class JFrameRacun_otpreminica extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameRacun_otpreminica() {
-		setTitle("Racun/Otpreminica");
+		setTitle("RA\u010CUN / OTPREMNICA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 895, 512);
+		setBounds(100, 100, 1200, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblKupacRacun = new JLabel("Kupac :");
-		lblKupacRacun.setBounds(10, 34, 113, 14);
+		lblKupacRacun.setFont(new Font("Arial", Font.BOLD, 14));
+		lblKupacRacun.setBounds(10, 30, 150, 20);
 		contentPane.add(lblKupacRacun);
 
-		JLabel lblRacunotpreminica = new JLabel("Racun/Otpreminica :");
-		lblRacunotpreminica.setBounds(10, 75, 113, 14);
+		JLabel lblRacunotpreminica = new JLabel("Ra\u010Dun / Otpreminica :");
+		lblRacunotpreminica.setFont(new Font("Arial", Font.BOLD, 14));
+		lblRacunotpreminica.setBounds(10, 70, 160, 20);
 		contentPane.add(lblRacunotpreminica);
 
 		textFieldRacunOtpremnicaRacun = new JTextField();
-		textFieldRacunOtpremnicaRacun.setBounds(133, 72, 130, 20);
+		textFieldRacunOtpremnicaRacun.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldRacunOtpremnicaRacun.setBounds(200, 70, 180, 20);
 		contentPane.add(textFieldRacunOtpremnicaRacun);
 		textFieldRacunOtpremnicaRacun.setColumns(10);
 
 		lblDatumRacun = new JLabel("Datum :");
-		lblDatumRacun.setBounds(306, 34, 46, 14);
+		lblDatumRacun.setFont(new Font("Arial", Font.BOLD, 14));
+		lblDatumRacun.setBounds(500, 30, 130, 20);
 		contentPane.add(lblDatumRacun);
 
 		dateChooserRacunOtpremnica = new JDateChooser();
-		dateChooserRacunOtpremnica.setBounds(410, 31, 277, 20);
+		dateChooserRacunOtpremnica.setBounds(650, 30, 280, 20);
 		contentPane.add(dateChooserRacunOtpremnica);
 		Date date = new Date();
 		Calendar calendar = Calendar.getInstance();
@@ -172,26 +177,30 @@ public class JFrameRacun_otpreminica extends JFrame {
 		dateChooserRacunOtpremnica.setDate(date);
 
 		JLabel lblNetopdvbruto = new JLabel("Neto/PDV/Bruto :");
-		lblNetopdvbruto.setBounds(306, 104, 91, 14);
+		lblNetopdvbruto.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNetopdvbruto.setBounds(500, 110, 130, 20);
 		contentPane.add(lblNetopdvbruto);
 
 		textFieldNetoRacun = new JTextField();
-		textFieldNetoRacun.setBounds(410, 101, 86, 20);
+		textFieldNetoRacun.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldNetoRacun.setBounds(650, 110, 90, 20);
 		contentPane.add(textFieldNetoRacun);
 		textFieldNetoRacun.setColumns(10);
 
 		textFieldPDVRacun = new JTextField();
-		textFieldPDVRacun.setBounds(506, 101, 86, 20);
+		textFieldPDVRacun.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldPDVRacun.setBounds(745, 110, 90, 20);
 		contentPane.add(textFieldPDVRacun);
 		textFieldPDVRacun.setColumns(10);
 
 		textFieldBrutoRacun = new JTextField();
-		textFieldBrutoRacun.setBounds(601, 101, 86, 20);
+		textFieldBrutoRacun.setFont(new Font("Arial", Font.PLAIN, 13));
+		textFieldBrutoRacun.setBounds(840, 110, 90, 20);
 		contentPane.add(textFieldBrutoRacun);
 		textFieldBrutoRacun.setColumns(10);
 
 		JScrollPane scrollPaneRacun = new JScrollPane();
-		scrollPaneRacun.setBounds(10, 141, 859, 269);
+		scrollPaneRacun.setBounds(10, 141, 1164, 320);
 		contentPane.add(scrollPaneRacun);
 
 		tableStavkeRacuna = new JTable();
@@ -200,46 +209,55 @@ public class JFrameRacun_otpreminica extends JFrame {
 		
 		scrollPaneRacun.setViewportView(tableStavkeRacuna);
 
-		btnNovaPoyicijaRacun = new JButton("Nova Pozicija");
-		btnNovaPoyicijaRacun.setBounds(10, 433, 130, 23);
+		btnNovaPoyicijaRacun = new JButton("Nova pozicija");
+		btnNovaPoyicijaRacun.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNovaPoyicijaRacun.setBounds(10, 500, 150, 25);
 		contentPane.add(btnNovaPoyicijaRacun);
 
 		JButton btnIzmeniRacun = new JButton("Izmeni");
-		btnIzmeniRacun.setBounds(157, 433, 89, 23);
+		btnIzmeniRacun.setFont(new Font("Arial", Font.BOLD, 14));
+		btnIzmeniRacun.setBounds(200, 500, 150, 25);
 		contentPane.add(btnIzmeniRacun);
 
-		btnObrisiRacun = new JButton("Obrisi");
-		btnObrisiRacun.setBounds(263, 433, 89, 23);
+		btnObrisiRacun = new JButton("Obri\u0161i");
+		btnObrisiRacun.setFont(new Font("Arial", Font.BOLD, 14));
+		btnObrisiRacun.setBounds(390, 500, 150, 25);
 		contentPane.add(btnObrisiRacun);
 
 		btnKreirajRacun = new JButton("Kreiraj");
-		btnKreirajRacun.setBounds(780, 439, 89, 23);
+		btnKreirajRacun.setFont(new Font("Arial", Font.BOLD, 14));
+		btnKreirajRacun.setBounds(1024, 500, 150, 25);
 		contentPane.add(btnKreirajRacun);
 		
-		btnPonistiAkcijuRacunOtpremnica = new JButton("Ponisti akciju");
-		btnPonistiAkcijuRacunOtpremnica.setBounds(382, 433, 114, 23);
+		btnPonistiAkcijuRacunOtpremnica = new JButton("Poni\u0161ti akciju");
+		btnPonistiAkcijuRacunOtpremnica.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonistiAkcijuRacunOtpremnica.setBounds(580, 500, 150, 25);
 		contentPane.add(btnPonistiAkcijuRacunOtpremnica);
 		
 		comboBoxKupacRacun = new JComboBox<Kupac>();
-		comboBoxKupacRacun.setBounds(133, 31, 130, 20);
+		comboBoxKupacRacun.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxKupacRacun.setBounds(200, 30, 180, 20);
 		contentPane.add(comboBoxKupacRacun);
 		popuniComboBoxKupacRacun(comboBoxKupacRacun);
+		comboBoxKupacRacun.setSelectedItem(null);
 		
 		dateChooserNaplateracuna = new JDateChooser();
-		dateChooserNaplateracuna.setBounds(410, 69, 277, 20);
+		dateChooserNaplateracuna.setBounds(650, 70, 280, 20);
 		contentPane.add(dateChooserNaplateracuna);
 		
-		btnZapocniProdajuStavkeRacuna = new JButton("Zapocni prodaju");
+		btnZapocniProdajuStavkeRacuna = new JButton("Zapo\u010Dni prodaju");
+		btnZapocniProdajuStavkeRacuna.setFont(new Font("Arial", Font.BOLD, 14));
 		btnZapocniProdajuStavkeRacuna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 			}
 		});
-		btnZapocniProdajuStavkeRacuna.setBounds(133, 103, 130, 23);
+		btnZapocniProdajuStavkeRacuna.setBounds(200, 110, 150, 25);
 		contentPane.add(btnZapocniProdajuStavkeRacuna);
 		
 		JLabel lblValutaRacunOtpremnica = new JLabel("Valuta :");
-		lblValutaRacunOtpremnica.setBounds(306, 75, 46, 14);
+		lblValutaRacunOtpremnica.setFont(new Font("Arial", Font.BOLD, 14));
+		lblValutaRacunOtpremnica.setBounds(500, 70, 130, 20);
 		contentPane.add(lblValutaRacunOtpremnica);
 	}
 	

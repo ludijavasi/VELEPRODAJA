@@ -80,15 +80,15 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 		case 0:
 			return "Redni broj";
 		case 1:
-			return "Sifra";
+			return "Šifra";
 		case 2:
-			return "Naziv Artikla";
+			return "Naziv artikla";
 		case 3:
 			return "Kolicin";
 		case 4:
 			return "Jedinica";
 		case 5:
-			return "Cena/RSD";
+			return "Cena (RSD)";
 		case 6:
 			return "Rabat";
 		case 7:
@@ -98,7 +98,7 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 		case 9:
 			return "Neto ";
 		case 10:
-			return "Vrednost PDV";
+			return "Vrednost PDV-a";
 		case 11:
 			return "Bruto";
 

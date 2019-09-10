@@ -208,7 +208,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 		btnURedu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-try {
+        try {
 					
 					if(dateOdKupacIzvestaj.getDate() == null || dateChooserDoIzvestajKupac.getDate() == null)
 					{

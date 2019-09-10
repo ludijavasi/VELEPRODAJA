@@ -383,7 +383,7 @@ public class DAOIzvestaj {
 		
 		
 		
-	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenom(Integer id_zaposlenog) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenom(Integer id_zaposlenog, String d, String d1) throws ClassNotFoundException, SQLException {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
@@ -393,10 +393,14 @@ public class DAOIzvestaj {
 				+ "FROM racun_otpremnica join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
 				+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
 				+ "join filijala on zaposleni.id_filijale = filijala.id_filijale join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
-				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala WHERE zaposleni.id_zaposlenog = ? "
-				+ "group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
+				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala "
+				+ "WHERE datum_racuna BETWEEN ? and ? and racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog = ? "
+				+ "group by stavke_prodaje.id_artikla");
 		
-		preparedStatement.setInt(1, id_zaposlenog);
+		
+		preparedStatement.setString(1, d);
+		preparedStatement.setString(2, d1);
+		preparedStatement.setInt(3, id_zaposlenog);
 		
 		preparedStatement.execute();
 
@@ -404,7 +408,7 @@ public class DAOIzvestaj {
 
 		while (rs.next()) {
 			
-			//int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
+			int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
 			String imeZaposlenog = rs.getString("zaposleni.ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("zaposleni.prezime_zaposlenog");
 			String username_zaposlenog = rs.getString("username_zaposlenog");
@@ -421,7 +425,7 @@ public class DAOIzvestaj {
 			double marza_artikla = rs.getDouble("marza_artikla");
 			double stopa_pdv_a = rs.getDouble("artikal.stopa_pdv_a");
 			
-			Izvestaj ga = new Izvestaj(/*idZaposlenog,*/ imeZaposlenog, prezimeZaposlenog, 
+			Izvestaj ga = new Izvestaj(idZaposlenog, imeZaposlenog, prezimeZaposlenog, 
 					idRacuna, datum_racuna, IdFirme, naziv_firme_kupca, username_zaposlenog, 
 					naziv_filijale, grupa_artikala, idArtikla, naziv_artikla, koicina_prodaje, 
 					neto_cena_artikla, marza_artikla, stopa_pdv_a);
@@ -433,7 +437,7 @@ public class DAOIzvestaj {
 		return lista;
 	}
 	
-	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupi(Integer id_zaposlenog, Integer id_grupe_artikala) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupi(Integer id_zaposlenog, Integer id_grupe_artikala, String d, String d1) throws ClassNotFoundException, SQLException {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
@@ -443,13 +447,14 @@ public class DAOIzvestaj {
 				+ "FROM racun_otpremnica join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna "
 				+ "join kupac on racun_otpremnica.id_kupca = kupac.id_kupca join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog "
 				+ "join filijala on zaposleni.id_filijale = filijala.id_filijale join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
-				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala WHERE zaposleni.id_zaposlenog = ? "
-				+ "and grupa_artikala.id_grupe_artikala = ?  "
-				+ "group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
+				+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala"
+				+ " WHERE datum_racuna BETWEEN ? and ? and racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog = ? and grupa_artikala.id_grupe_artikala =?"				
+				+ "group by stavke_prodaje.id_artikla");
 		
-		preparedStatement.setInt(1, id_zaposlenog);
-		
-		preparedStatement.setInt(2, id_grupe_artikala);
+		preparedStatement.setString(1, d);
+		preparedStatement.setString(2, d1);
+		preparedStatement.setInt(3,id_zaposlenog);
+		preparedStatement.setInt(4,id_grupe_artikala);
 		
 		preparedStatement.execute();
 
@@ -457,7 +462,7 @@ public class DAOIzvestaj {
 
 		while (rs.next()) {
 			
-			//int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
+			int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
 			String imeZaposlenog = rs.getString("zaposleni.ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("zaposleni.prezime_zaposlenog");
 			int idRacuna = rs.getInt ("racun_otpremnica.id_racuna");
@@ -474,10 +479,14 @@ public class DAOIzvestaj {
 			double marza_artikla = rs.getDouble("marza_artikla");
 			double stopa_pdv_a = rs.getDouble("artikal.stopa_pdv_a");
 			
-			Izvestaj ga = new Izvestaj(/*idZaposlenog*/ imeZaposlenog, prezimeZaposlenog, 
+			/*Izvestaj ga = new Izvestaj(idZaposlenog, imeZaposlenog, prezimeZaposlenog, 
 					idRacuna, datum_racuna, IdFirme, naziv_firme_kupca, username_zaposlenog, 
 					naziv_filijale, grupa_artikala, idArtikla, naziv_artikla, koicina_prodaje, 
-					neto_cena_artikla, marza_artikla, stopa_pdv_a);
+					neto_cena_artikla, marza_artikla, stopa_pdv_a);*/
+			
+			Izvestaj ga = new Izvestaj(idZaposlenog, imeZaposlenog, prezimeZaposlenog, idRacuna, 
+					datum_racuna, IdFirme, naziv_firme_kupca, username_zaposlenog, naziv_filijale, grupa_artikala, 
+					idArtikla, naziv_artikla, koicina_prodaje, neto_cena_artikla, marza_artikla, stopa_pdv_a);
 			
 
 			lista.add(ga);
@@ -486,7 +495,7 @@ public class DAOIzvestaj {
 		return lista;
 	}
 	
-	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(Integer id_zaposlenog, Integer id_grupe_artikala, Integer id_artikla) throws ClassNotFoundException, SQLException {
+	public ArrayList<Izvestaj> getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(Integer id_zaposlenog, Integer id_grupe_artikala, Integer id_artikla, String d, String d1) throws ClassNotFoundException, SQLException {
 		ArrayList<Izvestaj> lista = new ArrayList<Izvestaj>();
 		
 		connect();
@@ -496,14 +505,14 @@ public class DAOIzvestaj {
 				+ " join stavke_prodaje on racun_otpremnica.id_racuna = stavke_prodaje.id_racuna join kupac on racun_otpremnica.id_kupca = kupac.id_kupca"
 				+ " join zaposleni on racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog join filijala on zaposleni.id_filijale = filijala.id_filijale"
 				+ " join artikal on stavke_prodaje.id_artikla = artikal.id_artikla join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala"
-				+ " WHERE zaposleni.id_zaposlenog = ? and grupa_artikala.id_grupe_artikala = ? and artikal.id_artikla = ?  "
-				+ " group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
+				+ " WHERE datum_racuna BETWEEN ? and ? and racun_otpremnica.id_zaposlenog = zaposleni.id_zaposlenog = ? and grupa_artikala.id_grupe_artikala = ? and artikal.id_artikla = ?  "
+				+ " group by stavke_prodaje.id_artikla=artikal.id_artikla");
 		
-		preparedStatement.setInt(1, id_zaposlenog);
-		
-		preparedStatement.setInt(2, id_grupe_artikala);
-		
-		preparedStatement.setInt(3, id_artikla);
+		preparedStatement.setString(1, d);
+		preparedStatement.setString(2, d1);
+		preparedStatement.setInt(3,id_zaposlenog);
+	    preparedStatement.setInt(4,id_grupe_artikala);
+	    preparedStatement.setInt(5,id_artikla);
 		
 		preparedStatement.execute();
 
@@ -511,7 +520,7 @@ public class DAOIzvestaj {
 
 		while (rs.next()) {
 			
-		//	int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
+			int idZaposlenog = rs.getInt("zaposleni.id_zaposlenog");
 			String imeZaposlenog = rs.getString("zaposleni.ime_zaposlenog");
 			String prezimeZaposlenog = rs.getString("zaposleni.prezime_zaposlenog");
 			int idRacuna = rs.getInt ("racun_otpremnica.id_racuna");
@@ -528,7 +537,7 @@ public class DAOIzvestaj {
 			double marza_artikla = rs.getDouble("marza_artikla");
 			double stopa_pdv_a = rs.getDouble("artikal.stopa_pdv_a");
 			
-			Izvestaj ga = new Izvestaj(/*idZaposlenog, */imeZaposlenog, prezimeZaposlenog, 
+			Izvestaj ga = new Izvestaj(idZaposlenog, imeZaposlenog, prezimeZaposlenog, 
 					idRacuna, datum_racuna, IdFirme, naziv_firme_kupca, username_zaposlenog, 
 					naziv_filijale, grupa_artikala, idArtikla, naziv_artikla, koicina_prodaje, 
 					neto_cena_artikla, marza_artikla, stopa_pdv_a);

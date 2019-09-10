@@ -14,12 +14,11 @@ import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
+import java.awt.Font;
 
 public class JFrameKontrolaZaliha extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldSkladisteKontrolaZaliha;
-	private JTextField textFieldArtikalKontrolaZaliha;
 	private final ButtonGroup RadioButtonGropSortiranjeKontrolaZaliha = new ButtonGroup();
 	private JButton btnPrekidKontrolaZaliha;
 	private JButton btnOkKontrolaZaliha;
@@ -52,9 +51,9 @@ public class JFrameKontrolaZaliha extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameKontrolaZaliha() {
-		setTitle("Kontrola Zaliha");
+		setTitle("KONTROLA ZALIHA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 336, 360);
+		setBounds(100, 100, 500, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,78 +62,89 @@ public class JFrameKontrolaZaliha extends JFrame {
 		JPanel panelFilterKontrolaZaliha = new JPanel();
 		panelFilterKontrolaZaliha
 				.setBorder(new TitledBorder(null, "Filter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelFilterKontrolaZaliha.setBounds(25, 163, 118, 109);
+		panelFilterKontrolaZaliha.setBounds(20, 200, 150, 150);
 		contentPane.add(panelFilterKontrolaZaliha);
 		panelFilterKontrolaZaliha.setLayout(null);
 
 		JCheckBox chckbxZaliheVeceOd0KontrolaZaliha = new JCheckBox("Zalihe > 0");
-		chckbxZaliheVeceOd0KontrolaZaliha.setBounds(6, 23, 84, 23);
+		chckbxZaliheVeceOd0KontrolaZaliha.setFont(new Font("Arial", Font.BOLD, 14));
+		chckbxZaliheVeceOd0KontrolaZaliha.setBounds(10, 30, 100, 20);
 		panelFilterKontrolaZaliha.add(chckbxZaliheVeceOd0KontrolaZaliha);
 
 		JCheckBox chckbxZaliheManjeOd0KontrolaZaliha = new JCheckBox("Zalihe < 0");
-		chckbxZaliheManjeOd0KontrolaZaliha.setBounds(6, 49, 97, 23);
+		chckbxZaliheManjeOd0KontrolaZaliha.setFont(new Font("Arial", Font.BOLD, 14));
+		chckbxZaliheManjeOd0KontrolaZaliha.setBounds(10, 70, 100, 20);
 		panelFilterKontrolaZaliha.add(chckbxZaliheManjeOd0KontrolaZaliha);
 
 		JCheckBox chckbxZalihejednakekontrolazaliha = new JCheckBox("Zalihe = 0");
-		chckbxZalihejednakekontrolazaliha.setBounds(6, 75, 97, 23);
+		chckbxZalihejednakekontrolazaliha.setFont(new Font("Arial", Font.BOLD, 14));
+		chckbxZalihejednakekontrolazaliha.setBounds(10, 110, 100, 20);
 		panelFilterKontrolaZaliha.add(chckbxZalihejednakekontrolazaliha);
 
 		JPanel panelSortiranjeKontrolaZaliha = new JPanel();
 		panelSortiranjeKontrolaZaliha
 				.setBorder(new TitledBorder(null, "Sortiranje", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelSortiranjeKontrolaZaliha.setBounds(172, 163, 118, 103);
+		panelSortiranjeKontrolaZaliha.setBounds(250, 200, 170, 120);
 		contentPane.add(panelSortiranjeKontrolaZaliha);
 		panelSortiranjeKontrolaZaliha.setLayout(null);
 
 		JRadioButton rdbtnArtikal = new JRadioButton("Artikal");
+		rdbtnArtikal.setFont(new Font("Arial", Font.BOLD, 14));
 		RadioButtonGropSortiranjeKontrolaZaliha.add(rdbtnArtikal);
-		rdbtnArtikal.setBounds(6, 60, 109, 23);
+		rdbtnArtikal.setBounds(10, 70, 100, 20);
 		panelSortiranjeKontrolaZaliha.add(rdbtnArtikal);
 
-		JRadioButton rdbtnGrupaArikala = new JRadioButton("Grupa Arikala");
+		JRadioButton rdbtnGrupaArikala = new JRadioButton("Grupa arikala");
+		rdbtnGrupaArikala.setFont(new Font("Arial", Font.BOLD, 14));
 		RadioButtonGropSortiranjeKontrolaZaliha.add(rdbtnGrupaArikala);
-		rdbtnGrupaArikala.setBounds(6, 29, 109, 23);
+		rdbtnGrupaArikala.setBounds(10, 30, 130, 20);
 		panelSortiranjeKontrolaZaliha.add(rdbtnGrupaArikala);
 
-		btnOkKontrolaZaliha = new JButton("OK");
-		btnOkKontrolaZaliha.setBounds(172, 283, 118, 23);
+		btnOkKontrolaZaliha = new JButton("Pretra\u017Ei");
+		btnOkKontrolaZaliha.setFont(new Font("Arial", Font.BOLD, 14));
+		btnOkKontrolaZaliha.setBounds(270, 410, 150, 25);
 		contentPane.add(btnOkKontrolaZaliha);
 
 		btnPrekidKontrolaZaliha = new JButton("Prekid");
-		btnPrekidKontrolaZaliha.setBounds(25, 283, 118, 23);
+		btnPrekidKontrolaZaliha.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPrekidKontrolaZaliha.setBounds(20, 410, 150, 25);
 		contentPane.add(btnPrekidKontrolaZaliha);
 
 		JPanel panelPretragaKontrolaZaliha = new JPanel();
 		panelPretragaKontrolaZaliha
 				.setBorder(new TitledBorder(null, "Pretraga", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPretragaKontrolaZaliha.setBounds(25, 22, 265, 130);
+		panelPretragaKontrolaZaliha.setBounds(20, 30, 400, 130);
 		contentPane.add(panelPretragaKontrolaZaliha);
 		panelPretragaKontrolaZaliha.setLayout(null);
 
-		textFieldSkladisteKontrolaZaliha = new JTextField();
-		textFieldSkladisteKontrolaZaliha.setBounds(123, 27, 132, 20);
-		panelPretragaKontrolaZaliha.add(textFieldSkladisteKontrolaZaliha);
-		textFieldSkladisteKontrolaZaliha.setColumns(10);
-
-		JLabel lblSkladisteKontrolaZaliha = new JLabel("Skladiste :");
-		lblSkladisteKontrolaZaliha.setBounds(10, 30, 86, 14);
+		JLabel lblSkladisteKontrolaZaliha = new JLabel("Skladi\u0161te :");
+		lblSkladisteKontrolaZaliha.setFont(new Font("Arial", Font.BOLD, 14));
+		lblSkladisteKontrolaZaliha.setBounds(10, 30, 90, 20);
 		panelPretragaKontrolaZaliha.add(lblSkladisteKontrolaZaliha);
 
 		JComboBox comboBoxGrupaArtikalaKontrolaZaliha = new JComboBox();
-		comboBoxGrupaArtikalaKontrolaZaliha.setBounds(123, 58, 132, 20);
+		comboBoxGrupaArtikalaKontrolaZaliha.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxGrupaArtikalaKontrolaZaliha.setBounds(170, 60, 200, 20);
 		panelPretragaKontrolaZaliha.add(comboBoxGrupaArtikalaKontrolaZaliha);
 
 		JLabel lblGrupaArtikalaKontrolaZaliha = new JLabel("Grupa artikala :");
-		lblGrupaArtikalaKontrolaZaliha.setBounds(10, 55, 86, 20);
+		lblGrupaArtikalaKontrolaZaliha.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGrupaArtikalaKontrolaZaliha.setBounds(10, 60, 120, 20);
 		panelPretragaKontrolaZaliha.add(lblGrupaArtikalaKontrolaZaliha);
 
-		textFieldArtikalKontrolaZaliha = new JTextField();
-		textFieldArtikalKontrolaZaliha.setBounds(123, 89, 132, 20);
-		panelPretragaKontrolaZaliha.add(textFieldArtikalKontrolaZaliha);
-		textFieldArtikalKontrolaZaliha.setColumns(10);
-
 		JLabel lblArtikalKontrolaZaliha = new JLabel("Artikal :");
-		lblArtikalKontrolaZaliha.setBounds(10, 92, 46, 14);
+		lblArtikalKontrolaZaliha.setFont(new Font("Arial", Font.BOLD, 14));
+		lblArtikalKontrolaZaliha.setBounds(10, 90, 90, 20);
 		panelPretragaKontrolaZaliha.add(lblArtikalKontrolaZaliha);
+		
+		JComboBox comboBoxSkladisteKontrolaZaliha = new JComboBox();
+		comboBoxSkladisteKontrolaZaliha.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxSkladisteKontrolaZaliha.setBounds(170, 30, 200, 20);
+		panelPretragaKontrolaZaliha.add(comboBoxSkladisteKontrolaZaliha);
+		
+		JComboBox comboBoxArtikalKontrolaZaliha = new JComboBox();
+		comboBoxArtikalKontrolaZaliha.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxArtikalKontrolaZaliha.setBounds(170, 90, 200, 20);
+		panelPretragaKontrolaZaliha.add(comboBoxArtikalKontrolaZaliha);
 	}
 }

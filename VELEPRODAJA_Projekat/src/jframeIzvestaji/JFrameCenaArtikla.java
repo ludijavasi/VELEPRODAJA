@@ -29,6 +29,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.Font;
 
 public class JFrameCenaArtikla extends JFrame {
 
@@ -66,32 +67,36 @@ public class JFrameCenaArtikla extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameCenaArtikla() {
-		setTitle("Cena Artikla");
+		setTitle("PREGLED CENA ARTIKALA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 830, 420);
+		setBounds(100, 100, 850, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblGrupaArtiklaCenaArtikla = new JLabel("Grupa artikla :");
-		lblGrupaArtiklaCenaArtikla.setBounds(10, 11, 68, 22);
+		JLabel lblGrupaArtiklaCenaArtikla = new JLabel("Grupa artikala :");
+		lblGrupaArtiklaCenaArtikla.setFont(new Font("Arial", Font.BOLD, 14));
+		lblGrupaArtiklaCenaArtikla.setBounds(10, 30, 120, 20);
 		contentPane.add(lblGrupaArtiklaCenaArtikla);
 		
 		JLabel lblArtikal = new JLabel("Artikal :");
-		lblArtikal.setBounds(10, 44, 46, 14);
+		lblArtikal.setFont(new Font("Arial", Font.BOLD, 14));
+		lblArtikal.setBounds(10, 70, 100, 20);
 		contentPane.add(lblArtikal);
 		
 		JScrollPane scrollPaneCenaArtikla = new JScrollPane();
-		scrollPaneCenaArtikla.setBounds(10, 122, 794, 216);
+		scrollPaneCenaArtikla.setBounds(10, 130, 810, 350);
 		contentPane.add(scrollPaneCenaArtikla);
 		
 		btnNazadCenaArtikla = new JButton("Nazad");
-		btnNazadCenaArtikla.setBounds(715, 347, 89, 23);
+		btnNazadCenaArtikla.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazadCenaArtikla.setBounds(670, 520, 150, 25);
 		contentPane.add(btnNazadCenaArtikla);
 		
 		comboBoxGrupaArtikalaCenaArtikala  = new JComboBox<GrupaArtikala>();
-		comboBoxGrupaArtikalaCenaArtikala.setBounds(112, 12, 168, 20);
+		comboBoxGrupaArtikalaCenaArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
+		comboBoxGrupaArtikalaCenaArtikala.setBounds(200, 30, 200, 20);
 		contentPane.add(comboBoxGrupaArtikalaCenaArtikala);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaCenaArtikala);
 		comboBoxGrupaArtikalaCenaArtikala.setSelectedItem(null);
@@ -144,8 +149,9 @@ public class JFrameCenaArtikla extends JFrame {
 		});
 	
 		comboBoxArtikalCenaArtikala = new JComboBox<Artikli>();
+		comboBoxArtikalCenaArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxArtikalCenaArtikala.setEditable(true);
-		comboBoxArtikalCenaArtikala.setBounds(112, 41, 168, 20);
+		comboBoxArtikalCenaArtikala.setBounds(200, 70, 200, 20);
 		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalCenaArtikala);
 		contentPane.add(comboBoxArtikalCenaArtikala);
 		

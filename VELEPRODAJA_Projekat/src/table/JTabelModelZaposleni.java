@@ -19,7 +19,7 @@ public class JTabelModelZaposleni extends AbstractTableModel{
 	@Override
 	public int getColumnCount() {
 		
-		return 15;
+		return 14;
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class JTabelModelZaposleni extends AbstractTableModel{
 		case 0:
 			return "ID";
 		case 1:
-			return "ID Filijale";
+			return "ID FILIJALE";
 		case 2:
 			return "IME";
 		case 3:
@@ -81,17 +81,17 @@ public class JTabelModelZaposleni extends AbstractTableModel{
 		case 4:
 			return "ADRESA";
 		case 5:
-			return "GRAD/OPSTINA";
+			return "GRAD/OPŠTINA";
 		case 6:
 			return "TELEFON";
 		case 7:
 			return "E-MAIL";	
 		case 8:
-			return "STRUCNA SPREMA";
+			return "STRUČNA SPREMA";
 		case 9:
-			return "DATUM POCETKA UGOVORA";
+			return "DATUM POČETKA UGOVORA";
 		case 10:
-			return "DATUM ZAVRSETKA UGOVORA";
+			return "DATUM ZAVRŠETKA UGOVORA";
 		case 11:
 			return  "PLATA";
 		case 12:

@@ -12,6 +12,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.JComboBox;
 
 public class JFramePregledArtikala extends JFrame {
 
@@ -58,7 +60,7 @@ public class JFramePregledArtikala extends JFrame {
 	public JFramePregledArtikala() {
 		setTitle("PREGLED ARTIKALA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 591, 364);
+		setBounds(100, 100, 1000, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,36 +68,26 @@ public class JFramePregledArtikala extends JFrame {
 		
 		JPanel panelSortiranjeArtikala = new JPanel();
 		panelSortiranjeArtikala.setBorder(new TitledBorder(null, "Sortiranje", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelSortiranjeArtikala.setBounds(10, 11, 555, 62);
+		panelSortiranjeArtikala.setBounds(10, 30, 560, 60);
 		contentPane.add(panelSortiranjeArtikala);
 		panelSortiranjeArtikala.setLayout(null);
 		
-		JRadioButton rdbtnGlavnaGrupa = new JRadioButton("Glavna grupa");
-		rdbtnGlavnaGrupa.setBounds(6, 19, 109, 23);
-		panelSortiranjeArtikala.add(rdbtnGlavnaGrupa);
-		
-		JRadioButton rdbtnGrupaArtikla = new JRadioButton("Grupa artikla");
-		rdbtnGrupaArtikla.setBounds(149, 19, 109, 23);
-		panelSortiranjeArtikala.add(rdbtnGrupaArtikla);
-		
-		JRadioButton rdbtnArtikal = new JRadioButton("Artikal");
-		rdbtnArtikal.setBounds(289, 19, 109, 23);
-		panelSortiranjeArtikala.add(rdbtnArtikal);
+		JComboBox comboBoxGrupaArtikalaPregledArtikala = new JComboBox();
+		comboBoxGrupaArtikalaPregledArtikala.setBounds(252, 29, 176, 20);
+		panelSortiranjeArtikala.add(comboBoxGrupaArtikalaPregledArtikala);
 		
 		ButtonGroup grupaSortiranje = new ButtonGroup();
-		grupaSortiranje.add(rdbtnGlavnaGrupa);
-		grupaSortiranje.add(rdbtnGrupaArtikla);
-		grupaSortiranje.add(rdbtnArtikal);
 		
 		JScrollPane scrollPanePregledArtikala = new JScrollPane();
-		scrollPanePregledArtikala.setBounds(10, 90, 555, 184);
+		scrollPanePregledArtikala.setBounds(10, 110, 960, 250);
 		contentPane.add(scrollPanePregledArtikala);
 		
 		tablePregledArtikala = new JTable();
 		scrollPanePregledArtikala.setViewportView(tablePregledArtikala);
 		
 		btnIzlazPregledArtikala = new JButton("Izlaz");
-		btnIzlazPregledArtikala.setBounds(437, 291, 128, 23);
+		btnIzlazPregledArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		btnIzlazPregledArtikala.setBounds(820, 620, 150, 25);
 		contentPane.add(btnIzlazPregledArtikala);
 	}
 }

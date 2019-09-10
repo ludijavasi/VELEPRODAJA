@@ -1,4 +1,9 @@
 eclipse.preferences.version=1
 encoding//src/jframe/JFrameZaposleni.java=UTF-8
+encoding//src/table/JTabelModelZaposleni.java=UTF-8
+encoding//src/table/JTableModelFilijala.java=UTF-8
+encoding//src/table/JTableModelKupac.java=UTF-8
 encoding//src/table/JTableModelPregledRacunaPoStatusu.java=UTF-8
+encoding//src/table/JTableModelStavkeRacunaOtpremnice.java=UTF-8
 encoding//src/verifier/SrpskaSlovaVerifier.java=UTF-8
+encoding//src/view/GlavniProzorVeleprodaja.java=UTF-8

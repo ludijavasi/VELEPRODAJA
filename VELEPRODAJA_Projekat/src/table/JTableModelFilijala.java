@@ -66,7 +66,7 @@ public class JTableModelFilijala extends AbstractTableModel {
 		case 2:
 			return "ADRESA";
 		case 3:
-			return "GRAD/OPSTINA";
+			return "GRAD/OPŠTINA";
 		case 4:
 			return "TELEFON";
 		case 5:
@@ -74,7 +74,7 @@ public class JTableModelFilijala extends AbstractTableModel {
 		case 6:
 			return "PIB";
 		case 7:
-			return "TEKUCI RACUN";	
+			return "TEKUĆI RAČUN";	
 		case 8:
 			return "STATUS";
 

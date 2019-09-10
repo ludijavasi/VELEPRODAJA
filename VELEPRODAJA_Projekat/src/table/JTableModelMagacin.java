@@ -61,7 +61,7 @@ public class JTableModelMagacin extends AbstractTableModel {
 		case 2:
 			return "ADRESA";
 		case 3:
-			return "GRAD/OPSTINA";
+			return "GRAD/OPŠTINA";
 		case 4:
 			return "TELEFON";
 		case 5:

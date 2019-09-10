@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class JFramePregledMagacina extends JFrame {
 
@@ -47,21 +48,22 @@ public class JFramePregledMagacina extends JFrame {
 	public JFramePregledMagacina() {
 		setTitle("PREGLED MAGACINA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1000, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 414, 193);
+		scrollPane.setBounds(10, 30, 960, 250);
 		contentPane.add(scrollPane);
 		
 		tablePregledMagacina = new JTable();
 		scrollPane.setViewportView(tablePregledMagacina);
 		
 		btnIzlazPregledMagacina = new JButton("Izlaz");
-		btnIzlazPregledMagacina.setBounds(335, 227, 89, 23);
+		btnIzlazPregledMagacina.setFont(new Font("Arial", Font.BOLD, 14));
+		btnIzlazPregledMagacina.setBounds(820, 320, 150, 25);
 		contentPane.add(btnIzlazPregledMagacina);
 	}
 

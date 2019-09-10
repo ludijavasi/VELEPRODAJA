@@ -59,9 +59,9 @@ public class JTableModelStavkeRacunaOtpremnice extends AbstractTableModel {
 		case 0:
 			return "Artikal";
 		case 1:
-			return "Kolicin";
+			return "Količina";
 		case 2:
-				return "Jedinica";
+				return "Jedinica mere";
 		case 3:
 			return "Neto cena";
 		case 4:

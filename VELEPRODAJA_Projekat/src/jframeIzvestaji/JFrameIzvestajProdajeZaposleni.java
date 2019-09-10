@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -181,8 +182,12 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 				ArrayList lista;
 				try {
 					
+				    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+				        String sd = sdf.format(dateChooserOdIzvestajZaposlenog.getDate());
+				        String sd1 = sdf.format(dateChooserDoIzvestajZaposlenog.getDate());
+					
 						lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom(((Zaposleni) 
-									comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog());
+									comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog(), sd, sd1);
 						
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
 						suma(tableIzvestajProdajeZaposlenog);
@@ -302,9 +307,14 @@ try {
 				ArrayList lista;
 				try {
 					
+					    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+					    String sd = sdf.format(dateChooserOdIzvestajZaposlenog.getDate());
+					    String sd1 = sdf.format(dateChooserDoIzvestajZaposlenog.getDate()); 					
+					
+					
 						lista = Kontroler.getInstance().getIzvestajProdajePoZposlenomPoGrupi(((Zaposleni) 
 								comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog(),((GrupaArtikala) 
-										comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala());
+										comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala(), sd, sd1);
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
 						suma(tableIzvestajProdajeZaposlenog);
 						
@@ -369,10 +379,14 @@ try {
 				ArrayList lista;
 				try {
 					
+					    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+				        String sd = sdf.format(dateChooserOdIzvestajZaposlenog.getDate());
+				        String sd1 = sdf.format(dateChooserDoIzvestajZaposlenog.getDate()); 	
+					
 						lista = Kontroler.getInstance().getIzvestajProdajePoZposlenomPoGrupiPoArtiklu(((Zaposleni) 
 								comboBoxZaposleniIzvestaj.getSelectedItem()).getIdZaposlenog(),((GrupaArtikala) 
 								comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala(),
-								((Artikli)comboBoxIzvestakZaposlenihArikal.getSelectedItem()).getIdArtikla());
+								((Artikli)comboBoxIzvestakZaposlenihArikal.getSelectedItem()).getIdArtikla(), sd, sd1);
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
 						suma(tableIzvestajProdajeZaposlenog);
 					} catch (ClassNotFoundException | SQLException e2) {
