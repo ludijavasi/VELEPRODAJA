@@ -52,10 +52,11 @@ public class JFrameRacun_otpreminica extends JFrame {
 	private JDateChooser dateChooserRacunOtpremnica;
 	private JButton btnZapocniProdajuStavkeRacuna;
 	private JButton btnObrisiRacun;
+	private JButton btnIzmeniRacun;	
 	
-	
-	
-	
+	public JButton getBtnIzmeniRacun() {
+		return btnIzmeniRacun;
+	}
 	public JButton getBtnObrisiRacun() {
 		return btnObrisiRacun;
 	}
@@ -214,7 +215,7 @@ public class JFrameRacun_otpreminica extends JFrame {
 		btnNovaPoyicijaRacun.setBounds(10, 500, 150, 25);
 		contentPane.add(btnNovaPoyicijaRacun);
 
-		JButton btnIzmeniRacun = new JButton("Izmeni");
+		btnIzmeniRacun = new JButton("Izmeni");
 		btnIzmeniRacun.setFont(new Font("Arial", Font.BOLD, 14));
 		btnIzmeniRacun.setBounds(200, 500, 150, 25);
 		contentPane.add(btnIzmeniRacun);

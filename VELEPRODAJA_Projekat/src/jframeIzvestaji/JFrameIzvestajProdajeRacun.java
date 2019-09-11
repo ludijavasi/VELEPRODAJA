@@ -13,6 +13,8 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
 import com.toedter.calendar.JDateChooser;
 
+import jframe.JFrameRacun_otpreminica;
 import kontroler.Kontroler;
 import model.Artikli;
 import model.Filijala;
@@ -34,6 +37,7 @@ import table.JTableModelPregledRacunaRacuna;
 import table.JTableModelProdajPoRacunu;
 import table.JTableModelProdajaPoFilijali;
 import table.JTableModelProdajaPoKupacu;
+import table.JTableModelRacunOtpremnica;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -322,6 +326,89 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 		scrollPanePregledRAcuna.setViewportView(tablePregledRAcuna);
 		postaviModelProdajaPoRacunu(new ArrayList<Izvestaj>(), tablePregledRAcuna);
 		
+		tablePregledRAcuna.addMouseListener(new MouseListener() {		
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount()%2 == 0) {
+					String s = tablePregledRAcuna.getModel().getValueAt(tablePregledRAcuna.getSelectedRow(), 3).toString();
+					
+					JFrameRacun_otpreminica ro = new JFrameRacun_otpreminica();
+					
+					ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							ro.setVisible(false);
+							
+						}
+					});
+					ro.getBtnKreirajRacun().setVisible(false);
+					ro.getBtnNovaPoyicijaRacun().setVisible(false);
+					ro.getBtnZapocniProdajuStavkeRacuna().setVisible(false);
+					ro.getBtnIzmeniRacun().setVisible(false);
+					ro.getBtnObrisiRacun().setVisible(false);
+					ro.getBtnPonistiAkcijuRacunOtpremnica().setBounds(1024, 500, 150, 25);
+					ro.getBtnPonistiAkcijuRacunOtpremnica().setText("Nazad");
+					ro.setVisible(true);
+					
+					ArrayList lista;
+					
+					try {
+					
+						int id_racuna = Integer.parseInt(s);
+						ro.getTextFieldRacunOtpremnicaRacun().setText(s);
+						Date d =Kontroler.getInstance().datumValuteRacuna(id_racuna);
+						ro.getDateChooserNaplateracuna().setDate(d);
+						ro.getDateChooserRacunOtpremnica().setDate(Kontroler.getInstance().datumRacuna(id_racuna));
+						
+						//k = Kontroler.getInstance().getDetaljiKupca(idk);
+						
+						ro.getComboBoxKupacRacun().getModel().setSelectedItem(comboBoxKupacPregledRacuna.getSelectedItem());
+												
+						lista = Kontroler.getInstance().getStavkeRacunaOtpremniceIzvestaj(id_racuna);
+						postaviModelRAcunaOtpremnice(lista, ro.getTableStavkeRacuna());
+						suma(tablePregledRAcuna);
+						
+						
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});		
+		
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(30, 500, 1100, 50);
@@ -412,6 +499,11 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 	}
 	private void postaviModelProdajaPoRacunu(ArrayList lista, JTable t){
 		JTableModelProdajPoRacunu model = new  JTableModelProdajPoRacunu(lista);
+		t.setModel(model);
+	}
+	
+	private void postaviModelRAcunaOtpremnice(ArrayList lista, JTable t){
+		JTableModelRacunOtpremnica model = new JTableModelRacunOtpremnica(lista);
 		t.setModel(model);
 	}
 	
