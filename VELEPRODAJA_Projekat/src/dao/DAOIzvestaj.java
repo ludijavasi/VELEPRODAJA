@@ -685,7 +685,7 @@ public class DAOIzvestaj {
 					+ "join artikal on stavke_prodaje.id_artikla = artikal.id_artikla "
 					+ "join grupa_artikala on artikal.id_grupe_artikala = grupa_artikala.id_grupe_artikala "
 					+ "WHERE datum_racuna BETWEEN ? and ? and kupac.id_kupca = ? and grupa_artikala.id_grupe_artikala = ? and artikal.id_artikla = ? "
-					+ "group by stavke_prodaje.id_artikla=artikal.id_artikla, datum_racuna");
+					+ "group by stavke_prodaje.id_stavke_prodaje, datum_racuna");
 			
 			
 			preparedStatement.setString(1, d);

@@ -119,7 +119,7 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 				postaviModelProdajaPoRacunu(new ArrayList<Kupac>(), tablePregledRAcuna);
 				ArrayList lista;
 				try { 			
-						
+						if(comboBoxKupacPregledRacuna.getSelectedItem() != null) {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
 						String sd1 = sdf.format(dateChooserpregledRacunaDO.getDate());
@@ -129,7 +129,7 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 						
 						postaviModelProdajaPoRacunu(lista, tablePregledRAcuna);
 						suma(tablePregledRAcuna);
-						
+						}
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -192,9 +192,8 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 						comboBoxKupacPregledRacuna.setEnabled(true);
 						comboBoxGrupaArtiklaPregledRacuna.setEnabled(true);
 						comboBoxArtikalPregledRAcuna.setEnabled(true);
-						//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
-						//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-						//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+						dateChooserpregledRacunaDO.setEnabled(false);
+						dateChooserPregledRacunaOD.setEnabled(false);
 						
 					}
 					
@@ -233,6 +232,8 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 				postaviModelProdajaPoRacunu(new ArrayList<GrupaArtikala>(), tablePregledRAcuna);
 				ArrayList lista;
 				try { 
+					
+						if(comboBoxGrupaArtiklaPregledRacuna.getSelectedItem() != null) {
 					    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 					    String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
 					    String sd1 = sdf.format(dateChooserpregledRacunaDO.getDate());
@@ -242,7 +243,7 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 										comboBoxGrupaArtiklaPregledRacuna.getSelectedItem()).getIdGrupeArtikala(), sd, sd1);
 						postaviModelProdajaPoRacunu(lista, tablePregledRAcuna);
 						suma(tablePregledRAcuna);
-						
+						}
 					
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -298,17 +299,17 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 				postaviModelProdajaPoRacunu(new ArrayList<Artikli>(), tablePregledRAcuna);
 				ArrayList lista;
 				try {
-						
+						if(comboBoxArtikalPregledRAcuna.getSelectedItem() != null) {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
 						String sd1 = sdf.format(dateChooserpregledRacunaDO.getDate());
-						lista = Kontroler.getInstance().getIzvestajProdajePoKupcuPoGrupiPoArtiklu(((Kupac) 
+						lista = Kontroler.getInstance().getIzvestajProdajePoKupcuPoGrupiPoArtikluPoRacunu(((Kupac) 
 								comboBoxKupacPregledRacuna.getSelectedItem()).getIdKupca(),((GrupaArtikala) 
 								comboBoxGrupaArtiklaPregledRacuna.getSelectedItem()).getIdGrupeArtikala(),
 								((Artikli)comboBoxArtikalPregledRAcuna.getSelectedItem()).getIdArtikla(),sd,sd1);
 						postaviModelProdajaPoRacunu(lista, tablePregledRAcuna);
 						suma(tablePregledRAcuna);
-					
+						}
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -484,8 +485,16 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 					textFieldProdajnaVrednostRacun.setText("");
 					
 					comboBoxKupacPregledRacuna.setEnabled(false);
+					comboBoxKupacPregledRacuna.setSelectedItem(null);
 					comboBoxGrupaArtiklaPregledRacuna.setEnabled(false);
+					comboBoxGrupaArtiklaPregledRacuna.setSelectedItem(null);
 					comboBoxArtikalPregledRAcuna.setEnabled(false);
+					comboBoxGrupaArtiklaPregledRacuna.setSelectedItem(null);
+					dateChooserpregledRacunaDO.cleanup();
+					dateChooserPregledRacunaOD.cleanup();
+					dateChooserpregledRacunaDO.setEnabled(true);
+					dateChooserPregledRacunaOD.setEnabled(true);
+					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

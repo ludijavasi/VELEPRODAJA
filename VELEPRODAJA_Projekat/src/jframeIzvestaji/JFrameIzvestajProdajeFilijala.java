@@ -199,9 +199,8 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 						comboBoxFilijalaIzvestajProdaje.setEnabled(true);
 						comboBoxGrupaArtikalaIzvestajProdaje.setEnabled(true);
 						comboBoxArtikalIzvestajProdaje.setEnabled(true);
-						//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
-						//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-						//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+						dateChooserOdIzvestajProdaje.setEnabled(false);
+						dateChooserrDoIzvestajProdaje.setEnabled(false);
 						
 					}
 					
@@ -245,6 +244,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				postaviModelProdajaPoArtiklu(new ArrayList<Filijala>(), tableIzvestajProdaje);
 				ArrayList lista;
 				try {
+						if(comboBoxFilijalaIzvestajProdaje.getSelectedItem() != null) {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
 						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
@@ -254,6 +254,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 						
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
 						suma(tableIzvestajProdaje);
+						}
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -280,7 +281,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				postaviModelProdajaPoArtiklu(new ArrayList<GrupaArtikala>(), tableIzvestajProdaje);
 				ArrayList lista;
 				try {
-					
+						if(comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem() != null) {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
 						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
@@ -290,6 +291,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala(),sd,sd1);
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
 						suma(tableIzvestajProdaje);
+						}
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -346,8 +348,8 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				postaviModelProdajaPoArtiklu(new ArrayList<Artikli>(), tableIzvestajProdaje);
 				ArrayList lista;
 				try {
-						
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+						if(comboBoxArtikalIzvestajProdaje.getSelectedItem() != null) {
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
 						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
 
@@ -357,6 +359,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 								((Artikli)comboBoxArtikalIzvestajProdaje.getSelectedItem()).getIdArtikla(),sd,sd1);
 						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
 						suma(tableIzvestajProdaje);
+						}
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -444,9 +447,6 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 					postaviModelProdajaPoArtiklu(new ArrayList<>(), tableIzvestajProdaje);
 					suma(tableIzvestajProdaje);
 					
-					//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-					//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
-					//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
 					
 					dateChooserOdIzvestajProdaje.setDate(null);
 					dateChooserrDoIzvestajProdaje.setDate(null);
@@ -457,8 +457,17 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 					txtProdajnavrednostIzvestajProdajeFilijala.setText("");
 					
 					comboBoxFilijalaIzvestajProdaje.setEnabled(false);
+					comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
 					comboBoxGrupaArtikalaIzvestajProdaje.setEnabled(false);
+					comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
 					comboBoxArtikalIzvestajProdaje.setEnabled(false);
+					comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+					dateChooserOdIzvestajProdaje.cleanup();
+					dateChooserrDoIzvestajProdaje.cleanup();
+					dateChooserOdIzvestajProdaje.setEnabled(true);
+					dateChooserrDoIzvestajProdaje.setEnabled(true);
+					
+					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

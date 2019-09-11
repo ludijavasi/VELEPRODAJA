@@ -160,7 +160,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 				postaviModelProdajaPoKupcu(new ArrayList<Kupac>(), tableIzvestajKupac);
 				ArrayList lista;
 				try {
-						
+						if(comboBoxIzvestajKupac.getSelectedItem() != null) {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateOdKupacIzvestaj.getDate());
 						String sd1 = sdf.format(dateChooserDoIzvestajKupac.getDate());
@@ -170,7 +170,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 						
 						postaviModelProdajaPoKupcu(lista, tableIzvestajKupac);
 						suma(tableIzvestajKupac);
-						
+						}
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -234,9 +234,8 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 						comboBoxIzvestajKupac.setEnabled(true);
 						comboBoxGrupaArtikalaIzvestajKupac.setEnabled(true);
 						comboBoxArtikalIzvestajKupac.setEnabled(true);
-						//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
-						//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-						//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+						dateChooserDoIzvestajKupac.setEnabled(false);
+						dateOdKupacIzvestaj.setEnabled(false);
 						
 					}
 					
@@ -277,7 +276,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 				postaviModelProdajaPoKupcu(new ArrayList<GrupaArtikala>(), tableIzvestajKupac);
 				ArrayList lista;
 				try {
-					
+						if(comboBoxGrupaArtikalaIzvestajKupac.getSelectedItem() != null) {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateOdKupacIzvestaj.getDate());
 						String sd1 = sdf.format(dateChooserDoIzvestajKupac.getDate());
@@ -286,7 +285,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 										comboBoxGrupaArtikalaIzvestajKupac.getSelectedItem()).getIdGrupeArtikala(),sd,sd1);
 						postaviModelProdajaPoKupcu(lista, tableIzvestajKupac);
 						suma(tableIzvestajKupac);
-						
+						}
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -346,7 +345,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 				postaviModelProdajaPoKupcu(new ArrayList<Artikli>(), tableIzvestajKupac);
 				ArrayList lista;
 				try {
-						
+						if(comboBoxArtikalIzvestajKupac.getSelectedItem() != null) {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateOdKupacIzvestaj.getDate());
 						String sd1 = sdf.format(dateChooserDoIzvestajKupac.getDate());
@@ -356,7 +355,7 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 								((Artikli)comboBoxArtikalIzvestajKupac.getSelectedItem()).getIdArtikla(),sd,sd1);
 						postaviModelProdajaPoKupcu(lista, tableIzvestajKupac);
 						suma(tableIzvestajKupac);
-					
+						}
 						
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
@@ -450,8 +449,16 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 					textProdajnavrednostIzvestajProdajeKupac.setText("");
 					
 					comboBoxIzvestajKupac.setEnabled(false);
+					comboBoxIzvestajKupac.setSelectedItem(null);
 					comboBoxGrupaArtikalaIzvestajKupac.setEnabled(false);
+					comboBoxGrupaArtikalaIzvestajKupac.setSelectedItem(null);
 					comboBoxArtikalIzvestajKupac.setEnabled(false);
+					comboBoxArtikalIzvestajKupac.setSelectedItem(null);
+					dateChooserDoIzvestajKupac.cleanup();
+					dateOdKupacIzvestaj.cleanup();
+					dateChooserDoIzvestajKupac.setEnabled(true);
+					dateOdKupacIzvestaj.setEnabled(true);
+					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

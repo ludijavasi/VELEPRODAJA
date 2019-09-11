@@ -255,9 +255,8 @@ try {
 						comboBoxZaposleniIzvestaj.setEnabled(true);
 						comboBoxIzvestajZaposleniGrupaArtikla.setEnabled(true);
 						comboBoxIzvestakZaposlenihArikal.setEnabled(true);
-						//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
-						//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-						//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
+						dateChooserDoIzvestajZaposlenog.setEnabled(false);
+						dateChooserOdIzvestajZaposlenog.setEnabled(false);
 						
 					}
 					
@@ -475,6 +474,11 @@ try {
 					comboBoxIzvestajZaposleniGrupaArtikla.setEnabled(false);
 					comboBoxIzvestakZaposlenihArikal.setSelectedItem(null);
 					comboBoxIzvestakZaposlenihArikal.setEnabled(false);
+					dateChooserDoIzvestajZaposlenog.cleanup();
+					dateChooserOdIzvestajZaposlenog.cleanup();
+					dateChooserDoIzvestajZaposlenog.setEnabled(true);
+					dateChooserOdIzvestajZaposlenog.setEnabled(true);
+					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
