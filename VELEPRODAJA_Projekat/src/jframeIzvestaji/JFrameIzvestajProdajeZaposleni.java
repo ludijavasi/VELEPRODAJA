@@ -178,10 +178,11 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
+				
 				postaviModelProdajaPoZaposlenom(new ArrayList<Zaposleni>(), tableIzvestajProdajeZaposlenog);
 				ArrayList lista;
 				try {
-					
+					if(comboBoxZaposleniIzvestaj.getSelectedItem() != null) {
 				    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 				        String sd = sdf.format(dateChooserOdIzvestajZaposlenog.getDate());
 				        String sd1 = sdf.format(dateChooserDoIzvestajZaposlenog.getDate());
@@ -191,7 +192,7 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 						
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
 						suma(tableIzvestajProdajeZaposlenog);
-						
+						}
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -306,7 +307,7 @@ try {
 				postaviModelProdajaPoZaposlenom(new ArrayList<GrupaArtikala>(), tableIzvestajProdajeZaposlenog);
 				ArrayList lista;
 				try {
-					
+						if(comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem() != null) {
 					    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 					    String sd = sdf.format(dateChooserOdIzvestajZaposlenog.getDate());
 					    String sd1 = sdf.format(dateChooserDoIzvestajZaposlenog.getDate()); 					
@@ -317,8 +318,7 @@ try {
 										comboBoxIzvestajZaposleniGrupaArtikla.getSelectedItem()).getIdGrupeArtikala(), sd, sd1);
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
 						suma(tableIzvestajProdajeZaposlenog);
-						
-					
+						}
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -378,7 +378,7 @@ try {
 				postaviModelProdajaPoZaposlenom(new ArrayList<Zaposleni>(), tableIzvestajProdajeZaposlenog);
 				ArrayList lista;
 				try {
-					
+						if( comboBoxIzvestakZaposlenihArikal.getSelectedItem() != null ) {
 					    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 				        String sd = sdf.format(dateChooserOdIzvestajZaposlenog.getDate());
 				        String sd1 = sdf.format(dateChooserDoIzvestajZaposlenog.getDate()); 	
@@ -389,6 +389,7 @@ try {
 								((Artikli)comboBoxIzvestakZaposlenihArikal.getSelectedItem()).getIdArtikla(), sd, sd1);
 						postaviModelProdajaPoZaposlenom(lista, tableIzvestajProdajeZaposlenog);
 						suma(tableIzvestajProdajeZaposlenog);
+						}
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -460,10 +461,6 @@ try {
 					postaviModelProdajaPoZaposlenom(new ArrayList<>(), tableIzvestajProdajeZaposlenog);
 					suma(tableIzvestajProdajeZaposlenog);
 					
-					//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-					//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
-					//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
-					
 					dateChooserOdIzvestajZaposlenog.setDate(null);
 					dateChooserDoIzvestajZaposlenog.setDate(null);
 					
@@ -472,8 +469,11 @@ try {
 					textFieldRucIzvestajProdajeZaposleni.setText("");
 					textProdajnavrednostIzvestajProdajeZaposleni.setText("");
 					
+					comboBoxZaposleniIzvestaj.setSelectedItem(null);
 					comboBoxZaposleniIzvestaj.setEnabled(false);
+					comboBoxIzvestajZaposleniGrupaArtikla.setSelectedItem(null);
 					comboBoxIzvestajZaposleniGrupaArtikla.setEnabled(false);
+					comboBoxIzvestakZaposlenihArikal.setSelectedItem(null);
 					comboBoxIzvestakZaposlenihArikal.setEnabled(false);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
