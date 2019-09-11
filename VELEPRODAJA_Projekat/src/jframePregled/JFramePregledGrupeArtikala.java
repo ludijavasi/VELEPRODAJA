@@ -55,15 +55,15 @@ public class JFramePregledGrupeArtikala extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPanePregledGrupeArtikala = new JScrollPane();
-		scrollPanePregledGrupeArtikala.setBounds(10, 11, 606, 219);
+		scrollPanePregledGrupeArtikala.setBounds(10, 30, 600, 200);
 		contentPane.add(scrollPanePregledGrupeArtikala);
 		
 		tablePregledGrupeArtikala = new JTable();
 		scrollPanePregledGrupeArtikala.setViewportView(tablePregledGrupeArtikala);
 		
 		btnIzlazPregledGrupeArtikala = new JButton("Izlaz");
-		btnIzlazPregledGrupeArtikala.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnIzlazPregledGrupeArtikala.setBounds(496, 258, 120, 23);
+		btnIzlazPregledGrupeArtikala.setFont(new Font("Arial", Font.BOLD, 14));
+		btnIzlazPregledGrupeArtikala.setBounds(460, 260, 150, 25);
 		contentPane.add(btnIzlazPregledGrupeArtikala);
 	}
 }

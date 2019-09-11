@@ -48,9 +48,9 @@ public class JTableModelGrupeArtikala extends AbstractTableModel{
 	public String getColumnName(int c) {
 		switch (c) {
 		case 0:
-			return "ID grupe artikala";
+			return "ID GRUPE ARTIKALA";
 		case 1:
-			return "Naziv grupe artikala";
+			return "NAZIV GRUPE ARTIKALA";
 		default:
 			return "Greska!";
 		}

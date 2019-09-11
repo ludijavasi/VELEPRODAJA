@@ -11,6 +11,7 @@ import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import groovy.swing.binding.JTableProperties;
 import jframe.JFrameArtikal;
 import jframe.JFrameFilijala;
 import jframe.JFrameGrupaArtikala;
@@ -49,6 +50,7 @@ import jframePregled.JFramePregledZaposlenih;
 import jframePregled.JFrameStavkeRacunaPregled;
 import kontroler.Kontroler;
 import model.Artikli;
+import model.GrupaArtikala;
 import model.Izvestaj;
 import model.Kupac;
 import model.RacunOtpremnica;
@@ -1297,6 +1299,7 @@ public class GlavniProzorVeleprodaja {
 					}
 				});
 				panelAdmin.setVisible(true);				
+				
 			}
 		});
 		mnArtikliAdmin.add(mntmPregledArtikalaAdmin);
@@ -1687,7 +1690,8 @@ public class GlavniProzorVeleprodaja {
 	private void postaviModelArtikli(ArrayList lista, JTable t){
 		JTableModelArtikal model = new JTableModelArtikal(lista);
 		t.setModel(model);
-	}
+	}	
+	
 	
 	private void postaviModelGrupaArtikala(ArrayList lista, JTable t){
 		JTableModelGrupeArtikala model = new JTableModelGrupeArtikala(lista);
