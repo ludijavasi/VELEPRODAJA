@@ -141,10 +141,11 @@ public class JFramePregledArtikala extends JFrame {
 				postaviModelArtikli(new ArrayList<GrupaArtikala>(), tablePregledArtikala);
 				ArrayList<Artikli>lista;
 				try {
+					    if(comboBoxGrupaArtikalaPregledArtikala.getSelectedItem()!=null) { 
 						lista = Kontroler.getInstance().getArtikli(((GrupaArtikala) 
 								comboBoxGrupaArtikalaPregledArtikala.getSelectedItem()).getIdGrupeArtikala());
 						postaviModelArtikli(lista, tablePregledArtikala);
-					
+					    }
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -166,6 +167,7 @@ public class JFramePregledArtikala extends JFrame {
 		comboBoxArtikalPregledArtikala = new JComboBox();
 		comboBoxArtikalPregledArtikala.setFont(new Font("Arial", Font.PLAIN, 13));
 		comboBoxArtikalPregledArtikala.setBounds(150, 70, 200, 20);
+		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalPregledArtikala);
 		panelSortiranjeArtikala.add(comboBoxArtikalPregledArtikala);
 		popuniComboBoxArtikliTSVI(comboBoxArtikalPregledArtikala);
 		comboBoxArtikalPregledArtikala.setSelectedItem(null);
@@ -179,7 +181,7 @@ public class JFramePregledArtikala extends JFrame {
 				ArrayList<Artikli>lista;
 				try {
 					//if(comboBoxArtikalCenaArtikala.getSelectedItem() != null && comboBoxArtikalCenaArtikala.getSelectedItem().getClass() != "")
-						if(comboBoxArtikalPregledArtikala.getSelectedItem() != null && comboBoxArtikalPregledArtikala.getSelectedItem().getClass() == Artikli.class)
+						if(comboBoxArtikalPregledArtikala.getSelectedItem() != null)
 						{
 						lista = Kontroler.getInstance().getArtikli(0, ((Artikli) 
 								comboBoxArtikalPregledArtikala.getSelectedItem()).getIdArtikla());
@@ -202,7 +204,7 @@ public class JFramePregledArtikala extends JFrame {
 		tablePregledArtikala = new JTable();
 		scrollPanePregledArtikala.setViewportView(tablePregledArtikala);
 		
-		btnIzlazPregledArtikala = new JButton("Izlaz");
+		btnIzlazPregledArtikala = new JButton("Nazad");
 		btnIzlazPregledArtikala.setFont(new Font("Arial", Font.BOLD, 14));
 		btnIzlazPregledArtikala.setBounds(820, 560, 150, 25);
 		contentPane.add(btnIzlazPregledArtikala);
@@ -217,6 +219,9 @@ public class JFramePregledArtikala extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				
+				comboBoxArtikalPregledArtikala.setSelectedItem(null);
+				comboBoxGrupaArtikalaPregledArtikala.setSelectedItem(null);
 				//comboBoxArtikalPregledArtikala.removeAllItems();
 				//comboBoxArtikalPregledArtikala.setSelectedItem(null);
 				//comboBoxGrupaArtikalaPregledArtikala.removeAllItems();
@@ -225,14 +230,14 @@ public class JFramePregledArtikala extends JFrame {
 				//postaviModelArtikli(new ArrayList<GrupaArtikala>(), tablePregledArtikala);
 				ArrayList<Artikli>lista;
 				try {
-					    //if(comboBoxGrupaArtikalaPregledArtikala.getSelectedItem()==null && comboBoxArtikalPregledArtikala.getSelectedItem()==null) {
+					    if(comboBoxGrupaArtikalaPregledArtikala.getSelectedItem()==null && comboBoxArtikalPregledArtikala.getSelectedItem()==null) {
 					
 						lista = Kontroler.getInstance().getArtikli(0); 
 								
-						postaviModelArtikli(lista, tablePregledArtikala);
+						postaviModelArtikli(lista, tablePregledArtikala);						
 						
-					    //}
-						
+					    }
+					    
 					
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block

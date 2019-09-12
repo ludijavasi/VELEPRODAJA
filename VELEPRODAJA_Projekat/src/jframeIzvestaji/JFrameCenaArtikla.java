@@ -39,6 +39,7 @@ public class JFrameCenaArtikla extends JFrame {
 	private JButton btnNazadCenaArtikla;
 	private JComboBox comboBoxArtikalCenaArtikala;
 	private JComboBox comboBoxGrupaArtikalaCenaArtikala;
+	private JButton btnPonistiSortiranje;
 
 	public JButton getBtnNazadCenaArtikla() {
 		return btnNazadCenaArtikla;
@@ -136,10 +137,13 @@ public class JFrameCenaArtikla extends JFrame {
 				postaviModelCeneArtikla(new ArrayList<GrupaArtikala>(), tableCenaArtikla);
 				ArrayList<Artikli>lista;
 				try {
+					    if(comboBoxGrupaArtikalaCenaArtikala.getSelectedItem() != null) {
 						lista = Kontroler.getInstance().getArtikli(((GrupaArtikala) 
 									comboBoxGrupaArtikalaCenaArtikala.getSelectedItem()).getIdGrupeArtikala());
 						postaviModelCeneArtikla(lista, tableCenaArtikla);
-					
+					    }else {
+					    	popuniComboBoxArtikliTSVI(comboBoxArtikalCenaArtikala);
+					    }
 					} catch (ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -154,6 +158,8 @@ public class JFrameCenaArtikla extends JFrame {
 		comboBoxArtikalCenaArtikala.setBounds(200, 70, 200, 20);
 		org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate(comboBoxArtikalCenaArtikala);
 		contentPane.add(comboBoxArtikalCenaArtikala);
+		popuniComboBoxArtikliTSVI(comboBoxArtikalCenaArtikala);
+		comboBoxArtikalCenaArtikala.setSelectedItem(null);
 		
 		comboBoxArtikalCenaArtikala.addActionListener(new ActionListener() {
 			
@@ -183,18 +189,43 @@ public class JFrameCenaArtikla extends JFrame {
 		tableCenaArtikla = new JTable();
 		scrollPaneCenaArtikla.setViewportView(tableCenaArtikla);
 		postaviModelCeneArtikla(new ArrayList<>(), tableCenaArtikla);
-		ArrayList lista;
-		try {
-			if(comboBoxArtikalCenaArtikala.getSelectedItem()==null && comboBoxGrupaArtikalaCenaArtikala.getSelectedItem()==null) {
-				lista = Kontroler.getInstance().getArtikli(0);
-				
-				postaviModelCeneArtikla(lista,tableCenaArtikla);
-				}
 		
-			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		btnPonistiSortiranje = new JButton("Poni\u0161ti sortiranje");
+		btnPonistiSortiranje.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPonistiSortiranje.setBounds(10, 520, 170, 25);
+		contentPane.add(btnPonistiSortiranje);
+		
+		btnPonistiSortiranje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				comboBoxArtikalCenaArtikala.setSelectedItem(null);
+				comboBoxGrupaArtikalaCenaArtikala.setSelectedItem(null);
+				
+				ArrayList lista;
+				try {
+					if(comboBoxArtikalCenaArtikala.getSelectedItem()==null && comboBoxGrupaArtikalaCenaArtikala.getSelectedItem()==null) {
+						lista = Kontroler.getInstance().getArtikli(0);
+						
+						postaviModelCeneArtikla(lista,tableCenaArtikla);
+						
+						}
+					
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
 			}
+		});
+		
+		
+		
+		
+		
+		
 	}
 	
 	private void postaviModelCeneArtikla(ArrayList lista, JTable t){
@@ -237,6 +268,27 @@ public class JFrameCenaArtikla extends JFrame {
 			e.printStackTrace();
 		}
 
-	}	
+	}
 	
+	private void popuniComboBoxArtikliTSVI(JComboBox<Artikli> comboBox) {
+		
+		try {
+			comboBox.removeAllItems();
+			ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikliSVI();
+
+			// for (GlavnaGrupa gg : lista) {
+			for (Artikli a : lista1) {
+				comboBox.addItem(a);		
+
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}	
 }
