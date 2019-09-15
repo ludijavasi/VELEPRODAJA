@@ -402,6 +402,9 @@ public class JFramePregledRacunaPoStatusu extends JFrame {
 		btnNazad.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNazad.setBounds(774, 480, 150, 25);
 		contentPane.add(btnNazad);
+		textFieldUkupnoBrutoPregledRacuna.setEditable(false);
+		textFieldUkupnoNetoPregledRacuna.setEditable(false);
+		textFieldUkupnoPdvPregledRacuna.setEditable(false);
 		
 	}
 	private void postaviModelPregledRacunaPoStatusu(ArrayList lista, JTable t){

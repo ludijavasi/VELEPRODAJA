@@ -390,6 +390,17 @@ public class GlavniProzorVeleprodaja {
 				});
 				
 				ro.getBtnZapocniProdajuStavkeRacuna().setBounds(1024, 500, 150, 25);
+				ro.getBtnZapocniProdajuStavkeRacuna().setEnabled(false);
+				ro.getComboBoxKupacRacun().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if(ro.getComboBoxKupacRacun().getSelectedItem() != null) {
+							ro.getBtnZapocniProdajuStavkeRacuna().setEnabled(true);
+						}
+						
+					}
+				});
 				ro.getBtnPonistiAkcijuRacunOtpremnica().addActionListener(new ActionListener() {
 					
 					@Override
@@ -1523,8 +1534,8 @@ public class GlavniProzorVeleprodaja {
 				JFramePromenaLozinke proloz = new JFramePromenaLozinke();
 			
 				proloz.setVisible(true);
-				proloz.getTextFieldNewPassword().setEnabled(false);
-				proloz.getTextFieldConfirmPassword().setEnabled(false);
+				proloz.getTextFieldNewPassword().setEditable(false);
+				proloz.getTextFieldConfirmPassword().setEditable(false);
 				
 				proloz.getBtnUReduPromenaLozinke().addActionListener(new ActionListener() {					
 					
@@ -1534,14 +1545,15 @@ public class GlavniProzorVeleprodaja {
 						if((proloz.getTextFieldUsername().getText().toString()).equals(logedIn.getUsernameZaposlenog()) 
 							&& (proloz.getTextFieldPassword().getText().toString()).equals(logedIn.getPasswordZaposlenog())) {
 							JOptionPane.showMessageDialog(null, "Unesite novu lozinku!");
+							proloz.getTextFieldNewPassword().setEditable(true);
+							proloz.getTextFieldConfirmPassword().setEditable(true);
+							proloz.getTextFieldUsername().setEditable(false);
+							proloz.getTextFieldPassword().setEditable(false);
+							proloz.getTextFieldNewPassword().requestFocus();
 						}else{
 							JOptionPane.showMessageDialog(null, "Uneli ste pogresne podatke!");
 						}
-						proloz.getTextFieldNewPassword().setEnabled(true);
-						proloz.getTextFieldConfirmPassword().setEnabled(true);
-						
-						proloz.getTextFieldNewPassword().requestFocus();
-							
+								
 						proloz.getBtnChangePassword().addActionListener(new ActionListener() {
 								
 								@Override

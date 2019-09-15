@@ -232,6 +232,11 @@ public class JFramePregleRacuna extends JFrame {
 		textFieldUkupnoBrutoPregledRacuna.setBounds(594, 388, 86, 20);
 		contentPane.add(textFieldUkupnoBrutoPregledRacuna);
 		textFieldUkupnoBrutoPregledRacuna.setColumns(10);
+		
+		textFieldUkupnoBrutoPregledRacuna.setEditable(false);
+		textFieldUkupnoNetoPregledRacuna.setEditable(false);
+		textFieldUkupnoPdvPregledRacuna.setEditable(false);
+		
 	}
 	private void postaviModelPregledRacuna(ArrayList lista, JTable t){
 		 JTableModelPregledRacunaRacuna model = new  JTableModelPregledRacunaRacuna(lista);
