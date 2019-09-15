@@ -892,6 +892,7 @@ public class GlavniProzorVeleprodaja {
 			}
 		});
 		mnFilijalaAdmin.add(mntmBrisanjeFilijaleAdmin);
+		mntmBrisanjeFilijaleAdmin.setEnabled(false);
 
 		JMenuItem mntmAzuriranjeFilijaleAdmin = new JMenuItem("A\u017Euriranje");
 		mntmAzuriranjeFilijaleAdmin.addActionListener(new ActionListener() {
@@ -1018,6 +1019,7 @@ public class GlavniProzorVeleprodaja {
 		JMenu mnSkladistaAdmin = new JMenu("Magacin");
 		mnSkladistaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnMaticniPodaciAdmin.add(mnSkladistaAdmin);
+		mnSkladistaAdmin.setEnabled(false);
 
 		JMenuItem mntmAktivnaSkladistaAdmin = new JMenuItem("Pregled magacina");
 		mntmAktivnaSkladistaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -1206,6 +1208,7 @@ public class GlavniProzorVeleprodaja {
 			}
 		});
 		mnKupciAdmin.add(mntmObrisiKupcaAdmin);
+		mntmObrisiKupcaAdmin.setEnabled(false);
 
 		JMenuItem mntmAzurirajKupcaAdmin = new JMenuItem("A\u017Euriraj");
 		mntmAzurirajKupcaAdmin.addActionListener(new ActionListener() {
@@ -1435,6 +1438,7 @@ public class GlavniProzorVeleprodaja {
 			}
 		});
 		mnGrupeArtikalaAdmin.add(mntmObrisiGrupuArtikalaAdmin);
+		mntmObrisiGrupuArtikalaAdmin.setEnabled(false);
 
 		JMenuItem mntmAzurirajGrupuArtikalaAdmin = new JMenuItem("A\u017Euriraj");
 		mntmAzurirajGrupuArtikalaAdmin.addActionListener(new ActionListener() {

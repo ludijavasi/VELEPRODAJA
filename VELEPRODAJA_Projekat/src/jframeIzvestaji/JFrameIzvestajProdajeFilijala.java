@@ -539,19 +539,20 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		double sum = 0; double sum1 = 0; double sum2 = 0;
 		
 		for (int i = 0; i < tableIzvestajProdaje.getRowCount(); i++) { 
-			sum = sum + Double.parseDouble(tableIzvestajProdaje.getValueAt(i,8).toString());
+			sum = sum + Math.round(Double.parseDouble(tableIzvestajProdaje.getValueAt(i,8).toString())*10000)/10000.0;
 				
 		}
 		for (int i1 = 0; i1 < tableIzvestajProdaje.getRowCount(); i1++) {
-			sum1 = sum1 + Double.parseDouble(tableIzvestajProdaje.getValueAt(i1,12).toString());
+			sum1 = sum1 + Math.round(Double.parseDouble(tableIzvestajProdaje.getValueAt(i1,12).toString())*10000)/10000.0;
 		 		
 		 		}
 		for (int i2 = 0; i2 < tableIzvestajProdaje.getRowCount(); i2++) {
-			sum2 = sum2 + Double.parseDouble(tableIzvestajProdaje.getValueAt(i2,11).toString());
+			sum2 = sum2 + Math.round(Double.parseDouble(tableIzvestajProdaje.getValueAt(i2,11).toString())*10000)/10000.0;
 			
 			}
 				textFieldNabavnaVrenostIzvestajFilijala.setText(Double.toString(sum));
-				textFieldRucIzvestajProdajeFiljala.setText(Double.toString(sum2-sum));
+				double ruc = Math.round((sum2-sum)*10000)/10000.0;
+				textFieldRucIzvestajProdajeFiljala.setText(Double.toString(ruc));
 				textFieldOsnovicaIzvestajFilijala.setText(Double.toString(sum1));
 				txtProdajnavrednostIzvestajProdajeFilijala.setText(Double.toString(sum2)); 
 		  }

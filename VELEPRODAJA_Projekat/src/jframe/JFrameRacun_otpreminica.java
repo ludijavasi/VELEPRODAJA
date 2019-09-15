@@ -220,10 +220,11 @@ public class JFrameRacun_otpreminica extends JFrame {
 		btnIzmeniRacun.setFont(new Font("Arial", Font.BOLD, 14));
 		btnIzmeniRacun.setBounds(200, 500, 150, 25);
 		contentPane.add(btnIzmeniRacun);
+		btnIzmeniRacun.setVisible(false);
 
 		btnObrisiRacun = new JButton("Obri\u0161i");
 		btnObrisiRacun.setFont(new Font("Arial", Font.BOLD, 14));
-		btnObrisiRacun.setBounds(390, 500, 150, 25);
+		btnObrisiRacun.setBounds(200, 500, 150, 25);
 		contentPane.add(btnObrisiRacun);
 
 		btnKreirajRacun = new JButton("Kreiraj");
@@ -233,7 +234,7 @@ public class JFrameRacun_otpreminica extends JFrame {
 		
 		btnPonistiAkcijuRacunOtpremnica = new JButton("Poni\u0161ti akciju");
 		btnPonistiAkcijuRacunOtpremnica.setFont(new Font("Arial", Font.BOLD, 14));
-		btnPonistiAkcijuRacunOtpremnica.setBounds(580, 500, 150, 25);
+		btnPonistiAkcijuRacunOtpremnica.setBounds(390, 500, 150, 25);
 		contentPane.add(btnPonistiAkcijuRacunOtpremnica);
 		
 		comboBoxKupacRacun = new JComboBox<Kupac>();
