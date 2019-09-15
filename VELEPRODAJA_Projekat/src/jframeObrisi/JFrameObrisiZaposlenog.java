@@ -92,8 +92,7 @@ public class JFrameObrisiZaposlenog extends JFrame {
 					jfzo.getTextGrad_Ostina().setText(z.getGradOpstinaZaposlenog());
 					jfzo.getTextTelefon().setText(z.getTelefonZaposlenog());
 					jfzo.getTextEMail().setText(z.getEmailZaposlenog());					
-					
-					//jfzo.getComboBoxFilijalaPosla().setSelectedItem(Kontroler.getInstance().getDetaljiFilijale(z.getIdFilijale()).toString());
+
 					jfzo.getComboBoxFilijalaPosla().getModel().setSelectedItem(Kontroler.getInstance().getDetaljiFilijale(z.getIdFilijale()));
 					jfzo.getTextPlata().setText(Double.toString(z.getPlataZaposlenog()));
 					jfzo.getComboBoxTipZaposlenja().setSelectedItem(z.getTipZaposlenja());
@@ -121,11 +120,11 @@ public class JFrameObrisiZaposlenog extends JFrame {
 						int idz = Integer.parseInt(jfzo.getTextIDZaposlenog().getText().trim());
 						
 						try {
+							
 							Kontroler.getInstance().deleteZaposleni(idz);
 							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali zaposlenog!");
 							jfzo.setVisible(false);
-							
-							
+								
 						} catch (HeadlessException e3) {
 							// TODO Auto-generated catch block
 							e3.printStackTrace();
@@ -138,6 +137,7 @@ public class JFrameObrisiZaposlenog extends JFrame {
 						}					
 						
 					}
+					
 				});
 			    
 			    jfzo.getBtnPonistiAkciju().addActionListener(new ActionListener() {

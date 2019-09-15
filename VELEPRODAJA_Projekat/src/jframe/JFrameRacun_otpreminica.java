@@ -207,6 +207,7 @@ public class JFrameRacun_otpreminica extends JFrame {
 		tableStavkeRacuna = new JTable();
 		postaviModelRAcunaOtpremnice(new ArrayList<>(), tableStavkeRacuna);
 		ArrayList lista;
+		suma(tableStavkeRacuna);
 		
 		scrollPaneRacun.setViewportView(tableStavkeRacuna);
 
@@ -219,13 +220,12 @@ public class JFrameRacun_otpreminica extends JFrame {
 		btnIzmeniRacun.setFont(new Font("Arial", Font.BOLD, 14));
 		btnIzmeniRacun.setBounds(200, 500, 150, 25);
 		contentPane.add(btnIzmeniRacun);
-		btnIzmeniRacun.setVisible(false);
 
 		btnObrisiRacun = new JButton("Obri\u0161i");
 		btnObrisiRacun.setFont(new Font("Arial", Font.BOLD, 14));
-		btnObrisiRacun.setBounds(200, 500, 150, 25);
+		btnObrisiRacun.setBounds(390, 500, 150, 25);
 		contentPane.add(btnObrisiRacun);
-		
+
 		btnKreirajRacun = new JButton("Kreiraj");
 		btnKreirajRacun.setFont(new Font("Arial", Font.BOLD, 14));
 		btnKreirajRacun.setBounds(1024, 500, 150, 25);
@@ -233,7 +233,7 @@ public class JFrameRacun_otpreminica extends JFrame {
 		
 		btnPonistiAkcijuRacunOtpremnica = new JButton("Poni\u0161ti akciju");
 		btnPonistiAkcijuRacunOtpremnica.setFont(new Font("Arial", Font.BOLD, 14));
-		btnPonistiAkcijuRacunOtpremnica.setBounds(390, 500, 150, 25);
+		btnPonistiAkcijuRacunOtpremnica.setBounds(580, 500, 150, 25);
 		contentPane.add(btnPonistiAkcijuRacunOtpremnica);
 		
 		comboBoxKupacRacun = new JComboBox<Kupac>();
@@ -261,6 +261,7 @@ public class JFrameRacun_otpreminica extends JFrame {
 		lblValutaRacunOtpremnica.setFont(new Font("Arial", Font.BOLD, 14));
 		lblValutaRacunOtpremnica.setBounds(500, 70, 130, 20);
 		contentPane.add(lblValutaRacunOtpremnica);
+		
 	}
 	
 
@@ -280,24 +281,29 @@ public class JFrameRacun_otpreminica extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	/*private void suma (JTable t) {
-		double sum = 0; double sum1 = 0; double sum2 = 0;
+	private void suma (JTable t) {
+		double sum = 0;
+		double sum1 = 0;
+		double sum2 = 0;
 		
-		for (int i = 0; i < tableStavkeRacuna.getRowCount(); i++) { 
-			sum = sum + Double.parseDouble(tableStavkeRacuna.getValueAt(i,4).toString());
-				
+		double sumN =0;
+		for (int i = 0; i < tableStavkeRacuna.getRowCount(); i++) {
+			double iznos = (double) tableStavkeRacuna.getValueAt(i, 8);
+					sumN+=iznos;
+					textFieldNetoRacun.setText(Double.toString(sumN));
+					
 		}
-		for (int i1 = 0; i1 < tableStavkeRacuna.getRowCount(); i1++) {
-			sum1 = sum1 + Double.parseDouble(tableStavkeRacuna.getValueAt(i1,6).toString());
-		 		
-		 		}
-		for (int i2 = 0; i2 < tableStavkeRacuna.getRowCount(); i2++) {
-			sum2 = sum2 + Double.parseDouble(tableStavkeRacuna.getValueAt(i2,5).toString());
-			
-			}
-				textFieldUkupnoNetoPregledRacuna.setText(Double.toString(sum));
-				textFieldUkupnoBrutoPregledRacuna.setText(Double.toString(sum1));
-				textFieldUkupnoPdvPregledRacuna.setText(Double.toString(sum2));
-			
-		  }*/
+		double sumPDV =0;
+		for (int i = 0; i < tableStavkeRacuna.getRowCount(); i++) {
+			double iznos = (double) tableStavkeRacuna.getValueAt(i, 9);
+					sumPDV+=iznos;
+					textFieldPDVRacun.setText(Double.toString(sumPDV));
+	}
+		double sumB =0;
+		for (int i = 0; i < tableStavkeRacuna.getRowCount(); i++) {
+			double iznos = (double) tableStavkeRacuna.getValueAt(i, 10);
+					sumB+=iznos;
+					textFieldBrutoRacun.setText(Double.toString(sumB));
+		}
+	}
 }
