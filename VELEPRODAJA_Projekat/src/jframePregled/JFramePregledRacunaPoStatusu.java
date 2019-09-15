@@ -55,7 +55,11 @@ public class JFramePregledRacunaPoStatusu extends JFrame {
 	private JRadioButton rdbtnAktivan;
 	private JRadioButton rdbtnKreiran;
 	private JRadioButton rdbtnStorniran;
-	
+	private JButton btnNazad;	
+
+	public JButton getBtnNazad() {
+		return btnNazad;
+	}
 
 	public JRadioButton getRdbtnStorniran() {
 		return rdbtnStorniran;
@@ -387,6 +391,17 @@ public class JFramePregledRacunaPoStatusu extends JFrame {
 		btnObrisiTabelu.setFont(new Font("Arial", Font.BOLD, 14));
 		btnObrisiTabelu.setBounds(20, 480, 150, 25);
 		contentPane.add(btnObrisiTabelu);
+		
+		btnNazad = new JButton("Nazad");
+		btnNazad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dispose();
+			}
+		});
+		btnNazad.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNazad.setBounds(774, 480, 150, 25);
+		contentPane.add(btnNazad);
 		
 	}
 	private void postaviModelPregledRacunaPoStatusu(ArrayList lista, JTable t){
