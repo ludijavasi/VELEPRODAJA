@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -133,14 +134,10 @@ public class JFrameObrisiFilijalu extends JFrame {
 					public void actionPerformed(ActionEvent arg0) {
 						int rbn = Integer.parseInt(jffo.getTextIDFilijale().getText().trim());
 						try {
-							Kontroler.getInstance().obrisiFilijalu(rbn);
+							Kontroler.getInstance().obrisiFilijalu(rbn); 
 							JOptionPane.showMessageDialog(null, "Uspesno ste obrisali filijalu!");
 							jffo.setVisible(false);
-							/*
-							 * textFieldAdresaMagacina.setText(""); textFieldEmailMagacina.setText("");
-							 * textFieldGradMagacina.setText(""); textFieldNazivMagacina.setText("");
-							 * textFieldTelefonMagacina.setText(""); textFieldIdMagacina.setText("");
-							 */
+							
 
 						} catch (ClassNotFoundException | SQLException e1) {
 							// TODO Auto-generated catch block

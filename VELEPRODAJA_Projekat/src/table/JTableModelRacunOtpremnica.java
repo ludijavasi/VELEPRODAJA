@@ -24,7 +24,7 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 	@Override
 	public int getColumnCount() {
 		
-		return 12;
+		return 11;
 	}
 
 	@Override
@@ -40,28 +40,26 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 		case 0:
 			return new Integer(r + 1);
 		case 1:
-			return ro.getIdArtikla();
-		case 2:
 			return ro.getNaziv_artikla();
-		case 3:
+		case 2:
 			return ro.getKolicinaProdaje();
-		case 4:
+		case 3:
 			return ro.getJedinica_mere();
-		case 5:
+		case 4:
 			return ro.getNeto_cena_artikla();
-		case 6:
+		case 5:
 			return ro.getRabatProdaje();
-		case 7:
+		case 6:
 			return ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100);
-		case 8:
+		case 7:
 			return ro.getStopa_PDV();
-		case 9:
+		case 8:
 			return (ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
 					*ro.getKolicinaProdaje();
-		case 10:
+		case 9:
 			return ((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
 					*ro.getKolicinaProdaje())*ro.getStopa_PDV()/100;
-		case 11:
+		case 10:
 			return ((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
 					*ro.getKolicinaProdaje())+
 					(((ro.getNeto_cena_artikla() - (ro.getNeto_cena_artikla()*ro.getRabatProdaje()/100))
@@ -80,26 +78,24 @@ public class JTableModelRacunOtpremnica<r> extends AbstractTableModel{
 		case 0:
 			return "Redni broj";
 		case 1:
-			return "Šifra";
-		case 2:
 			return "Naziv artikla";
-		case 3:
+		case 2:
 			return "Kolicin";
-		case 4:
+		case 3:
 			return "Jedinica";
-		case 5:
+		case 4:
 			return "Cena (RSD)";
-		case 6:
+		case 5:
 			return "Rabat";
-		case 7:
+		case 6:
 			return "Neto cena";
-		case 8:
+		case 7:
 			return "PDV";
-		case 9:
+		case 8:
 			return "Neto ";
-		case 10:
+		case 9:
 			return "Vrednost PDV-a";
-		case 11:
+		case 10:
 			return "Bruto";
 
 		default:

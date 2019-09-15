@@ -103,7 +103,7 @@ public class Izvestaj {
 			Artikli artikal, double kolicinaProdaje, double rabatProdaje) {
 		super();
 		this.idArtikla = idArtikla;
-		IdgrupaArtikla = idgrupaArtikla;
+		this.IdgrupaArtikla = idgrupaArtikla;
 		this.naziv_grupe_artikala = naziv_grupe_artikala;
 		this.naziv_artikla = naziv_artikla;
 		this.jedinica_mere = jedinica_mere;
@@ -117,7 +117,7 @@ public class Izvestaj {
 	}
 
 	public Izvestaj(String naziv, double kolicina_prodaje, String jedinica_mere2, double neto_cena_artikla2,
-			int stopa_PDV2, double rabat_prodaje,int Idartikla) {
+			int stopa_PDV2, double rabat_prodaje,int idStavkeProdaje) {
 		
 		this.naziv_artikla = naziv;
 		this.kolicinaProdaje = kolicina_prodaje;
@@ -125,7 +125,7 @@ public class Izvestaj {
 		this.neto_cena_artikla = neto_cena_artikla2;
 		this.stopa_PDV = stopa_PDV2;
 		this.rabatProdaje = rabat_prodaje;
-		this.idArtikla=Idartikla;
+		this.idStavkeProdaje=idStavkeProdaje;
 	}
 	//RACUN OTPREMNICA
 	private int idRacuna;
@@ -224,7 +224,7 @@ public class Izvestaj {
 			double poreskaOsnovicaRacuna, double ukupanIznosObracunatogPdvaRacuna, double ukupnaVrednostRacuna) {
 		super();
 		this.idArtikla = idArtikla;
-		IdgrupaArtikla = idgrupaArtikla;
+		this.IdgrupaArtikla = idgrupaArtikla;
 		this.naziv_grupe_artikala = naziv_grupe_artikala;
 		this.naziv_artikla = naziv_artikla;
 		this.jedinica_mere = jedinica_mere;
