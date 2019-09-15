@@ -365,14 +365,29 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 						Date d =Kontroler.getInstance().datumValuteRacuna(id_racuna);
 						ro.getDateChooserNaplateracuna().setDate(d);
 						ro.getDateChooserRacunOtpremnica().setDate(Kontroler.getInstance().datumRacuna(id_racuna));
-						
-						//k = Kontroler.getInstance().getDetaljiKupca(idk);
-						
 						ro.getComboBoxKupacRacun().getModel().setSelectedItem(comboBoxKupacPregledRacuna.getSelectedItem());
 												
 						lista = Kontroler.getInstance().getStavkeRacunaOtpremniceIzvestaj(id_racuna);
 						postaviModelRAcunaOtpremnice(lista, ro.getTableStavkeRacuna());
-						suma(tablePregledRAcuna);
+						double sumN =0;
+						for (int i = 0; i < ro.getTableStavkeRacuna().getRowCount(); i++) {
+							double iznos = (double) ro.getTableStavkeRacuna().getValueAt(i, 8);
+									sumN+=iznos;
+									ro.getTextFieldNetoRacun().setText(Double.toString(sumN));
+									
+						}
+						double sumPDV =0;
+						for (int i = 0; i < ro.getTableStavkeRacuna().getRowCount(); i++) {
+							double iznos = (double) ro.getTableStavkeRacuna().getValueAt(i, 9);
+									sumPDV+=iznos;
+									ro.getTextFieldPDVRacun().setText(Double.toString(sumPDV));
+					}
+						double sumB =0;
+						for (int i = 0; i < ro.getTableStavkeRacuna().getRowCount(); i++) {
+							double iznos = (double) ro.getTableStavkeRacuna().getValueAt(i, 10);
+									sumB+=iznos;
+									ro.getTextFieldBrutoRacun().setText(Double.toString(sumB));
+						}
 						
 						
 					} catch (ClassNotFoundException e1) {

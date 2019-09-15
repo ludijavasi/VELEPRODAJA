@@ -18,7 +18,7 @@ ArrayList<Izvestaj> lista = new ArrayList<>();
 	@Override
 	public int getColumnCount() {
 		
-		return 8;
+		return 7;
 	}
 
 	@Override

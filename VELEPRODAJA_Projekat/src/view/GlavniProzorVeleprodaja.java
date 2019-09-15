@@ -889,17 +889,6 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiFilijalu of = new JFrameObrisiFilijalu();
 				panelAdmin.setVisible(false);
 				of.setVisible(true);
-				of.getBtnNazadObrisiFilijali().addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						of.setVisible(false);
-						
-					}
-				});
-				panelAdmin.setVisible(true);
-				
-
 			}
 		});
 		mnFilijalaAdmin.add(mntmBrisanjeFilijaleAdmin);
@@ -999,18 +988,6 @@ public class GlavniProzorVeleprodaja {
 				JFrameObrisiZaposlenog oz = new JFrameObrisiZaposlenog();
 				panelAdmin.setVisible(false);
 				oz.setVisible(true);
-			
-				oz.getBtnNazadObrisiZaposlenog().addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						oz.setVisible(false);
-						
-					}
-				});
-				panelAdmin.setVisible(true);
-				
-
 			}
 		});
 		mnZaposleniMatPodaciAdmin.add(mntmObrisiZaposlenogAdmin);
