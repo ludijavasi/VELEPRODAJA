@@ -580,10 +580,6 @@ public class GlavniProzorVeleprodaja {
 			}
 		});
 		mnProdajaAdmin.add(mntmCeneArtiklaAdmin);
-
-		JMenuItem mntmStorniranjeRacunaAdmin = new JMenuItem("Storniranje ra\u010Duna");
-		mntmStorniranjeRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnProdajaAdmin.add(mntmStorniranjeRacunaAdmin);
 		
 		JMenuItem mntmPregledRaunaPo = new JMenuItem("Pregled računa");
 		mntmPregledRaunaPo.addActionListener(new ActionListener() {
@@ -1546,17 +1542,22 @@ public class GlavniProzorVeleprodaja {
 				JFramePromenaLozinke proloz = new JFramePromenaLozinke();
 			
 				proloz.setVisible(true);
+				proloz.getTextFieldNewPassword().setEnabled(false);
+				proloz.getTextFieldConfirmPassword().setEnabled(false);
 				
-				proloz.getBtnUReduPromenaLozinke().addActionListener(new ActionListener() {
+				proloz.getBtnUReduPromenaLozinke().addActionListener(new ActionListener() {					
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						
 						if((proloz.getTextFieldUsername().getText().toString()).equals(logedIn.getUsernameZaposlenog()) 
 							&& (proloz.getTextFieldPassword().getText().toString()).equals(logedIn.getPasswordZaposlenog())) {
 							JOptionPane.showMessageDialog(null, "Unesite novu lozinku!");
 						}else{
 							JOptionPane.showMessageDialog(null, "Uneli ste pogresne podatke!");
 						}
+						proloz.getTextFieldNewPassword().setEnabled(true);
+						proloz.getTextFieldConfirmPassword().setEnabled(true);
 						
 						proloz.getTextFieldNewPassword().requestFocus();
 							
