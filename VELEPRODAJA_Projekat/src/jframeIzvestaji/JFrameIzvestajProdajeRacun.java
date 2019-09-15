@@ -120,6 +120,9 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 				ArrayList lista;
 				try { 			
 						if(comboBoxKupacPregledRacuna.getSelectedItem() != null) {
+							comboBoxArtikalPregledRAcuna.setEnabled(true);
+							comboBoxGrupaArtiklaPregledRacuna.setEnabled(true);
+							
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserPregledRacunaOD.getDate());
 						String sd1 = sdf.format(dateChooserpregledRacunaDO.getDate());
@@ -190,8 +193,8 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 					
 					if(dateChooserPregledRacunaOD.getDate() != null && dateChooserpregledRacunaDO.getDate() != null) {
 						comboBoxKupacPregledRacuna.setEnabled(true);
-						comboBoxGrupaArtiklaPregledRacuna.setEnabled(true);
-						comboBoxArtikalPregledRAcuna.setEnabled(true);
+						comboBoxGrupaArtiklaPregledRacuna.setEnabled(false);
+						comboBoxArtikalPregledRAcuna.setEnabled(false);
 						dateChooserpregledRacunaDO.setEnabled(false);
 						dateChooserPregledRacunaOD.setEnabled(false);
 						
@@ -502,7 +505,10 @@ public class JFrameIzvestajProdajeRacun extends JFrame {
 				
 			}
 		});
-		
+			textFieldNbavnaVrednostRacun.setEditable(false);
+			textFieldOsnovicaRAcun.setEditable(false);
+			textFieldProdajnaVrednostRacun.setEditable(false);
+			textFieldRucRacun.setEditable(false);
 		
 		
 	}

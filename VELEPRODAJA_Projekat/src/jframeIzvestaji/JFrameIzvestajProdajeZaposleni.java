@@ -183,6 +183,10 @@ public class JFrameIzvestajProdajeZaposleni extends JFrame {
 				ArrayList lista;
 				try {
 					if(comboBoxZaposleniIzvestaj.getSelectedItem() != null) {
+						
+						comboBoxIzvestajZaposleniGrupaArtikla.setEnabled(true);
+						comboBoxIzvestakZaposlenihArikal.setEnabled(true);
+						
 				    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 				        String sd = sdf.format(dateChooserOdIzvestajZaposlenog.getDate());
 				        String sd1 = sdf.format(dateChooserDoIzvestajZaposlenog.getDate());
@@ -253,8 +257,8 @@ try {
 					
 					if(dateChooserOdIzvestajZaposlenog.getDate() != null && dateChooserDoIzvestajZaposlenog.getDate() != null) {
 						comboBoxZaposleniIzvestaj.setEnabled(true);
-						comboBoxIzvestajZaposleniGrupaArtikla.setEnabled(true);
-						comboBoxIzvestakZaposlenihArikal.setEnabled(true);
+						comboBoxIzvestajZaposleniGrupaArtikla.setEnabled(false);
+						comboBoxIzvestakZaposlenihArikal.setEnabled(false);
 						dateChooserDoIzvestajZaposlenog.setEnabled(false);
 						dateChooserOdIzvestajZaposlenog.setEnabled(false);
 						
@@ -485,6 +489,11 @@ try {
 				}
 			}
 		});
+		
+			textFieldNabavnaVrenostIzvestajZaposleni.setEditable(false);
+			textFieldOsnovicaIzvestajZaposleni.setEditable(false);
+			textFieldRucIzvestajProdajeZaposleni.setEditable(false);
+			textProdajnavrednostIzvestajProdajeZaposleni.setEditable(false);
 		
 	}
 	

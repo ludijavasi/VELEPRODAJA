@@ -191,14 +191,11 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 						return;
 						
 					}
-					//dateChooserOdIzvestajProdaje.setDate(null);
-					//dateChooserrDoIzvestajProdaje.setDate(null);
-					
 					
 					if(dateChooserOdIzvestajProdaje.getDate() != null && dateChooserrDoIzvestajProdaje.getDate() != null) {
 						comboBoxFilijalaIzvestajProdaje.setEnabled(true);
-						comboBoxGrupaArtikalaIzvestajProdaje.setEnabled(true);
-						comboBoxArtikalIzvestajProdaje.setEnabled(true);
+						comboBoxGrupaArtikalaIzvestajProdaje.setEnabled(false);
+						comboBoxArtikalIzvestajProdaje.setEnabled(false);
 						dateChooserOdIzvestajProdaje.setEnabled(false);
 						dateChooserrDoIzvestajProdaje.setEnabled(false);
 						
@@ -245,6 +242,8 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				ArrayList lista;
 				try {
 						if(comboBoxFilijalaIzvestajProdaje.getSelectedItem() != null) {
+							comboBoxGrupaArtikalaIzvestajProdaje.setEnabled(true);
+							comboBoxArtikalIzvestajProdaje.setEnabled(true);
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
 						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
@@ -274,31 +273,6 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 		panel_1.add(comboBoxGrupaArtikalaIzvestajProdaje);
 		popuniComboBoxGrupaArtikala(comboBoxGrupaArtikalaIzvestajProdaje);
 		comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-		comboBoxGrupaArtikalaIzvestajProdaje.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				postaviModelProdajaPoArtiklu(new ArrayList<GrupaArtikala>(), tableIzvestajProdaje);
-				ArrayList lista;
-				try {
-						if(comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem() != null) {
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
-						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
-					
-						lista = Kontroler.getInstance().getIzvestajProdajePoFilijaliPoGrupi(((Filijala) 
-								comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(),((GrupaArtikala) 
-								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala(),sd,sd1);
-						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
-						suma(tableIzvestajProdaje);
-						}
-					} catch (ClassNotFoundException | SQLException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-				
-			}
-		});
 		
 		comboBoxGrupaArtikalaIzvestajProdaje.addActionListener(new ActionListener() {
 			@Override
@@ -326,7 +300,32 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 			
 		});
 		
-		
+
+		comboBoxGrupaArtikalaIzvestajProdaje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				postaviModelProdajaPoArtiklu(new ArrayList<GrupaArtikala>(), tableIzvestajProdaje);
+				ArrayList lista;
+				try {
+						if(comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem() != null ) {
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
+						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
+					
+						lista = Kontroler.getInstance().getIzvestajProdajePoFilijaliPoGrupi(((Filijala) 
+								comboBoxFilijalaIzvestajProdaje.getSelectedItem()).getIdFilijale(),((GrupaArtikala) 
+								comboBoxGrupaArtikalaIzvestajProdaje.getSelectedItem()).getIdGrupeArtikala(),sd,sd1);
+						postaviModelProdajaPoArtiklu(lista, tableIzvestajProdaje);
+						suma(tableIzvestajProdaje);
+						}
+					} catch (ClassNotFoundException | SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				
+			}
+		});
 		
 		JLabel lblArtikalIzvestajProdaje = new JLabel("Artikal :");
 		lblArtikalIzvestajProdaje.setFont(new Font("Arial", Font.BOLD, 14));
@@ -348,7 +347,7 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				postaviModelProdajaPoArtiklu(new ArrayList<Artikli>(), tableIzvestajProdaje);
 				ArrayList lista;
 				try {
-						if(comboBoxArtikalIzvestajProdaje.getSelectedItem() != null) {
+						if(comboBoxArtikalIzvestajProdaje.getSelectedItem() != null ) {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateChooserOdIzvestajProdaje.getDate());
 						String sd1 = sdf.format(dateChooserrDoIzvestajProdaje.getDate());
@@ -367,12 +366,6 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				
 			}
 		});
-		
-		
-		
-		
-		
-		
 		
 		JScrollPane scrollPaneIzvestajProdaje = new JScrollPane();
 		scrollPaneIzvestajProdaje.setBounds(30, 200, 1220, 230);
@@ -476,6 +469,12 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 			}			
 			
 		});		
+				
+			
+			textFieldNabavnaVrenostIzvestajFilijala.setEditable(false);
+			textFieldOsnovicaIzvestajFilijala.setEditable(false);
+			textFieldRucIzvestajProdajeFiljala.setEditable(false);
+			txtProdajnavrednostIzvestajProdajeFilijala.setEditable(false);
 		
 		
 	}
@@ -556,4 +555,26 @@ public class JFrameIzvestajProdajeFilijala extends JFrame {
 				textFieldOsnovicaIzvestajFilijala.setText(Double.toString(sum1));
 				txtProdajnavrednostIzvestajProdajeFilijala.setText(Double.toString(sum2)); 
 		  }
+	
+		private void popuniComboBoxArtikliTSVI(JComboBox<Artikli> comboBox) {
+	
+	try {
+		comboBox.removeAllItems();
+		ArrayList<Artikli> lista1 = Kontroler.getInstance().getArtikliSVI();
+
+		// for (GlavnaGrupa gg : lista) {
+		for (Artikli a : lista1) {
+			comboBox.addItem(a);		
+
+		}
+
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+
+		}	
+}

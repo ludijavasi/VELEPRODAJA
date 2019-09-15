@@ -161,6 +161,8 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 				ArrayList lista;
 				try {
 						if(comboBoxIzvestajKupac.getSelectedItem() != null) {
+							comboBoxArtikalIzvestajKupac.setEnabled(true);
+							comboBoxGrupaArtikalaIzvestajKupac.setEnabled(true);
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 						String sd = sdf.format(dateOdKupacIzvestaj.getDate());
 						String sd1 = sdf.format(dateChooserDoIzvestajKupac.getDate());
@@ -232,8 +234,8 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 					
 					if(dateOdKupacIzvestaj.getDate() != null && dateChooserDoIzvestajKupac.getDate() != null) {
 						comboBoxIzvestajKupac.setEnabled(true);
-						comboBoxGrupaArtikalaIzvestajKupac.setEnabled(true);
-						comboBoxArtikalIzvestajKupac.setEnabled(true);
+						comboBoxGrupaArtikalaIzvestajKupac.setEnabled(false);
+						comboBoxArtikalIzvestajKupac.setEnabled(false);
 						dateChooserDoIzvestajKupac.setEnabled(false);
 						dateOdKupacIzvestaj.setEnabled(false);
 						
@@ -436,10 +438,6 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 					postaviModelProdajaPoKupcu(new ArrayList<>(), tableIzvestajKupac);
 					suma(tableIzvestajKupac);
 					
-					//comboBoxGrupaArtikalaIzvestajProdaje.setSelectedItem(null);
-					//comboBoxArtikalIzvestajProdaje.setSelectedItem(null);
-					//comboBoxFilijalaIzvestajProdaje.setSelectedItem(null);
-					
 					dateOdKupacIzvestaj.setDate(null);
 					dateChooserDoIzvestajKupac.setDate(null);
 					
@@ -466,6 +464,10 @@ public class JFrameIzvestajProdajeKupac extends JFrame {
 				
 			}
 		});
+		textFieldNabavnaVrenostIzvestajKupac.setEditable(false);
+		textFieldOsnovicaIzvestajKupac.setEditable(false);
+		textFieldRucIzvestajProdajeKupac.setEditable(false);
+		textProdajnavrednostIzvestajProdajeKupac.setEditable(false);
 	}
 	
 	private void postaviModelProdajaPoKupcu(ArrayList lista, JTable t){
