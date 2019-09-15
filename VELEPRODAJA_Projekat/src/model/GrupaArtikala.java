@@ -9,7 +9,14 @@ public class GrupaArtikala {
 		super();
 		this.idGrupeArtikala = idGrupeArtikala;
 		this.nazivGrupeArtikala = nazivGrupeArtikala;
-	}	
+	}		
+
+	public GrupaArtikala(String nazivGrupeArtikala) {
+		super();
+		this.nazivGrupeArtikala = nazivGrupeArtikala;
+	}
+
+
 
 	public GrupaArtikala() {
 		super();

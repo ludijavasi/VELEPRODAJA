@@ -1522,19 +1522,28 @@ public class GlavniProzorVeleprodaja {
 		mnAnalizaProdajeIzvestajAdmin.add(mntmSumarniPregledDokumenataIzvAdmin);
 
 		JMenu mnRezultatiAdmin = new JMenu("Rezultati");
-		mnIzvestajAdmin.add(mnRezultatiAdmin);
+		mnRezultatiAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
+		mnIzvestajAdmin.add(mnRezultatiAdmin);		
 
 		JMenuItem mntmDnevniIzvestajAdmin = new JMenuItem("Dnevni izvestaj");
+		mntmDnevniIzvestajAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnRezultatiAdmin.add(mntmDnevniIzvestajAdmin);
+		mntmDnevniIzvestajAdmin.setEnabled(false);
 
 		JMenuItem mntmNedeljniIzvestajAdmin = new JMenuItem("Nedeljni izvestaj");
+		mntmNedeljniIzvestajAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnRezultatiAdmin.add(mntmNedeljniIzvestajAdmin);
+		mntmNedeljniIzvestajAdmin.setEnabled(false);
 
 		JMenuItem mntmMesecniIzvestajAdmin = new JMenuItem("Mesecni izvestaj");
+		mntmMesecniIzvestajAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnRezultatiAdmin.add(mntmMesecniIzvestajAdmin);
+		mntmMesecniIzvestajAdmin.setEnabled(false);
 
 		JMenuItem mntmGodisnjiIzvestajAdmin = new JMenuItem("Godisnji izvestaj");
+		mntmGodisnjiIzvestajAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnRezultatiAdmin.add(mntmGodisnjiIzvestajAdmin);
+		mntmGodisnjiIzvestajAdmin.setEnabled(false);
 
 		JMenu mnSistemAdmin = new JMenu("    Sistem");
 		mnSistemAdmin.setFont(new Font("Arial", Font.BOLD, 14));

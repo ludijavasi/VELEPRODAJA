@@ -245,6 +245,12 @@ public class JFrameMagacin extends JFrame {
 					String email = textFieldEmailMagacina.getText();
 
 					Magacin m = new Magacin(naziv, adresa, grad, tel, email);
+					
+					if(textFieldNazivMagacina.getText().equals("") || textFieldAdresaMagacina.getText().equals("")
+							|| textFieldGradMagacina.getText().equals("") || textFieldTelefonMagacina.getText().equals("")
+							|| textFieldEmailMagacina.getText().equals("")) {
+						throw new NumberFormatException();
+					}				
 
 					Kontroler.getInstance().insertMagacin(m);
 
@@ -254,12 +260,13 @@ public class JFrameMagacin extends JFrame {
 					textFieldGradMagacina.setText("");
 					textFieldNazivMagacina.setText("");
 					textFieldTelefonMagacina.setText("");
-
+				
+					
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e.printStackTrace();					
 				} catch(NumberFormatException e1){
-					JOptionPane.showMessageDialog(btnDodajMagacin, "Sva polja moraju biti popunjena!");			
+					JOptionPane.showMessageDialog(btnDodajMagacin, "Sva polja moraju biti popunjena!");										
 				
 				}catch (SQLException e) {
 					// TODO Auto-generated catch block

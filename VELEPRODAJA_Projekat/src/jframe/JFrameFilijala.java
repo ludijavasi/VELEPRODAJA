@@ -25,6 +25,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class JFrameFilijala extends JFrame {
 
@@ -310,6 +312,21 @@ public class JFrameFilijala extends JFrame {
 		panelPoslovniPodaciFilijale.add(lblPibFilijale);
 
 		textPibFilijale = new JTextField();
+		textPibFilijale.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+                Character c = e.getKeyChar();   
+                
+				
+				if(!(Character.isDigit(c) || Character.isISOControl(c)))
+				{
+					JOptionPane.showMessageDialog(null, "U polje morate uneti broj!");
+					
+					e.consume();				
+				}
+			}
+		});
 		textPibFilijale.setFont(new Font("Arial", Font.PLAIN, 13));
 		textPibFilijale.setColumns(10);
 		textPibFilijale.setBounds(140, 20, 250, 20);
@@ -376,20 +393,27 @@ public class JFrameFilijala extends JFrame {
 						status = "Aktivna";
 					} else if (rdbtnNeaktivna.isSelected()) {
 						status = "Neaktivna";
-					}
+					}					
 
 					Filijala f = new Filijala(naziv, adresa, grad, tel, email, pib, tek_racun, status);
+					
+					if(textPibFilijale.getText().toString().length() != 8) {
+						throw new ArithmeticException();
+					}
 
 					Kontroler.getInstance().insertFilijala(f);
 
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli novu filijalu!");
-
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(btnDodajFilijalu, "Sva polja moraju biti popunjena!");
+				}	catch(ArithmeticException e){
+					JOptionPane.showMessageDialog(btnDodajFilijalu, "Uneli ste pogresan broj cifara! (PIB = 8 cifara)");
+					textPibFilijale.setText("");				
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

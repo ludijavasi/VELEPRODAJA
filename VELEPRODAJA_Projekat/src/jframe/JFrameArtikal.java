@@ -262,8 +262,11 @@ public class JFrameArtikal extends JFrame {
 					textFieldMarza.setText("");
 					comboBoxStopaPDV.setSelectedItem(null);
 					comboBoxJedinicaMere.setSelectedItem(null);
-					comboBoxGrupaArtikla.setSelectedItem(null);					
+					comboBoxGrupaArtikla.setSelectedItem(null);	
 					
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!");					
 					
 				} catch (Exception e) {
 					// TODO: handle exception

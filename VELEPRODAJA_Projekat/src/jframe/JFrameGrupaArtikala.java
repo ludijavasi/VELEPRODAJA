@@ -128,14 +128,23 @@ public class JFrameGrupaArtikala extends JFrame {
 				try {
 				String naziv = textFieldGrupaArtikala.getText();
 				
-				GrupaArtikala ga = new GrupaArtikala(0, naziv);				
+				GrupaArtikala ga = new GrupaArtikala(0, naziv);	
+				
+				if(textFieldGrupaArtikala.getText().equals("")) {
+					throw new NumberFormatException();					
+				}
 				
 					Kontroler.getInstance().insertGrupaArtikala(ga);
 					JOptionPane.showMessageDialog(null, "Uspesno ste uneli grupu artikala!");
 					textFieldGrupaArtikala.setText("");
+				
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(btnDodajGrupuArtikala, "Sva polja moraju biti popunjena!");
+				
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
