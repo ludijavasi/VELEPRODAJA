@@ -584,19 +584,8 @@ public class GlavniProzorVeleprodaja {
 		JMenuItem mntmStorniranjeRacunaAdmin = new JMenuItem("Storniranje ra\u010Duna");
 		mntmStorniranjeRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnProdajaAdmin.add(mntmStorniranjeRacunaAdmin);
-
-		JMenuItem mntmPregledRacunaAdmin = new JMenuItem("Pregled ra\u010Duna");
-		mntmPregledRacunaAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFramePregleRacuna pr = new JFramePregleRacuna();
-				pr.setVisible(true);
-				
-			}
-		});
-		mntmPregledRacunaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));	
-		mnProdajaAdmin.add(mntmPregledRacunaAdmin);
 		
-		JMenuItem mntmPregledRaunaPo = new JMenuItem("Pregled ra\u010Duna po statusu");
+		JMenuItem mntmPregledRaunaPo = new JMenuItem("Pregled računa");
 		mntmPregledRaunaPo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
