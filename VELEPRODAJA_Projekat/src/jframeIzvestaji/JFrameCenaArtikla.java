@@ -121,9 +121,10 @@ public class JFrameCenaArtikla extends JFrame {
 					//vracanje zapamcenog actionlistener-a
 					comboBoxArtikalCenaArtikala.addActionListener(al);
 				}
-				else
+			else
 				{
 					comboBoxArtikalCenaArtikala.removeAllItems();
+					popuniComboBoxArtikliTSVI(comboBoxArtikalCenaArtikala);
 					comboBoxArtikalCenaArtikala.setSelectedItem(null);
 				}
 			}
@@ -188,7 +189,14 @@ public class JFrameCenaArtikla extends JFrame {
 	
 		tableCenaArtikla = new JTable();
 		scrollPaneCenaArtikla.setViewportView(tableCenaArtikla);
-		postaviModelCeneArtikla(new ArrayList<>(), tableCenaArtikla);
+		ArrayList lista;
+		try {
+			lista = Kontroler.getInstance().getArtikli(0);
+			postaviModelCeneArtikla(lista,tableCenaArtikla);
+		} catch (ClassNotFoundException | SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		
 		btnPonistiSortiranje = new JButton("Poni\u0161ti sortiranje");
 		btnPonistiSortiranje.setFont(new Font("Arial", Font.BOLD, 14));
@@ -199,10 +207,9 @@ public class JFrameCenaArtikla extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				comboBoxArtikalCenaArtikala.setSelectedItem(null);
+					
 				comboBoxGrupaArtikalaCenaArtikala.setSelectedItem(null);
+				comboBoxArtikalCenaArtikala.setSelectedItem(null);
 				
 				ArrayList lista;
 				try {
