@@ -669,7 +669,7 @@ public class JFrameZaposleni extends JFrame {
 		panelPodaciOPosluZaposleni.add(comboBoxTipZaposlenja);
 		comboBoxTipZaposlenja.setSelectedItem(null);
 		comboBoxTipZaposlenja
-				.setModel(new DefaultComboBoxModel(new String[] {"Menad\u017Eer", "Komercijalista", "Magacioner"}));
+				.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Menadžer", "Komercijalista"}));
 		
 
 		lblTipZaposlenja = new JLabel("Tip zaposlenja :");

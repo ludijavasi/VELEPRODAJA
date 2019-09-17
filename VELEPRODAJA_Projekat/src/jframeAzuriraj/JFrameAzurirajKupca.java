@@ -88,6 +88,8 @@ public class JFrameAzurirajKupca extends JFrame {
 				jfk.getBtnDodajKupca().setVisible(false);
 				jfk.getBtnObrisiKupca().setVisible(false);
 				jfk.getTextFieldIdKupca().setEditable(false);
+				jfk.getTextPibKupca().setEditable(false);
+				
 				int idk = Integer.parseInt(textFieldIdKupcaAzurirajKupca.getText().trim());
 				
 				try {

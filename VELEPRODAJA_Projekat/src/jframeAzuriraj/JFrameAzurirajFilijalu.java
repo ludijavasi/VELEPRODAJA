@@ -90,6 +90,7 @@ public class JFrameAzurirajFilijalu extends JFrame {
 				JFrameFilijala jffo = new JFrameFilijala();
 				jffo.getBtnDodajFilijalu().setVisible(false);
 				jffo.getBtnObrisiFilijalu().setVisible(false);
+				jffo.getTextPibFilijale().setEditable(false);
 				
 				jffo.getTextIDFilijale().setEditable(false);
 				int idf = Integer.parseInt(textFieldIdFilijaleAzurirajFilijalu.getText().trim());
@@ -150,7 +151,7 @@ public class JFrameAzurirajFilijalu extends JFrame {
 							 * textFieldAdresaMagacina.setText(""); textFieldEmailMagacina.setText("");
 							 * textFieldGradMagacina.setText(""); textFieldNazivMagacina.setText("");
 							 * textFieldTelefonMagacina.setText(""); textFieldIdMagacina.setText("");
-							 */
+							 */							
 
 						} catch (ClassNotFoundException | SQLException e1) {
 							// TODO Auto-generated catch block

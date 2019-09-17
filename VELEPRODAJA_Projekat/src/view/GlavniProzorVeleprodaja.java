@@ -105,6 +105,9 @@ public class GlavniProzorVeleprodaja {
 	public Zaposleni logedIn = null;
 	private JPasswordField passwordFieldPassword;	
 	private int generatedID;
+	private JMenu mnMaticniPodaciAdmin;
+	private JMenu mnIzvestajAdmin;
+	private JMenu mnSistemAdmin;
 
 	/**
 	 * Launch the application.
@@ -179,25 +182,30 @@ public class GlavniProzorVeleprodaja {
 					for (Zaposleni z : zaposleni) {						
 						
 						if (z.getUsernameZaposlenog().equals(username) && z.getPasswordZaposlenog().equals(password)) {
-							if (z.getTipZaposlenja().equals("Menadzer")) {
+							if (z.getTipZaposlenja().equals("Admin")) {
 								logedIn = z;
 
 								panelAdmin.setVisible(true);
 								panelLogin.setVisible(false);									
 
+							} else if (z.getTipZaposlenja().equals("Menadžer")) {
+								
+								logedIn = z;
+
+								panelAdmin.setVisible(true);
+								panelLogin.setVisible(false);
+								mnMaticniPodaciAdmin.setEnabled(false);
+								mnSistemAdmin.setEnabled(false);
+								
 							} else if (z.getTipZaposlenja().equals("Komercijalista")) {
-								
+								System.out.println("Komercijalista");
 								logedIn = z;
 
-								panelUserKomercijalista.setVisible(true);
-								panelLogin.setVisible(false);								
-								
-							} else if (z.getTipZaposlenja().equals("Magacioner")) {
-								System.out.println("Magacioner");
-								logedIn = z;
-
-								panelUserMagacioner.setVisible(true);
-								panelLogin.setVisible(false);								
+								panelAdmin.setVisible(true);
+								panelLogin.setVisible(false);
+								mnMaticniPodaciAdmin.setEnabled(false);
+								mnIzvestajAdmin.setEnabled(false);
+								mnSistemAdmin.setEnabled(false);
 								
 							} else {
 								JOptionPane.showMessageDialog(panelLogin, "Pogresan tip usera");
@@ -607,140 +615,6 @@ public class GlavniProzorVeleprodaja {
 		mntmPregledRaunaPo.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnProdajaAdmin.add(mntmPregledRaunaPo);
 
-		JMenu mnAnalizaProdajeAdmin = new JMenu("Analiza prodaje");
-		mnAnalizaProdajeAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnProdajaAdmin.add(mnAnalizaProdajeAdmin);
-
-		JMenuItem mntmProdajnaCenaArtiklaAdmin = new JMenuItem("Prodajna cena artikla");
-		mntmProdajnaCenaArtiklaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mntmProdajnaCenaArtiklaAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrameCenaArtikla pca = new JFrameCenaArtikla();
-				pca.setVisible(true);
-				panelAdmin.setVisible(true);
-				pca.setTitle("Prodajna cena artikla");
-				pca.getBtnNazadCenaArtikla().addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						pca.setVisible(false);
-						
-					}
-				});
-				panelAdmin.setVisible(true);
-				postaviModelProdajneCeneArtikla(new ArrayList<>(), pca.getTableCenaArtikla());
-				ArrayList lista;
-				
-				try {
-					lista = Kontroler.getInstance().getArtikli(0);
-					postaviModelProdajneCeneArtikla(lista,pca.getTableCenaArtikla());
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		mnAnalizaProdajeAdmin.add(mntmProdajnaCenaArtiklaAdmin);
-
-		JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po filijalama");
-		mntmProdajaPoArtikluAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrameIzvestajProdajeFilijala ip = new JFrameIzvestajProdajeFilijala();
-				ip.setVisible(true);
-				
-				ip.getComboBoxFilijalaIzvestajProdaje().setEnabled(false);
-				ip.getComboBoxGrupaArtikalaIzvestajProdaje().setEnabled(false);
-				ip.getComboBoxArtikalIzvestajProdaje().setEnabled(false);
-				//ip.getDateChooserrDoIzvestajProdaje().setEnabled(false);				
-				
-			}			
-			
-		});
-		mntmProdajaPoArtikluAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnAnalizaProdajeAdmin.add(mntmProdajaPoArtikluAdmin);
-
-		JMenuItem mntmProdajaPoKupcimaAdmin = new JMenuItem("Prodaja po kupcima");
-		mntmProdajaPoKupcimaAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				JFrameIzvestajProdajeKupac pk = new JFrameIzvestajProdajeKupac();
-				pk.setVisible(true);
-				
-				pk.getComboBoxIzvestajKupac().setEnabled(false);
-				pk.getComboBoxGrupaArtikalaIzvestajKupac().setEnabled(false);
-				pk.getComboBoxArtikalIzvestajKupac().setEnabled(false);
-			
-			}
-		});
-		mntmProdajaPoKupcimaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnAnalizaProdajeAdmin.add(mntmProdajaPoKupcimaAdmin);
-
-		JMenuItem mntmSumarniPregledDokumenataAdmin = new JMenuItem("Prodaja po zaposlenima");
-		mntmSumarniPregledDokumenataAdmin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				JFrameIzvestajProdajeZaposleni pz = new JFrameIzvestajProdajeZaposleni();
-				pz.setVisible(true);
-				
-				pz.getComboBoxZaposleniIzvestaj().setEnabled(false);
-				pz.getComboBoxIzvestajZaposleniGrupaArtikla().setEnabled(false);
-				pz.getComboBoxIzvestakZaposlenihArikal().setEnabled(false);
-				
-				
-				postaviModelProdajaPoZaposlenom(new ArrayList<>(), pz.getTableIzvestajProdajeZaposlenog());
-				ArrayList lista;
-				try {
-					
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-			        String sd = sdf.format(pz.getDateChooserOdIzvestajZaposlenog().getDate());
-			        String sd1 = sdf.format(pz.getDateChooserDoIzvestajZaposlenog().getDate()); 
-					
-					
-					lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom(0, sd, sd1);
-					postaviModelProdajaPoZaposlenom(lista, pz.getTableIzvestajProdajeZaposlenog());
-				double sum = 0;
-				double sum1 = 0;
-				double sum2 = 0;
-				
-				 for (int i = 0; i < pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i++) {
-			            sum = sum + Double.parseDouble(pz.getTableIzvestajProdajeZaposlenog().getValueAt(i, 11).toString());
-			            pz.getTextFieldNabavnaVrenostIzvestajZaposleni().setText(Double.toString(sum));
-			        }
-				 for (int i1 = 0; i1 <  pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i1++) {
-			            sum1 = sum1 + Double.parseDouble( pz.getTableIzvestajProdajeZaposlenog().getValueAt(i1, 15).toString());
-			            	pz.getTextFieldOsnovicaIzvestajZaposleni().setText(Double.toString(sum1));
-				 	}
-				 for (int i2 = 0; i2 < pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i2++) {
-			            sum2 = sum2 + Double.parseDouble(pz.getTableIzvestajProdajeZaposlenog().getValueAt(i2, 14).toString());
-			            	pz.getTextProdajnavrednostIzvestajProdajeZaposleni().setText(Double.toString(sum2));
-         	 }
-         	pz.getTextFieldRucIzvestajProdajeZaposleni().setText(Double.toString(sum2-sum));
-				
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			}
-		});
-		
-		mntmSumarniPregledDokumenataAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnAnalizaProdajeAdmin.add(mntmSumarniPregledDokumenataAdmin);
-		
-		JMenuItem mntmProdajaPoRaunima = new JMenuItem("Prodaja po ra\u010Dunima");
-		mntmProdajaPoRaunima.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				JFrameIzvestajProdajeRacun izpr = new JFrameIzvestajProdajeRacun();				
-				
-				izpr.setVisible(true);
-				
-				izpr.getComboBoxArtikalPregledRAcuna().setEnabled(false);
-				izpr.getComboBoxGrupaArtiklaPregledRacuna().setEnabled(false);
-				izpr.getComboBoxKupacPregledRacuna().setEnabled(false);
-			}
-		});
-		mntmProdajaPoRaunima.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnAnalizaProdajeAdmin.add(mntmProdajaPoRaunima);
-
 		JMenu mnSkladisteAdmin = new JMenu("    Skladi\u0161te");
 		mnSkladisteAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnSkladisteAdmin);
@@ -825,7 +699,7 @@ public class GlavniProzorVeleprodaja {
 		});
 		mnZaposleniAdmin.add(mntmPregledZaposlenihAdmin);
 
-		JMenu mnMaticniPodaciAdmin = new JMenu("    Mati\u010Dni podaci");
+		mnMaticniPodaciAdmin = new JMenu("    Mati\u010Dni podaci");
 		mnMaticniPodaciAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnMaticniPodaciAdmin);
 
@@ -1474,29 +1348,143 @@ public class GlavniProzorVeleprodaja {
 		mntmAzurirajGrupuArtikalaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
 		mnGrupeArtikalaAdmin.add(mntmAzurirajGrupuArtikalaAdmin);
 
-		JMenu mnIzvestajAdmin = new JMenu("    Izve\u0161taj");
+		mnIzvestajAdmin = new JMenu("    Izve\u0161taj");
 		mnIzvestajAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnIzvestajAdmin);
-
-		JMenu mnAnalizaProdajeIzvestajAdmin = new JMenu("Analiza prodaje");
-		mnAnalizaProdajeIzvestajAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnIzvestajAdmin.add(mnAnalizaProdajeIzvestajAdmin);
-
-		JMenuItem mntmProdajnaCenaArtiklaIzvAdmin = new JMenuItem("Prodajna cena artikla");
-		mntmProdajnaCenaArtiklaIzvAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnAnalizaProdajeIzvestajAdmin.add(mntmProdajnaCenaArtiklaIzvAdmin);
-
-		JMenuItem mntmProdajaPoArtiklimaIzvAdmin = new JMenuItem("Prodaja po artiklima");
-		mntmProdajaPoArtiklimaIzvAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnAnalizaProdajeIzvestajAdmin.add(mntmProdajaPoArtiklimaIzvAdmin);
-
-		JMenuItem mntmProdajaPoKupcimaIzvAdmin = new JMenuItem("Prodaja po kupcima");
-		mntmProdajaPoKupcimaIzvAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnAnalizaProdajeIzvestajAdmin.add(mntmProdajaPoKupcimaIzvAdmin);
-
-		JMenuItem mntmSumarniPregledDokumenataIzvAdmin = new JMenuItem("Sumarni pregled dokumenata");
-		mntmSumarniPregledDokumenataIzvAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
-		mnAnalizaProdajeIzvestajAdmin.add(mntmSumarniPregledDokumenataIzvAdmin);
+		
+				JMenu mnAnalizaProdajeAdmin = new JMenu("Analiza prodaje");
+				mnIzvestajAdmin.add(mnAnalizaProdajeAdmin);
+				mnAnalizaProdajeAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
+				
+						JMenuItem mntmProdajnaCenaArtiklaAdmin = new JMenuItem("Prodajna cena artikla");
+						mntmProdajnaCenaArtiklaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
+						mntmProdajnaCenaArtiklaAdmin.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								JFrameCenaArtikla pca = new JFrameCenaArtikla();
+								pca.setVisible(true);
+								panelAdmin.setVisible(true);
+								pca.setTitle("Prodajna cena artikla");
+								pca.getBtnNazadCenaArtikla().addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent e) {
+										pca.setVisible(false);
+										
+									}
+								});
+								panelAdmin.setVisible(true);
+								postaviModelProdajneCeneArtikla(new ArrayList<>(), pca.getTableCenaArtikla());
+								ArrayList lista;
+								
+								try {
+									lista = Kontroler.getInstance().getArtikli(0);
+									postaviModelProdajneCeneArtikla(lista,pca.getTableCenaArtikla());
+								} catch (ClassNotFoundException | SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							}
+						});
+						mnAnalizaProdajeAdmin.add(mntmProdajnaCenaArtiklaAdmin);
+						
+								JMenuItem mntmProdajaPoArtikluAdmin = new JMenuItem("Prodaja po filijalama");
+								mntmProdajaPoArtikluAdmin.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent arg0) {
+										JFrameIzvestajProdajeFilijala ip = new JFrameIzvestajProdajeFilijala();
+										ip.setVisible(true);
+										
+										ip.getComboBoxFilijalaIzvestajProdaje().setEnabled(false);
+										ip.getComboBoxGrupaArtikalaIzvestajProdaje().setEnabled(false);
+										ip.getComboBoxArtikalIzvestajProdaje().setEnabled(false);
+										//ip.getDateChooserrDoIzvestajProdaje().setEnabled(false);				
+										
+									}			
+									
+								});
+								mntmProdajaPoArtikluAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
+								mnAnalizaProdajeAdmin.add(mntmProdajaPoArtikluAdmin);
+								
+										JMenuItem mntmProdajaPoKupcimaAdmin = new JMenuItem("Prodaja po kupcima");
+										mntmProdajaPoKupcimaAdmin.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent arg0) {
+												
+												JFrameIzvestajProdajeKupac pk = new JFrameIzvestajProdajeKupac();
+												pk.setVisible(true);
+												
+												pk.getComboBoxIzvestajKupac().setEnabled(false);
+												pk.getComboBoxGrupaArtikalaIzvestajKupac().setEnabled(false);
+												pk.getComboBoxArtikalIzvestajKupac().setEnabled(false);
+											
+											}
+										});
+										mntmProdajaPoKupcimaAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
+										mnAnalizaProdajeAdmin.add(mntmProdajaPoKupcimaAdmin);
+										
+												JMenuItem mntmSumarniPregledDokumenataAdmin = new JMenuItem("Prodaja po zaposlenima");
+												mntmSumarniPregledDokumenataAdmin.addActionListener(new ActionListener() {
+													public void actionPerformed(ActionEvent arg0) {
+														
+														JFrameIzvestajProdajeZaposleni pz = new JFrameIzvestajProdajeZaposleni();
+														pz.setVisible(true);
+														
+														pz.getComboBoxZaposleniIzvestaj().setEnabled(false);
+														pz.getComboBoxIzvestajZaposleniGrupaArtikla().setEnabled(false);
+														pz.getComboBoxIzvestakZaposlenihArikal().setEnabled(false);
+														
+														
+														postaviModelProdajaPoZaposlenom(new ArrayList<>(), pz.getTableIzvestajProdajeZaposlenog());
+														ArrayList lista;
+														try {
+															
+															SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+													        String sd = sdf.format(pz.getDateChooserOdIzvestajZaposlenog().getDate());
+													        String sd1 = sdf.format(pz.getDateChooserDoIzvestajZaposlenog().getDate()); 
+															
+															
+															lista = Kontroler.getInstance().getIzvestajProdajePoZposlenom(0, sd, sd1);
+															postaviModelProdajaPoZaposlenom(lista, pz.getTableIzvestajProdajeZaposlenog());
+														double sum = 0;
+														double sum1 = 0;
+														double sum2 = 0;
+														
+														 for (int i = 0; i < pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i++) {
+													            sum = sum + Double.parseDouble(pz.getTableIzvestajProdajeZaposlenog().getValueAt(i, 11).toString());
+													            pz.getTextFieldNabavnaVrenostIzvestajZaposleni().setText(Double.toString(sum));
+													        }
+														 for (int i1 = 0; i1 <  pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i1++) {
+													            sum1 = sum1 + Double.parseDouble( pz.getTableIzvestajProdajeZaposlenog().getValueAt(i1, 15).toString());
+													            	pz.getTextFieldOsnovicaIzvestajZaposleni().setText(Double.toString(sum1));
+														 	}
+														 for (int i2 = 0; i2 < pz.getTableIzvestajProdajeZaposlenog().getRowCount(); i2++) {
+													            sum2 = sum2 + Double.parseDouble(pz.getTableIzvestajProdajeZaposlenog().getValueAt(i2, 14).toString());
+													            	pz.getTextProdajnavrednostIzvestajProdajeZaposleni().setText(Double.toString(sum2));
+         	 }
+         	pz.getTextFieldRucIzvestajProdajeZaposleni().setText(Double.toString(sum2-sum));
+														
+														} catch (Exception e) {
+															// TODO: handle exception
+														}
+													}
+												});
+												
+												mntmSumarniPregledDokumenataAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
+												mnAnalizaProdajeAdmin.add(mntmSumarniPregledDokumenataAdmin);
+												
+												JMenuItem mntmProdajaPoRaunima = new JMenuItem("Prodaja po ra\u010Dunima");
+												mntmProdajaPoRaunima.addActionListener(new ActionListener() {
+													public void actionPerformed(ActionEvent e) {
+														
+														JFrameIzvestajProdajeRacun izpr = new JFrameIzvestajProdajeRacun();				
+														
+														izpr.setVisible(true);
+														
+														izpr.getComboBoxArtikalPregledRAcuna().setEnabled(false);
+														izpr.getComboBoxGrupaArtiklaPregledRacuna().setEnabled(false);
+														izpr.getComboBoxKupacPregledRacuna().setEnabled(false);
+													}
+												});
+												mntmProdajaPoRaunima.setFont(new Font("Arial", Font.PLAIN, 13));
+												mnAnalizaProdajeAdmin.add(mntmProdajaPoRaunima);
 
 		JMenu mnRezultatiAdmin = new JMenu("Rezultati");
 		mnRezultatiAdmin.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -1522,7 +1510,7 @@ public class GlavniProzorVeleprodaja {
 		mnRezultatiAdmin.add(mntmGodisnjiIzvestajAdmin);
 		mntmGodisnjiIzvestajAdmin.setEnabled(false);
 
-		JMenu mnSistemAdmin = new JMenu("    Sistem");
+		mnSistemAdmin = new JMenu("    Sistem");
 		mnSistemAdmin.setFont(new Font("Arial", Font.BOLD, 14));
 		menuBarAdmin.add(mnSistemAdmin);
 

@@ -8,12 +8,12 @@ import model.Izvestaj;
 
 public class IzvestajAdmin {
 	
-	public List<Izvestaj> PrikaziSve(){
+	public List<Izvestaj> PrikaziSve(int id){
 		
 		List<Izvestaj> lista;
 		
 		try {
-			lista = Kontroler.getInstance().getStavkeRacunaOtpremniceIzvestaj(0);
+			lista = Kontroler.getInstance().getStavkeRacunaOtpremniceIzvestaj(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
