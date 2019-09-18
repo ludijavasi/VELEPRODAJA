@@ -309,8 +309,8 @@ public class GlavniProzorVeleprodaja {
 					
 					
 					jfzo.getTextIDZaposlenog().setEditable(false);
-					jfzo.getTextIme().setEditable(false);
-					jfzo.getTextPrezime().setEditable(false);
+					jfzo.getTextIme().setEditable(false);					
+					jfzo.getTextPrezime().setEditable(false);					
 					jfzo.getTextAdresa().setEditable(false);
 					jfzo.getTextJMBG().setEditable(false);
 					jfzo.getTextGrad_Ostina().setEditable(false);
@@ -1553,6 +1553,10 @@ public class GlavniProzorVeleprodaja {
 										Kontroler.getInstance().updateZaposleni(logedIn);
 										JOptionPane.showMessageDialog(null, "Uspesno ste promenili lozinku!");
 										proloz.setVisible(false);
+										}else {
+											JOptionPane.showMessageDialog(null, "Šifre se ne podudaraju!");
+											proloz.getTextFieldConfirmPassword().setText("");
+											proloz.getTextFieldConfirmPassword().grabFocus();
 										}
 										
 									} catch (ClassNotFoundException e1) {
