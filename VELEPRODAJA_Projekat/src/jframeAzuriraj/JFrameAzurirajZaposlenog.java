@@ -83,6 +83,7 @@ public class JFrameAzurirajZaposlenog extends JFrame {
 				jfzo.getBtnDodajZaposlenog().setVisible(false);
 				jfzo.getBtnObrisiZaposlenog().setVisible(false);
 				jfzo.getTextIDZaposlenog().setEditable(false);
+				jfzo.getTextJMBG().setEditable(false);
 				//jfzo.getBtnDodajZaposlenog().setVisible(false);
 				int idz = Integer.parseInt(textFieldIdZaposlenog.getText().trim());
 				
@@ -107,8 +108,7 @@ public class JFrameAzurirajZaposlenog extends JFrame {
 					jfzo.getDateChooserPrestankaZaposlenja().setDate(z.getDatumZavrsetkaZaposlenja());
 					
 					jfzo.getTextUsername().setText(z.getUsernameZaposlenog());
-					jfzo.getTextPassword().setText(z.getPasswordZaposlenog());					
-					
+					jfzo.getTextPassword().setText(z.getPasswordZaposlenog());						
 					
 				} catch (ClassNotFoundException e2) {
 					// TODO Auto-generated catch block
