@@ -24,6 +24,7 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -84,6 +85,7 @@ public class JFrameAzurirajZaposlenog extends JFrame {
 				jfzo.getBtnObrisiZaposlenog().setVisible(false);
 				jfzo.getTextIDZaposlenog().setEditable(false);
 				jfzo.getTextJMBG().setEditable(false);
+				jfzo.getTextPassword().setEditable(false);
 				//jfzo.getBtnDodajZaposlenog().setVisible(false);
 				int idz = Integer.parseInt(textFieldIdZaposlenog.getText().trim());
 				
@@ -169,6 +171,9 @@ public class JFrameAzurirajZaposlenog extends JFrame {
 						} catch (ClassNotFoundException e3) {
 							// TODO Auto-generated catch block
 							e3.printStackTrace();
+						} catch(SQLIntegrityConstraintViolationException e1){
+							JOptionPane.showMessageDialog(jfzo.getBtnAzurirajZaposlenog(), "Username vec postoji!");
+							jfzo.getTextUsername().setText("");	
 						} catch (SQLException e3) {
 							// TODO Auto-generated catch block
 							e3.printStackTrace();
